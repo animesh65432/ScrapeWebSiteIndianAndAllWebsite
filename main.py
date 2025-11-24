@@ -1,12 +1,14 @@
 import asyncio
-from westbengal import scarpe_westBengal_Annoucements
+from Scrape import scarpe_westBengal_Annoucements ,scarpe_Assam_Annoucements,scrap_Dehli_Website
 
 async def scrape_all_website():
     try:
-        WestBengalAnnoucements = await scarpe_westBengal_Annoucements()
-        print(WestBengalAnnoucements)
-    except :
-        print("scarpin error happend")
+        # WestBengalAnnoucements = await scarpe_westBengal_Annoucements()
+        # AssamAnnoucements = await scarpe_Assam_Annoucements()
+        DehliAnnoucements = await scrap_Dehli_Website()
+        print(DehliAnnoucements)
+    except Exception as e :
+        print("scarpin error happend",e)
 
 
 async def main():
