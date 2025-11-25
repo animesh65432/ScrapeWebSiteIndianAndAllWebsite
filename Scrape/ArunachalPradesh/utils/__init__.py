@@ -1,28 +1,74 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-import re
+import time
 
-def scrape_website(url: str) -> dict:
+def scrape_website(url: str) -> list:
     try:
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # run without GUI
-        chrome_options.add_argument("--ignore-certificate-errors")  # ignore SSL issues
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--ignore-certificate-errors")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
 
         driver = webdriver.Chrome(options=chrome_options)
-
-        # Open URL
         driver.get(url)
+        
+        # Wait for content to load (adjust time if needed)
+        time.sleep(3)
+        
         html = driver.page_source
         driver.quit()
 
         soup = BeautifulSoup(html, "html.parser")
-
-        print(soup)
-
-        return []
+        
+        # Find all table rows in tbody
+        Annoucements = []
+        table = soup.select_one(".table-container table tbody")
+        
+        if table:
+            rows = table.find_all("tr")
+            
+            for row in rows:
+                cols = row.find_all("td")
+                
+                if len(cols) >= 4:
+                    title = cols[1].get_text(strip=True)
+                    date = cols[2].get_text(strip=True)
+                    
+                    # Extract PDF link
+                    link_tag = cols[3].find("a")
+                    pdf_link = link_tag.get("href", "") if link_tag else ""
+                    
+                    notice_data = {
+                        "title": title,
+                        "date": date,
+                        "pdf_link": pdf_link
+                    }
+                    
+                    Annoucements.append(notice_data)
+        
+        return Annoucements
 
     except Exception as e:
-        return e
+        print(f"Error: {e}")
+        return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
