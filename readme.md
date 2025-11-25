@@ -1,6 +1,5 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
-Jammu and Kashmir:https://home.jk.gov.in/notifications.html
-Jharkhand: https://jharkhand.gov.in/Home/newsupdate
+Jharkhand:https://jharkhand.gov.in/Home/DocumentList?doctype=eccbc87e4b5ce2fe28308fd9f2a7baf3&subdoctype=1679091c5a880faf6fb5e6087eb1b2dc
 Karnataka: https://karnataka.gov.in/english
 Kerala:https://kerala.gov.in/newsandannouncements
 Ladakh: https://ladakh.gov.in

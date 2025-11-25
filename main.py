@@ -1,5 +1,5 @@
 import asyncio
-from Scrape import scarpe_westBengal_Annoucements ,scarpe_Assam_Annoucements,scrap_Dehli_Website,scrape_Goa_Annoucements,scapre_HimachalPradesh_Annoucements,scrape_ArunachalPradesh_Annoucements ,ScrapeChhattisgarhAnnoucement ,GetJammuandKashmirAnnoucements
+from Scrape import scarpe_westBengal_Annoucements ,scarpe_Assam_Annoucements,scrap_Dehli_Website,scrape_Goa_Annoucements,scapre_HimachalPradesh_Annoucements,scrape_ArunachalPradesh_Annoucements ,ScrapeChhattisgarhAnnoucement ,GetJammuandKashmirAnnoucements,GetjharkhandGovAnnoucements
 
 async def scrape_all_states():
     # tasks = [
@@ -17,7 +17,8 @@ async def scrape_all_states():
     # delhi = results[2] if not isinstance(results[2], Exception) else []
     # goa = results[3] if not isinstance(results[3], Exception) else []
     # himachal = results[4] if not isinstance(results[4], Exception) else []
-    print(await GetJammuandKashmirAnnoucements())
+    # print(await GetJammuandKashmirAnnoucements())
+    print(await GetjharkhandGovAnnoucements())
     
     return ""
 
