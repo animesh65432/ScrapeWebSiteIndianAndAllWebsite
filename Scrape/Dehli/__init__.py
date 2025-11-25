@@ -5,4 +5,5 @@ async def scrap_Dehli_Website():
     try:
         return scrape_website(config["Dehli"])
     except Exception as e:
-        print("_Dehli_Website",e)
+        print("Error in Dehli_Website",e)
+        return None

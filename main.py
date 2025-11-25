@@ -1,20 +1,28 @@
 import asyncio
-from Scrape import scarpe_westBengal_Annoucements ,scarpe_Assam_Annoucements,scrap_Dehli_Website,scrape_Goa_Annoucements,scapre_HimachalPradesh_Annoucements
+from Scrape import scarpe_westBengal_Annoucements ,scarpe_Assam_Annoucements,scrap_Dehli_Website,scrape_Goa_Annoucements,scapre_HimachalPradesh_Annoucements,scrape_ArunachalPradesh_Annoucements
 
-async def scrape_all_website():
-    try:
-        # WestBengalAnnoucements = await scarpe_westBengal_Annoucements()
-        # AssamAnnoucements = await scarpe_Assam_Annoucements()
-        # DehliAnnoucements = await scrap_Dehli_Website()
-        # GoaAnnoucements = await scrape_Goa_Annoucements()
-        HimachalPradesh_Annoucements = await scapre_HimachalPradesh_Annoucements()
-        print(HimachalPradesh_Annoucements)
-        return ""
-    except Exception as e :
-        print("scarpin error happend",e)
+async def scrape_all_states():
+    # tasks = [
+    #     scarpe_westBengal_Annoucements(),
+    #     scarpe_Assam_Annoucements(),
+    #     scrap_Dehli_Website(),
+    #     scrape_Goa_Annoucements(),
+    #     scapre_HimachalPradesh_Annoucements()
+    # ]
+
+    # results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    # westBengal = results[0] if not isinstance(results[0], Exception) else []
+    # assam = results[1] if not isinstance(results[1], Exception) else []
+    # delhi = results[2] if not isinstance(results[2], Exception) else []
+    # goa = results[3] if not isinstance(results[3], Exception) else []
+    # himachal = results[4] if not isinstance(results[4], Exception) else []
+    await scrape_ArunachalPradesh_Annoucements()
+    
+    return ""
 
 
 async def main():
-    await scrape_all_website()
+    await scrape_all_states()
 
 asyncio.run(main())

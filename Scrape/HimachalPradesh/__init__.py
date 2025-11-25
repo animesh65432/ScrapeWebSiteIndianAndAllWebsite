@@ -6,4 +6,5 @@ async def scapre_HimachalPradesh_Annoucements():
     try:
         return scraping_website(config["HimachalPradesh"])
     except Exception as e : 
-        print("GetHimachalPradesh",e)
+        print("Erro in GetHimachalPradesh",e)
+        return None
