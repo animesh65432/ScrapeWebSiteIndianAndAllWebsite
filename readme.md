@@ -1,11 +1,5 @@
-WEST_BENGAL:https://cm.wb.gov.in/ncmo/Public/News.aspx
-Arunachal Pradesh:https://ap.gov.in/#/announcements
-Assam:https://assam.gov.in/latest-updates-list-page
-Chhattisgarh:https://cgstate.gov.in/en/all-notification//Error
-Goa:https://dip.goa.gov.in/latest-press-release
+Chhattisgarh:https://cgstate.gov.in/en/all-notification
 Bihar: https://state.bihar.gov.in/home/CitizenHome.html//Redirect Error
-Delhi: https://delhi.gov.in/notice-board/notifications
-Himachal Pradesh:https://himachal.nic.in/en-IN/index.html
 Jammu and Kashmir:https://home.jk.gov.in/notifications.html
 Jharkhand: https://jharkhand.gov.in/Home/newsupdate
 Karnataka: https://karnataka.gov.in/english
