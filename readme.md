@@ -1,5 +1,4 @@
-Chhattisgarh:https://cgstate.gov.in/en/all-notification
-Bihar: https://state.bihar.gov.in/home/CitizenHome.html//Redirect Error
+<!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 Jammu and Kashmir:https://home.jk.gov.in/notifications.html
 Jharkhand: https://jharkhand.gov.in/Home/newsupdate
 Karnataka: https://karnataka.gov.in/english

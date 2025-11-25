@@ -5,6 +5,7 @@ config = {
     "Bihar": "https://state.bihar.gov.in/main/SectionInformation.html?editForm&rowId=6990",
     "Dehli": "https://delhi.gov.in/notice-board/notifications",
     "HimachalPradesh": "http://himachalpr.gov.in/pressrelease.aspx",
-    "ArunachalPradesh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0"
+    "ArunachalPradesh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
+    "JammuAndKashmir":"https://home.jk.gov.in/notifications.html"
 }
 
