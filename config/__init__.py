@@ -12,6 +12,7 @@ config = {
     "Kerala":"https://kerala.gov.in/newsandannouncements",
     "Ladakh": "https://ladakh.gov.in",
     "MadhyaPradesh": "https://mp.gov.in/news-details",
-    "Maharashtra": "https://rajbhavan-maharashtra.gov.in/en/category/press-release"
+    "Maharashtra": "https://rajbhavan-maharashtra.gov.in/en/category/press-release",
+    "Manipur": "https://imphalwest.nic.in/document-category/homepage-notification"
 }
 

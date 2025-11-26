@@ -1,7 +1,4 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
-Maharashtra: https://rajbhavan-maharashtra.gov.in/en/category/press-release
-
-Manipur: https://imphalwest.nic.in/document-category/homepage-notification
 
 Meghalaya: https://www.meghalaya.gov.in/notifications
 
