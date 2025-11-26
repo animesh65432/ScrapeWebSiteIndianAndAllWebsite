@@ -24,7 +24,7 @@ def scrape_website(url: str):
         cards = soup.find_all("div", {"class": "card"})
 
         announcements = []
-        today = datetime.today().date() - timedelta(days=2)
+        today = datetime.today().date()
 
         for card in cards:
             try:

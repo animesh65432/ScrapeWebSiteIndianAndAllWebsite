@@ -1,5 +1,4 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
-Kerala:https://kerala.gov.in/newsandannouncements
 Ladakh: https://ladakh.gov.in
 Lakshadweep:https://ladakh.gov.in/#1668841922133-008b7b9e-e379
 Madhya Pradesh: https://mp.gov.in
@@ -33,8 +32,3 @@ Tripura: https://tripura.gov.in
 Uttar Pradesh: https://up.gov.in
 
 Uttarakhand: https://uk.gov.in
-
-{'title': 'ഹരിതവിദ്യാലയം റിയാലിറ്റിഷോ അപേക്ഷിക്കാം', 'description': "സംസ്ഥാനത്തെ സ്\u200cകൂളുകളിലെ മികവുകൾ പങ്കുവെയ്ക്കുന്ന 'ഹരിതവിദ്യാലയം' വിദ്യാഭ്യാസ റിയാലിറ്റി ഷോയുടെ നാലാം എഡിഷനിൽ നവംബർ 20 വരെ അപേക്ഷിക്കാം. പ്രൈമറി സ്\u200cകൂളുകൾക്കും ഹൈസ്\u200cകൂൾ-ഹയർ സെക്", 
-'last_updated': 'അവസാനമായി അപ്ഡേറ്റ് ചെയ്തത്: 2025-11-14 11:37:23', 
-'link': 'https://kerala.gov.in/whatsnewdetailwise/MTU5OTYxNTM1NS44', 
-'scraped_at': '2025-11-26T16:23:34.290782'}
