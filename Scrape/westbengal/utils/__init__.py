@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import re
 
@@ -15,11 +15,7 @@ def scrape_website(url: str) -> dict:
     """
     try:
         # Setup headless Chrome
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")  # run without GUI
-        chrome_options.add_argument("--ignore-certificate-errors")  # ignore SSL issues
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--no-sandbox")
+        chrome_options = Get_Chrome_Options()
 
         driver = webdriver.Chrome(options=chrome_options)
 

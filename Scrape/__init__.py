@@ -8,3 +8,4 @@ from .Chhattisgarh import ScrapeChhattisgarhAnnoucement
 from .JammuandKashmir import GetJammuandKashmirAnnoucements
 from .jharkhandGov import GetjharkhandGovAnnoucements
 from .Karnataka import GetKarnataka_Govt_Annoucements
+from .Kerala import GetKeralaGovtAnnoucements

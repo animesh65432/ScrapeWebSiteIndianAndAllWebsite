@@ -8,6 +8,7 @@ config = {
     "ArunachalPradesh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
     "JammuAndKashmir":"https://home.jk.gov.in/notifications.html",
     "jharkhandGov": "https://jharkhand.gov.in/Home/DocumentList?doctype=eccbc87e4b5ce2fe28308fd9f2a7baf3&subdoctype=1679091c5a880faf6fb5e6087eb1b2dc",
-    "Karnataka": "https://egovernance.karnataka.gov.in/19/GOVERNMENT%20ORDERS%20%20AND%20CIRCULARS/en"
+    "Karnataka": "https://egovernance.karnataka.gov.in/19/GOVERNMENT%20ORDERS%20%20AND%20CIRCULARS/en",
+    "Kerala":"https://kerala.gov.in/newsandannouncements"
 }
 

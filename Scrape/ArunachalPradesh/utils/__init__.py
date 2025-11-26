@@ -1,17 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from  config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import time
 
 def scrape_website(url: str) -> list:
     try:
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--ignore-certificate-errors")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-
+        chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
         

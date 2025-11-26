@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from config.chromeOptions import Get_Chrome_Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,12 +7,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 def scrape_website(url: str):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--window-size=1920,1080")
-
+    chrome_options = Get_Chrome_Options()
     driver = webdriver.Chrome(options=chrome_options)
     driver.get(url)
 
