@@ -10,6 +10,8 @@ config = {
     "jharkhandGov": "https://jharkhand.gov.in/Home/DocumentList?doctype=eccbc87e4b5ce2fe28308fd9f2a7baf3&subdoctype=1679091c5a880faf6fb5e6087eb1b2dc",
     "Karnataka": "https://egovernance.karnataka.gov.in/19/GOVERNMENT%20ORDERS%20%20AND%20CIRCULARS/en",
     "Kerala":"https://kerala.gov.in/newsandannouncements",
-    "Ladakh": "https://ladakh.gov.in"
+    "Ladakh": "https://ladakh.gov.in",
+    "MadhyaPradesh": "https://mp.gov.in/news-details",
+    "Maharashtra": "https://rajbhavan-maharashtra.gov.in/en/category/press-release"
 }
 

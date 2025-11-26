@@ -1,13 +1,9 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
-Ladakh: https://ladakh.gov.in
-Lakshadweep:https://ladakh.gov.in/#1668841922133-008b7b9e-e379
-Madhya Pradesh: https://mp.gov.in
-Maharashtra: https://maharashtra.gov.in/Site/ViewAllNews?page=1
+Maharashtra: https://rajbhavan-maharashtra.gov.in/en/category/press-release
 
+Manipur: https://imphalwest.nic.in/document-category/homepage-notification
 
-Manipur: https://manipur.gov.in
-
-Meghalaya: https://meghalaya.gov.in
+Meghalaya: https://www.meghalaya.gov.in/notifications
 
 Mizoram: https://mizoram.gov.in
 

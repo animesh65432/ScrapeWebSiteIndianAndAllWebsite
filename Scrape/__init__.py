@@ -10,3 +10,4 @@ from .jharkhandGov import GetjharkhandGovAnnoucements
 from .Karnataka import GetKarnataka_Govt_Annoucements
 from .Kerala import GetKeralaGovtAnnoucements
 from .Ladakh import GetAllLadakhAnnoucements
+from .Maharashtra import GetAllMaharashtraAnnoucements
