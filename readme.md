@@ -1,7 +1,5 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 
-Meghalaya: https://www.meghalaya.gov.in/notifications
-
 Mizoram: https://mizoram.gov.in
 
 Nagaland: https://nagaland.gov.in

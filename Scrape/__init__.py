@@ -13,3 +13,4 @@ from .Ladakh import GetAllLadakhAnnoucements
 from .Maharashtra import GetAllMaharashtraAnnoucements
 from .MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
 from .Manipur import GetAllManipurAnnoucements
+from .Meghalaya import GetmeghalayaAnnoucements
