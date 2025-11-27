@@ -2,6 +2,7 @@ from config.chromeOptions import Get_Chrome_Options
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from datetime import datetime
+from .scrape_content import scrape_content
 import re
 
 def scrape_website(url:str):
@@ -43,6 +44,10 @@ def scrape_website(url:str):
                 "title": title,
                 "link": link
             })
+        
+        for annoucement in annoucements:
+            detailed_content = scrape_content(annoucement["link"])
+            annoucement["content"] = detailed_content
 
         return annoucements
 
