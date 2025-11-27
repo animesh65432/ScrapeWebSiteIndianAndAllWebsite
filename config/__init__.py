@@ -18,7 +18,7 @@ config = {
     "Mizoram": "https://dipr.mizoram.gov.in/posts",
     "Nagaland" :"https://nagaland.gov.in/news",
     "Odisha": "https://home.odisha.gov.in/notifications/home-office-order",
-    "Puducherry": "https://www.py.gov.in/gos-and-notification"
-
+    "Puducherry": "https://www.py.gov.in/gos-and-notification",
+    "Punjab": "https://punjab.gov.in/impnotifications"
 }
 

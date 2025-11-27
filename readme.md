@@ -1,8 +1,6 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 
-Puducherry: https://www.py.gov.in/gos-and-notification
-
-Punjab: https://punjab.gov.in
+Punjab: https://punjab.gov.in/impnotifications
 
 Rajasthan: https://rajasthan.gov.in
 
