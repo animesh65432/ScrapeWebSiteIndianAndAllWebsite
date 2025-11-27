@@ -16,6 +16,7 @@ config = {
     "Manipur": "https://imphalwest.nic.in/document-category/homepage-notification",
     "Meghalaya": "https://www.meghalaya.gov.in/notifications",
     "Mizoram": "https://dipr.mizoram.gov.in/posts",
-    "Nagaland" :"https://nagaland.gov.in/news"
+    "Nagaland" :"https://nagaland.gov.in/news",
+    "Odisha": "https://home.odisha.gov.in/notifications/home-office-order"
 }
 

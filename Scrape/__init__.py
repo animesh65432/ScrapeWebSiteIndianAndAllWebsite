@@ -16,3 +16,4 @@ from .Manipur import GetAllManipurAnnoucements
 from .Meghalaya import GetmeghalayaAnnoucements
 from .Mizoram import GetMizoramAnnoucements
 from .Nagaland import GetNagalandAnnoucements
+from .Odisha import GetOdishaAnnouncements

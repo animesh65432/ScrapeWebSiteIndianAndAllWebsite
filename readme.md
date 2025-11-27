@@ -1,8 +1,6 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 
-Nagaland: https://nagaland.gov.in
-
-Odisha: https://odisha.gov.in
+Odisha: https://home.odisha.gov.in/notifications/home-office-order
 
 Puducherry: https://puducherry.gov.in
 
