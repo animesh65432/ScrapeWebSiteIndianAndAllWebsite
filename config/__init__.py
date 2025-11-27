@@ -17,6 +17,8 @@ config = {
     "Meghalaya": "https://www.meghalaya.gov.in/notifications",
     "Mizoram": "https://dipr.mizoram.gov.in/posts",
     "Nagaland" :"https://nagaland.gov.in/news",
-    "Odisha": "https://home.odisha.gov.in/notifications/home-office-order"
+    "Odisha": "https://home.odisha.gov.in/notifications/home-office-order",
+    "Puducherry": "https://www.py.gov.in/gos-and-notification"
+
 }
 

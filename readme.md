@@ -1,8 +1,6 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 
-Odisha: https://home.odisha.gov.in/notifications/home-office-order
-
-Puducherry: https://puducherry.gov.in
+Puducherry: https://www.py.gov.in/gos-and-notification
 
 Punjab: https://punjab.gov.in
 
