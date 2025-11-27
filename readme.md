@@ -1,6 +1,6 @@
 <!-- Bihar: https://state.bihar.gov.in/home/CitizenHome.html -->
 
-Mizoram: https://mizoram.gov.in
+Mizoram: https://dipr.mizoram.gov.in/posts
 
 Nagaland: https://nagaland.gov.in
 

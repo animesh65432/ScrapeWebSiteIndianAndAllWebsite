@@ -14,6 +14,7 @@ config = {
     "MadhyaPradesh": "https://mp.gov.in/news-details",
     "Maharashtra": "https://rajbhavan-maharashtra.gov.in/en/category/press-release",
     "Manipur": "https://imphalwest.nic.in/document-category/homepage-notification",
-    "Meghalaya": "https://www.meghalaya.gov.in/notifications"
+    "Meghalaya": "https://www.meghalaya.gov.in/notifications",
+    "Mizoram": "https://dipr.mizoram.gov.in/posts"
 }
 
