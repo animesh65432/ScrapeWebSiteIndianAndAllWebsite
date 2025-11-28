@@ -1,0 +1,97 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+from config.chromeOptions import Get_Chrome_Options
+from datetime import datetime, timedelta
+
+def scrape_website(url):
+    try:
+        chrome_options = Get_Chrome_Options()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.get(url)
+        
+        # Wait for table to load
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "bt"))
+        )
+        
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        driver.quit()
+
+        # Get current date
+        current_date = datetime.now()
+        print(f"Current Date: {current_date.strftime('%d/%m/%Y')}\n")
+
+        table = soup.find("table", {"class": "bt"})
+        
+        if not table:
+            print("Table not found")
+            return []
+
+        annoucement_html_lists = table.find("tbody").find_all("tr")
+        print(f"Found {len(annoucement_html_lists)} rows in table\n")
+
+        announcements = []
+
+        for row in annoucement_html_lists:
+            try:
+                # Get all table data cells
+                cells = row.find_all("td")
+                
+                if len(cells) >= 5:
+                    # Extract title
+                    title_cell = cells[0]
+                    title_span = title_cell.find("span", class_="bt-content")
+                    title = title_span.text.strip() if title_span else ""
+                    
+                    
+                    # Extract start date
+                    start_date_cell = cells[2]
+                    start_date_span = start_date_cell.find("span", class_="bt-content")
+                    start_date_str = start_date_span.text.strip() if start_date_span else ""
+                    
+                    # Extract end date
+                    end_date_cell = cells[3]
+                    end_date_span = end_date_cell.find("span", class_="bt-content")
+                    end_date_str = end_date_span.text.strip() if end_date_span else ""
+                    
+                    # Extract PDF link
+                    file_cell = cells[4]
+                    pdf_link_tag = file_cell.find("a", class_="pdf-download-link")
+                    pdf_link = pdf_link_tag.get('href', '') if pdf_link_tag else ""
+                    
+                    # Parse dates (format: DD/MM/YYYY)
+                    try:
+                        start_date = datetime.strptime(start_date_str, "%d/%m/%Y")
+                        end_date = datetime.strptime(end_date_str, "%d/%m/%Y")
+                        
+                        # Check if current date is within the valid range
+                        if start_date <= current_date <= end_date:
+                            announcement_data = {
+                                'title': title,
+                                'pdf_link': pdf_link
+                            }
+                            announcements.append(announcement_data)
+                            
+                    except ValueError as date_error:
+                        print(f"Date parsing error: {date_error} - {start_date_str} to {end_date_str}")
+                        continue
+                        
+            except Exception as row_error:
+                print(f"Error parsing row: {row_error}")
+                continue
+
+        print(f"\n{'='*80}")
+        print(f"Total Valid Announcements: {len(announcements)}")
+        print(f"{'='*80}\n")
+
+        return announcements
+        
+    except Exception as e:
+        print("scrape_website error:", e)
+        if 'driver' in locals():
+            driver.quit()
+        return None
+

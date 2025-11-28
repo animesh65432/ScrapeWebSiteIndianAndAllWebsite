@@ -39,7 +39,6 @@ def scrape_website(url):
                     
                     if date_span:
                         notice_date = date_span.text.strip()
-                        print(f"Found date: {notice_date}")
                         
                         # Check if date matches yesterday's date
                         if notice_date == today:

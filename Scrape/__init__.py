@@ -28,3 +28,4 @@ from .Uttarakhand import GetUttarakhandAnnouncements
 from .UttarPradesh import GetUttarPradeshAnnoucements
 from .Gujarat import GetGujaratAnnoucements
 from .Haryana import GetHaryanaAnnoucements
+from .Lakshadweep import GetLaskhadweepAnnoucements
