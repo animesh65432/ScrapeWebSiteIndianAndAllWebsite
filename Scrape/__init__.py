@@ -19,3 +19,4 @@ from .Nagaland import GetNagalandAnnoucements
 from .Odisha import GetOdishaAnnouncements
 from .Puducherry import GetPuducherryAnnoucements
 from .Punjab import GetPunjabAnnoucements
+from .Rajasthan import GetRajasthanAnnoucements

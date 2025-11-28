@@ -19,6 +19,7 @@ config = {
     "Nagaland" :"https://nagaland.gov.in/news",
     "Odisha": "https://home.odisha.gov.in/notifications/home-office-order",
     "Puducherry": "https://www.py.gov.in/gos-and-notification",
-    "Punjab": "https://punjab.gov.in/impnotifications"
+    "Punjab": "https://punjab.gov.in/impnotifications",
+    "Rajasthan": "https://dipr.rajasthan.gov.in/press-release-list/85"
 }
 
