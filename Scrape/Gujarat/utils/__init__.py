@@ -45,7 +45,6 @@ def scrape_website(url):
                     # Add to announcements list only if date matches today
                     announcements.append({
                         'title': title,
-                        'date': date_str,
                         'pdf_link': pdf_link
                     })
                    
