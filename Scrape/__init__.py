@@ -22,3 +22,4 @@ from .Punjab import GetPunjabAnnoucements
 from .Rajasthan import GetRajasthanAnnoucements
 from .Sikkim import GetSikkimAnnouncements
 from .TamilNadu import GetallTamilNaduAnnoucements
+from .Telangana import GetAllTelanganaAnnoucements
