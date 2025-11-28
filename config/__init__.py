@@ -1,11 +1,11 @@
 config = {
-    "WEST_BENGAL_ANNOUCEMENT_URL": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
+    "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
     "Assam": "https://assam.gov.in/latest-updates-list-page",
     "Goa": "https://dip.goa.gov.in/latest-press-release",
     "Bihar": "https://state.bihar.gov.in/main/SectionInformation.html?editForm&rowId=6990",
     "Dehli": "https://delhi.gov.in/notice-board/notifications",
     "HimachalPradesh": "http://himachalpr.gov.in/pressrelease.aspx",
-    "ArunachalPradesh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
+    "Chhattisgarh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
     "JammuAndKashmir":"https://home.jk.gov.in/notifications.html",
     "jharkhandGov": "https://jharkhand.gov.in/Home/DocumentList?doctype=eccbc87e4b5ce2fe28308fd9f2a7baf3&subdoctype=1679091c5a880faf6fb5e6087eb1b2dc",
     "Karnataka": "https://egovernance.karnataka.gov.in/19/GOVERNMENT%20ORDERS%20%20AND%20CIRCULARS/en",
@@ -20,6 +20,21 @@ config = {
     "Odisha": "https://home.odisha.gov.in/notifications/home-office-order",
     "Puducherry": "https://www.py.gov.in/gos-and-notification",
     "Punjab": "https://punjab.gov.in/impnotifications",
-    "Rajasthan": "https://dipr.rajasthan.gov.in/press-release-list/85"
+    "Rajasthan": "https://dipr.rajasthan.gov.in/press-release-list/85",
+    "Sikkim": "https://www.sikkim.gov.in/media/news-announcement",
+    "TamilNadu" : "https://www.tn.gov.in/press_release.php",
+    "Telangana":"https://www.telangana.gov.in/news",
+    "Tripura":"https://tripura.gov.in/notifications",
+    "UttarPradesh":"https://information.up.gov.in/en/hi-other-information-new.aspx",
+    "Uttarakhand": "https://governoruk.gov.in/category/press-release",
+    "Gujarat" : "https://gad.gujarat.gov.in/personnel/notifications.htm",
+    "Haryana":"https://csharyana.gov.in/en-us/LatestNew#google_vignette",
+    "AndamanNicobarIslands" :"https://zpsa.andamannicobar.gov.in/Ann_all.php",
+    "Chandigarh":"https://chandigarh.gov.in/news-press-releases",
+    "DadraandNagarHaveliDamanDiu":"https://ddd.gov.in/document-category/latest-updates",
+    "Lakshadweep":"https://lakshadweep.gov.in/notice_category/circulars/",
+    "Arunachalpradesh":"https://arunachalpradesh.gov.in/advertiesment-notice.php",
+    "Andhrapradesh":"https://goir.ap.gov.in"
+    
 }
 
