@@ -31,3 +31,4 @@ from .Haryana import GetHaryanaAnnoucements
 from .Lakshadweep import GetLaskhadweepAnnoucements
 from .Chandigarh import GetChandigrahAnnoucements
 from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnoucements
+from .AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
