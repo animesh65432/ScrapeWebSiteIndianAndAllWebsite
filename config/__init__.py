@@ -2,7 +2,7 @@ config = {
     "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
     "Assam": "https://assam.gov.in/latest-updates-list-page",
     "Goa": "https://dip.goa.gov.in/latest-press-release",
-    "Bihar": "https://state.bihar.gov.in/main/SectionInformation.html?editForm&rowId=6990",
+    "Bihar": "https://governor.bih.nic.in/press-release",
     "Dehli": "https://delhi.gov.in/notice-board/notifications",
     "HimachalPradesh": "http://himachalpr.gov.in/pressrelease.aspx",
     "Chhattisgarh" :"https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
