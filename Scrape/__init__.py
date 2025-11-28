@@ -29,3 +29,5 @@ from .UttarPradesh import GetUttarPradeshAnnoucements
 from .Gujarat import GetGujaratAnnoucements
 from .Haryana import GetHaryanaAnnoucements
 from .Lakshadweep import GetLaskhadweepAnnoucements
+from .Chandigarh import GetChandigrahAnnoucements
+from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnoucements
