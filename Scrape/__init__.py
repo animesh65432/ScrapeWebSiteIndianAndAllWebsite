@@ -25,3 +25,4 @@ from .TamilNadu import GetallTamilNaduAnnoucements
 from .Telangana import GetAllTelanganaAnnoucements
 from .Tripura import GetAllTripuraAnnoucements
 from .Uttarakhand import GetUttarakhandAnnouncements
+from .UttarPradesh import GetUttarPradeshAnnoucements
