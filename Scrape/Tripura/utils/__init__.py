@@ -21,7 +21,7 @@ def scrape_website(url: str):
 
         rows = table.find("tbody").find_all("tr")
 
-        today = (datetime.today() - timedelta(days=11)).date()
+        today = datetime.today().date()
 
         for row in rows:
 
@@ -32,7 +32,7 @@ def scrape_website(url: str):
 
             title = title_cell.get_text(strip=True)
 
-            print(title)
+
 
             # Extract "Dated 15th November, 2025"
             match = re.search(r"Dated\s+(\d{1,2}(st|nd|rd|th)?\s+\w+,\s+\d{4})", title)

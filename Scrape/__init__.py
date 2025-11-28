@@ -24,3 +24,4 @@ from .Sikkim import GetSikkimAnnouncements
 from .TamilNadu import GetallTamilNaduAnnoucements
 from .Telangana import GetAllTelanganaAnnoucements
 from .Tripura import GetAllTripuraAnnoucements
+from .Uttarakhand import GetUttarakhandAnnouncements
