@@ -24,10 +24,11 @@ def scrape_website(url: str):
 
         rows = table.find("tbody").find_all("tr")
 
-        for row in rows[1:]:     # skipping header row
+        for row in rows[1:]:     
             cells = row.find_all("td")
             date_str = cells[2].get_text(strip=True)
             subject = cells[3].get_text(strip=True)
+
             
             try:
                 scraped_date = datetime.strptime(date_str, "%d-%m-%Y").date()
@@ -40,6 +41,8 @@ def scrape_website(url: str):
 
             view_link = cells[5].find("a")
             view_url = None
+
+            print(view_link)
 
             if view_link:
                 href = view_link.get("href")

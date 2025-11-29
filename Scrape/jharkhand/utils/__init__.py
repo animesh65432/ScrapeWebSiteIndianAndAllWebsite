@@ -2,18 +2,9 @@ from selenium import webdriver
 from config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def scrape_website(url: str) -> list:
-    """
-    Scrape notices from Jharkhand government portal
-    
-    Args:
-        url: The URL to scrape (e.g., "https://www.jharkhand.gov.in/Home/DocumentList")
-    
-    Returns:
-        List of dictionaries containing notice information from yesterday and today
-    """
     try:
         chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
@@ -38,15 +29,9 @@ def scrape_website(url: str) -> list:
         rows = table.find("tbody").find_all("tr")
         
         # Calculate date range (yesterday to today)
-        today = datetime.now()
-        yesterday = today - timedelta(days=1)
+        today = datetime.now().date()
         
-        # Set time to start and end of day for proper comparison
-        start_dt = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
-        end_dt = today.replace(hour=23, minute=59, second=59, microsecond=999999)
-        
-        print(f"Filtering notices from {start_dt.strftime('%d/%m/%Y')} to {end_dt.strftime('%d/%m/%Y')}")
-        
+
         for row in rows:
             cells = row.find_all("td")
             
@@ -65,16 +50,15 @@ def scrape_website(url: str) -> list:
                 
                 # Date filtering
                 try:
-                    notice_date = datetime.strptime(reference_date, "%d/%m/%Y")
+                    notice_date = datetime.strptime(reference_date, "%d/%m/%Y").date()
                     
                     # Skip if outside date range (yesterday to today)
-                    if notice_date < start_dt or notice_date > end_dt:
+                    if notice_date != today:
                         continue
                     
                     notice = {
                         "department": department,
                         "title": title,
-                        "reference_date": reference_date,
                         "view_url": view_url,
                     }
                     
@@ -82,8 +66,7 @@ def scrape_website(url: str) -> list:
 
                     
                 except ValueError:
-                    # Skip if date parsing fails
-                    print(f"Could not parse date: {reference_date}")
+                    print(f"Invalid date format: {reference_date}")
                     continue
         
         return notices

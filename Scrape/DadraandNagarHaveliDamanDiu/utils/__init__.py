@@ -59,8 +59,7 @@ def scrape_website(url: str):
                         
                         announcement_data = {
                             'title': title,
-                            'pdf_link': pdf_link,
-                            'date': announcement_date
+                            'pdf_link': pdf_link
                         }
                         
                         announcements.append(announcement_data)

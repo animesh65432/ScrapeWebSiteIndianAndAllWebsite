@@ -61,24 +61,25 @@ def scrape_website(url: str):
                     if len(cols) >= 4:
                         publish_date = cols[0].get_text(strip=True)
                         title = cols[1].get_text(strip=True)
-                        description = cols[2].get_text(strip=True)
                         
-                        # Extract PDF link
                         download_cell = cols[3]
                         pdf_link = None
                         link_tag = download_cell.find("a", href=True)
+
+                        date_obj = datetime.strptime(publish_date, "%d %b, %Y").date()
+                        
+                        today = datetime.today().date()
+
                         if link_tag:
                             pdf_link = link_tag['href']
-                            # Make absolute URL if relative
                             if pdf_link.startswith('/'):
                                 pdf_link = f"https://cgstate.gov.in{pdf_link}"
                         
-                        results.append({
-                            "publish_date": publish_date,
-                            "title": title,
-                            "description": description,
-                            "pdf_link": pdf_link
-                        })
+                        if date_obj == today :
+                            results.append({
+                                "title": title,
+                                "pdf_link": pdf_link
+                            })
                 
                 driver.quit()
                 return results

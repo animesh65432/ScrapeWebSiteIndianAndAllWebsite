@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from config.http import get_agent
 from .scrape_content import scrape_content
+from datetime import datetime, timedelta
 
 def scraping_website(url):
     try:
@@ -18,14 +19,18 @@ def scraping_website(url):
             
             spans = li.find_all("span")
             title = spans[0].get_text(strip=True) if len(spans) > 0 else ""
-            date = spans[-1].get_text(strip=True) if len(spans) > 1 else ""
+            date_str = spans[-1].get_text(strip=True) if len(spans) > 1 else ""
 
-            announcements.append({
-                "title": title,
-                "link": link,
-                "date": date,
-                "content": scrape_content(link) if link else None
-            })
+            date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
+            
+            today = datetime.today().date()
+
+            if link and title and today == date_obj:
+                announcements.append({
+                    "title": title,
+                    "link": link,
+                    "content": scrape_content(link) 
+                })
 
         return announcements
 

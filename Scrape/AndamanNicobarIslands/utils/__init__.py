@@ -13,7 +13,7 @@ def scrape_website(url: str):
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
         
-        # Wait for table to load
+      
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "dataTables-example"))
         )

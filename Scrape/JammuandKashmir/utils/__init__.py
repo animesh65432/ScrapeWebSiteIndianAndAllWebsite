@@ -2,18 +2,9 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import requests
 from typing import List, Dict
+from datetime import datetime 
 
 def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
-    """
-    Scrapes J&K government notifications table.
-    
-    Args:
-        url: The URL to scrape
-        base_url: Base URL for resolving relative PDF links (optional)
-    
-    Returns:
-        List of dictionaries containing notification data
-    """
     try:
         # Create session with headers
         session = requests.Session()
@@ -47,10 +38,7 @@ def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
             cols = row.find_all("td")
             
             if len(cols) >= 3:
-                date = cols[0].get_text(strip=True)
-                order_no = cols[1].get_text(strip=True)
-                
-                # Extract subject and PDF link
+                date_str = cols[0].get_text(strip=True)
                 subject_cell = cols[2]
                 link_tag = subject_cell.find("a")
                 
@@ -64,15 +52,26 @@ def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
                 else:
                     subject = subject_cell.get_text(strip=True)
                     pdf_link = ""
+
+                # Try both date formats (dots and slashes)
+                try:
+                    date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
+                except ValueError:
+                    try:
+                        date_obj = datetime.strptime(date_str, "%d.%m.%Y").date()
+                    except ValueError:
+                        print(f"Could not parse date: {date_str}")
+                        continue
+                
+                today = datetime.today().date()
                 
                 notification = {
-                    "date": date,
-                    "order_number": order_no,
-                    "subject": subject,
+                    "title": subject,
                     "pdf_link": pdf_link
                 }
-                
-                notifications.append(notification)
+
+                if date_obj == today:
+                    notifications.append(notification)
         
         return notifications
 

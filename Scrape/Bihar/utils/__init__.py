@@ -47,7 +47,6 @@ def scrape_website(url: str):
                 if date and date == current_date:
                     announcement = {
                         'title': title,
-                        'date': date,
                         'pdf_link': pdf_link
                     }
                     

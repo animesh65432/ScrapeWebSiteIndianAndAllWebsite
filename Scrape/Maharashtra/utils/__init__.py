@@ -39,21 +39,12 @@ def scrape_Website(url: str):
                 # Extract date from title (format: DD.MM.YYYY)
                 date_str = title.split(":")[0].strip() if ":" in title else ""
                 
-                # Extract image
-                img_tag = card.find("img")
-                image_url = img_tag.get("src", "") if img_tag else ""
                 
-                # Extract description
-                desc_tag = card.find("p")
-                description = desc_tag.get_text(strip=True) if desc_tag else ""
-                
-                # Check if date matches today
+            
                 if date_str == today:
                     today_news.append({
-                        "date": date_str,
                         "title": title,
                         "link": link,
-                        "description": description
                     })
                     print(f"✓ Added: {title[:60]}...")
                     

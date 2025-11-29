@@ -2,31 +2,19 @@ from selenium import webdriver
 from config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import re
+from datetime import datetime, timedelta, date
 
 def scrape_website(url: str) -> dict:
-    """
-    Scrapes news items from a website containing a news table.
-    
-    Args:
-        url: The URL to scrape
-        
-    Returns:
-        dict: Contains success status, count, news items, or error message
-    """
     try:
-        # Setup headless Chrome
         chrome_options = Get_Chrome_Options()
-
         driver = webdriver.Chrome(options=chrome_options)
 
-        # Open URL
         driver.get(url)
         html = driver.page_source
         driver.quit()
 
         soup = BeautifulSoup(html, "html.parser")
 
-        # Find news table
         news_table = soup.find(id="ContentPlaceHolder1_grid_News")
         if not news_table:
             return {"success": False, "error": "News table not found", "news": []}
@@ -34,23 +22,33 @@ def scrape_website(url: str) -> dict:
         news_items = []
         tbody = news_table.find("tbody")
         rows = tbody.find_all("tr") if tbody else news_table.find_all("tr")
+        
+        today = datetime.now().date()
 
         for row in rows:
-            # Skip header rows
             if row.find("th"):
                 continue
 
-            # Extract date and content
             date_tag = row.find("h5", class_="text-primary")
             content_tag = row.find("p", class_="text-muted")
-            date = date_tag.get_text(strip=True) if date_tag else ""
+
+            date_str = date_tag.get_text(strip=True) if date_tag else ""
             content = content_tag.get_text(strip=True) if content_tag else ""
 
-            # Validate date format (DD-MM-YYYY)
-            if date and content and re.match(r"^\d{2}-\d{2}-\d{4}$", date):
-                news_items.append({"date": date, "content": content})
+            # Validate date string format
+            if not re.match(r"^\d{2}-\d{2}-\d{4}$", date_str):
+                continue
 
-        return {"success": True, "count": len(news_items), "news": news_items}
+            news_date = datetime.strptime(date_str, "%d-%m-%Y").date()
+
+            if news_date == today and content:
+                news_items.append({
+                    "date": news_date.strftime("%d-%m-%Y"),
+                    "content": content
+                })
+
+        return news_items
 
     except Exception as e:
-        return {"success": False, "error": str(e), "news": []}
+        print(f"scrape_website error: {e}")
+        return []

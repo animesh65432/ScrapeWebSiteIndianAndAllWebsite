@@ -49,10 +49,8 @@ def scrape_website(url: str):
                             # Check if date matches today
                             if date_str == today_slash:
                                 today_announcements.append({
-                                    "date": date_str,
                                     "title": title,
                                     "link": link,
-                                    "type": "table"
                                 })
                                 print(f"✓ Added: {title[:60]}...")
                                 
@@ -77,26 +75,15 @@ def scrape_website(url: str):
                         
                         # Extract date from title (format: DD.MM.YYYY)
                         date_str = title.split(":")[0].strip() if ":" in title else ""
-                        
-                        # Extract image
-                        img_tag = card.find("img")
-                        image_url = img_tag.get("src", "") if img_tag else ""
-                        
-                        # Extract description
-                        desc_tag = card.find("p")
-                        description = desc_tag.get_text(strip=True) if desc_tag else ""
+    
                         
                         # Check if date matches today
                         if date_str == today_dot:
                             today_announcements.append({
-                                "date": date_str,
                                 "title": title,
                                 "link": link,
-                                "image": image_url,
-                                "description": description,
-                                "type": "card"
                             })
-                            print(f"✓ Added: {title[:60]}...")
+                           
                             
                     except Exception as e:
                         print(f"Error parsing card: {e}")

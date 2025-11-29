@@ -2,6 +2,7 @@ from selenium import webdriver
 from config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
+from datetime import datetime
 
 def scrape_website(url: str):
     try:
@@ -27,13 +28,17 @@ def scrape_website(url: str):
             pdf_link = title_element.get("href", "")
 
             time_element = doc.select_one(".documents_date time")
-            date = time_element.get_text(strip=True) if time_element else ""
+            date_str = time_element.get_text(strip=True) if time_element else ""
+            date_obj = datetime.strptime(date_str, "%d-%b-%Y").date()
+            today = datetime.today().date()
 
+            if date_obj != today:
+                continue
+            
             if title and pdf_link:
                 full_pdf_url = pdf_link if pdf_link.startswith("http") else urljoin(base_url, pdf_link)
                 announcements.append({
                     "title": title,
-                    "date": date,
                     "source": full_pdf_url
                 })
 

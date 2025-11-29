@@ -82,16 +82,10 @@ def scrape_website(url):
             except Exception as row_error:
                 print(f"Error parsing row: {row_error}")
                 continue
-
-        print(f"\n{'='*80}")
-        print(f"Total Valid Announcements: {len(announcements)}")
-        print(f"{'='*80}\n")
-
+            
         return announcements
         
     except Exception as e:
-        print("scrape_website error:", e)
-        if 'driver' in locals():
-            driver.quit()
+        print("scrape_website", e)
         return None
 

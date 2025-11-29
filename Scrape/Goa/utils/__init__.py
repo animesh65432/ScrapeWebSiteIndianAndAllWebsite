@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from config.http import get_agent
 from .scrape_content import scrape_content
+from datetime import datetime, timedelta
 
 def scrape_website(url):
     try:
@@ -24,12 +25,16 @@ def scrape_website(url):
                 a.extract()
             date_text = li_copy.get_text(strip=True)
 
-            announcements.append({
-                "title": title,
-                "link": link,
-                "date": date_text,
-                "content": scrape_content(link) if link else None
-            })
+            date_obj = datetime.strptime(date_text, "%B %d, %Y").date()
+            
+            today = datetime.today().date()
+
+            if today == date_obj and link and title:
+                announcements.append({
+                    "title": title,
+                    "link": link,
+                    "content": scrape_content(link)
+                    })
 
         return announcements
 

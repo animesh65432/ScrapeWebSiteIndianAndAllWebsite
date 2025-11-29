@@ -1,6 +1,6 @@
 from .westbengal import scarpe_westBengal_Annoucements
 from .Assam import scarpe_Assam_Annoucements
-from .Dehli import scrap_Dehli_Website
+from .Dehli import GetDehliAnnoucements
 from .Goa import scrape_Goa_Annoucements
 from .HimachalPradesh import scapre_HimachalPradesh_Annoucements
 from .ArunachalPradesh import scrape_ArunachalPradesh_Annoucements

@@ -2,6 +2,7 @@ from selenium import webdriver
 from  config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import time
+from datetime import datetime
 
 def scrape_website(url: str) -> list:
     try:
@@ -29,19 +30,22 @@ def scrape_website(url: str) -> list:
                 
                 if len(cols) >= 4:
                     title = cols[1].get_text(strip=True)
-                    date = cols[2].get_text(strip=True)
+                    date_str = cols[2].get_text(strip=True)
                     
                     # Extract PDF link
                     link_tag = cols[3].find("a")
                     pdf_link = link_tag.get("href", "") if link_tag else ""
+
+                    date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
                     
-                    notice_data = {
-                        "title": title,
-                        "date": date,
-                        "pdf_link": pdf_link
-                    }
-                    
-                    Annoucements.append(notice_data)
+                    today = datetime.today().date()
+
+                    if date_obj == today:
+                        notice_data = {
+                            "title": title,
+                            "pdf_link": pdf_link
+                        }
+                        Annoucements.append(notice_data)
         
         return Annoucements
 

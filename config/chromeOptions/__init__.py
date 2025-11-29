@@ -2,28 +2,30 @@ from selenium.webdriver.chrome.options import Options
 
 def Get_Chrome_Options():
     chrome_options = Options()
-    
-    # Use modern stable headless mode
-    chrome_options.add_argument("--headless=new")
 
-    # Stability flags for Linux
+    # Use stable headless mode
+    chrome_options.add_argument("--headless")  
+
+    # Disable GPU + use software rendering
     chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-software-rasterizer")
+
+    # Must-haves for Linux stability
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-setuid-sandbox")
-    
-    # Prevent Selenium detection
-    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
-    # Important: prevents timeout error
-    chrome_options.add_argument("--remote-debugging-port=9222")
-
-    # Fix for many "page_source timeout" issues
+    # Fix renderer crashes
     chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-    
-    # Add user agent
+    chrome_options.add_argument("--disable-features=IsolateOrigins")
+    chrome_options.add_argument("--disable-site-isolation-trials")
+
+    # Prevent renderer crash due to debugging port
+    # REMOVE THIS → it causes renderer to fail in headless
+    # chrome_options.add_argument("--remote-debugging-port=9222")
+
+    # Real browser UA
     chrome_options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     )
 
     return chrome_options
