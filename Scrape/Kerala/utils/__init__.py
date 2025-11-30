@@ -55,19 +55,22 @@ def scrape_website(url: str):
                 title_elem = card_body.find("h5", {"class": "card-title"})
                 
                 link_elem = card_body.find("a", {"class": "btn btn-primary"})
+                link = link_elem.get("href")
+
+                if not link:
+                    continue
+
 
                 announcements.append({
                     "title": title_elem.text.strip() if title_elem else "No title",
-                    "pdf_link": link_elem.get("href") if link_elem else None,
+                    "link": link,
                     "state": "Kerala",
+                    "content": scrape_content(link)
                 })
 
             except Exception as card_error:
                 print(f"Error parsing card: {card_error}")
                 continue
-        
-        for i in range(len(announcements)):
-            announcements[i]["content"] = scrape_content(announcements[0]["link"])
         
         return announcements
 

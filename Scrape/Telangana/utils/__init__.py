@@ -43,17 +43,13 @@ def scrape_website(url: str):
                 announcements.append({
                     "title": title,
                     "link": link,
-                    "state": "Telangana"
+                    "state": "Telangana",
+                    "content": scrape_content(link)
                 })
 
         # If no announcements for today
         if not announcements:
             return []
-
-        # Process only first match
-        for announcement in announcements:
-            content = scrape_content(announcement["link"])
-            announcement["content"] = content
 
         return announcements
 

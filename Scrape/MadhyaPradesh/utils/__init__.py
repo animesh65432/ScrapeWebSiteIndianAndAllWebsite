@@ -59,14 +59,11 @@ def scrape_website(url: str):
                 announcement = {
                     "title": title,
                     "link": link,
-                    "state": "MadhyaPradesh"
+                    "state": "MadhyaPradesh",
+                    "content": scrape_content(link) 
                 }
 
                 announcements.append(announcement)
-    
-
-        for ann in announcements:
-            ann["content"] = scrape_content(ann["link"])
 
         
         return announcements

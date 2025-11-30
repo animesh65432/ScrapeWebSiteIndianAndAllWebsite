@@ -48,6 +48,7 @@ def scrape_website(url):
 
             # Extract link
             link_tag = row.find("a", href=True)
+
             if link_tag:
                 link = urljoin(BASE_URL, link_tag["href"])
             else:
@@ -56,16 +57,11 @@ def scrape_website(url):
             announcements.append({
                 "title": title,
                 "link": link,
-                "state": "Sikkim"
+                "state": "Sikkim",
+                "content": scrape_content(link)
             })
-        
-        for announcement in announcements:
-            if announcement['link']:
-                content = scrape_content(announcement['link'])
-                announcement['content'] = content
-            else:
-                announcement['content'] = None
 
+            
         return announcements
 
     except Exception as e:
