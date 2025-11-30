@@ -34,7 +34,8 @@ def scrape_website(url):
             if parsed_date == today :
                 announcements.append({
                     "title" : title,
-                    "link"  : link
+                    "pdf_link"  : link,
+                    "state" : "Uttarakhand"
                 })
 
 

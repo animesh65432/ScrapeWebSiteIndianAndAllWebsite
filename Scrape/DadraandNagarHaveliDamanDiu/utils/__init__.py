@@ -56,7 +56,8 @@ def scrape_website(url: str):
                         
                         announcement_data = {
                             'title': title,
-                            'pdf_link': pdf_link
+                            'pdf_link': pdf_link,
+                            'state' :"DadraandNagarHaveliDamanDiu"
                         }
                         
                         announcements.append(announcement_data)

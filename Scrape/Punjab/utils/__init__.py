@@ -38,12 +38,13 @@ def scrape_website(url):
                     # Extract PDF link from the anchor tag
                     link_tag = title_tag.find("a")
                     pdf_link = link_tag.get("href") if link_tag else "N/A"
+
                     
                     announcement_data = {
                         "title": title,
                         "department": dept,
-                        "date": date_text,
-                        "pdf_link": pdf_link
+                        "pdf_link": pdf_link,
+                        "state": "Punjab"
                     }
                     
                     announcements.append(announcement_data)

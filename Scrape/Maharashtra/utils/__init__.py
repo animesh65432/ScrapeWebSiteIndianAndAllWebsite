@@ -3,6 +3,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from config.chromeOptions import Get_Chrome_Options
 
+
 def scrape_Website(url: str):
     try:
         chrome_options = Get_Chrome_Options()
@@ -45,6 +46,7 @@ def scrape_Website(url: str):
                     today_news.append({
                         "title": title,
                         "link": link,
+                        "state": "Maharashtra"
                     })
                     print(f"✓ Added: {title[:60]}...")
                     

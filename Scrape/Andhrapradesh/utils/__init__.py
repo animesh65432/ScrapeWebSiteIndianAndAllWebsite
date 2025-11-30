@@ -138,10 +138,12 @@ def extract_announcements(soup):
                             break
                     
                     # Add all announcements
+                    
                     if title and go_date:
                         announcement = {
                             'title': title,
-                            'pdf_link': pdf_link
+                            'pdf_link': pdf_link,
+                            'state' :"Andhrapradesh"
                         }
                         announcements.append(announcement)
                         

@@ -58,7 +58,8 @@ def scrape_website(url: str):
             if parsed_date == today:
                 announcements.append({
                     "title": title,
-                    "link": link
+                    "pdf_link": link,
+                    "state": "Tripura"
                 })
 
         return announcements

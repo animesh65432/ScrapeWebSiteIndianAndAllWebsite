@@ -58,7 +58,8 @@ def scrape_website(url: str):
             if today.date() == dt.date() and title and link:
                 announcement = {
                     "title": title,
-                    "link": link
+                    "link": link,
+                    "state": "MadhyaPradesh"
                 }
 
                 announcements.append(announcement)

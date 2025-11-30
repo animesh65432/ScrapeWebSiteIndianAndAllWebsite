@@ -36,11 +36,14 @@ def scrape_website(url: str):
             pdf_link = pdf_div.find("a")['href'] if pdf_div and pdf_div.find("a") else None
 
             # Compare date objects (correct!)
+
+
+
             if item_date == today and pdf_link:
                 announcements.append({
                     "title": title,
-                    "date": date_str,
-                    "pdf": pdf_link
+                    "pdf": pdf_link,
+                    "state": "Puducherry"
                 })
 
         return announcements

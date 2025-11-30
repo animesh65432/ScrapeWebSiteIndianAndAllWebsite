@@ -74,11 +74,12 @@ def scrape_website(url: str):
                             pdf_link = link_tag['href']
                             if pdf_link.startswith('/'):
                                 pdf_link = f"https://cgstate.gov.in{pdf_link}"
-                        
+ 
                         if date_obj == today :
                             results.append({
                                 "title": title,
-                                "pdf_link": pdf_link
+                                "pdf_link": pdf_link,
+                                "state" :"Chhattisgarh"
                             })
                 
                 driver.quit()

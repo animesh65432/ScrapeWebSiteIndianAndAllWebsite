@@ -67,9 +67,11 @@ def scrape_website(url: str):
                                     base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
                                     pdf_link = base_url + pdf_link
                     
+                    
                     announcement_data = {
                         'title': title,
                         'pdf_link': pdf_link,
+                        "state" :"Chandigarh"
                     }
                     
                     announcements.append(announcement_data)

@@ -43,8 +43,8 @@ def scrape_website(url: str) -> dict:
 
             if news_date == today and content:
                 news_items.append({
-                    "date": news_date.strftime("%d-%m-%Y"),
-                    "content": content
+                    "content": content,
+                    "state": "WestBengal"
                 })
 
         return news_items

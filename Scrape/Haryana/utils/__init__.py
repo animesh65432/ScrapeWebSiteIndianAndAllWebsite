@@ -58,7 +58,7 @@ def scrape_website(url):
                                 notice_data = {
                                     'title': title,
                                     'pdf_link': pdf_link,
-                                    'date': notice_date
+                                    'state': "Haryana"
                                 }
                                 notices.append(notice_data)
                                 print(f"✓ Added: {title[:50]}...")

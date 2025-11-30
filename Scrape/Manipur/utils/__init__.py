@@ -75,13 +75,14 @@ def scrape_website(url: str):
                         
                         # Extract date from title (format: DD.MM.YYYY)
                         date_str = title.split(":")[0].strip() if ":" in title else ""
-    
+
                         
                         # Check if date matches today
                         if date_str == today_dot:
                             today_announcements.append({
                                 "title": title,
                                 "link": link,
+                                "state": "Manipur"
                             })
                            
                             

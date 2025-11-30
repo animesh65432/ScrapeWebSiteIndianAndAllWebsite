@@ -1,9 +1,9 @@
 from .utils import scrape_website
-from config import GovtWebiteUrl
+from config import config
 async def GetKeralaGovtAnnoucements():
     try :
         print("Scraping Kerala Announcements...")
-        return scrape_website(GovtWebiteUrl["Kerala"])
+        return scrape_website(config["Kerala"])
     except Exception as e : 
         print("GetKeralaGovtAnnoucements",e)
         return None

@@ -58,7 +58,8 @@ def scrape_website(url: str):
             if title and link and datetime.now().date() == date_obj :
                 results.append({
                 "title": title,
-                "link": link
+                "link": link,
+                "state" :"Dehli"
                 })
         
         return results

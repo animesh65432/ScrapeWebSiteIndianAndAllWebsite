@@ -34,10 +34,12 @@ def scapre_website(url:str):
 
             title = annoucement.find("span",{"class" :"views-field views-field-title"}).find("span",{"class" : "field-content"}).find("a").get_text()
             pdf_link = annoucement.find("span" , {"class" : "field-content field-color"}).find("a")["href"]
-            
+
+
             annoucements.append({
                 "title" : title,
-                "pdf_link" : pdf_link
+                "pdf_link" : pdf_link,
+                "state" :"Meghalaya"
             })
 
         return annoucements

@@ -64,10 +64,12 @@ def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
                         continue
                 
                 today = datetime.today().date()
+
                 
                 notification = {
                     "title": subject,
-                    "pdf_link": pdf_link
+                    "pdf_link": pdf_link,
+                    "state": "JammuandKashmir"
                 }
 
                 if date_obj == today:

@@ -59,7 +59,8 @@ def scrape_website(url: str) -> list:
                     notice = {
                         "department": department,
                         "title": title,
-                        "view_url": view_url,
+                        "pdf_link": view_url,
+                        "state": "Jharkhand"
                     }
                     
                     notices.append(notice)

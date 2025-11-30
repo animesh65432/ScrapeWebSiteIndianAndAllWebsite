@@ -43,8 +43,9 @@ def scarp_website(url: str):
             if date == today_str and title and link:
                 today_announcements.append({
                     "title": title,
-                    "category": category,
-                    "link": link
+                    "department": category,
+                    "pdf_link": link,
+                    "state": "Nagaland",
                 })
 
         return today_announcements

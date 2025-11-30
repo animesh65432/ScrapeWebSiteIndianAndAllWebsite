@@ -43,7 +43,8 @@ def scrape_website(url: str) -> list:
                     if date_obj == today:
                         notice_data = {
                             "title": title,
-                            "pdf_link": pdf_link
+                            "pdf_link": pdf_link,
+                            "state" :"ArunachalPradesh"
                         }
                         Annoucements.append(notice_data)
         

@@ -1,9 +1,9 @@
 from .utils import scarp_website
-from config import GovtWebiteUrl
+from config import config
 
 async def GetNagalandAnnoucements():
     try :
         print("Scraping Nagaland Announcements...")
-        return scarp_website(GovtWebiteUrl["Nagaland"])
+        return scarp_website(config["Nagaland"])
     except Exception as e:
         return f"GetNagalandAnnoucements error occurred: {str(e)}"

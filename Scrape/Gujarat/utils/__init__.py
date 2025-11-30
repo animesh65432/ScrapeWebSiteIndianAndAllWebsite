@@ -1,7 +1,7 @@
 from config.chromeOptions import Get_Chrome_Options
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def scrape_website(url):
     try:
@@ -23,39 +23,40 @@ def scrape_website(url):
 
         for row in rows:
             cols = row.find_all("td")
-
             if len(cols) < 6:
                 continue
 
             title = cols[4].get_text(strip=True)
-            date_str = cols[2].get_text(strip=True)  # 03/03/2025
-            
-            # Convert date string to date object
+            date_str = cols[2].get_text(strip=True)  # E.g., 03/03/2025
+
+            # Skip blank dates
+            if not date_str or date_str == "-":
+                continue
+
             try:
                 date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
-                
-                # Check if date matches today
+
+                print(date_obj)
+
                 if date_obj == today:
                     pdf_link = None
                     link_tag = cols[5].find("a")
-                    
                     if link_tag:
                         pdf_link = link_tag.get("href")
-                    
-                    # Add to announcements list only if date matches today
+
                     announcements.append({
                         'title': title,
-                        'pdf_link': pdf_link
+                        'pdf_link': pdf_link,
+                        'state': "Gujarat"
                     })
-                   
-                    
-            except ValueError as e:
+
+            except Exception as e:
                 print(f"Invalid date format: {date_str} - {e}")
                 continue
 
         print(f"\nTotal announcements matching today's date: {len(announcements)}")
         return announcements
-        
+
     except Exception as e:
         print("scrape_website", e)
         return None

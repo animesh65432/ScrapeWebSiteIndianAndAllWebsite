@@ -53,13 +53,13 @@ def scrape_website(url: str):
 
                 # Extract other fields
                 title_elem = card_body.find("h5", {"class": "card-title"})
-                desc_elem = card_body.find("p", {"class": "card-text"})
+                
                 link_elem = card_body.find("a", {"class": "btn btn-primary"})
 
                 announcements.append({
                     "title": title_elem.text.strip() if title_elem else "No title",
-                    "description": desc_elem.text.strip() if desc_elem else "No description",
-                    "link": link_elem.get("href") if link_elem else None,
+                    "pdf_link": link_elem.get("href") if link_elem else None,
+                    "state": "Kerala",
                 })
 
             except Exception as card_error:

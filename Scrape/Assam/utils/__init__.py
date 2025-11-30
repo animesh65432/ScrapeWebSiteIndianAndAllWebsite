@@ -34,12 +34,14 @@ def scrape_website(url: str):
 
             if date_obj != today:
                 continue
+
             
             if title and pdf_link:
                 full_pdf_url = pdf_link if pdf_link.startswith("http") else urljoin(base_url, pdf_link)
                 announcements.append({
                     "title": title,
-                    "source": full_pdf_url
+                    "pdf_link": full_pdf_url,
+                    "state" :"Assam"
                 })
 
         return announcements

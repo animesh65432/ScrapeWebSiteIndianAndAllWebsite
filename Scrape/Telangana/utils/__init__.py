@@ -42,7 +42,8 @@ def scrape_website(url: str):
             if parsed_date == today:
                 announcements.append({
                     "title": title,
-                    "link": link
+                    "link": link,
+                    "state": "Telangana"
                 })
 
         # If no announcements for today

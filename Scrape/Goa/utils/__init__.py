@@ -33,8 +33,9 @@ def scrape_website(url):
                 announcements.append({
                     "title": title,
                     "link": link,
-                    "content": scrape_content(link)
-                    })
+                    "content": scrape_content(link),
+                    "state" :"Goa"
+                })
 
         return announcements
 

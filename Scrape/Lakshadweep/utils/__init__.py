@@ -66,12 +66,12 @@ def scrape_website(url):
                     try:
                         start_date = datetime.strptime(start_date_str, "%d/%m/%Y")
                         end_date = datetime.strptime(end_date_str, "%d/%m/%Y")
-                        
                         # Check if current date is within the valid range
                         if start_date <= current_date <= end_date:
                             announcement_data = {
                                 'title': title,
-                                'pdf_link': pdf_link
+                                'pdf_link': pdf_link,
+                                'state' :'Lakshadweep'
                             }
                             announcements.append(announcement_data)
                             

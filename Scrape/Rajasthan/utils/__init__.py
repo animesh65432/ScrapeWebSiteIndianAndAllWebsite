@@ -59,15 +59,18 @@ def scrape_website(url: str):
                 date_part = date_time.split(",")[0].strip()
                 
                 # Check if the date matches today's date
+
+
                 if date_part == today_date_str and detail_link:
                     announcement_data = {
                         "title": title,
-                        "detail_link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] 
+                        "state": "Rajasthan",
+                        "link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] 
                     }
                     announcements.append(announcement_data)
         
         for annpouncement in announcements:
-            content = scarpContent(annpouncement["detail_link"])
+            content = scarpContent(annpouncement["link"])
             annpouncement["content"] = content
       
     

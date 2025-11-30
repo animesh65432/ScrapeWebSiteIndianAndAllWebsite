@@ -43,9 +43,11 @@ def scrape_website(url: str):
             link_tag = cols[2].find("a", href=True)
             link = link_tag["href"] if link_tag else None
 
+
             announcements.append({
                 "title": title,
-                "pdf": link
+                "pdf_link": link,
+                "state": "Ladakh"
             })
 
         return announcements

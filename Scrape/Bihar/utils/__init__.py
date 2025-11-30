@@ -44,10 +44,12 @@ def scrape_website(url: str):
                         pdf_link = pdf_anchor.get('href')
                 
                 # Check if date is not current date
+
                 if date and date == current_date:
                     announcement = {
                         'title': title,
-                        'pdf_link': pdf_link
+                        'pdf_link': pdf_link,
+                        "state" :"Bihar"
                     }
                     
                     

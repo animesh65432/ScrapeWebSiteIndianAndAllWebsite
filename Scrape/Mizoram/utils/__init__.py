@@ -40,9 +40,11 @@ def scrape_website(url:str):
             title = annoucement.find("a").get_text()
             link = "https://dipr.mizoram.gov.in/" + annoucement.find("a")["href"]
 
+
             annoucements.append({
                 "title": title,
-                "link": link
+                "link": link,
+                "state": "Mizoram"
             })
         
         for annoucement in annoucements:

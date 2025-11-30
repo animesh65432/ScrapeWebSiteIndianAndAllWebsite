@@ -77,10 +77,9 @@ def scrape_website(url: str):
                                     pdf_link = urljoin(url, pdf_link)
                         
                         announcement_data = {
-                            'sl_no': sl_no,
                             'title': title,
                             'pdf_link': pdf_link,
-                            'upload_date': upload_date
+                            'state' :"AndamanNicobarIslands"
                         }
                         
                         announcements.append(announcement_data)

@@ -67,8 +67,8 @@ def scrape_website(url):
             # Add to announcements array
             announcements.append({
                 "title": title,
-                "date": str(date_obj),
-                "link": pdf_link
+                "pdf_link": pdf_link,
+                "state": "TamilNadu"
             })
 
         return announcements

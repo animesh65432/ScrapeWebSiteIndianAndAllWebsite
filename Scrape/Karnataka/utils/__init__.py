@@ -52,8 +52,8 @@ def scrape_website(url: str):
             if view_url:
                 notices.append({
                     "date": date_str,
-                    "subject": subject,
-                    "view_url": view_url
+                    "title": subject,
+                    "pdf_link": view_url
                 })
 
         return notices
