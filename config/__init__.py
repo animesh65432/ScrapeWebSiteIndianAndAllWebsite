@@ -34,6 +34,7 @@ config = {
     "DadraandNagarHaveliDamanDiu":"https://ddd.gov.in/document-category/latest-updates",
     "Lakshadweep":"https://lakshadweep.gov.in/notice_category/circulars/",
     "Arunachalpradesh":"https://arunachalpradesh.gov.in/advertiesment-notice.php",
-    "Andhrapradesh":"https://goir.ap.gov.in"
+    "Andhrapradesh":"https://goir.ap.gov.in",
+    "IndianGovtAnnouncement": "https://www.pib.gov.in/Allrel.aspx"
 }
 

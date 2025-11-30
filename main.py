@@ -34,6 +34,7 @@ from Scrape.DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnn
 from Scrape.AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
 from Scrape.Bihar import GetBiharAnnoucements
 from Scrape.Andhrapradesh import GetAndhrapradeshAnnoucements
+from Scrape.IndianGovtAnnoucement import GetAllIndianGovtAnnouncements
 
 
 async def scrape_all_states(batch_size=3):
@@ -72,7 +73,8 @@ async def scrape_all_states(batch_size=3):
         "Dadra and Nagar Haveli & Daman and Diu": GetDadraandNagarHaveliDamanDiuAnnoucements,
         "Andaman and Nicobar Islands": GetAndamanNicobarIslandsAnnoucements,
         "Bihar": GetBiharAnnoucements,
-        "Andhra Pradesh": GetAndhrapradeshAnnoucements
+        "Andhra Pradesh": GetAndhrapradeshAnnoucements,
+        "Indian Govt Announcement": GetAllIndianGovtAnnouncements
     }
     
     scraper_items = list(scrapers.items())
