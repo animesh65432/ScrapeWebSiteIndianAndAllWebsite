@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import time
 
-def scrape_website(url: str, days_back: int = 0):
+def scrape_website(url: str, days_back: int = 1):
    
     try:
         chrome_options = Get_Chrome_Options()

@@ -49,7 +49,8 @@ def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.aspx"):
                     "department": announcement_type,
                     "title": title.strip(),
                     "link": href,
-                    "content": content
+                    "content": content,
+                    "state": "IndianGovtAnnouncement"
                 })
         
         return announcements
