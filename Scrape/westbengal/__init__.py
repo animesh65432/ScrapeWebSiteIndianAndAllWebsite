@@ -1,6 +1,6 @@
 from .utils import scrape_website
 from config import config
-async def scarpe_westBengal_Annoucements():
+async def GetwestBengalAnnoucements():
     try :
         return scrape_website(config["WestBengal"])
     except Exception as e:

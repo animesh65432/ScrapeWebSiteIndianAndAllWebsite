@@ -1,36 +1,36 @@
-from .westbengal import scarpe_westBengal_Annoucements
-from .Assam import scarpe_Assam_Annoucements
-from .Dehli import GetDehliAnnoucements
-from .Goa import scrape_Goa_Annoucements
-from .HimachalPradesh import scapre_HimachalPradesh_Annoucements
-from .ArunachalPradesh import scrape_ArunachalPradesh_Annoucements
-from .Chhattisgarh import ScrapeChhattisgarhAnnoucement
-from .JammuandKashmir import GetJammuandKashmirAnnoucements
-from .jharkhand import GetjharkhandGovAnnoucements
-from .Karnataka import GetKarnataka_Govt_Annoucements
-from .Kerala import GetKeralaGovtAnnoucements
-from .Ladakh import GetAllLadakhAnnoucements
-from .Maharashtra import GetAllMaharashtraAnnoucements
-from .MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
-from .Manipur import GetAllManipurAnnoucements
-from .Meghalaya import GetmeghalayaAnnoucements
-from .Mizoram import GetMizoramAnnoucements
-from .Nagaland import GetNagalandAnnoucements
-from .Odisha import GetOdishaAnnouncements
-from .Puducherry import GetPuducherryAnnoucements
-from .Punjab import GetPunjabAnnoucements
-from .Rajasthan import GetRajasthanAnnoucements
-from .Sikkim import GetSikkimAnnouncements
-from .TamilNadu import GetallTamilNaduAnnoucements
-from .Telangana import GetAllTelanganaAnnoucements
-from .Tripura import GetAllTripuraAnnoucements
-from .Uttarakhand import GetUttarakhandAnnouncements
-from .UttarPradesh import GetUttarPradeshAnnoucements
-from .Gujarat import GetGujaratAnnoucements
-from .Haryana import GetHaryanaAnnoucements
-from .Lakshadweep import GetLaskhadweepAnnoucements
-from .Chandigarh import GetChandigrahAnnoucements
-from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnoucements
-from .AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
-from .Bihar import GetBiharAnnoucements
-from .Andhrapradesh import GetAndhrapradeshAnnoucements
+# from .westbengal import GetwestBengalAnnoucements
+# from .Assam import GetAssamAnnoucements
+# from .Dehli import GetDehliAnnoucements
+# from .Goa import GetGoaAnnoucements
+# from .HimachalPradesh import GetHimachalPradeshAnnoucements
+# from .ArunachalPradesh import GetArunachalPradeshAnnoucements
+# from .Chhattisgarh import ScrapeChhattisgarhAnnoucement
+# from .JammuandKashmir import GetJammuandKashmirAnnoucements
+# from .jharkhand import GetjharkhandGovAnnoucements
+# from .Karnataka import GetKarnatakaGovtAnnoucements
+# from .Kerala import GetKeralaGovtAnnoucements
+# from .Ladakh import GetAllLadakhAnnoucements
+# from .Maharashtra import GetAllMaharashtraAnnoucements
+# from .MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
+# from .Manipur import GetAllManipurAnnoucements
+# from .Meghalaya import GetmeghalayaAnnoucements
+# from .Mizoram import GetMizoramAnnoucements
+# from .Nagaland import GetNagalandAnnoucements
+# from .Odisha import GetOdishaAnnouncements
+# from .Puducherry import GetPuducherryAnnoucements
+# from .Punjab import GetPunjabAnnoucements
+# from .Rajasthan import GetRajasthanAnnoucements
+# from .Sikkim import GetSikkimAnnouncements
+# from .TamilNadu import GetallTamilNaduAnnoucements
+# from .Telangana import GetAllTelanganaAnnoucements
+# from .Tripura import GetAllTripuraAnnoucements
+# from .Uttarakhand import GetUttarakhandAnnouncements
+# from .UttarPradesh import GetUttarPradeshAnnoucements
+# from .Gujarat import GetGujaratAnnoucements
+# from .Haryana import GetHaryanaAnnoucements
+# from .Lakshadweep import GetLaskhadweepAnnoucements
+# from .Chandigarh import GetChandigrahAnnoucements
+# from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnoucements
+# from .AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
+# from .Bihar import GetBiharAnnoucements
+# from .Andhrapradesh import GetAndhrapradeshAnnoucements
