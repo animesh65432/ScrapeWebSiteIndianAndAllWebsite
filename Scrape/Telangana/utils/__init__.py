@@ -57,4 +57,5 @@ def scrape_website(url: str):
         return announcements
 
     except Exception as e:
-        return f"scrape_website error occurred: {str(e)}"
+        print(f"scrape_website error occurred: {str(e)}")
+        return None

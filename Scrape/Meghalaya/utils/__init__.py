@@ -43,4 +43,6 @@ def scapre_website(url:str):
         return annoucements
     
     except Exception as e:
-        return f"An error occurred: {str(e)}"
+        print(f"An error occurred: {str(e)}")
+        
+        return None

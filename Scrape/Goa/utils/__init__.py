@@ -40,4 +40,4 @@ def scrape_website(url):
 
     except Exception as e:
         print(f"Scraping Error: {e}")
-        return []
+        return None

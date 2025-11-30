@@ -3,6 +3,7 @@ from.utils import scarpe_website
 
 async def GetUttarPradeshAnnoucements():
     try :
+        print("Scraping Uttar Pradesh Announcements...")
         return scarpe_website(config["UttarPradesh"])
     except Exception as e :
         print("GetUttarPradeshAnnoucements",e)

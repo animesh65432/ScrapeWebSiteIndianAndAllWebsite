@@ -4,7 +4,8 @@ from config import config
 
 async def GetHaryanaAnnoucements():
     try :
+        print("Scraping Haryana Announcements...")
         return scrape_website(config["Haryana"])
     except Exception as e :
-        print("GetHaryanaAnnoucements",e)
+        print("Error GetHaryanaAnnoucements",e)
         return None

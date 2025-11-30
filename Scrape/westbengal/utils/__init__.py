@@ -51,4 +51,4 @@ def scrape_website(url: str) -> dict:
 
     except Exception as e:
         print(f"scrape_website error: {e}")
-        return []
+        return None

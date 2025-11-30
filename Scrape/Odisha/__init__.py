@@ -3,6 +3,7 @@ from config import GovtWebiteUrl
 
 async def GetOdishaAnnouncements():
     try:
+        print("Scraping Odisha Announcements...")
         return scapre_website(GovtWebiteUrl["Odisha"])
     except Exception as e:
         return f"GetOdishaAnnouncements error occurred: {str(e)}"

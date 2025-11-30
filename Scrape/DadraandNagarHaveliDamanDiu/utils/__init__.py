@@ -48,9 +48,6 @@ def scrape_website(url: str):
                     date_span = date_cell.find("span", class_="bt-content")
                     announcement_date = date_span.text.strip() if date_span else ""
                     
-                    print(f"Checking: {announcement_date} - {title[:50]}...")
-                    
-                    # Check if date matches today
                     if announcement_date == today:
                         # Extract PDF link (third column)
                         file_cell = cells[2]

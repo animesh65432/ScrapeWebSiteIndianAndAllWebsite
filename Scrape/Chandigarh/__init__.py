@@ -3,7 +3,8 @@ from .utils import scrape_website
 
 async def GetChandigrahAnnoucements():
     try :
+        print("Scraping Chandigarh Announcements...")
         return scrape_website(config["Chandigarh"])
     except Exception as e :
-        print("GetChandigarhAnnoucements",e)
+        print("Error in GetChandigarhAnnoucements",e)
         return None

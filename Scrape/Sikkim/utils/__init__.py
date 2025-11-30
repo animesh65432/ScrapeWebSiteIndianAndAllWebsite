@@ -69,7 +69,7 @@ def scrape_website(url):
         return announcements
 
     except Exception as e:
-        return f"Error scraping Sikkim: {str(e)}"
-
+        print(f"Error scraping Sikkim: {str(e)}")
+        return None
     finally:
         driver.quit()

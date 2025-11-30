@@ -94,4 +94,4 @@ def scrape_website(url: str):
         
     except Exception as e:
         print(f"Error in scrape_website: {e}")
-        return []
+        return None

@@ -3,6 +3,7 @@ from config import config
 
 async def GetChhattisgarhAnnoucement():
     try :
+        print("Scraping Chhattisgarh Announcements...")
         return scrape_website(config["Chhattisgarh"])
     except Exception as e :
         print("GetChhattisgarhAnnoucement Error",e)

@@ -3,7 +3,8 @@ from config import config
 
 async def GetDehliAnnoucements():
     try:
+        print("Scraping Dehli Announcements...")
         return scrape_website(config["Dehli"])
     except Exception as e:
-        print("Error in Dehli_Website",e)
+        print("Error in Dehli Scraping",e)
         return None

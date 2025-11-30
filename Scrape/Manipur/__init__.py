@@ -3,6 +3,8 @@ from config import config
 
 async def GetAllManipurAnnoucements():
     try :
+        print("Scraping Manipur Announcements...")
+        
         return scrape_website(config["Manipur"])
     except Exception as e :
         print("GetAllManipurAnnoucements",e)
