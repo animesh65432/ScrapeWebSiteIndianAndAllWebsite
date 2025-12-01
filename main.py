@@ -5,12 +5,11 @@ from utils.classify_announcement_or_news import classify_announcement_or_news
 async def main():
     try:
         announcements = await scrape_all_states(batch_size=3)
-        classified_announcements = []
+        print(len(announcements), " announcements scraped.")
         if announcements:
-            print("calling classify_announcement_or_news...")
             classified_announcements = await classify_announcement_or_news(announcements)
         
-        print(classified_announcements)
+        print(len(classified_announcements), " announcements classified.")
         return []
             
     except Exception as e:

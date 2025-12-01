@@ -32,10 +32,16 @@ def scrape_website(url: str):
 
             title = cols[0].get_text(strip=True)
 
-            date_text = cols[1].get_text(strip=True)  # "26/11/2025"
+            date_text = cols[1].get_text(strip=True) 
+
+            if not date_text:
+                print("Skipping row: empty date",date_text)
+                continue
+
             parsed_date = datetime.strptime(date_text, "%d/%m/%Y").date()
 
             # Skip if not today
+
             if parsed_date != today:
                 continue
 

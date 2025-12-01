@@ -1,8 +1,8 @@
 from selenium import webdriver
 from  config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
-import time
-from datetime import datetime
+import time 
+from datetime import datetime , timedelta
 
 def scrape_website(url: str) -> list:
     try:
@@ -40,10 +40,11 @@ def scrape_website(url: str) -> list:
                     
                     today = datetime.today().date()
 
+
                     if date_obj == today:
                         notice_data = {
                             "title": title,
-                            "pdf_link": pdf_link,
+                            "pdf_link":f"https://arunachalpradesh.gov.in/{pdf_link}",
                             "state" :"ArunachalPradesh"
                         }
                         Annoucements.append(notice_data)

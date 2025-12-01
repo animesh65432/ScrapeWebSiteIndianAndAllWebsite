@@ -1,3 +1,9 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+
 config = {
     "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
     "Assam": "https://assam.gov.in/latest-updates-list-page",
@@ -35,6 +41,9 @@ config = {
     "Lakshadweep":"https://lakshadweep.gov.in/notice_category/circulars/",
     "Arunachalpradesh":"https://arunachalpradesh.gov.in/advertiesment-notice.php",
     "Andhrapradesh":"https://goir.ap.gov.in",
-    "IndianGovtAnnouncement": "https://www.pib.gov.in/Allrel.aspx"
+    "IndianGovtAnnouncement": "https://www.pib.gov.in/Allrel.aspx",
+    "GROQ_API_KEY": os.getenv("GROQ_API_KEY"),
+    "OCR_SPACE_API_KEY"  : os.getenv("OCR_SPACE_API_KEY"),
+    "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY")
 }
 

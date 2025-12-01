@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from datetime import datetime
+from urllib.parse import urlparse
 
 def scrape_website(url: str):
     try:
@@ -42,30 +43,33 @@ def scrape_website(url: str):
                 
                 
                 # Check if date matches today
-                if announcement_date == today:
+                if announcement_date != today:
+                    continue
                     # Extract title
-                    title_field = row.find("div", {"class": "views-field views-field-title"})
-                    title_link = title_field.find("a") if title_field else None
-                    title = title_link.text.strip() if title_link else ""
+
+                title_field = row.find("div", {"class": "views-field views-field-title"})
+                title_link = title_field.find("a") if title_field else None
+                title = title_link.text.strip() if title_link else ""
                     
                     # Extract PDF link from body field
-                    body_field = row.find("div", {"class": "views-field views-field-body"})
-                    pdf_link = ""
+                body_field = row.find("div", {"class": "views-field views-field-body"})
+                pdf_link = ""
                     
-                    if body_field:
-                        field_content = body_field.find("div", {"class": "field-content"})
-                        if field_content:
-                            pdf_link_tag = field_content.find("a")
-                            if pdf_link_tag:
-                                pdf_link = pdf_link_tag.get('href', '')
+                if body_field:
+                    field_content = body_field.find("div", {"class": "field-content"})
+
+                    if field_content:
+                        
+                        pdf_link_tag = field_content.find("a")
+                        
+                        if pdf_link_tag:
+                            
+                            pdf_link = pdf_link_tag.get('href', '')
                                 
-                                # Make absolute URL if relative
-                                if pdf_link and not pdf_link.startswith('http'):
-                                    # Extract base URL from the current URL
-                                    from urllib.parse import urlparse
-                                    parsed_url = urlparse(url)
-                                    base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
-                                    pdf_link = base_url + pdf_link
+                            if pdf_link and not pdf_link.startswith('http'):
+                                parsed_url = urlparse(url)
+                                base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+                                pdf_link = base_url + pdf_link
                     
                     
                     announcement_data = {

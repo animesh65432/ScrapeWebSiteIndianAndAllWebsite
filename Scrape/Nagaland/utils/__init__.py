@@ -2,6 +2,7 @@ from datetime import datetime,timedelta
 from config.chromeOptions import Get_Chrome_Options
 from selenium import webdriver
 from bs4 import BeautifulSoup
+from urllib.parse import quote
 
 def scarp_website(url: str):
     try:
@@ -14,14 +15,17 @@ def scarp_website(url: str):
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         driver.quit()
 
+       
+
         # Find table rows
-        table_body = soup.find("table").find("tbody")
+        table_body = soup.find("table",{"id" :"my-table"}).find("tbody")
+
         announcement_rows = table_body.find_all("tr")
 
+    
         # Today's date in the format used in the table
-        today_str = (datetime.today() - timedelta(days=141) ).strftime("%d-%m-%Y")
+        today_str = datetime.today().strftime("%d-%m-%Y")
 
-        print(today_str)
 
         today_announcements = []
 
@@ -38,13 +42,15 @@ def scarp_website(url: str):
             link_tag = cols[4].find("a")
             link = link_tag['href'] if link_tag else (f"{url}{title_tag['href']}" if title_tag else "")
             if link.startswith("/"):
-                link = f"{url}{link}"
+                link = f"https://nagaland.gov.in{link}"
+            
+            safe_url = quote(link, safe=":/")
 
             if date == today_str and title and link:
                 today_announcements.append({
                     "title": title,
                     "department": category,
-                    "pdf_link": link,
+                    "pdf_link": safe_url,
                     "state": "Nagaland",
                 })
 
