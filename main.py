@@ -5,24 +5,17 @@ from utils.scrapthepdfcontent import extract_text_from_pdf_bytes
 
 async def main():
     try:
-        
         announcements = await scrape_all_states(batch_size=3)
-        print(len(announcements), "announcements scraped.")
-
         if not announcements:
             print("No announcements found.")
             return []
         
         classified_announcements = await classify_announcement_or_news(announcements)
 
-        print(len(classified_announcements), "announcements classified.")
-       
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
 
-        print(len(announcements_with_pdf_text), "announcements with PDF text extracted.")
-
-        print(announcements_with_pdf_text)
-        return classified_announcements
+        print(announcements_with_pdf_text, "announcements with PDF text extracted.")
+        return []
 
     except Exception as e:
         print(f"❌ Critical error in main: {e}")

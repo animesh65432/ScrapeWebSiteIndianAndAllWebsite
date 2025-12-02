@@ -1,21 +1,22 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+from config.chromeOptions import Get_Chrome_Options
+from selenium import webdriver
 import requests
 from typing import List, Dict
 from datetime import datetime 
 
 def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
     try:
-        # Create session with headers
-        session = requests.Session()
-        session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        })
-        
-        response = session.get(url, timeout=10)
-        response.raise_for_status()
+        chrome_options = Get_Chrome_Options()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.get(url)
+    
+        html = driver.page_source
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
+
+        driver.quit()
         
         # Find the table - it's inside section with id="tables"
         table_section = soup.find("section", id="tables")

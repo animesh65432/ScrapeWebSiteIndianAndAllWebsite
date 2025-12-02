@@ -1,16 +1,22 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from config.http import get_agent
+from config.chromeOptions import Get_Chrome_Options
 from .scrape_content import scrape_content
-from datetime import datetime, timedelta
+from datetime import datetime
+from selenium import webdriver
 
 def scraping_website(url):
     try:
-        session = get_agent(url)
-        response = session.get(url, timeout=10)
-        response.raise_for_status()
+        chromeOptions = Get_Chrome_Options(url)
+        driver = webdriver.Chrome(options=chromeOptions)
+        driver.get(url)
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        html = driver.page_source
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        driver.quit()
+        
         announcements = []
 
         for li in soup.select("li.modren"):

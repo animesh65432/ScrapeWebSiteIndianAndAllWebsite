@@ -18,9 +18,8 @@ def scrape_content(url: str):
             EC.presence_of_element_located((By.CLASS_NAME, "post-content"))
         )
         
+        # FIX: Get the page source BEFORE quitting the driver
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-
-        driver.quit()
         
         # Find the main content div
         content_div = soup.find("div", {"class": "post-content"})
@@ -60,15 +59,14 @@ def scrape_content(url: str):
             
             # Add paragraph to markdown
             markdown += f"{text}\n\n"
-        
-        # Extract attachment section
-        attachment_div = content_div.find("div", {"id": "attachment-meta"})
-        if attachment_div:
-            markdown += "---\n\n"
-            markdown += "## Attachments\n\n"
+    
         
         return markdown.strip()
         
     except Exception as e:
         return f"An error occurred in scrape_content: {str(e)}"
     
+    finally:
+        # FIX: Always quit the driver, even if errors occur
+        if driver:
+            driver.quit()

@@ -10,7 +10,6 @@ async def extract_text_from_pdf_bytes(items: list[GovtItem]):
             pdf_url = item.get("pdf_link")
 
             if pdf_url:
-             
                 tasks.append((item, asyncio.create_task(scan_pdf_url(pdf_url))))
 
         results = await asyncio.gather(*(task for _, task in tasks), return_exceptions=True)

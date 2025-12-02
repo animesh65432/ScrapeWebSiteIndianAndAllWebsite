@@ -1,16 +1,24 @@
 from bs4 import BeautifulSoup
+from config.chromeOptions import Get_Chrome_Options
+from selenium import webdriver
 from urllib.parse import urljoin
-from config.http import get_agent
 from .scrape_content import scrape_content
 from datetime import datetime
 
 def scrape_website(url):
     try:
-        session = get_agent(url)
-        response = session.get(url, timeout=10)
-        response.raise_for_status()
+        chrome_options = Get_Chrome_Options()
+        
+        driver = webdriver.Chrome(options=chrome_options)
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        driver.get(url)
+
+        html = driver.page_source
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        driver.quit()
+
         announcements = []
 
         # Loop through each news item

@@ -2,7 +2,7 @@ from selenium import webdriver
 from config.chromeOptions import Get_Chrome_Options
 from bs4 import BeautifulSoup
 import re
-from datetime import datetime, timedelta, date
+from datetime import datetime
 
 def scrape_website(url: str) -> dict:
     try:

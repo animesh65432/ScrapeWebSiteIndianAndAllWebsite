@@ -26,6 +26,7 @@ from Scrape.MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
 from Scrape.Maharashtra import GetAllMaharashtraAnnoucements
 from Scrape.Mizoram import GetMizoramAnnoucements
 from Scrape.Rajasthan import GetRajasthanAnnoucements
+from Scrape.Mizoram import GetMizoramAnnoucements
 
 async def test():
     try:
@@ -45,7 +46,7 @@ async def test():
         # res = await GetBiharAnnoucements()
         # res = await GetGujaratAnnoucements()
         # res = await GetGoaAnnoucements()
-        res = await GetRajasthanAnnoucements()
+        res = await GetMizoramAnnoucements()
         print("Announcements:", res)
 
         # res = await scan_pdf_url("https://cms.tn.gov.in/cms_migrated/document/press_release/pr301125_2875.pdf")

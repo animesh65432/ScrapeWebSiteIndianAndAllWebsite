@@ -1,5 +1,6 @@
 from config import config
 import httpx, base64
+import time
 
 async def scan_pdf_url(url: str) -> str | None:
     try:
@@ -37,7 +38,6 @@ async def scan_pdf_url(url: str) -> str | None:
             )
 
         data = response.json()
-        print("GEMINI RAW:", data)
 
         # Step 4: Safely extract text
         candidates = data.get("candidates", [])
@@ -50,6 +50,9 @@ async def scan_pdf_url(url: str) -> str | None:
             return None
 
         extracted_text = parts[0].get("text", "").strip()
+
+        time.sleep(3)
+        
         return extracted_text if extracted_text else None
 
     except Exception as e:
