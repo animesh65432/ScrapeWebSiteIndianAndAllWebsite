@@ -36,8 +36,6 @@ def scrape_website(url):
             try:
                 date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
 
-                print(date_obj)
-
                 if date_obj == today:
                     pdf_link = None
                     link_tag = cols[5].find("a")
@@ -46,7 +44,7 @@ def scrape_website(url):
 
                     announcements.append({
                         'title': title,
-                        'pdf_link': pdf_link,
+                        'pdf_link':f"https://gad.gujarat.gov.in/personnel/{pdf_link}",
                         'state': "Gujarat"
                     })
 

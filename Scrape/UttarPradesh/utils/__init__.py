@@ -30,7 +30,7 @@ def scarpe_website(url):
             if date_obj.date() == today.date() :
                 announcements.append({
                     "title" : title,
-                    "pdf_link"  : link,
+                    "pdf_link"  : f"https://information.up.gov.in{link}",
                     "state" : "UttarPradesh"
                 })
 

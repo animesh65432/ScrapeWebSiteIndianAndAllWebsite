@@ -31,7 +31,6 @@ def scrape_website(url: str):
             date_str = time_element.get_text(strip=True) if time_element else ""
             date_obj = datetime.strptime(date_str, "%d-%b-%Y").date()
             today = datetime.today().date()
-
             if date_obj != today:
                 continue
 

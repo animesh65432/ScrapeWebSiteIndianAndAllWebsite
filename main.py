@@ -1,17 +1,29 @@
 import asyncio
 from utils.scrape_all_states import scrape_all_states
 from utils.classify_announcement_or_news import classify_announcement_or_news
+from utils.scrapthepdfcontent import extract_text_from_pdf_bytes
 
 async def main():
     try:
-        announcements = await scrape_all_states(batch_size=3)
-        print(len(announcements), " announcements scraped.")
-        if announcements:
-            classified_announcements = await classify_announcement_or_news(announcements)
         
-        print(len(classified_announcements), " announcements classified.")
-        return []
-            
+        announcements = await scrape_all_states(batch_size=3)
+        print(len(announcements), "announcements scraped.")
+
+        if not announcements:
+            print("No announcements found.")
+            return []
+        
+        classified_announcements = await classify_announcement_or_news(announcements)
+
+        print(len(classified_announcements), "announcements classified.")
+       
+        announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
+
+        print(len(announcements_with_pdf_text), "announcements with PDF text extracted.")
+
+        print(announcements_with_pdf_text)
+        return classified_announcements
+
     except Exception as e:
         print(f"❌ Critical error in main: {e}")
         import traceback

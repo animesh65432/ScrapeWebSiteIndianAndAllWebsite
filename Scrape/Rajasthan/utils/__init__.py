@@ -65,13 +65,10 @@ def scrape_website(url: str):
                     announcement_data = {
                         "title": title,
                         "state": "Rajasthan",
-                        "link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] 
+                        "link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] ,
+                        "content": scarpContent(f"https://dipr.rajasthan.gov.in" + detail_link['href'])
                     }
                     announcements.append(announcement_data)
-        
-        for annpouncement in announcements:
-            content = scarpContent(annpouncement["link"])
-            annpouncement["content"] = content
       
     
         return announcements

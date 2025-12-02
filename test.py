@@ -8,6 +8,24 @@ from Scrape.Karnataka import GetKarnatakaGovtAnnoucements
 from Scrape.Ladakh import GetAllLadakhAnnoucements
 from Scrape.Meghalaya import GetmeghalayaAnnoucements
 from Scrape.Nagaland import GetNagalandAnnoucements
+from Scrape.Odisha import GetOdishaAnnouncements
+from Scrape.Punjab import GetPunjabAnnoucements
+from Scrape.TamilNadu import GetallTamilNaduAnnoucements
+from Scrape.Tripura import GetAllTripuraAnnoucements
+from Scrape.Uttarakhand import GetUttarakhandAnnouncements
+from Scrape.UttarPradesh import GetUttarPradeshAnnoucements
+from Scrape.AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
+from Scrape.Bihar import GetBiharAnnoucements
+from Scrape.Dehli import GetDehliAnnoucements
+from Scrape.Goa import GetGoaAnnoucements
+from Scrape.Gujarat import GetGujaratAnnoucements
+from Scrape.HimachalPradesh import GetHimachalPradeshAnnoucements
+from Scrape.IndianGovtAnnoucement import GetAllIndianGovtAnnouncements
+from Scrape.Kerala import GetKeralaGovtAnnoucements
+from Scrape.MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
+from Scrape.Maharashtra import GetAllMaharashtraAnnoucements
+from Scrape.Mizoram import GetMizoramAnnoucements
+from Scrape.Rajasthan import GetRajasthanAnnoucements
 
 async def test():
     try:
@@ -19,13 +37,20 @@ async def test():
         # res = await GetAllLadakhAnnoucements()
         # res = await GetmeghalayaAnnoucements()
         # res = await GetNagalandAnnoucements()
-        # print(res)
+        # res = await GetOdishaAnnouncements()
+        # res = await GetPunjabAnnoucements()
+        # res = await GetallTamilNaduAnnoucements()
+        # res = await GetAllTripuraAnnoucements()
+        # res = await GetAndamanNicobarIslandsAnnoucements()
+        # res = await GetBiharAnnoucements()
+        # res = await GetGujaratAnnoucements()
+        # res = await GetGoaAnnoucements()
+        res = await GetRajasthanAnnoucements()
+        print("Announcements:", res)
 
-        res = await scan_pdf_url("https://nagaland.gov.in/storage/PostFiles/Procedures%20And%20Guidelines%20For%20Lien%20On%20Post%20And%20Technical%20Resignation.pdf")
-        print("Converted Markdown:", res)
+        # res = await scan_pdf_url("https://cms.tn.gov.in/cms_migrated/document/press_release/pr301125_2875.pdf")
+        # print("Converted Markdown:", res)
 
-        # res = await pdf_url_to_markdown("https://assam.gov.in/sites/default/files/2024-10/1.%20NOTICE%20REG.%20DOWNLOADING%20OF%20OMR%20ANSWER%20SHEET_0.pdf")
-        # print("Nagaland Assam Converted Markdown:", res) 
         
         # if res:
         #     print("PDF to Markdown conversion successful.",res)

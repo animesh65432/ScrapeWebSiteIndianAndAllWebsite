@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from config.http import get_agent
 from .scrape_content import scrape_content
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def scrape_website(url):
     try:
@@ -29,7 +29,7 @@ def scrape_website(url):
             
             today = datetime.today().date()
 
-            if today == date_obj and link and title:
+            if today == date_obj and  link and title:
                 announcements.append({
                     "title": title,
                     "link": link,

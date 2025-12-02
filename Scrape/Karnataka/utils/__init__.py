@@ -42,8 +42,6 @@ def scrape_website(url: str):
             view_link = cells[5].find("a")
             view_url = None
 
-            print(view_link)
-
             if view_link:
                 href = view_link.get("href")
                 if href:

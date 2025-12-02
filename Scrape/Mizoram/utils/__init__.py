@@ -46,6 +46,7 @@ def scrape_website(url:str):
                 "state": "Mizoram",
                 "content": scrape_content(link)
             })
+    
 
         return annoucements
 

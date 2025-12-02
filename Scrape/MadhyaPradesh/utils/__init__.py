@@ -64,7 +64,6 @@ def scrape_website(url: str):
                 }
 
                 announcements.append(announcement)
-
         
         return announcements
         

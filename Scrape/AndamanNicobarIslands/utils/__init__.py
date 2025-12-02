@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from datetime import datetime
 from urllib.parse import urljoin
+import urllib.parse
 
 def scrape_website(url: str):
     try:
@@ -75,14 +76,16 @@ def scrape_website(url: str):
                                 # Make absolute URL if relative
                                 if pdf_link and not pdf_link.startswith('http'):
                                     pdf_link = urljoin(url, pdf_link)
+                                    encoded_url = urllib.parse.quote(pdf_link, safe=':/')
                         
                         announcement_data = {
                             'title': title,
-                            'pdf_link': pdf_link,
+                            'pdf_link':  encoded_url,
                             'state' :"AndamanNicobarIslands"
                         }
                         
                         announcements.append(announcement_data)
+
                         
             except :
                 continue

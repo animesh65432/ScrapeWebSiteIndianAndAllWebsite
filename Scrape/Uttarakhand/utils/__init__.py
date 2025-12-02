@@ -2,6 +2,7 @@ from config.chromeOptions import Get_Chrome_Options
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from datetime import datetime
+from .scrape_content import scrape_content
 import re
 
 def scrape_website(url):
@@ -31,12 +32,14 @@ def scrape_website(url):
 
             today = datetime.today().date()
 
-            if parsed_date == today :
+            if parsed_date == today  and link:
                 announcements.append({
                     "title" : title,
-                    "pdf_link"  : link,
-                    "state" : "Uttarakhand"
+                    "link"  : link,
+                    "state" : "Uttarakhand",
+                    "content" : scrape_content(link)
                 })
+        
 
 
         return announcements

@@ -2,7 +2,7 @@ from datetime import datetime
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from config.chromeOptions import Get_Chrome_Options
-
+from .scrape_content import scrape_content
 
 def scrape_Website(url: str):
     try:
@@ -40,21 +40,18 @@ def scrape_Website(url: str):
                 # Extract date from title (format: DD.MM.YYYY)
                 date_str = title.split(":")[0].strip() if ":" in title else ""
                 
-                
-            
                 if date_str == today:
                     today_news.append({
                         "title": title,
                         "link": link,
                         "state": "Maharashtra"
                     })
-                    print(f"✓ Added: {title[:60]}...")
                     
             except Exception as e:
                 print(f"Error parsing news card: {e}")
                 continue
         
-        print(f"\nTotal news items for today ({today}): {len(today_news)}")
+        print(scrape_content(today_news[0]["link"]))
         return today_news
         
     except Exception as e:

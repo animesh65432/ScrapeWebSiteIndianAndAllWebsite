@@ -50,7 +50,8 @@ def scrape_website(url: str):
                             if date_str == today_slash:
                                 today_announcements.append({
                                     "title": title,
-                                    "link": link,
+                                    "pdf_link": link,
+                                    "state": "Manipur"
                                 })
                                 print(f"✓ Added: {title[:60]}...")
                                 
@@ -81,7 +82,7 @@ def scrape_website(url: str):
                         if date_str == today_dot:
                             today_announcements.append({
                                 "title": title,
-                                "link": link,
+                                "pdf_link": link,
                                 "state": "Manipur"
                             })
                            
