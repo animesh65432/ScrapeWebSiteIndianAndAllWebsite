@@ -44,6 +44,7 @@ config = {
     "IndianGovtAnnouncement": "https://www.pib.gov.in/Allrel.aspx",
     "GROQ_API_KEY": os.getenv("GROQ_API_KEY"),
     "OCR_SPACE_API_KEY"  : os.getenv("OCR_SPACE_API_KEY"),
-    "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY")
+    "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY"),
+    "MONGODB_URI": os.getenv("MONGODB_URI")
 }
 

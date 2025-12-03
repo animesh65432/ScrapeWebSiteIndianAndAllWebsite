@@ -1,0 +1,27 @@
+from pymongo import AsyncMongoClient
+from .ConnectDb import get_client
+from app_types.OriginalAnnouncement import OriginalAnnouncement
+
+class OriginalAnnouncementsDbService:
+    _client: AsyncMongoClient = None
+
+    @classmethod
+    async def get_collection(cls):
+        client = await get_client(cls)
+        db = client["Indian_Govt_Announcements"]
+        collection = db["Original_Announcements"]
+        return collection
+    
+    @classmethod
+    async def insert_announcement(cls, announcement: OriginalAnnouncement):
+        collection = await cls.get_collection()
+        result = await collection.insert_one(announcement)
+        return result.inserted_id
+    
+    @classmethod
+    async def find_announcement_by_title(cls, title: str):
+        collection = await cls.get_collection()
+        announcement = await collection.find_one({"title": title})
+        return announcement
+    
+
