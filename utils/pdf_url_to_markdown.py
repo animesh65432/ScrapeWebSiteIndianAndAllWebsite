@@ -57,4 +57,4 @@ async def pdf_url_to_markdown(pdf_url: str, save_path: str = "temp.pdf", state: 
     except Exception as e:
         await loop.run_in_executor(executor, delete_file, save_path)
         print(f"Error: {e}")
-        return ""
+        return None

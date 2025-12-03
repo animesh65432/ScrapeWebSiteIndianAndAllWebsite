@@ -1,10 +1,16 @@
 from config import config
 import httpx, base64
-import time
+import asyncio
+from  utils.pdf_url_to_markdown import pdf_url_to_markdown
 
 async def scan_pdf_url(url: str) -> str | None:
     try:
         # Step 1: Download PDF
+        mdtext = await pdf_url_to_markdown(url)
+
+        if mdtext:
+            return mdtext
+         
         async with httpx.AsyncClient(verify=False, timeout=120) as client:
             response = await client.get(url)
             pdf_bytes = response.content
@@ -50,8 +56,8 @@ async def scan_pdf_url(url: str) -> str | None:
             return None
 
         extracted_text = parts[0].get("text", "").strip()
-
-        time.sleep(5)  # To respect API rate limits
+        
+        await asyncio.sleep(5)  # To respect API rate limits
         
         return extracted_text if extracted_text else None
 
