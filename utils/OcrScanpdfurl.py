@@ -8,6 +8,8 @@ async def scan_pdf_url(url: str) -> str | None:
         # Step 1: Download PDF
         mdtext = await pdf_url_to_markdown(url)
 
+        print(f"Markdown text from pdf_url_to_markdown for {url}: {mdtext}")
+
         if mdtext:
             return mdtext
          

@@ -83,6 +83,8 @@ def extract_announcements(soup):
         
         if not tables:
             tables = soup.find_all('table')
+
+        current_date = datetime.today().date()
            
         
         for table in tables:
@@ -105,6 +107,8 @@ def extract_announcements(soup):
                     # Look for PDF link in multiple ways
                     pdf_link = None
                     links = row.find_all('a')
+                    date = datetime.strptime(go_date, "%d/%m/%Y").date()
+
                     
                     # Debug: Print first link details for first few rows
                     if len(announcements) < 3 and links:
@@ -141,7 +145,7 @@ def extract_announcements(soup):
                     
                     # Add all announcements
                     
-                    if title and go_date:
+                    if title and current_date == date and pdf_link:
                         announcement = {
                             'title': title,
                             'pdf_link': pdf_link,

@@ -7,7 +7,7 @@ from selenium import webdriver
 
 def scraping_website(url):
     try:
-        chromeOptions = Get_Chrome_Options(url)
+        chromeOptions = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chromeOptions)
         driver.get(url)
 

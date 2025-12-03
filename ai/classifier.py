@@ -23,7 +23,10 @@ async def classify_ai(item: GovtItem) -> str:
 
     result = response.choices[0].message.content.strip().lower()
 
+    print(f"classify_ai result: {result} for item title: {item.get('title', '')}")
+
     if result not in ["news", "announcement"]:
         result = "announcement"
+    
 
     return result

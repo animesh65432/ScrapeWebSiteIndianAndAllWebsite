@@ -21,6 +21,9 @@ def parse_pdf_blocking(file_path: str) -> str:
     for i, page in enumerate(doc, 1):
         text = page.get_text("text").strip()
 
+        if len(text) == 0:
+            continue
+
         md += f"## Page {i}\n\n"
 
         if text:

@@ -13,9 +13,6 @@ def scarp_website(url: str):
 
         # Parse HTML
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-        driver.quit()
-
-       
 
         # Find table rows
         table_body = soup.find("table",{"id" :"my-table"}).find("tbody")
@@ -59,3 +56,5 @@ def scarp_website(url: str):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         return None
+    finally :
+        driver.quit()

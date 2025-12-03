@@ -2,46 +2,54 @@ from app_types.govt_item import GovtItem
 from typing import Union
 
 def get_prompt(item: Union[GovtItem, dict, str]) -> str:
-    """
-    Generate classification prompt from government item.
-    Handles malformed inputs gracefully.
-    """
-   
     if not isinstance(item, dict):
         print(f"WARNING: get_prompt received {type(item).__name__}, returning default")
         return "news"
     
-   
-    title = str(item.get("title", "")).strip()
-    content = str(item.get("content", "")).strip()
-    link = str(item.get("link", "")).strip()
-    pdf_link = str(item.get("pdf_link", "")).strip()
+    title = str(item.get("title") or "").strip()
+    content = str(item.get("content") or "").strip()
     
-   
-    if not any([title, content, link, pdf_link]):
-        print("WARNING: Empty item, returning default classification")
+    if not title and not content:
         return "news"
     
-   
-    prompt = f"""You are a strict classifier. Classify the given government item into exactly ONE category:
-- news
-- announcement
-
-Language may be any Indian language (Hindi, Tamil, Bengali, Marathi, Odia, etc).
-Do NOT translate. Only interpret and classify based on meaning.
-
-TITLE:
-{title}
-
-CONTENT:
-{content}
-
-PDF LINK:
-{pdf_link}
-
-PAGE LINK:
-{link}
-
-Your response must be exactly one word: "news" or "announcement"."""
+    content_text = content if content else "(content missing, classify based on title)"
+    title_text = title if title else "(title missing, classify based on content)"
     
+    prompt = f"""
+You are an expert classifier for INDIAN GOVERNMENT DOCUMENTS.
+
+GOAL:
+Classify the following item into ONLY ONE category:
+- "announcement" → issued directly by a government authority
+- "news" → media reporting, summaries, journalism, or anything not officially issued.
+
+CLASSIFY AS "announcement" IF:
+- It is issued by:
+  • Central Government     • State Government
+  • Ministry               • Department
+  • Commission             • Authority
+  • Board                  • District/Collector/DM/DC office
+  • Governor/CM/PM offices
+- OR contains keywords suggesting official origin in the TITLE or CONTENT:
+  "Government of", "Govt. of", "Department of", "Ministry of",
+  "Office of", "Collector", "District Magistrate",
+  "Notification", "Order", "Public Notice", "Press Release",
+  "Circular", "Tender", "Recruitment", "Vacancy",
+  "RTI", "G.O.", "Scheme", "Advisory", "Amendment".
+
+CLASSIFY AS "news" IF:
+- It is journalism, reporting, media coverage, analysis, blog,
+  or NOT directly issued by any government authority.
+
+RESPONSE RULE:
+Reply with ONLY ONE WORD:
+"announcement" OR "news".
+
+------------------------------
+ITEM CONTENT
+TITLE: {title_text}
+
+CONTENT: {content_text}
+------------------------------
+"""
     return prompt

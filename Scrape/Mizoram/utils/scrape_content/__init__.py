@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-import re
 
 def scrape_content(url: str):
     driver = None
@@ -12,61 +11,54 @@ def scrape_content(url: str):
         chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
-        
-        # Wait for content to load
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "post-content"))
+
+        # WAIT for any possible content containers
+        possible_selectors = [
+            (By.CLASS_NAME, "post-content"),
+            (By.CLASS_NAME, "content-body"),
+            (By.CLASS_NAME, "full-post-content"),
+            (By.CLASS_NAME, "entry-content")
+        ]
+
+        element = None
+        wait = WebDriverWait(driver, 10)
+
+        for selector in possible_selectors:
+            try:
+                element = wait.until(EC.presence_of_element_located(selector))
+                break
+            except:
+                continue
+
+        if not element:
+            return "Content not found"
+
+        soup = BeautifulSoup(driver.page_source, "html.parser")
+
+        # try to find any container
+        content_div = (
+            soup.find("div", class_="post-content") or
+            soup.find("div", class_="content-body") or
+            soup.find("div", class_="full-post-content") or
+            soup.find("div", class_="entry-content")
         )
-        
-        # FIX: Get the page source BEFORE quitting the driver
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        
-        # Find the main content div
-        content_div = soup.find("div", {"class": "post-content"})
-        
+
         if not content_div:
             return "Content not found"
-        
-        # Initialize markdown content
+
         markdown = ""
-        
-        # Extract all paragraphs
         paragraphs = content_div.find_all("p")
-        
-        for i, p in enumerate(paragraphs):
+
+        for p in paragraphs:
             text = p.get_text(strip=True)
-            
-            if not text:
-                continue
-            
-            # Check if it's a reference number (first paragraph)
-            if i == 0 and re.match(r'^\d+/\d+-\d+$', text):
-                markdown += f"**Reference:** {text}\n\n"
-                continue
-            
-            # Check if it starts with "Dated" (second paragraph - header)
-            if text.startswith("Dated"):
-                markdown += f"**{text}**\n\n"
-                continue
-            
-            # Check for bold text (strong tags)
-            strong_tags = p.find_all("strong")
-            if strong_tags:
-                # Replace strong tags with markdown bold
-                for strong in strong_tags:
-                    strong_text = strong.get_text(strip=True)
-                    text = text.replace(strong_text, f"**{strong_text}**")
-            
-            # Add paragraph to markdown
-            markdown += f"{text}\n\n"
-    
-        
+            if text:
+                markdown += text + "\n\n"
+
         return markdown.strip()
-        
+
     except Exception as e:
-        return f"An error occurred in scrape_content: {str(e)}"
-    
+        return f"An error occurred in scrape_content: {e}"
+
     finally:
-        # FIX: Always quit the driver, even if errors occur
         if driver:
             driver.quit()
