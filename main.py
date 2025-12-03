@@ -2,6 +2,7 @@ import asyncio
 from utils.scrape_all_states import scrape_all_states
 from utils.classify_announcement_or_news import classify_announcement_or_news
 from utils.scrapthepdfcontent import extract_text_from_pdf_bytes
+from service.Faiss import FaissService
 
 async def main():
     try:
@@ -14,7 +15,11 @@ async def main():
 
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
 
-        print(announcements_with_pdf_text, "announcements with PDF text extracted.")
+        faiss_service = FaissService(announcements_with_pdf_text)
+        unique_announcements = faiss_service.get_unique(threshold=0.90)
+        
+        print(f"Total announcements: {len(announcements)}")
+        print(f"Unique announcements after deduplication: {len(unique_announcements)} {announcements}")
         return []
 
     except Exception as e:

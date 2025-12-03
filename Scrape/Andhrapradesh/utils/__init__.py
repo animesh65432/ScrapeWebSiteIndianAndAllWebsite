@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import time
 
-def scrape_website(url: str, days_back: int = 0):
+def scrape_website(url: str, days_back: int = 1):
    
     try:
         chrome_options = Get_Chrome_Options()
@@ -78,6 +78,8 @@ def extract_announcements(soup):
     try:
         # Look for the results table
         tables = soup.find_all('table', class_='Grid')
+
+        print(tables, "Tables found for announcements extraction.")
         
         if not tables:
             tables = soup.find_all('table')

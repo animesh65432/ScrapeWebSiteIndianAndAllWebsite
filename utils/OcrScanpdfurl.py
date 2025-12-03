@@ -51,7 +51,7 @@ async def scan_pdf_url(url: str) -> str | None:
 
         extracted_text = parts[0].get("text", "").strip()
 
-        time.sleep(3)
+        time.sleep(5)  # To respect API rate limits
         
         return extracted_text if extracted_text else None
 
