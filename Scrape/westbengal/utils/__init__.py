@@ -45,7 +45,8 @@ def scrape_website(url: str) -> dict:
                 news_items.append({
                     "content": content,
                     "state": "WestBengal",
-                    "link": url
+                    "link": url,
+                    "title" :content
                 })
 
         return news_items

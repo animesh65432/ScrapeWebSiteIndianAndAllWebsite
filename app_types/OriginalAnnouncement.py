@@ -6,3 +6,4 @@ class OriginalAnnouncement(TypedDict):
     content:str
     source_link:str
     date:date
+    state:str
