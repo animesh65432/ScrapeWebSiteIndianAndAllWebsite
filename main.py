@@ -16,7 +16,7 @@ async def main():
         print("classified announcements",classified_announcements)
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
         print("announcements with pdf text extracted",announcements_with_pdf_text)
-        await insert_annoucements_db(announcements_with_pdf_text)
+        new_annouements = await insert_annoucements_db(announcements_with_pdf_text)
         
         print("Inserted announcements into DB")
         print("✅ All tasks completed successfully!",len(announcements_with_pdf_text))

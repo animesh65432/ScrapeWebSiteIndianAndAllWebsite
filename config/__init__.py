@@ -49,3 +49,5 @@ config = {
     "TRANSLATE_GEMINI_API_KEY" : os.getenv("TRANSLATE_GEMINI_API_KEY")
 }
 
+print("Configuration loaded successfully.",config)
+
