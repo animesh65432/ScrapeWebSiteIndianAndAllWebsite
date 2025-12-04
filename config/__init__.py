@@ -45,6 +45,7 @@ config = {
     "GROQ_API_KEY": os.getenv("GROQ_API_KEY"),
     "OCR_SPACE_API_KEY"  : os.getenv("OCR_SPACE_API_KEY"),
     "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY"),
-    "MONGODB_URI": os.getenv("MONGODB_URI")
+    "MONGODB_URI": os.getenv("MONGODB_URI"),
+    "PROXY_IP" :os.getenv("PROXY_IP")
 }
 

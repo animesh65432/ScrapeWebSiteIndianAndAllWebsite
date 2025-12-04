@@ -11,6 +11,7 @@ def scrape_website(url: str) -> dict:
 
         driver.get(url)
         html = driver.page_source
+        print(html)
         driver.quit()
 
         soup = BeautifulSoup(html, "html.parser")

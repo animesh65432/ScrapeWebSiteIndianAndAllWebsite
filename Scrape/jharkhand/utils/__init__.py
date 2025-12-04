@@ -5,6 +5,8 @@ import time
 from datetime import datetime
 
 def scrape_website(url: str) -> list:
+    driver = None
+
     try:
         chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
@@ -14,7 +16,6 @@ def scrape_website(url: str) -> list:
         time.sleep(3)
         
         html = driver.page_source
-        driver.quit()
 
         soup = BeautifulSoup(html, "html.parser")
         
@@ -77,4 +78,8 @@ def scrape_website(url: str) -> list:
         import traceback
         traceback.print_exc()
         return []
+    
+    finally:
+        if driver:
+            driver.quit()
 
