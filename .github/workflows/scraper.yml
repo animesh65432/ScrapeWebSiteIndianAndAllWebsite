@@ -33,6 +33,10 @@ jobs:
 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
+          PROXY_IP: ${{ secrets.PROXY_IP }}
+
+          TRANSLATE_GEMINI_API_KEY: ${{ secrets.TRANSLATE_GEMINI_API_KEY }}
+
         run: |
           echo "🚀 Starting scraping job..."
           python main.py
