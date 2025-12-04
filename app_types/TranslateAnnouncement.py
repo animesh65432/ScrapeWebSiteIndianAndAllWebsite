@@ -9,3 +9,4 @@ class TranslateAnnouncement(TypedDict):
     state:str
     language:str
     description:str
+    originalAnnouncementId:str
