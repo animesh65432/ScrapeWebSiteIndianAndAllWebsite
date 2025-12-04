@@ -2,45 +2,45 @@ name: Scrape Announcements
 
 on:
   schedule:
-    - cron: "0 */4 * * *"
-  workflow_dispatch:
+    - cron: "0 */4 * * *" # Runs every 4 hours
+  workflow_dispatch: # Manual trigger
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 180 # 3 hour timeout (good for long scraping)
 
     steps:
+      # Checkout your repo
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
           cache: "pip"
 
+      # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Run your scraper
       - name: Run scraper
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
           PROXY_IP: ${{ secrets.PROXY_IP }}
-
           TRANSLATE_GEMINI_API_KEY: ${{ secrets.TRANSLATE_GEMINI_API_KEY }}
-
         run: |
           echo "🚀 Starting scraping job..."
           python main.py
           echo "✅ Scraping job completed!"
 
+      # Add timestamp log
       - name: Log completion
         run: echo "Scraping completed at $(date)"
