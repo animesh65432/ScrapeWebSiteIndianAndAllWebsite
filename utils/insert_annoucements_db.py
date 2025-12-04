@@ -13,10 +13,12 @@ class InsertAnnouncement(TypedDict):
 
 async def insert_annoucements_db(items: list[InsertAnnouncement]):
     try:
+        new_items = []
 
         for item in items:
             existing_announcement = await OriginalAnnouncementsDbService.find_announcement_by_title(item['title'])
             if not existing_announcement:
+
                 annoucement = OriginalAnnouncement(
                     title=item['title'],
                     content=item['content'],
@@ -24,11 +26,13 @@ async def insert_annoucements_db(items: list[InsertAnnouncement]):
                     date=datetime.now(),
                     source_link= item.get('link').strip() if item.get('link') else item.get("pdf_link")
                 )
-
                 announcement_id = await OriginalAnnouncementsDbService.insert_announcement(annoucement)
+
+                new_items.append({**annoucement, " OriginalAnnouncementid": str(announcement_id)})
+
                 print(f"Inserted announcement with id: {announcement_id}")
 
-        return ""
+        return new_items
     except Exception as e:
         print(f"Error inserting announcement: {e}")
         return None
