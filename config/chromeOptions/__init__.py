@@ -10,9 +10,9 @@ def Get_Chrome_Options():
     # Linux stability flags
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    chrome_options.add_argument(f"--proxy-server=http://{config['PROXY_IP']}")
 
-   
-    chrome_options.add_argument(f"--proxy-server=http://{config["PROXY_IP"]}")
 
     # Disable GPU / Rasterization
     chrome_options.add_argument("--disable-gpu")
