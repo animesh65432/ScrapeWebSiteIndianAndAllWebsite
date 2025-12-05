@@ -1,5 +1,4 @@
 from selenium.webdriver.chrome.options import Options
-from config import config
 
 def Get_Chrome_Options():
     chrome_options = Options()
@@ -10,8 +9,6 @@ def Get_Chrome_Options():
     # Linux stability flags
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    
-    chrome_options.add_argument(f"--proxy-server=http://{config['PROXY_IP']}")
 
 
     # Disable GPU / Rasterization

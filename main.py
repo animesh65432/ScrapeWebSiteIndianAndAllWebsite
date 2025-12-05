@@ -4,11 +4,19 @@ from utils.classify_announcement_or_news import classify_announcement_or_news
 from utils.scrapthepdfcontent import extract_text_from_pdf_bytes
 from utils.insert_annoucements_db import insert_annoucements_db
 from service.Faiss import FaissService
+from utils.translate_annoucements import translate_announcements
+from data import data
 
 async def main():
     try:
         announcements = await scrape_all_states(batch_size=3)
+
         print("scraped announcements from all states",len(announcements))
+
+        if not announcements or len(announcements) == 0:
+            print("No announcements scraped.")
+            return []
+        
         faiss_service = FaissService(announcements)
         unique_announcements = faiss_service.get_unique(threshold=0.90)
         print("unique announcements after faiss",len(unique_announcements))
@@ -17,10 +25,10 @@ async def main():
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
         print("announcements with pdf text extracted",announcements_with_pdf_text)
         new_annouements = await insert_annoucements_db(announcements_with_pdf_text)
-        
+
         print("Inserted announcements into DB")
-        print("✅ All tasks completed successfully!",len(announcements_with_pdf_text))
-        # return []
+        print("✅ All tasks completed successfully!",len(new_annouements))
+        return []
 
     except Exception as e:
         print(f"❌ Critical error in main: {e}")

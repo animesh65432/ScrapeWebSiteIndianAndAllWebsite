@@ -45,7 +45,6 @@ config = {
     "OCR_SPACE_API_KEY"  : os.getenv("OCR_SPACE_API_KEY"),
     "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY"),
     "MONGODB_URI": os.getenv("MONGODB_URI"),
-    "PROXY_IP" :os.getenv("PROXY_IP"),
     "TRANSLATE_GEMINI_API_KEY" : os.getenv("TRANSLATE_GEMINI_API_KEY")
 }
 
