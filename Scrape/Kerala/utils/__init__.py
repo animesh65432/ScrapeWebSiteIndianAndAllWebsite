@@ -12,6 +12,7 @@ def scrape_website(url: str):
     try:
         chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
+        driver.set_page_load_timeout(120)
         driver.get(url)
         
         WebDriverWait(driver, 25).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".card .card-body")))

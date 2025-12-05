@@ -8,6 +8,7 @@ def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.aspx"):
     try:
         chrome_options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chrome_options)
+        driver.set_page_load_timeout(120)
         driver.get(url)
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         driver.quit()

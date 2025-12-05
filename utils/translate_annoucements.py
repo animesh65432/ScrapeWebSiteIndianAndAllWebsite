@@ -5,7 +5,6 @@ from datetime import date
 from data import languages
 import asyncio
 from collections import deque
-import time
 
 class Announcement(TypedDict):
     title:str
@@ -14,10 +13,35 @@ class Announcement(TypedDict):
     date:date
     state:str
     originalAnnouncementId:str
-    
+
 async def translate_announcements(announcements: list[Announcement]) -> list[TranslateAnnouncement]:
     pending_queue = deque()
     all_translations = []
-
-    print(await translate_announcement(announcements[0], languages[1]))
+    
+    for announcement in announcements:
+        for lang in languages:
+            pending_queue.append((announcement, lang))
+    
+    BATCH_SIZE = 3
+    batch_count = 0
+    
+    while pending_queue:
+        batch = []
+        
+        # Collect 3 items
+        for _ in range(min(BATCH_SIZE, len(pending_queue))):
+            batch.append(pending_queue.popleft())
+        
+        # Process sequentially within batch
+        for announcement, lang in batch:
+            result = await translate_announcement(announcement, lang)
+            if result:
+                all_translations.append(result)
+        
+        batch_count += 1
+        print(f"✅ Completed batch {batch_count}. Remaining: {len(pending_queue)}")
+        
+        if pending_queue:
+            await asyncio.sleep(0.5)
+    
     return all_translations

@@ -1,6 +1,8 @@
+from config import config
+from groq import AsyncGroq as Groq
 from openai import OpenAI
 
 client = OpenAI(
-  base_url="https://zenmux.ai/api/v1",
-  api_key="sk-ai-v1-32ab8e418fb1df7b5eec13ba49ce7d1bcf1279d3d93234ff80c5bff8aaae3d5e",
+    base_url="https://openrouter.ai/api/v1",
+    api_key="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"
 )

@@ -13,6 +13,8 @@ def scrape_website(url: str):
 
         driver = webdriver.Chrome(options=chrome_options)
 
+        driver.set_page_load_timeout(120)
+
         datestart = datetime.now() - timedelta(days=1)
         dateend = datetime.now()
         start_str = datestart.strftime("%Y-%m-%d")

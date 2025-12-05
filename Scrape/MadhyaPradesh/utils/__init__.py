@@ -14,6 +14,7 @@ def scrape_website(url: str):
     try:
         print(f"Loading Madhya Pradesh page: {url}")
         driver = webdriver.Chrome(options=Get_Chrome_Options())
+        driver.set_page_load_timeout(120)
         driver.get(url)
         
         # Wait for the AJAX content to load

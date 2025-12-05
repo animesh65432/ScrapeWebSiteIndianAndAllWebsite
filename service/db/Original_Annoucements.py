@@ -24,4 +24,13 @@ class OriginalAnnouncementsDbService:
         announcement = await collection.find_one({"title": title})
         return announcement
     
+    @classmethod
+    async def find_announcements(cls):
+        collection = await cls.get_collection()
+        cursor = collection.find({})
+        announcements = []
+        async for document in cursor:
+            announcements.append(document)
+        return announcements
+    
 

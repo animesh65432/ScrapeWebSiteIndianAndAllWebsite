@@ -9,6 +9,7 @@ def scraping_website(url):
     try:
         chromeOptions = Get_Chrome_Options()
         driver = webdriver.Chrome(options=chromeOptions)
+        driver.set_page_load_timeout(120)
         driver.get(url)
 
         html = driver.page_source

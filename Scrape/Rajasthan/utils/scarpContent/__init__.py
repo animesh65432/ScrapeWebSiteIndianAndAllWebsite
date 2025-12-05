@@ -10,6 +10,7 @@ def scarpContent(url: str):
     try:
         options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=options)
+        driver.set_page_load_timeout(120)
         driver.get(url)
 
         wait = WebDriverWait(driver, 30)

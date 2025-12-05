@@ -11,6 +11,7 @@ def scrape_website(url: str):
     try:
         Chrome_Options = Get_Chrome_Options()
         driver = webdriver.Chrome(options=Chrome_Options)
+        driver.set_page_load_timeout(120)
         driver.get(url)
 
         wait = WebDriverWait(driver, 30)

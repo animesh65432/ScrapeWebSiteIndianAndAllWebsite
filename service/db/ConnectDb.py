@@ -1,4 +1,3 @@
-import asyncio
 from pymongo import AsyncMongoClient
 from config import config
 

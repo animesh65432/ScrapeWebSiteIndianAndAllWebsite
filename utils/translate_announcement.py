@@ -4,7 +4,6 @@ from service.Gemini import model
 from typing import TypedDict
 import json
 from datetime import date
-import asyncio
 from service.openai import client
 
 class Announcement(TypedDict):
@@ -20,15 +19,15 @@ async def translate_announcement(announcement: Announcement, target_language: st
     try:
         prompt = get_translation_prompt(announcement, target_language)
 
-        completion = client.chat.completions.create(
-            model="anthropic/claude-sonnet-4.5",
+        completion = await Groqclient.chat.completions.create(
+            model="openai/gpt-oss-20b:free",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that translates government announcements into simple language."},
                 {"role": "user", "content": prompt}
             ],
         )
 
-        raw = completion.choices[0].message.content
+        raw = completion.choices[0].message.content.strip()
 
         try:
             data = json.loads(raw)
