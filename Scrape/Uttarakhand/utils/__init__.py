@@ -1,19 +1,29 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
 from datetime import datetime
 from .scrape_content import scrape_content
+from config.safe_quit import safe_quit
 import re
+import asyncio
 
-def scrape_website(url):
+async def scrape_website(url):
+    driver = None
     try :
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        driver = await create_driver()
 
-        driver.quit()
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+        
+        soup = BeautifulSoup(html, 'html.parser')
+
+        await safe_quit(driver=driver)
+        driver = None
 
         annoucements_lists = soup.find("div", {"class" :"equal-height trasnitionAll"}).find_all("div",{"class" :"col-lg-3 col-md-3 col-sm-6 col-xs-12"})
 
@@ -40,10 +50,9 @@ def scrape_website(url):
                     "state" : "Uttarakhand",
                     "content" : scrape_content(link)
                 })
-        
-
-
+    
         return announcements
     except Exception as e:
         print("scrape_website error:", e)
+        await safe_quit(driver=driver)
         return None

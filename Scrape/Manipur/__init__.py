@@ -5,6 +5,6 @@ async def GetAllManipurAnnoucements():
     try :
         print("Scraping Manipur Announcements...")
         
-        return scrape_website(config["Manipur"])
+        return await scrape_website(config["Manipur"])
     except Exception as e :
         print("GetAllManipurAnnoucements",e)

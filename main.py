@@ -9,10 +9,14 @@ from utils.insert_translate_annoucements import insert_translate_announcements
 from data import data
 from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 from utils.format_announcement import format_announcement
+from Scrape.Ladakh import GetAllLadakhAnnoucements
+from utils.cleanup_chrome_processes import cleanup_chrome_processes
 
 async def main():
     try:
-        announcements = await scrape_all_states(batch_size=3)
+        await cleanup_chrome_processes()
+        await asyncio.sleep(2)
+        announcements = await scrape_all_states(batch_size=1)
         print("scraped announcements from all states",len(announcements))
         if not announcements or len(announcements) == 0:
             print("No announcements scraped. Exiting.")
@@ -24,25 +28,24 @@ async def main():
         print("classified announcements",classified_announcements)
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
         print("announcements with pdf text extracted",announcements_with_pdf_text)
-        new_annouements = await insert_annoucements_db(announcements_with_pdf_text)
+        await insert_annoucements_db(announcements_with_pdf_text)
+
+        # print(await GetAllLadakhAnnoucements())
 
         # db = OriginalAnnouncementsDbService()
         
         # docs = await db.find_announcements()
-        
-        # formatted = []
-        
-        # for doc in docs:
-        #     try:
-        #         formatted.append(format_announcement(doc))
-        #     except ValueError as e:
-        #         print(f"❌ Exiting due to invalid document: {doc}")
-        #         raise 
-
-        # print("formatted announcements",len(formatted),formatted[0])
 
 
-        # translateAnnouncements = await translate_announcements(formatted)
+        # translateAnnouncements = await translate_announcements([{
+        #     'title': docs[0]['title'],
+        #     'content': docs[0]['content'],
+        #     'state': docs[0]['state'],
+        #     'pdf_text': docs[0]['source_link'],
+        #     id :str(docs[0]['_id'])
+        # }])
+
+        # print(translateAnnouncements)
 
         
         # await insert_translate_announcements(translateAnnouncements)

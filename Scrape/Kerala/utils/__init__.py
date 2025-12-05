@@ -1,25 +1,32 @@
 from datetime import datetime 
-from selenium import webdriver
+from utils.load_with_retry import load_with_retry
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from .scarpeContent import scrape_content
 import re
+from  config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
+async def scrape_website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+
+        driver = await create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
         
         WebDriverWait(driver, 25).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, ".card .card-body")))
 
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
 
-        html = driver.page_source
-        driver.quit()
+        await safe_quit(driver=driver)
 
         soup = BeautifulSoup(html, "html.parser")
         cards = soup.find_all("div", {"class": "card"})
@@ -66,7 +73,7 @@ def scrape_website(url: str):
                     "title": title_elem.text.strip() if title_elem else "No title",
                     "link": link,
                     "state": "Kerala",
-                    "content": scrape_content(link)
+                    "content": await scrape_content(link)
                 })
 
             except Exception as card_error:
@@ -77,4 +84,5 @@ def scrape_website(url: str):
 
     except Exception as e:
         print(f"Error scraping website: {e}")
+        await safe_quit(driver=driver)
         return None

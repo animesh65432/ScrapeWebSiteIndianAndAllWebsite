@@ -1,24 +1,32 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 import requests
 from typing import List, Dict
 from datetime import datetime 
+from config.safe_quit import safe_quit
+import asyncio
 
-def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
+async def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
     
-        html = driver.page_source
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+        
 
         soup = BeautifulSoup(html, "html.parser")
 
-        driver.quit()
-        
         # Find the table - it's inside section with id="tables"
         table_section = soup.find("section", id="tables")
         if not table_section:
@@ -81,7 +89,9 @@ def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str]]:
 
     except requests.RequestException as e:
         print(f"Request error: {e}")
+        await safe_quit(driver=driver)
         return None
     except Exception as e:
         print(f"Scraping error: {e}")
+        await safe_quit(driver=driver)
         return None

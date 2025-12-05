@@ -5,7 +5,7 @@ async def GetSikkimAnnouncements():
     try:
         print("Scraping Sikkim Announcements...")
         
-        return scrape_website(config["Sikkim"])
+        return await scrape_website(config["Sikkim"])
     except Exception as e:
         print("Error in GetSikkimAnnouncements", e)
         return None

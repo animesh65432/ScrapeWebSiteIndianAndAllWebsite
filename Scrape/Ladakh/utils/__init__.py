@@ -1,21 +1,33 @@
 from datetime import datetime
-from selenium import webdriver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
+async def scrape_website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
 
-        html = driver.page_source
-        driver.quit()
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+
+        driver = None
 
         soup = BeautifulSoup(html, "html.parser")
 
-        table = soup.select_one("table.data-table-1.doc-table.bt")
+
+        table = soup.find("table")
+
+
         if not table:
             print("No table found")
             return []
@@ -61,4 +73,5 @@ def scrape_website(url: str):
 
     except Exception as e:
         print(f"Error: {e}")
+        await safe_quit(driver=driver)
         return None

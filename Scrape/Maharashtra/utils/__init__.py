@@ -1,17 +1,28 @@
 from datetime import datetime
-from selenium import webdriver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from .scrape_content import scrape_content
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_Website(url: str):
+async def scrape_Website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        html = driver.page_source
-        driver.quit()
+        driver = await create_driver()
+
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            driver = None
+            return []
+        
+        loop = asyncio.get_event_loop()
+        
+        html = loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
         
         soup = BeautifulSoup(html, "html.parser")
         
@@ -24,7 +35,8 @@ def scrape_Website(url: str):
         
         # Find all individual news cards
         news_cards = news_container.find_all("div", class_="col-lg-3 col-md-3 col-sm-6 col-xs-12")
-        
+    
+
         print(f"Found: {len(news_cards)} news items")
         
         today = datetime.now().strftime("%d.%m.%Y")
@@ -44,17 +56,20 @@ def scrape_Website(url: str):
                     today_news.append({
                         "title": title,
                         "link": link,
-                        "state": "Maharashtra"
+                        "state": "Maharashtra",
+                        "content": scrape_content(link)
                     })
                     
             except Exception as e:
                 print(f"Error parsing news card: {e}")
                 continue
         
-        print(scrape_content(today_news[0]["link"]))
+        
         return today_news
         
     except Exception as e:
         print(f"Error in scrape_Website: {e}")
+        await safe_quit(driver=driver)
+        driver = None
         return []
 

@@ -3,7 +3,7 @@ from .utils import scrape_website
 
 async def GetAllIndianGovtAnnouncements():
     try:
-        res = scrape_website(config["IndianGovtAnnouncement"])
+        res = await scrape_website(config["IndianGovtAnnouncement"])
         return res
     except Exception as e:
         print("GetAllIndianGovtAnnouncements", e)

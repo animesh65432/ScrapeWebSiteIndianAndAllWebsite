@@ -1,8 +1,9 @@
-import os
 from datetime import datetime
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
+from config.safe_quit import safe_quit
+import asyncio
 
 
 def parse_tn_date(date_str: str):
@@ -13,19 +14,30 @@ def parse_tn_date(date_str: str):
     return datetime.strptime(date_str, "%B %d %Y").date()
 
 
-def scrape_website(url):
+async def scrape_website(url):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+        
+        if await load_with_retry(driver, url, retries=3, delay=3) is False:
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
 
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        driver.quit()
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, "html.parser")
+
+
 
         announcements = []
 
         announcements_html_lists = soup.find("ul", {"class": "list-group pr-list-group"}).find_all("li")
+
 
         today = datetime.today().date()
 
@@ -75,5 +87,6 @@ def scrape_website(url):
         return announcements
 
     except Exception as e:
+        await safe_quit(driver=driver)
         print("scrape_website error in TamilNadu utils:", e)
         return None

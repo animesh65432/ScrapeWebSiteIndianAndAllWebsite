@@ -19,7 +19,7 @@ async def translate_announcement(announcement: Announcement, target_language: st
     try:
         prompt = get_translation_prompt(announcement, target_language)
 
-        completion = await Groqclient.chat.completions.create(
+        completion = await client.chat.completions.create(
             model="openai/gpt-oss-20b:free",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that translates government announcements into simple language."},

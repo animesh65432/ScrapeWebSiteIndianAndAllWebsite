@@ -1,17 +1,21 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+from config.safe_quit import safe_quit
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
+import asyncio
 
-def scarpContent(url: str):
+async def scarpContent(url: str):
     driver = None
     try:
-        options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
 
         wait = WebDriverWait(driver, 30)
 
@@ -19,7 +23,14 @@ def scarpContent(url: str):
         loader = (By.CSS_SELECTOR, "app-mini-loader .mini-loading")
         wait.until(EC.invisibility_of_element_located(loader))
 
-        soup = BeautifulSoup(driver.page_source, "html.parser")
+        loop = asyncio.get_event_loop()
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        await safe_quit(driver=driver)
+        driver = None
 
      
         content_divs = soup.select("div.press-release-details-left p div")
@@ -33,8 +44,7 @@ def scarpContent(url: str):
         return content
 
     except Exception as e:
+        await safe_quit(driver=driver)
+        driver = None
         return f"Error: {e}"
 
-    finally:
-        if driver:
-            driver.quit()

@@ -1,19 +1,32 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
 from datetime import datetime
+from config.safe_quit import safe_quit
+import asyncio
 
-def scapre_website(url: str):
+async def scapre_website(url: str):
+    driver = None
     try:
         print("Odisha Scraping Started...", url)
 
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        driver.quit()
+        driver = await create_driver()
 
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
+        
+        loop = asyncio.get_event_loop()
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, 'html.parser')
+
+        
         # ----------------------------
         # SAFE TABLE ACCESS
         # ----------------------------
@@ -34,6 +47,7 @@ def scapre_website(url: str):
 
         annocuements = []
         today = datetime.now().date()
+
 
         for annoucement in annoucements_lists:
 
@@ -85,4 +99,5 @@ def scapre_website(url: str):
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+        await safe_quit(driver=driver)
         return None

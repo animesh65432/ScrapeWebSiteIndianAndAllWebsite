@@ -4,7 +4,7 @@ from config import config
 async def GetjharkhandGovAnnoucements():
     try:
         print("Scraping Jharkhand Announcements...")
-        return scrape_website(config["jharkhand"])
+        return await scrape_website(config["jharkhand"])
     except Exception as e :
         print("Error in GetjharkhandGovAnnoucements",e)
         return None

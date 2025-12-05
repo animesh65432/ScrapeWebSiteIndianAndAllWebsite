@@ -1,5 +1,5 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -7,94 +7,105 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from urllib.parse import urljoin
 import urllib.parse
+from  config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
+
+async def scrape_website(url: str):
+    driver = None
+
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        
-      
+
+        driver = await create_driver()
+
+        if not driver:
+            print(f"[scrape_website] Failed to create driver for {url}")
+            return []
+
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+
+     
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "dataTables-example"))
         )
+
+       
+        loop = asyncio.get_event_loop()
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+
+        soup = BeautifulSoup(html, 'html.parser')
+
+        driver = None
+
         
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        table = soup.find("table", {"class": "table table-striped table-bordered table-hover bt dataTable no-footer dtr-inline"})
-        
+        table = soup.find("table", {
+            "class": "table table-striped table-bordered table-hover bt dataTable no-footer dtr-inline"
+        })
+
         if not table:
-            driver.quit()
+            print("Table not found")
             return []
-        
+
         tbody = table.find("tbody")
-        
+
         if not tbody:
-            driver.quit()
+            print("Table body not found")
             return []
-        
+
         rows = tbody.find_all("tr")
-        driver.quit()
-        
-        # Get today's date in DD-MM-YYYY format
+
+    
+
         today = datetime.now().strftime("%d-%m-%Y")
         announcements = []
-        
+
         for row in rows:
             try:
-                # Get all table data cells
                 cells = row.find_all("td")
-                
                 if len(cells) >= 4:
-                    # Extract serial number (first column)
-                    sl_no_cell = cells[0]
-                    sl_no_span = sl_no_cell.find("span", class_="bt-content")
-                    sl_no = sl_no_span.text.strip() if sl_no_span else ""
-                    
-                    # Extract subject/title (second column)
-                    subject_cell = cells[1]
-                    subject_span = subject_cell.find("span", class_="bt-content")
-                    title = subject_span.text.strip() if subject_span else ""
-                    
-                    # Extract upload date (third column)
-                    date_cell = cells[2]
-                    date_span = date_cell.find("span", class_="bt-content")
-                    upload_date = date_span.text.strip() if date_span else ""
-                    
-                    
-                    # Check if date matches today
-                    if upload_date == today:
-                        # Extract PDF link (fourth column)
-                        download_cell = cells[3]
-                        download_span = download_cell.find("span", class_="bt-content")
-                        
-                        pdf_link = ""
-                        if download_span:
-                            pdf_link_tag = download_span.find("a", href=True)
-                            if pdf_link_tag:
-                                pdf_link = pdf_link_tag.get('href', '')
-                                
-                                # Make absolute URL if relative
-                                if pdf_link and not pdf_link.startswith('http'):
-                                    pdf_link = urljoin(url, pdf_link)
-                                    encoded_url = urllib.parse.quote(pdf_link, safe=':/')
-                        
-                        announcement_data = {
-                            'title': title,
-                            'pdf_link':  encoded_url,
-                            'state' :"AndamanNicobarIslands"
-                        }
-                        
-                        announcements.append(announcement_data)
 
-                        
-            except :
+                    # title
+                    subject_span = cells[1].find("span", class_="bt-content")
+                    title = subject_span.text.strip() if subject_span else ""
+
+                    # date
+                    date_span = cells[2].find("span", class_="bt-content")
+                    upload_date = date_span.text.strip() if date_span else ""
+
+                    if upload_date != today:
+                        continue
+
+                    # pdf link
+                    pdf_link = ""
+                    download_span = cells[3].find("span", class_="bt-content")
+                    if download_span:
+                        pdf_link_tag = download_span.find("a", href=True)
+                        if pdf_link_tag:
+                            pdf_link = pdf_link_tag.get("href", "")
+                            if pdf_link and not pdf_link.startswith("http"):
+                                pdf_link = urljoin(url, pdf_link)
+
+                            pdf_link = urllib.parse.quote(pdf_link, safe=':/')
+
+                    announcements.append({
+                        "title": title,
+                        "pdf_link": pdf_link,
+                        "state": "AndamanNicobarIslands",
+                    })
+
+            except:
                 continue
-    
-        
+
         return announcements
-        
+
     except Exception as e:
-        if 'driver' in locals():
-            driver.quit()
+        print("scrape_website error:", e)
+        await safe_quit(driver=driver)
+        driver = None
         return None

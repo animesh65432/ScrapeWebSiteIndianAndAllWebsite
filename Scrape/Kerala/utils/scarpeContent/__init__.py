@@ -1,29 +1,36 @@
-from selenium import webdriver
 from bs4 import BeautifulSoup
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 import re
-import time
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-
-def scrape_content(url: str):
+async def scrape_content(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
         
-        # Wait for page to load
-        time.sleep(2)
+        if not load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
         
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        driver.quit()
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.get(url))
 
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, "html.parser")
+    
         # Find the main detail container
         detail = soup.select_one(".detail-inner")
         
         if not detail:
             print("No detail-inner found")
             return None
+        
 
         # Extract all components
         title = extract_title(detail)
@@ -38,6 +45,7 @@ def scrape_content(url: str):
 
     except Exception as e:
         print(f"Error scraping website: {e}")
+        await safe_quit(driver=driver)
         return None
 
 

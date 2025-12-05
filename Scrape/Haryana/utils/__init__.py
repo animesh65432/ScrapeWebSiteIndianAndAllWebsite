@@ -1,32 +1,43 @@
-from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from datetime import datetime
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url):
+async def scrape_website(url):
+    driver = None
+
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
         
         # Wait for content to load
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "news-item"))
         )
+
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
         
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, 'html.parser')
         
         # Get yesterday's date in the format used on the website
         today = datetime.now().strftime("%B %d, %Y")
         
         notices = []
         news_items = soup.find_all('div', class_='news-item')
-        
-        print(f"Found {len(news_items)} total news items")
+
         
         for item in news_items:
             try:
@@ -68,7 +79,6 @@ def scrape_website(url):
                 print(f"Error parsing news item: {e}")
                 continue
         
-        driver.quit()
         
         if notices:
             return notices
@@ -77,7 +87,6 @@ def scrape_website(url):
             
     except Exception as e:
         print("scrape_website error:", e)
-        if 'driver' in locals():
-            driver.quit()
+        await safe_quit(driver=driver)
         return None
 

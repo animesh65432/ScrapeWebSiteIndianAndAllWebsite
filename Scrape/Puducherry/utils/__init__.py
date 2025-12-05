@@ -1,20 +1,32 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
+async def scrape_website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        driver.quit()
+        driver = await create_driver()
+
+        if await load_with_retry(driver, url, retries=3, delay=3) is False:
+            print("❌ Page failed to load after 3 retries")
+            safe_quit(driver=driver)
+            return None
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+        
+        soup = BeautifulSoup(html, 'html.parser')
 
         items_lists = soup.find("div", {"class": "view-content"}) \
                           .find("div", {"class": "item-list"}) \
                           .find_all("li")
+        
 
         announcements = []
 
@@ -36,9 +48,6 @@ def scrape_website(url: str):
             pdf_div = item.find("div", {"class": "views-field views-field-field-upload-pdf"})
             pdf_link = pdf_div.find("a")['href'] if pdf_div and pdf_div.find("a") else None
 
-            # Compare date objects (correct!)
-
-
 
             if item_date == today and pdf_link:
                 announcements.append({
@@ -51,4 +60,5 @@ def scrape_website(url: str):
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+        await safe_quit(driver=driver)
         return None

@@ -1,22 +1,34 @@
-from datetime import datetime,timedelta
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from datetime import datetime
+from config.create_driver import create_driver
 from bs4 import BeautifulSoup
 from urllib.parse import quote
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scarp_website(url: str):
+async def scarp_website(url: str):
+    driver = None
     try:
-        # Setup Chrome
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
 
         # Parse HTML
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, 'html.parser')
 
         # Find table rows
         table_body = soup.find("table",{"id" :"my-table"}).find("tbody")
+
+        
 
         announcement_rows = table_body.find_all("tr")
 
@@ -56,6 +68,6 @@ def scarp_website(url: str):
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+        await safe_quit(driver=driver)
         return None
-    finally :
-        driver.quit()
+    

@@ -5,7 +5,7 @@ async def GetDadraandNagarHaveliDamanDiuAnnoucements():
     try :
         print("Scraping DadraandNagarHaveliDamanDiu Announcements...")
         
-        return scrape_website(config["DadraandNagarHaveliDamanDiu"])
+        return await scrape_website(config["DadraandNagarHaveliDamanDiu"])
     except Exception as e :
         print("Error GetDadraandNagarHaveliDamanDiuAnnoucements",e)
         return None

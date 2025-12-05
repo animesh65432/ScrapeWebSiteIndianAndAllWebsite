@@ -1,28 +1,36 @@
-from selenium import webdriver
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from bs4 import BeautifulSoup
-import time
 from datetime import datetime
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str) -> list:
+async def scrape_website(url: str) -> list:
     driver = None
 
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
         
         # Wait for table to load
-        time.sleep(3)
-        
-        html = driver.page_source
+        await asyncio.sleep(3)
 
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+        
         soup = BeautifulSoup(html, "html.parser")
         
         # Find the table with notices
         table = soup.find("table", {"class": "table table-bordered table-responsive"})
         
+    
         if not table:
             print("Table not found!")
             return []
@@ -76,11 +84,8 @@ def scrape_website(url: str) -> list:
 
     except Exception as e:
         print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
+
+        await safe_quit(driver=driver)
+
         return []
-    
-    finally:
-        if driver:
-            driver.quit()
 

@@ -1,24 +1,36 @@
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from urllib.parse import urljoin
 from datetime import datetime
 from .scrape_content import scrape_content
+from utils.load_with_retry import load_with_retry
+from  config.safe_quit import safe_quit
+import asyncio
 
 BASE_URL = "https://www.sikkim.gov.in"
 
-def scrape_website(url):
+async def scrape_website(url):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
 
-        soup = BeautifulSoup(driver.page_source, "html.parser")
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
+        
+        soup = BeautifulSoup(html, "html.parser")
 
         table = soup.find("table", {"class": "table table-striped"})
+
         if not table:
-            return "Table not found"
+            return []
 
         rows = table.find_all("tr")
 
@@ -67,6 +79,6 @@ def scrape_website(url):
 
     except Exception as e:
         print(f"Error scraping Sikkim: {str(e)}")
+        await safe_quit(driver=driver)
         return None
-    finally:
-        driver.quit()
+ 

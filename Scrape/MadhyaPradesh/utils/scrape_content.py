@@ -1,21 +1,20 @@
-from selenium import webdriver
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from bs4 import BeautifulSoup
-import time
+from  utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
 
 def scrape_content(url: str):
     driver = None
-    print(f"Scraping content from: {url}")
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = create_driver()
         
-        time.sleep(3)
+        if not load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            safe_quit(driver=driver)
+            return None
         
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-        driver.quit()
+        safe_quit(driver=driver)
         
         # Find the main content container
         news_details = soup.find("p", {"id": "newsdetails"})
@@ -73,5 +72,5 @@ def scrape_content(url: str):
     except Exception as e:
         print("Error in scrape_content:", e)
         if driver:
-            driver.quit()
+            safe_quit(driver=driver)
         return None

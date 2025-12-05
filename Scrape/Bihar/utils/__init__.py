@@ -1,18 +1,28 @@
-from selenium import webdriver
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from bs4 import BeautifulSoup
 from datetime import datetime
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
-   
+async def scrape_website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        driver.quit()
+        driver = await create_driver()
         
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+        
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, 'html.parser')
+
         # Get current date in the format used by the website (DD/MM/YYYY)
         current_date = datetime.now().strftime("%d/%m/%Y")
 
@@ -22,7 +32,7 @@ def scrape_website(url: str):
         
         if not table:
             print("No table found on the page")
-            return None
+            return []
         
         rows = table.find('tbody').find_all('tr')
         
@@ -63,5 +73,7 @@ def scrape_website(url: str):
         return current_date_announcements
         
     except Exception as e:
+        await safe_quit(driver=driver)
+        driver = None
         print(f"Bihar Utils scrape_website error: {e}")
         return None

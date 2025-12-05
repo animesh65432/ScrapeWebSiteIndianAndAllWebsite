@@ -1,5 +1,4 @@
-from config.chromeOptions import Get_Chrome_Options
-from selenium import webdriver
+from config.create_driver import create_driver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -7,15 +6,22 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from utils.hindi_months import hindi_months
 from Scrape.MadhyaPradesh.utils.scrape_content import scrape_content
-import time
+import asyncio
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
 
-def scrape_website(url: str):
+async def scrape_website(url: str):
     driver = None
     try:
         print(f"Loading Madhya Pradesh page: {url}")
-        driver = webdriver.Chrome(options=Get_Chrome_Options())
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+
+        driver = await create_driver()
+        
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            driver = None
+            return []
         
         # Wait for the AJAX content to load
         print("Waiting for AJAX content to load...")
@@ -24,7 +30,7 @@ def scrape_website(url: str):
         )
         
         # Give it extra time for the AJAX call to complete
-        time.sleep(3)
+        await asyncio.sleep(3)
         
         # Wait for actual content inside ajaxdata div
         WebDriverWait(driver, 10).until(
@@ -32,10 +38,15 @@ def scrape_website(url: str):
         )
         
         print("AJAX content loaded, parsing...")
-        
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-        driver.quit()
+        loop = asyncio.get_event_loop()
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+        
+        soup = BeautifulSoup(html, 'html.parser')
+
+        await safe_quit(driver=driver)
+        driver = None
 
 
         table = soup.find('table', {"class" :"table table-striped table-bordered"})
@@ -70,5 +81,7 @@ def scrape_website(url: str):
         
     except Exception as e:
         print(f"scrape_madhya_pradesh error: {e}")
+        await safe_quit(driver=driver)
+        driver = None
         return None
 

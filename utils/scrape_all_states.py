@@ -35,8 +35,10 @@ from Scrape.AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
 from Scrape.Bihar import GetBiharAnnoucements
 from Scrape.Andhrapradesh import GetAndhrapradeshAnnoucements
 from Scrape.IndianGovtAnnoucement import GetAllIndianGovtAnnouncements
+import gc
+import subprocess
 
-async def scrape_all_states(batch_size=3):
+async def scrape_all_states(batch_size=1, max_concurrent=1):
     scrapers = {
         "West Bengal": GetwestBengalAnnoucements,
         "Assam": GetAssamAnnoucements,
@@ -75,16 +77,29 @@ async def scrape_all_states(batch_size=3):
         "Andhra Pradesh": GetAndhrapradeshAnnoucements,
         "Indian Govt Announcement": GetAllIndianGovtAnnouncements
     }
-
+    
     scraper_items = list(scrapers.items())
+
     all_announcements = []
     total_successful = 0
     total_failed = 0
     failed_states = []
+    
+    semaphore = asyncio.Semaphore(max_concurrent)
 
     print(f"\n{'='*70}")
-    print(f"Starting to scrape {len(scrapers)} states/UTs in batches of {batch_size}")
+    print(f"Starting to scrape {len(scrapers)} states/UTs")
+    print(f"Batch: {batch_size} | Max Concurrent: {max_concurrent}")
     print(f"{'='*70}\n")
+
+    async def run_with_limit(state_name, scraper_func):
+        async with semaphore:
+            try:
+                result = await scraper_func()     # <-- FIXED
+                return state_name, result, None
+            except Exception as e:
+                return state_name, None, e
+
 
     for i in range(0, len(scraper_items), batch_size):
         batch = scraper_items[i:i + batch_size]
@@ -92,64 +107,69 @@ async def scrape_all_states(batch_size=3):
         total_batches = (len(scraper_items) + batch_size - 1) // batch_size
 
         print(f"\n{'─'*70}")
-        print(f"📦 Batch {batch_num}/{total_batches} - Processing {len(batch)} states")
+        print(f"📦 Batch {batch_num}/{total_batches} - {len(batch)} states")
         print(f"{'─'*70}")
 
-        # Run batch scrapers concurrently
-        tasks = [scraper_func() for _, scraper_func in batch]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+        tasks = [run_with_limit(name, func) for name, func in batch]
+        results = await asyncio.gather(*tasks)
 
-        # Process batch results
-        for (state_name, _), result in zip(batch, results):
-            if isinstance(result, Exception):
-                print(f"  ✗ {state_name}: ERROR - {str(result)[:80]}")
+        for state_name, result, error in results:
+            if error:
+                print(f"  ✗ {state_name}: {str(error)[:60]}")
                 total_failed += 1
                 failed_states.append(state_name)
-
             elif result:
-                # If result is a list, filter valid GovtItems
                 if isinstance(result, list):
-                    valid_items = [item for item in result if isinstance(item, dict) and "state" in item]
-                    count = len(valid_items)
+                    count = len(result)
                     if count > 0:
-                        all_announcements.extend(valid_items)
+                        all_announcements.extend(result)
                         print(f"  ✓ {state_name}: {count} announcements")
+                        total_successful += 1
                     else:
-                        print(f"  ○ {state_name}: No valid announcements found")
-                    total_successful += 1
-
-                # If single dict, check it's valid
-                elif isinstance(result, dict) and "state" in result:
+                        print(f"  ○ {state_name}: No announcements")
+                        total_successful += 1
+                elif isinstance(result, dict):
                     all_announcements.append(result)
                     print(f"  ✓ {state_name}: 1 announcement")
                     total_successful += 1
-
-                else:
-                    print(f"  ○ {state_name}: No valid announcements found")
-                    total_successful += 1
-
             else:
-                print(f"  ○ {state_name}: No announcements found")
+                print(f"  ○ {state_name}: No announcements")
                 total_successful += 1
 
-        # Delay between batches
+        # Enhanced cleanup between batches
         if i + batch_size < len(scraper_items):
-            print(f"\n  ⏳ Waiting 2 seconds before next batch...")
-            await asyncio.sleep(2)
+            print(f"\n  ⏳ Waiting 3 seconds and cleaning up...")
+            await asyncio.sleep(3)
+            
+            # Force garbage collection
+            gc.collect()
+            
+            # Every 10 batches, do aggressive cleanup
+            if batch_num % 10 == 0:
+                print(f"  🧹 Deep cleanup (batch {batch_num})...")
+                try:
+                    subprocess.run(["pkill", "-9", "chrome"], 
+                                 stderr=subprocess.DEVNULL, 
+                                 stdout=subprocess.DEVNULL)
+                    subprocess.run(["pkill", "-9", "chromedriver"], 
+                                 stderr=subprocess.DEVNULL, 
+                                 stdout=subprocess.DEVNULL)
+                except:
+                    pass
+                await asyncio.sleep(2)
 
     print(f"\n{'='*70}")
-    print(f"📊 FINAL SUMMARY")
+    print(f"📊 SUMMARY")
     print(f"{'='*70}")
-    print(f"  Total States/UTs: {len(scrapers)}")
-    print(f"  ✓ Successful: {total_successful}")
+    print(f"  States: {len(scrapers)}")
+    print(f"  ✓ Success: {total_successful}")
     print(f"  ✗ Failed: {total_failed}")
-    print(f"  📄 Total Announcements Collected: {len(all_announcements)}")
-
+    print(f"  📄 Total: {len(all_announcements)}")
+    
     if failed_states:
-        print(f"\n  Failed States:")
-        for state in failed_states:
-            print(f"    • {state}")
-
+        print(f"\n  Failed: {', '.join(failed_states)}")
+    
     print(f"{'='*70}\n")
-
     return all_announcements
+
+   

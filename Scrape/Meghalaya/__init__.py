@@ -6,6 +6,6 @@ async def GetmeghalayaAnnoucements():
     try :
         print("Scraping Meghalaya Announcements...")
         
-        return scapre_website(config["Meghalaya"])
+        return await scapre_website(config["Meghalaya"])
     except Exception as e:
         return f"GetmeghalayaAnnoucements error occurred: {str(e)}"

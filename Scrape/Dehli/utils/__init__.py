@@ -1,5 +1,4 @@
-from selenium import webdriver
-from config.chromeOptions import Get_Chrome_Options
+from config.create_driver import create_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,23 +6,32 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from datetime import datetime 
 import re
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_website(url: str):
+async def scrape_website(url: str):
+    driver = None
     try:
-        chrome_options = Get_Chrome_Options()
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_page_load_timeout(120)
-        driver.get(url)
+        driver = await create_driver()
+
+        if not await load_with_retry(driver, url, retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
         
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".tab-date"))
         )
         
-        html = driver.page_source
-        
-        driver.quit()
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None
         
         soup = BeautifulSoup(html, "html.parser")
+
         
         results = []
         
@@ -66,4 +74,5 @@ def scrape_website(url: str):
         return results
     except Exception as e:
         print("Scraping Error:", str(e))
+        await safe_quit(driver=driver)
         return None

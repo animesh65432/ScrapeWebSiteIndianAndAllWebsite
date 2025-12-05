@@ -5,7 +5,7 @@ async def GetAllTelanganaAnnoucements():
     try :
         print("Scraping Telangana Announcements...")
         
-        return scrape_website(config["Telangana"])
+        return await scrape_website(config["Telangana"])
     except Exception as e :
         print("GetAllTelanganaAnnoucements",e)
         return None
