@@ -11,7 +11,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
         
-        if await load_with_retry(driver, url, retries=3, delay=3) is False:
+        if await load_with_retry(driver, url, html_element=".elementor-post",retries=3, delay=3) is False:
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return None

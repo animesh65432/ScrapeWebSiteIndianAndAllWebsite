@@ -14,17 +14,10 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url, html_element="app-mini-loader .mini-loading",retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
-
-        wait = WebDriverWait(driver, 30)
-
-        # WAIT UNTIL loader disappears
-        wait.until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, "app-mini-loader .mini-loading"))
-        )
 
         # Now page is fully loaded
         loop = asyncio.get_event_loop()

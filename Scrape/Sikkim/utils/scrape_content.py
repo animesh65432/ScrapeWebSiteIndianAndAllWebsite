@@ -20,21 +20,19 @@ async def scrape_content(url):
         await safe_quit(driver=driver)
         driver = None
 
-        soup = BeautifulSoup(driver.page_source, "html.parser")
+        # Use the fetched HTML, not driver.page_source
+        soup = BeautifulSoup(html, "html.parser")
 
-        
         content_card = soup.find("div", class_="card-body")
         
         if content_card:
             content_div = content_card.find("div", style="text-align:justify")
             content_text = content_div.get_text(strip=True) if content_div else "No content found"
-            
             return content_text.strip()
         else:
-            return ""
+            return "No content found"
         
-            
     except Exception as e:
-        await safe_quit(driver=driver)
+        if driver:
+            await safe_quit(driver=driver)
         return f"Error during scraping: {str(e)}"
-   

@@ -15,14 +15,11 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element=".tab-date" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
-        
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".tab-date"))
-        )
+    
         
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)

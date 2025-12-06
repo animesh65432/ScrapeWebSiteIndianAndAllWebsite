@@ -17,27 +17,11 @@ async def scrape_website(url: str):
 
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="table.table.table-striped.table-bordered", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
             return []
-        
-        # Wait for the AJAX content to load
-        print("Waiting for AJAX content to load...")
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.ID, "ajaxdata"))
-        )
-        
-        # Give it extra time for the AJAX call to complete
-        await asyncio.sleep(3)
-        
-        # Wait for actual content inside ajaxdata div
-        WebDriverWait(driver, 10).until(
-            lambda d: len(d.find_element(By.ID, "ajaxdata").text.strip()) > 0
-        )
-        
-        print("AJAX content loaded, parsing...")
 
         loop = asyncio.get_event_loop()
 
@@ -72,13 +56,13 @@ async def scrape_website(url: str):
                     "title": title,
                     "link": link,
                     "state": "MadhyaPradesh",
-                    "content": scrape_content(link) 
+                    "content": await scrape_content(link) 
                 }
 
                 announcements.append(announcement)
         
         return announcements
-        
+        ajaxdat
     except Exception as e:
         print(f"scrape_madhya_pradesh error: {e}")
         await safe_quit(driver=driver)

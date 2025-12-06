@@ -20,7 +20,7 @@ async def scrape_website(url: str):
 
         final_url = f"{url}&dateFrom={start_str}&dateTo={end_str}"
 
-        if not await load_with_retry(driver, final_url, retries=3, delay=3):
+        if not await load_with_retry(driver, final_url,html_element="#modalNotificationDetails table.custom-table" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             safe_quit(driver=driver)
             return []

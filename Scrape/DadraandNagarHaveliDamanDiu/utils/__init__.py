@@ -13,15 +13,11 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url, html_element=".data-table-1.doc-table.bt", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             safe_quit(driver=driver)
             return []
         
-        
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "data-table-1"))
-        )
 
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)

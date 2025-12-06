@@ -2,19 +2,25 @@ from config.create_driver import create_driver
 from bs4 import BeautifulSoup
 from  utils.load_with_retry import load_with_retry
 from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_content(url: str):
+async def scrape_content(url: str):
     driver = None
     try:
-        driver = create_driver()
+        driver = await create_driver()
         
-        if not load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="h3#lblNewsTitle", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
-            safe_quit(driver=driver)
+            await safe_quit(driver=driver)
             return None
-        
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        safe_quit(driver=driver)
+    
+
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+
+        soup = BeautifulSoup(html, 'html.parser')
         
         # Find the main content container
         news_details = soup.find("p", {"id": "newsdetails"})
@@ -71,6 +77,5 @@ def scrape_content(url: str):
         
     except Exception as e:
         print("Error in scrape_content:", e)
-        if driver:
-            safe_quit(driver=driver)
+        await safe_quit(driver=driver)
         return None

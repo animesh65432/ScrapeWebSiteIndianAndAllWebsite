@@ -11,7 +11,7 @@ async def scrape_Website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="div.news-style-1 row news" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -21,11 +21,12 @@ async def scrape_Website(url: str):
         
         html = await loop.run_in_executor(None, lambda: driver.page_source)
 
+        soup = BeautifulSoup(html, "html.parser")
+
         await safe_quit(driver=driver)
-        
+
         driver = None
         
-        soup = BeautifulSoup(html, "html.parser")
         
         # Find the parent container that holds all news items
         news_container = soup.find("div", class_="news-style-1 row news")
