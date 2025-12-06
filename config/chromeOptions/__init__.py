@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
+
 
 def Get_Chrome_Options():
     """Create Chrome options with stability and performance settings"""

@@ -6,11 +6,8 @@ from utils.insert_annoucements_db import insert_annoucements_db
 from service.Faiss import FaissService
 from utils.translate_annoucements import translate_announcements
 from utils.insert_translate_annoucements import insert_translate_announcements
-from data import data
 from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 from utils.format_announcement import format_announcement
-from Scrape.Ladakh import GetAllLadakhAnnoucements
-from Scrape.Maharashtra import GetAllMaharashtraAnnoucements
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 
 async def main():
@@ -32,7 +29,7 @@ async def main():
         await insert_annoucements_db(announcements_with_pdf_text)
 
 
-        # print(await GetAllLadakhAnnoucements())
+        # print(await GetAndhrapradeshAnnoucements())
 
         # db = OriginalAnnouncementsDbService()
         

@@ -11,10 +11,11 @@ async def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.asp
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url,html_element=".font104", retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="li", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
+        
         
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)
