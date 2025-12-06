@@ -57,7 +57,7 @@ async def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.asp
                 if not href:
                     continue
                 else :
-                    content = scrape_content(href)
+                    content = await scrape_content(href)
                     
                 announcements.append({
                     "department": announcement_type,

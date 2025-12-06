@@ -48,7 +48,7 @@ async def scrape_website(url):
                     "title" : title,
                     "link"  : link,
                     "state" : "Uttarakhand",
-                    "content" : scrape_content(link)
+                    "content" : await scrape_content(link)
                 })
     
         return announcements

@@ -61,8 +61,6 @@ async def scrape_website(url):
                     }
                     
                     announcements.append(announcement_data)
-                
-                   
         
         return announcements
         

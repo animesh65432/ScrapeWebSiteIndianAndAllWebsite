@@ -21,7 +21,7 @@ async def scrape_content(url: str):
             await safe_quit(driver=driver)
             return None
         # Wait for page to load
-        asyncio.sleep(2)
+        await asyncio.sleep(2)
 
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)

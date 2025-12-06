@@ -10,6 +10,7 @@ from data import data
 from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 from utils.format_announcement import format_announcement
 from Scrape.Ladakh import GetAllLadakhAnnoucements
+from Scrape.Maharashtra import GetAllMaharashtraAnnoucements
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 
 async def main():
@@ -29,6 +30,7 @@ async def main():
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
         print("announcements with pdf text extracted",announcements_with_pdf_text)
         await insert_annoucements_db(announcements_with_pdf_text)
+
 
         # print(await GetAllLadakhAnnoucements())
 

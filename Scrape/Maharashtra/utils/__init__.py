@@ -19,9 +19,10 @@ async def scrape_Website(url: str):
         
         loop = asyncio.get_event_loop()
         
-        html = loop.run_in_executor(None, lambda: driver.page_source)
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
 
         await safe_quit(driver=driver)
+        
         driver = None
         
         soup = BeautifulSoup(html, "html.parser")
@@ -57,7 +58,7 @@ async def scrape_Website(url: str):
                         "title": title,
                         "link": link,
                         "state": "Maharashtra",
-                        "content": scrape_content(link)
+                        "content": await scrape_content(link)
                     })
                     
             except Exception as e:

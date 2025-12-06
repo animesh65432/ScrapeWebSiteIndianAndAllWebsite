@@ -58,7 +58,7 @@ async def scrape_website(url:str):
                 "title": title,
                 "link": link,
                 "state": "Mizoram",
-                "content": scrape_content(link)
+                "content": await scrape_content(link)
             })
     
 

@@ -76,7 +76,7 @@ async def scrape_website(url: str):
                         "title": title,
                         "state": "Rajasthan",
                         "link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] ,
-                        "content": scarpContent(f"https://dipr.rajasthan.gov.in" + detail_link['href'])
+                        "content": await scarpContent(f"https://dipr.rajasthan.gov.in" + detail_link['href'])
                     }
                     announcements.append(announcement_data)
       

@@ -1,6 +1,7 @@
 from config.http import get_agent
 from bs4 import BeautifulSoup
 import re
+
 def scrape_content(url):
     try:
         session = get_agent(url)
