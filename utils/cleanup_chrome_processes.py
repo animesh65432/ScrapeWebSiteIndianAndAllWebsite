@@ -21,7 +21,7 @@ async def cleanup_chrome_processes():
                 stdout=subprocess.DEVNULL
             )
         )
-        await asyncio.sleep(1)
+        await asyncio.sleep(5)
     except Exception as e:
         print(f"[cleanup] Error: {e}")
 
