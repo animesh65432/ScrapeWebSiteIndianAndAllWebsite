@@ -3,6 +3,56 @@ import os
 
 load_dotenv()
 
+NORTH_INDIA = {
+    "Dehli": "https://delhi.gov.in/notice-board/notifications",
+    "HimachalPradesh": "http://himachalpr.gov.in/pressrelease.aspx",
+    "JammuAndKashmir": "https://home.jk.gov.in/notifications.html",
+    "Punjab": "https://punjab.gov.in/impnotifications",
+    "Haryana": "https://csharyana.gov.in/en-us/LatestNew#google_vignette",
+    "UttarPradesh": "https://information.up.gov.in/en/hi-other-information-new.aspx",
+    "Uttarakhand": "https://governoruk.gov.in/category/press-release",
+    "Chandigarh": "https://chandigarh.gov.in/news-press-releases",
+}
+
+SOUTH_INDIA = {
+    "Karnataka": "https://egovernance.karnataka.gov.in/19/GOVERNMENT%20ORDERS%20%20AND%20CIRCULARS/en",
+    "Kerala": "https://kerala.gov.in/newsandannouncements",
+    "TamilNadu": "https://www.tn.gov.in/press_release.php",
+    "Telangana": "https://www.telangana.gov.in/news",
+    "Andhrapradesh": "https://goir.ap.gov.in",
+    "Puducherry": "https://www.py.gov.in/gos-and-notification",
+}
+
+EAST_INDIA = {
+    "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
+    "Odisha": "https://home.odisha.gov.in/notifications/home-office-order",
+    "jharkhand": "https://jharkhand.gov.in/Home/DocumentList?doctype=eccbc87e4b5ce2fe28308fd9f2a7baf3&subdoctype=1679091c5a880faf6fb5e6087eb1b2dc",
+    "Bihar": "https://governor.bih.nic.in/press-release",
+}
+
+NORTHEAST_INDIA = {
+    "Assam": "https://assam.gov.in/latest-updates-list-page",
+    "Arunachalpradesh": "https://arunachalpradesh.gov.in/advertiesment-notice.php",
+    "Manipur": "https://imphalwest.nic.in/document-category/homepage-notification",
+    "Meghalaya": "https://www.meghalaya.gov.in/notifications",
+    "Mizoram": "https://dipr.mizoram.gov.in/posts",
+    "Nagaland": "https://nagaland.gov.in/news",
+    "Sikkim": "https://www.sikkim.gov.in/media/news-announcement",
+    "Tripura": "https://tripura.gov.in/notifications",
+}
+
+WEST_INDIA = {
+    "Goa": "https://dip.goa.gov.in/latest-press-release",
+    "Gujarat": "https://gad.gujarat.gov.in/personnel/notifications.htm",
+    "Maharashtra": "https://rajbhavan-maharashtra.gov.in/en/category/press-release",
+    "Rajasthan": "https://dipr.rajasthan.gov.in/press-release-list/85",
+}
+
+CENTRAL_INDIA = {
+    "MadhyaPradesh": "https://mp.gov.in/news-details",
+    "Chhattisgarh": "https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
+}
+
 config = {
     "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
     "Assam": "https://assam.gov.in/latest-updates-list-page",
