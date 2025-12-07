@@ -1,4 +1,5 @@
 import asyncio
+import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -26,12 +27,25 @@ async def load_with_retry(
         print("❌ URL is empty")
         return False
 
+    # Detect CI environment and adjust parameters
+    is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
+    
+    if is_ci:
+        timeout = max(timeout, 60)  # Minimum 60s timeout in CI
+        delay = max(delay, 5)  # Longer delay between retries
+        retries = max(retries, 4)  # More retries in CI
+
     loop = asyncio.get_event_loop()
 
     for attempt in range(1, retries + 1):
         try:
+            print(f"[Retry {attempt}/{retries}] Loading {url}...")
+            
             # Run driver.get() in executor (non-blocking for event loop)
             await loop.run_in_executor(None, lambda: driver.get(url))
+            
+            # Small delay to let page start loading
+            await asyncio.sleep(2)
 
             # Wait for the required HTML element
             await loop.run_in_executor(
@@ -44,13 +58,51 @@ async def load_with_retry(
             print(f"✅ Page loaded successfully and element found: {html_element}")
             return True
 
-        except (TimeoutException, WebDriverException) as e:
-            print(f"[Retry {attempt}/{retries}] ❌ Failed to load {url}: {e}")
+        except TimeoutException as e:
+            print(f"[Retry {attempt}/{retries}] ❌ Timeout waiting for element: {html_element}")
+            
+            # Try to get page title for debugging
+            try:
+                title = driver.title
+                print(f"   Page title: {title}")
+            except:
+                pass
+            
+            if attempt == retries:
+                print("❌ Max retries reached — giving up")
+                print(f"❌ Page failed to load after {retries} retries")
+                return False
 
+            wait_time = delay * attempt  # Progressive delay
+            print(f"⏳ Waiting {wait_time}s before retry...")
+            await asyncio.sleep(wait_time)
+            
+        except WebDriverException as e:
+            error_msg = str(e)
+            print(f"[Retry {attempt}/{retries}] ❌ Failed to load {url}: {error_msg[:200]}")
+            
+            # Check for DNS errors
+            if "ERR_NAME_NOT_RESOLVED" in error_msg:
+                print(f"   ⚠️  DNS resolution failed - site may be down or geo-restricted")
+                if is_ci:
+                    print(f"   ℹ️  This site is known to be unreliable in GitHub Actions")
+                    return False  # Don't retry DNS errors in CI
+            
+            if attempt == retries:
+                print("❌ Max retries reached — giving up")
+                print(f"❌ Page failed to load after {retries} retries")
+                return False
+
+            wait_time = delay * attempt
+            await asyncio.sleep(wait_time)
+            
+        except Exception as e:
+            print(f"[Retry {attempt}/{retries}] ❌ Unexpected error: {type(e).__name__}: {str(e)[:200]}")
+            
             if attempt == retries:
                 print("❌ Max retries reached — giving up")
                 return False
-
-            await asyncio.sleep(delay)
+            
+            await asyncio.sleep(delay * attempt)
 
     return False
