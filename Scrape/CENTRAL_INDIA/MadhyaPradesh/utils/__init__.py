@@ -1,11 +1,8 @@
 from config.create_driver import create_driver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from datetime import datetime
 from utils.hindi_months import hindi_months
-from Scrape.MadhyaPradesh.utils.scrape_content import scrape_content
+from ..utils import scrape_content
 import asyncio
 from utils.load_with_retry import load_with_retry
 from config.safe_quit import safe_quit
@@ -62,10 +59,9 @@ async def scrape_website(url: str):
                 announcements.append(announcement)
         
         return announcements
-        ajaxdat
     except Exception as e:
         print(f"scrape_madhya_pradesh error: {e}")
         await safe_quit(driver=driver)
         driver = None
-        return None
+        return []
 
