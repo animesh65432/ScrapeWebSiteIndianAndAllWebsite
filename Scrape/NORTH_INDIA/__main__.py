@@ -21,7 +21,7 @@ async def GetNorthIndiaAnnouncements():
         results.extend(await GetUttarakhandAnnouncements())
         results.extend(await GetUttarPradeshAnnoucements())
 
-        save_to_json(results, "north_india")
+        save_to_json(results, "northIndia")
         
     except Exception as e:
         print("Error in GetNorthIndiaAnnouncements:", e)
