@@ -3,6 +3,7 @@ from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnouceme
 from .IndianGovtAnnoucement import GetAllIndianGovtAnnouncements
 from .Ladakh import GetAllLadakhAnnoucements
 from .Lakshadweep import GetLaskhadweepAnnoucements
+from  utils.save_to_json import save_to_json
 
 async def GetUNION_TERRITORIES_AND_CENTRALAnnoucements():
     try :
@@ -14,6 +15,8 @@ async def GetUNION_TERRITORIES_AND_CENTRALAnnoucements():
         announcements += await GetDadraandNagarHaveliDamanDiuAnnoucements()
         announcements += await GetAllLadakhAnnoucements()
         announcements += await GetLaskhadweepAnnoucements()
+
+        save_to_json(announcements, "union_territories_and_central")
         
         return announcements
     except Exception as e :

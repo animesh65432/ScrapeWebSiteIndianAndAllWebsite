@@ -2,6 +2,7 @@ from .Goa import GetGoaAnnoucements
 from .Gujarat import GetGujaratAnnoucements
 from .Maharashtra import GetAllMaharashtraAnnoucements
 from .Rajasthan import GetRajasthanAnnoucements
+from  utils.save_to_json import save_to_json
 
 async def GetWESTINDIAAnnoucements():
     try :
@@ -14,6 +15,8 @@ async def GetWESTINDIAAnnoucements():
                                         gujarat_announcements +
                                         maharashtra_announcements +
                                         rajasthan_announcements)
+
+        save_to_json(all_west_india_announcements, "west_india")
         
         return all_west_india_announcements
     except Exception as e :

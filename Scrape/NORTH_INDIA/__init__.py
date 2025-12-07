@@ -6,7 +6,7 @@ from .JammuandKashmir import GetJammuandKashmirAnnoucements
 from .Punjab import GetPunjabAnnoucements
 from .Uttarakhand import GetUttarakhandAnnouncements
 from .UttarPradesh import GetUttarPradeshAnnoucements
-
+from utils.save_to_json import save_to_json
 
 async def GetNorthIndiaAnnouncements():
     results = []
@@ -19,6 +19,9 @@ async def GetNorthIndiaAnnouncements():
         results.extend(await GetPunjabAnnoucements())
         results.extend(await GetUttarakhandAnnouncements())
         results.extend(await GetUttarPradeshAnnoucements())
+
+        save_to_json(results, "north_india")
+        
     except Exception as e:
         print("Error in GetNorthIndiaAnnouncements:", e)
     finally:

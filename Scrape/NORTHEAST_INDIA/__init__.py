@@ -6,6 +6,7 @@ from .Mizoram import GetMizoramAnnoucements
 from .Nagaland import GetNagalandAnnoucements
 from .Sikkim import GetSikkimAnnouncements
 from .Tripura import GetAllTripuraAnnoucements
+from  utils.save_to_json import save_to_json
 
 async def GetNORTHEASTINDIAAnnoucements():
     announcements = []
@@ -18,6 +19,9 @@ async def GetNORTHEASTINDIAAnnoucements():
         announcements += await GetNagalandAnnoucements()
         announcements += await GetSikkimAnnouncements()
         announcements += await GetAllTripuraAnnoucements()
+
+        save_to_json(announcements, "northeast_india")
+        
         return announcements
     except Exception as e:
         print("Error in GetNORTHEASTINDIAAnnoucements", e)
