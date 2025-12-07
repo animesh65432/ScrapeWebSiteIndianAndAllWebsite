@@ -7,6 +7,7 @@ from .Punjab import GetPunjabAnnoucements
 from .Uttarakhand import GetUttarakhandAnnouncements
 from .UttarPradesh import GetUttarPradeshAnnoucements
 from utils.save_to_json import save_to_json
+import asyncio
 
 async def GetNorthIndiaAnnouncements():
     results = []
@@ -26,3 +27,6 @@ async def GetNorthIndiaAnnouncements():
         print("Error in GetNorthIndiaAnnouncements:", e)
     finally:
         return results
+    
+if __name__ == "__main__":
+    asyncio.run(GetNorthIndiaAnnouncements())

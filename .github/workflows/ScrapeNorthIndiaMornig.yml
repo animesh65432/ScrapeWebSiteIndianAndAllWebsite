@@ -1,0 +1,62 @@
+name: Scrape North India
+
+on:
+  schedule:
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-north:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Pull the latest changes (non-fatal)
+      - name: Pull latest changes
+        run: git pull origin main || true
+
+      # 3. Setup Python
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # 5. Run the north scraper
+      - name: Run North India Scraper
+        run: |
+          echo "🚀 Starting North India Scraper..."
+          python run_north.py
+          echo "✅ North India scraping completed."
+
+      # 6. Commit only if data changed
+      - name: Commit North India data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add data/north/
+
+          git diff --staged --quiet || git commit -m "📌 North India update - $(date +'%Y-%m-%d %H:%M')"
+
+          git push || true
+
+      # 7. Summary Report
+      - name: Report Summary
+        run: |
+          echo "## 📌 North India Scrape Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Time: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "- Files Parsed: $(find data/north/ -name '*.json' | wc -l)" >> $GITHUB_STEP_SUMMARY
