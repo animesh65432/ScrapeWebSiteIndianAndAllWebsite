@@ -1,9 +1,13 @@
 from selenium import webdriver
+import os
 
 
 def Get_Chrome_Options():
     """Create Chrome options with stability and performance settings"""
     options = webdriver.ChromeOptions()
+    
+    # Detect GitHub Actions environment
+    is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
     
     # Essential stability flags
     options.add_argument('--headless=new')
@@ -25,18 +29,26 @@ def Get_Chrome_Options():
     options.add_argument('--disable-hang-monitor')
     options.add_argument('--disable-prompt-on-repost')
     
-    # Network optimizations for slow sites
+    # Network optimizations
     options.add_argument('--disable-features=VizDisplayCompositor')
     options.add_argument('--disable-blink-features=AutomationControlled')
+    options.add_argument('--disable-web-security')  # For problematic sites
+    options.add_argument('--allow-running-insecure-content')
+    options.add_argument('--ignore-certificate-errors')
     
-    # Increase timeout tolerance
-    options.add_argument('--disk-cache-size=0')  # Disable disk cache
+    # DNS optimization (helps with ERR_NAME_NOT_RESOLVED)
+    if is_ci:
+        options.add_argument('--dns-prefetch-disable')
+        options.add_argument('--disable-features=NetworkService')
+    
+    # Cache settings
+    options.add_argument('--disk-cache-size=0')
     options.add_argument('--aggressive-cache-discard')
     
-    # Set user agent
+    # User agent
     options.add_argument('--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36')
     
-    # Add preferences for better stability
+    # Preferences for better stability
     prefs = {
         'profile.default_content_setting_values': {
             'images': 2,  # Don't load images (faster)
@@ -48,5 +60,9 @@ def Get_Chrome_Options():
         }
     }
     options.add_experimental_option('prefs', prefs)
+    
+    # Exclude automation flags
+    options.add_experimental_option('excludeSwitches', ['enable-automation'])
+    options.add_experimental_option('useAutomationExtension', False)
     
     return options
