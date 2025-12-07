@@ -1,7 +1,4 @@
 from config.create_driver import create_driver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from datetime import datetime 
@@ -72,4 +69,4 @@ async def scrape_website(url: str):
     except Exception as e:
         print("Scraping Error:", str(e))
         await safe_quit(driver=driver)
-        return None
+        return []

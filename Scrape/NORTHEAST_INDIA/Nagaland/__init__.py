@@ -6,4 +6,5 @@ async def GetNagalandAnnoucements():
         print("Scraping Nagaland Announcements...")
         return await scarp_website(config["Nagaland"])
     except Exception as e:
-        return f"GetNagalandAnnoucements error occurred: {str(e)}"
+        print(f"GetNagalandAnnoucements error occurred: {str(e)}")
+        return []

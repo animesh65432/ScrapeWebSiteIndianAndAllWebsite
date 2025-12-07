@@ -16,7 +16,7 @@ async def scarpContent(url: str):
         if not await load_with_retry(
             driver, 
             url,
-            html_element="div.press-release-details-left div",  # corrected
+            html_element="div",  # corrected
             retries=3, 
             delay=3
         ):
@@ -55,4 +55,5 @@ async def scarpContent(url: str):
 
     except Exception as e:
         await safe_quit(driver=driver)
-        return f"Error: {e}"
+        print(f"Error: {e}")
+        return None

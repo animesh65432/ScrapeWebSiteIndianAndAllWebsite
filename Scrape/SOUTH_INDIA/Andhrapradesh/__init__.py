@@ -7,4 +7,4 @@ async def GetAndhrapradeshAnnoucements():
         return await scrape_website(config["Andhrapradesh"])
     except Exception as e :
         print("Error in GetAndhrapradeshAnnoucements",e)
-        return None
+        return []

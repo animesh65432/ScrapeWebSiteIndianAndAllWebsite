@@ -90,8 +90,8 @@ async def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str
     except requests.RequestException as e:
         print(f"Request error: {e}")
         await safe_quit(driver=driver)
-        return None
+        return []
     except Exception as e:
         print(f"Scraping error: {e}")
         await safe_quit(driver=driver)
-        return None
+        return []

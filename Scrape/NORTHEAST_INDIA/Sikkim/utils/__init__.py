@@ -66,13 +66,17 @@ async def scrape_website(url):
                 link = urljoin(BASE_URL, link_tag["href"])
             else:
                 link = None
+            
+            if link:
+                content = await scrape_content(link)
 
-            announcements.append({
-                "title": title,
-                "link": link,
-                "state": "Sikkim",
-                "content": await scrape_content(link)
-            })
+            if content:
+                announcements.append({
+                    "title": title,
+                    "link": link,
+                    "state": "Sikkim",
+                    "content": content
+                })
 
             
         return announcements
@@ -80,5 +84,5 @@ async def scrape_website(url):
     except Exception as e:
         print(f"Error scraping Sikkim: {str(e)}")
         await safe_quit(driver=driver)
-        return None
+        return []
  

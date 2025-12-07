@@ -8,4 +8,4 @@ async def GetDadraandNagarHaveliDamanDiuAnnoucements():
         return await scrape_website(config["DadraandNagarHaveliDamanDiu"])
     except Exception as e :
         print("Error GetDadraandNagarHaveliDamanDiuAnnoucements",e)
-        return None
+        return []

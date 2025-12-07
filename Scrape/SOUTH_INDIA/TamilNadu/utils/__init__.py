@@ -22,7 +22,7 @@ async def scrape_website(url):
         if await load_with_retry(driver, url, html_element=".list-group.pr-list-group",retries=3, delay=3) is False:
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
-            return None
+            return []
         
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)
@@ -89,4 +89,4 @@ async def scrape_website(url):
     except Exception as e:
         await safe_quit(driver=driver)
         print("scrape_website error in TamilNadu utils:", e)
-        return None
+        return []

@@ -67,13 +67,17 @@ async def scrape_website(url: str):
                 
                 # Check if the date matches today's date
 
+                if detail_link :
+                    link = f"https://dipr.rajasthan.gov.in" + detail_link['href']
+                    content = await scarpContent(link)
 
-                if date_part == today_date_str and detail_link:
+
+                if date_part == today_date_str and detail_link and content:
                     announcement_data = {
                         "title": title,
                         "state": "Rajasthan",
-                        "link": f"https://dipr.rajasthan.gov.in" + detail_link['href'] ,
-                        "content": await scarpContent(f"https://dipr.rajasthan.gov.in" + detail_link['href'])
+                        "link": link ,
+                        "content": content
                     }
                     announcements.append(announcement_data)
       
@@ -83,4 +87,4 @@ async def scrape_website(url: str):
     except Exception as e:
         print(f"Error in scrape_website: {e}")
         await safe_quit(driver=driver)
-        return None
+        return []

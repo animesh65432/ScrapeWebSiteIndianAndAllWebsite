@@ -28,7 +28,7 @@ async def scrape_website(url):
 
         if not table:
             print("Table not found")
-            return None
+            return []
 
         rows = table.find("tbody").find_all("tr")
         announcements = []
@@ -71,4 +71,4 @@ async def scrape_website(url):
     except Exception as e:
         print("scrape_website", e)
         await safe_quit(driver=driver)
-        return None
+        return []

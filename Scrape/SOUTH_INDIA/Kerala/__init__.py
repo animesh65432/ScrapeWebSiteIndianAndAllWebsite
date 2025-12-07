@@ -6,4 +6,4 @@ async def GetKeralaGovtAnnoucements():
         return await scrape_website(config["Kerala"])
     except Exception as e : 
         print("GetKeralaGovtAnnoucements",e)
-        return None
+        return []

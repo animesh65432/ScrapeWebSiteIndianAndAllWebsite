@@ -43,16 +43,19 @@ async def scrape_website(url):
 
             today = datetime.today().date()
 
-            if parsed_date == today  and link:
+            if link :
+                content =  await scrape_content(link)
+
+            if parsed_date == today  and link and content:
                 announcements.append({
                     "title" : title,
                     "link"  : link,
                     "state" : "Uttarakhand",
-                    "content" : await scrape_content(link)
+                    "content" : content
                 })
     
         return announcements
     except Exception as e:
         print("scrape_website error:", e)
         await safe_quit(driver=driver)
-        return None
+        return []

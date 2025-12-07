@@ -61,4 +61,4 @@ async def scapre_website(url:str):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         await safe_quit(driver=driver)
-        return None
+        return []

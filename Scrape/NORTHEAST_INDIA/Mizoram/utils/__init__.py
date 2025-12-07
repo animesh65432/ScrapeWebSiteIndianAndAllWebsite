@@ -16,7 +16,7 @@ async def scrape_website(url:str):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
-            return None
+            return []
         
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)
@@ -54,12 +54,16 @@ async def scrape_website(url:str):
             title = annoucement.find("a").get_text()
             link = "https://dipr.mizoram.gov.in/" + annoucement.find("a")["href"]
 
-            annoucements.append({
-                "title": title,
-                "link": link,
-                "state": "Mizoram",
-                "content": await scrape_content(link)
-            })
+            if link :
+                content =  await scrape_content(link)
+
+            if content:
+                annoucements.append({
+                    "title": title,
+                    "link": link,
+                    "state": "Mizoram",
+                    "content": content
+                })
     
 
         return annoucements
@@ -67,4 +71,4 @@ async def scrape_website(url:str):
     except Exception as e:
         await safe_quit(driver=driver)
         print(f"An error occurred: {str(e)}")
-        return None
+        return []

@@ -7,4 +7,4 @@ async def GetAllIndianGovtAnnouncements():
         return res
     except Exception as e:
         print("GetAllIndianGovtAnnouncements", e)
-        return None
+        return []

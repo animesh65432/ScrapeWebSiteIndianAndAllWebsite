@@ -47,11 +47,14 @@ async def scrape_website(url):
             
             today = datetime.today().date()
 
-            if today == date_obj and  link and title:
+            if link:
+                content = scrape_content(link)
+
+            if today == date_obj and  link and title and content:
                 announcements.append({
                     "title": title,
                     "link": link,
-                    "content": scrape_content(link),
+                    "content": content,
                     "state" :"Goa"
                 })
 
@@ -62,4 +65,4 @@ async def scrape_website(url):
 
         await safe_quit(driver=driver)
 
-        return None
+        return []

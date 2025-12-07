@@ -10,6 +10,13 @@ from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 from utils.format_announcement import format_announcement
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 from Scrape.CENTRAL_INDIA import GetAllCentralIndiaAnnoucements
+from Scrape.EAST_INDIA import GetEASTINDIAAnnoucements
+from Scrape.NORTH_INDIA import GetNorthIndiaAnnouncements
+from Scrape.NORTHEAST_INDIA import GetNORTHEASTINDIAAnnoucements
+from Scrape.SOUTH_INDIA import GetSOUTHINDIAAnnoucements
+from Scrape.UNION_TERRITORIES_AND_CENTRAL import GetUNION_TERRITORIES_AND_CENTRALAnnoucements
+from Scrape.WEST_INDIA import GetWESTINDIAAnnoucements
+
 
 async def main():
     try:
@@ -29,7 +36,7 @@ async def main():
         # print("announcements with pdf text extracted",announcements_with_pdf_text)
         # await insert_annoucements_db(announcements_with_pdf_text)
 
-        print(await  GetAllCentralIndiaAnnoucements())
+        print(await GetWESTINDIAAnnoucements())
 
         # print(await GetAndhrapradeshAnnoucements())
 

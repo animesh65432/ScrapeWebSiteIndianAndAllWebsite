@@ -66,7 +66,7 @@ async def scrape_website(url: str) -> list:
         print(f"Error: {e}")
         await safe_quit(driver=driver)
         driver = None
-        return None
+        return []
 
 
 

@@ -6,4 +6,4 @@ async def GetAssamAnnoucements():
         return await scrape_website(config["Assam"])
     except Exception as e:
         print("error in  Assam Announcements",e)
-        return None
+        return []

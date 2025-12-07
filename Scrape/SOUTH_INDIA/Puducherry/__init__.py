@@ -6,4 +6,5 @@ async def GetPuducherryAnnoucements():
         print("Scraping Puducherry Announcements...")
         return await scrape_website(config["Puducherry"])
     except Exception as e:
-        return f"GetPuducherryAnnoucements error occurred: {str(e)}"
+        print(f"GetPuducherryAnnoucements error occurred: {str(e)}")
+        return []

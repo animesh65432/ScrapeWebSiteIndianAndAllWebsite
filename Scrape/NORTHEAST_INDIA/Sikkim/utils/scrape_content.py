@@ -30,9 +30,9 @@ async def scrape_content(url):
             content_text = content_div.get_text(strip=True) if content_div else "No content found"
             return content_text.strip()
         else:
-            return "No content found"
+            return None
         
     except Exception as e:
-        if driver:
-            await safe_quit(driver=driver)
-        return f"Error during scraping: {str(e)}"
+        await safe_quit(driver=driver)
+        print(f"Error during scraping: {str(e)}")
+        return None

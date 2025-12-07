@@ -7,3 +7,4 @@ async def GetAllMaharashtraAnnoucements():
         return await scrape_Website(config["Maharashtra"])
     except Exception as e :
         print("GetAllMaharashtraAnnoucements",e)
+        return []

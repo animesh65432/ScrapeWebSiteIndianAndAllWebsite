@@ -74,4 +74,4 @@ async def scrape_website(url: str):
     except Exception as e:
         print(f"Error: {e}")
         await safe_quit(driver=driver)
-        return None
+        return []

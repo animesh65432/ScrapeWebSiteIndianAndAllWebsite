@@ -7,4 +7,4 @@ async def GetLaskhadweepAnnoucements():
         return await scrape_website(config["Lakshadweep"])
     except Exception as e :
         print("GetLakshadweepAnnoucements",e)
-        return None
+        return []

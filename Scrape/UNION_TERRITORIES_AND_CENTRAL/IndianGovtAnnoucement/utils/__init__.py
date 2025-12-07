@@ -76,4 +76,4 @@ async def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.asp
 
         await safe_quit(driver=driver)
 
-        return None
+        return []

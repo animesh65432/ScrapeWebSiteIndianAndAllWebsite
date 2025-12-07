@@ -51,4 +51,4 @@ async def scarpe_website(url):
     except Exception as e :
         print("scarpe_website",e)
         await safe_quit(driver=driver)
-        return None
+        return []

@@ -11,7 +11,7 @@ async def scarp_website(url: str):
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url,html_element="table#my-table", retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="table", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
@@ -69,5 +69,5 @@ async def scarp_website(url: str):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         await safe_quit(driver=driver)
-        return None
+        return []
     

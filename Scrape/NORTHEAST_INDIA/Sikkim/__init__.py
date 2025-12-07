@@ -8,4 +8,4 @@ async def GetSikkimAnnouncements():
         return await scrape_website(config["Sikkim"])
     except Exception as e:
         print("Error in GetSikkimAnnouncements", e)
-        return None
+        return []

@@ -7,4 +7,4 @@ async def GetGoaAnnoucements():
         return await scrape_website(config["Goa"])
     except Exception as e :
         print("Error in scrape_Goa_Annoucements",e)
-        return None
+        return []

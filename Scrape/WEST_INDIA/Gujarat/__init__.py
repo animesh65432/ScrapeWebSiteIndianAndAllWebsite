@@ -7,4 +7,4 @@ async def GetGujaratAnnoucements():
         return await scrape_website(config["Gujarat"])
     except Exception as e :
         print("Error GetGujaratAnnoucements",e)
-        return None
+        return []

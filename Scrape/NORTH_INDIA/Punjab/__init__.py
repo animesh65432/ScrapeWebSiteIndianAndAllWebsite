@@ -1,8 +1,9 @@
 from .utils import scrape_website
-from config import config
+from config import NORTH_INDIA
 async def GetPunjabAnnoucements():
     try :
         print("Scraping Punjab Announcements...")
-        return await scrape_website(config["Punjab"])
+        return await scrape_website(NORTH_INDIA["Punjab"])
     except Exception as e:
-        return f"GetPunjabAnnoucements error occurred: {str(e)}"
+        print(f"GetPunjabAnnoucements error occurred: {str(e)}")
+        return []

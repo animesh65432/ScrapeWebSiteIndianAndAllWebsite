@@ -7,4 +7,4 @@ async def GetAndamanNicobarIslandsAnnoucements():
         return await scrape_website(config["AndamanNicobarIslands"])
     except Exception as e :
         print("Error in GetAndamanNicobarIslandsAnnoucements",e)
-        return None
+        return []
