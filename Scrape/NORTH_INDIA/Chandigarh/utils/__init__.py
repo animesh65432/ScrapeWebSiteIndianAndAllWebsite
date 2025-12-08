@@ -15,7 +15,8 @@ async def scrape_website(url: str):
         driver = await create_driver()
         if not await load_with_retry(driver, url, html_element=".views-row",retries=3, delay=3,isScraperAPIUsed=True):
             print("❌ Page failed to load after 3 retries")
-            safe_quit(driver=driver)
+            await safe_quit(driver=driver)
+            driver = None
             return []
         # Wait for content to load
         WebDriverWait(driver, 10).until(
@@ -99,6 +100,7 @@ async def scrape_website(url: str):
     except Exception as e:
         print("scrape_website error:", e)
         await safe_quit(driver=driver)
+        driver = None
         return []
 
 

@@ -12,7 +12,8 @@ async def scarpe_website(url):
 
         if not await load_with_retry(driver, url, html_element="table",retries=3, delay=3,isScraperAPIUsed=True):
             print("❌ Page failed to load after 3 retries")
-            safe_quit(driver=driver)
+            await safe_quit(driver=driver)
+            driver = None
             return []
         
         loop = asyncio.get_event_loop()
@@ -51,4 +52,5 @@ async def scarpe_website(url):
     except Exception as e :
         print("scarpe_website",e)
         await safe_quit(driver=driver)
+        driver = None
         return []
