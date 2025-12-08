@@ -1,18 +1,28 @@
 from config.http import get_agent
 from bs4 import BeautifulSoup
 import re
-import os
-import urllib
+from config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
-def scrape_content(url):
+
+async def scrape_content(url):
+    driver = None
     try:
-        parsed_url = urllib.parse.quote(url,safe='')
-        url = f"http://api.scrape.do/?token={os.getenv('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
-        session = get_agent(url)
-        response = session.get("", timeout=10)
-        response.raise_for_status()
+        driver = await create_driver()
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        if not await load_with_retry(driver, url,html_element="b.NewsTitleHeading",retries=3, delay=3,isScraperAPIUsed=True):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
+        
+        loop = asyncio.get_event_loop()
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+        await safe_quit(driver=driver)
+        driver = None
+
+        soup = BeautifulSoup(html, "html.parser")
         
         # Extract metadata
         title = extract_title(soup)
@@ -28,6 +38,8 @@ def scrape_content(url):
 
     except Exception as e:
         print(f"Content scraping error: {e}")
+        await safe_quit(driver=driver)
+        driver = None
         return None
 
 

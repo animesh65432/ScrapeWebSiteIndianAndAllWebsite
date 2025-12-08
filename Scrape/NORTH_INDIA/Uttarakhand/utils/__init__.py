@@ -12,7 +12,7 @@ async def scrape_website(url):
     try :
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element="div.equal-height" ,retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element="div.equal-height" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
@@ -43,15 +43,12 @@ async def scrape_website(url):
 
             today = datetime.today().date()
 
-            if link :
-                content =  await scrape_content(link)
-
-            if parsed_date == today  and link and content:
+            if parsed_date == today  and link:
                 announcements.append({
                     "title" : title,
                     "link"  : link,
                     "state" : "Uttarakhand",
-                    "content" : content
+                    "content" : await scrape_content(link)
                 })
     
         return announcements
