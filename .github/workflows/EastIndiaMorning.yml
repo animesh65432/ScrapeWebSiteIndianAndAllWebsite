@@ -2,7 +2,7 @@ name: Scraper Morning (East India)
 
 on:
   schedule:
-    - cron: "30 17 * * *"
+    - cron: "30 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 50
 
     env:
-      NORTH_SCARPER_API_TOEKN: ${{ secrets.NORTH_SCARPER_API_TOEKN}}
+      CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN: ${{ secrets.CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN}}
 
     steps:
       - name: Checkout code

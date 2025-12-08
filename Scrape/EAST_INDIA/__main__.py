@@ -1,12 +1,14 @@
-from .Chhattisgarh import GetChhattisgarhAnnoucement
-from .MadhyaPradesh import GetAllMadhyaPradeshAnnoucements
+from .Bihar import GetBiharAnnoucements
+from .jharkhand import GetjharkhandGovAnnoucements
+from .Odisha import GetOdishaAnnouncements
+from .westbengal import GetwestBengalAnnoucements
 from utils.save_to_json import save_to_json
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 import asyncio
 import os
 
 
-async def GetCentralAnnouncements():
+async def EastIndiaAnnouncements():
     """
     Scrape all North India announcements with better error handling.
     Continues even if individual scrapers fail.
@@ -16,8 +18,10 @@ async def GetCentralAnnouncements():
     
     # List of scrapers to run
     scrapers = [
-        ("Chhattisgarh", GetChhattisgarhAnnoucement),
-        ("MadhyaPradesh", GetAllMadhyaPradeshAnnoucements),
+        ("Bihar", GetBiharAnnoucements),
+        ("jharkhand", GetjharkhandGovAnnoucements),
+        ("Odisha", GetOdishaAnnouncements),
+        ("westbengal", GetwestBengalAnnoucements),
     ]
     
     failed_scrapers = []
@@ -93,4 +97,4 @@ async def GetCentralAnnouncements():
 if __name__ == "__main__":
     print("Starting North India Announcement Scraper...")
     print(f"Environment: {'GitHub Actions' if os.getenv('GITHUB_ACTIONS') else 'Local'}")
-    asyncio.run(GetCentralAnnouncements())
+    asyncio.run(GetNorthIndiaAnnouncements())
