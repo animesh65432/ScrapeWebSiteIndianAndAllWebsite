@@ -1,5 +1,5 @@
 from config.create_driver import create_driver
-from  utils.load_with_retry import load_with_retry
+from utils.load_with_retry import load_with_retry
 from bs4 import BeautifulSoup
 from datetime import datetime 
 from config.safe_quit import safe_quit
@@ -15,6 +15,8 @@ async def scarpe_website(url):
             await safe_quit(driver=driver)
             driver = None
             return []
+        
+        print("Page loaded successfully")
         
         loop = asyncio.get_event_loop()
         html = await loop.run_in_executor(None, lambda: driver.page_source)

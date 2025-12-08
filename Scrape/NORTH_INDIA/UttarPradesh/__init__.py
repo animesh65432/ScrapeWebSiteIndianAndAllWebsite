@@ -1,5 +1,5 @@
 from config import NORTH_INDIA
-from.utils import scarpe_website
+from .utils import scarpe_website
 
 async def GetUttarPradeshAnnoucements():
     try :
