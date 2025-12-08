@@ -22,24 +22,6 @@ def save_to_json(announcements, region_name):
         
         print(f"💾 Saved {len(announcements)} announcements to {filepath}")
         
-        # Also save a summary file for debugging
-        summary = {
-            'total_announcements': len(announcements),
-            'by_source': {},
-            'timestamp': datetime.now().isoformat(),
-            'filename': filename
-        }
-        
-        for announcement in announcements:
-            source = announcement.get('source', 'unknown')
-            summary['by_source'][source] = summary['by_source'].get(source, 0) + 1
-        
-        summary_file = data_dir / f"summary_{timestamp}.json"
-        with open(summary_file, 'w', encoding='utf-8') as f:
-            json.dump(summary, f, indent=2)
-        
-        print(f"📊 Summary: {summary['by_source']}")
-        
         return str(filepath)
         
     except Exception as e:
