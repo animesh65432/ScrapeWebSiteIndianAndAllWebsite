@@ -40,8 +40,10 @@ async def load_with_retry(
         parsed_url = urllib.parse.quote(url,safe='')
 
         if part == "north_India":
+            print("Using North India Scraper API Token")
             url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
         elif part == "central_India":
+            print("Using Central India Scraper API Token")
             url = f"http://api.scrape.do/?token={config['CENTRAL_SCARPER_API_TOEKN']}&url={parsed_url}"
     
     print("calling load_with_retry for URL:", url)
