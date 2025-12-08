@@ -42,9 +42,9 @@ async def load_with_retry(
         if part == "north_India":
             print("Using North India Scraper API Token")
             url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
-        elif part == "central_India":
+        elif part == "central_India" or part == "east_India":
             print("Using Central India Scraper API Token")
-            url = f"http://api.scrape.do/?token={config['CENTRAL_SCARPER_API_TOEKN']}&url={parsed_url}"
+            url = f"http://api.scrape.do/?token={config['CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN']}&render=true&js=true&url={parsed_url}"
     
     print("calling load_with_retry for URL:", url)
     
