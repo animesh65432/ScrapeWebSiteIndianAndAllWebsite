@@ -1,11 +1,15 @@
 from config.http import get_agent
 from bs4 import BeautifulSoup
 import re
+import os
+import urllib
 
 def scrape_content(url):
     try:
+        parsed_url = urllib.parse.quote(url,safe='')
+        url = f"http://api.scrape.do/?token={os.getenv('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
         session = get_agent(url)
-        response = session.get(url, timeout=10)
+        response = session.get("", timeout=10)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
