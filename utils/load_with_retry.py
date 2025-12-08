@@ -22,6 +22,7 @@ async def load_with_retry(
     Retries the entire process on failure.
     """
 
+
     if driver is None:
         print("❌ Driver is None")
         return False
@@ -33,15 +34,21 @@ async def load_with_retry(
     # Detect CI environment and adjust parameters
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
+
     if url and isScraperAPIUsed:
         parsed_url = urllib.parse.quote(url,safe='')
-        url = f"http://api.scrape.do/?token={config('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
+        url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
     
+    
+    print("calling load_with_retry for URL:", url)
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
         delay = max(delay, 5)  # Longer delay between retries
         retries = max(retries, 4)  # More retries in CI
+    
+
+
 
     loop = asyncio.get_event_loop()
 
