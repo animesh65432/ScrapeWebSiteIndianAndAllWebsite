@@ -22,14 +22,14 @@ async def GetNorthIndiaAnnouncements():
     
     # List of scrapers to run
     scrapers = [
-        # ("Chandigarh", GetChandigrahAnnoucements),
-        # ("Delhi", GetDehliAnnoucements),
-        # ("Haryana", GetHaryanaAnnoucements),
+        ("Chandigarh", GetChandigrahAnnoucements),
+        ("Delhi", GetDehliAnnoucements),
+        ("Haryana", GetHaryanaAnnoucements),
         ("HimachalPradesh", GetHimachalPradeshAnnoucements),
-        # ("JammuandKashmir", GetJammuandKashmirAnnoucements),
-        # ("Punjab", GetPunjabAnnoucements),
-        # ("Uttarakhand", GetUttarakhandAnnouncements),
-        # ("UttarPradesh", GetUttarPradeshAnnoucements),
+        ("JammuandKashmir", GetJammuandKashmirAnnoucements),
+        ("Punjab", GetPunjabAnnoucements),
+        ("Uttarakhand", GetUttarakhandAnnouncements),
+        ("UttarPradesh", GetUttarPradeshAnnoucements),
     ]
     
     failed_scrapers = []
