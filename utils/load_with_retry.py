@@ -1,5 +1,6 @@
 import asyncio
 import os
+import urllib.parse
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,6 +14,7 @@ async def load_with_retry(
     retries: int = 3,
     delay: int = 3,
     timeout: int = 30,
+    isScraperAPIUsed: bool = False,
 ) -> bool:
     """
     Load a page and wait until a specific HTML element appears.
@@ -29,6 +31,11 @@ async def load_with_retry(
 
     # Detect CI environment and adjust parameters
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
+
+    if url and isScraperAPIUsed:
+        parsed_url = urllib.parse.quote(url,safe='')
+        url = f"http://api.scrape.do/?token={os.getenv('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
+    
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
