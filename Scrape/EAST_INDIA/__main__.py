@@ -21,7 +21,7 @@ async def EastIndiaAnnouncements():
         ("Bihar", GetBiharAnnoucements),
         ("jharkhand", GetjharkhandGovAnnoucements),
         ("Odisha", GetOdishaAnnouncements),
-        ("westbengal", GetwestBengalAnnoucements),
+        ("westbengal", GetwestBengalAnnoucements)
     ]
     
     failed_scrapers = []

@@ -86,7 +86,7 @@ async def GetNorthEastIndiaAnnouncements():
             print("   Check logs above for errors.")
             
             # Still create an empty file to indicate the script ran
-            save_to_json([], "northIndia")
+            save_to_json([], "northEast_India")
         
     except Exception as e:
         print(f"\n❌ Critical error in GetNorthIndiaAnnouncements: {e}")
