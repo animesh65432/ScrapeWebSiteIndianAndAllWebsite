@@ -13,6 +13,7 @@ async def scrape_website(url):
         if not await load_with_retry(driver, url,html_element="div.listWrap" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
+            driver = None
             return []
         
         loop = asyncio.get_event_loop()
@@ -67,4 +68,5 @@ async def scrape_website(url):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         await safe_quit(driver=driver)
+        driver = None
         return []

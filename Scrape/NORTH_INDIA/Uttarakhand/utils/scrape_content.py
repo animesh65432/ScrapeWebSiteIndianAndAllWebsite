@@ -13,6 +13,7 @@ async def scrape_content(url):
         if not await load_with_retry(driver, url,html_element="#row-content",retries=3, delay=3,isScraperAPIUsed=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
+            driver = None
             return None
         
         loop = asyncio.get_event_loop()
@@ -37,4 +38,5 @@ async def scrape_content(url):
     except Exception as e:
         print("scrape_content error:", e)
         await safe_quit(driver=driver)
+        driver = None
         return None

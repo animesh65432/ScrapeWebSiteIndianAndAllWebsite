@@ -95,6 +95,7 @@ config = {
     "OCR_SPACE_API_KEY"  : os.getenv("OCR_SPACE_API_KEY"),
     "GEMINI_API_KEY" : os.getenv("GEMINI_API_KEY"),
     "MONGODB_URI": os.getenv("MONGODB_URI"),
-    "TRANSLATE_GEMINI_API_KEY" : os.getenv("TRANSLATE_GEMINI_API_KEY")
+    "TRANSLATE_GEMINI_API_KEY" : os.getenv("TRANSLATE_GEMINI_API_KEY"),
+    "NORTH_SCARPER_API_TOEKN": os.getenv("NORTH_SCARPER_API_TOEKN"),
 }
 

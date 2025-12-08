@@ -1,4 +1,5 @@
 import asyncio
+from config import config
 import os
 import urllib.parse
 from selenium.webdriver.common.by import By
@@ -34,7 +35,7 @@ async def load_with_retry(
 
     if url and isScraperAPIUsed:
         parsed_url = urllib.parse.quote(url,safe='')
-        url = f"http://api.scrape.do/?token={os.getenv('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
+        url = f"http://api.scrape.do/?token={config('NORTH_SCARPER_API_TOEKN')}&url={parsed_url}"
     
     
     if is_ci:
