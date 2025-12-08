@@ -12,6 +12,7 @@ async def load_with_retry(
     driver,
     url: str,
     html_element: str,
+    part:str,
     retries: int = 3,
     delay: int = 3,
     timeout: int = 30,
@@ -37,8 +38,11 @@ async def load_with_retry(
 
     if url and isScraperAPIUsed:
         parsed_url = urllib.parse.quote(url,safe='')
-        url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
-    
+
+        if part == "north_India":
+            url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
+        elif part == "central_India":
+            url = f"http://api.scrape.do/?token={config['CENTRAL_SCARPER_API_TOEKN']}&url={parsed_url}"
     
     print("calling load_with_retry for URL:", url)
     

@@ -14,7 +14,7 @@ async def scraping_website(url):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element=".modren" ,retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element=".modren" , part="north_India",retries=3, delay=3,isScraperAPIUsed=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -58,4 +58,5 @@ async def scraping_website(url):
     except Exception as e:
         print(f"Scraping error: {e}")
         await safe_quit(driver=driver)
+        driver = None
         return []

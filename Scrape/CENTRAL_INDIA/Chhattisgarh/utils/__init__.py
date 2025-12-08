@@ -10,7 +10,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6", retries=3, delay=3):
+        if not await load_with_retry(driver, url=url, html_element=".col-lg-6",part="central_India" ,retries=3, delay=3):
             print("❌ Page failed to load after retries")
             await safe_quit(driver)
             return []
