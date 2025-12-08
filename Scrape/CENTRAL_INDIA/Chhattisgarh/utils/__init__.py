@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from datetime import datetime,timedelta
+from datetime import datetime
 from utils.load_with_retry import load_with_retry
 from config.create_driver import create_driver
 from config.safe_quit import safe_quit
@@ -10,7 +10,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6",part="central_India" ,retries=3, delay=3):
+        if not await load_with_retry(driver, url=url, html_element=".col-lg-6",part="central_India" ,retries=3, delay=3,isScraperAPIUsed=True):
             print("❌ Page failed to load after retries")
             await safe_quit(driver)
             return []
@@ -21,7 +21,7 @@ async def scrape_website(url: str):
         cards = driver.find_elements(By.CSS_SELECTOR, ".col-lg-6.col-md-6.col-12")
 
         results = []
-        today = (datetime.today()-timedelta(days=5)).date()
+        today = datetime.today().date()
 
         for card in cards:
             try:

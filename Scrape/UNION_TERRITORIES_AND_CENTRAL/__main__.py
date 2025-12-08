@@ -1,14 +1,15 @@
-from .Bihar import GetBiharAnnoucements
-from .jharkhand import GetjharkhandGovAnnoucements
-from .Odisha import GetOdishaAnnouncements
-from .westbengal import GetwestBengalAnnoucements
-from utils.save_to_json import save_to_json
-from utils.cleanup_chrome_processes import cleanup_chrome_processes
+from .AndamanNicobarIslands import GetAndamanNicobarIslandsAnnoucements
+from .DadraandNagarHaveliDamanDiu import GetDadraandNagarHaveliDamanDiuAnnoucements
+from .IndianGovtAnnoucement import GetAllIndianGovtAnnouncements
+from .Ladakh import GetAllLadakhAnnoucements
+from .Lakshadweep import GetLaskhadweepAnnoucements
+from  utils.save_to_json import save_to_json
 import asyncio
 import os
+from utils.cleanup_chrome_processes import cleanup_chrome_processes
 
 
-async def EastIndiaAnnouncements():
+async def GetUnionTerritoriesAndCentralAnnouncements():
     """
     Scrape all North India announcements with better error handling.
     Continues even if individual scrapers fail.
@@ -18,10 +19,11 @@ async def EastIndiaAnnouncements():
     
     # List of scrapers to run
     scrapers = [
-        ("Bihar", GetBiharAnnoucements),
-        ("jharkhand", GetjharkhandGovAnnoucements),
-        ("Odisha", GetOdishaAnnouncements),
-        ("westbengal", GetwestBengalAnnoucements),
+        ("AndamanNicobarIslands", GetAndamanNicobarIslandsAnnoucements),
+        ("DadraandNagarHaveliDamanDiu", GetDadraandNagarHaveliDamanDiuAnnoucements),
+        ("IndianGovt", GetAllIndianGovtAnnouncements),
+        ("Ladakh", GetAllLadakhAnnoucements),
+        ("Lakshadweep", GetLaskhadweepAnnoucements),
     ]
     
     failed_scrapers = []
@@ -72,20 +74,20 @@ async def EastIndiaAnnouncements():
         
         # Save results
         if results:
-            save_to_json(results, "CentralIndia")
+            save_to_json(results, "northIndia")
         else:
             print("\n⚠️  WARNING: No announcements were collected!")
             print("   Check logs above for errors.")
             
             # Still create an empty file to indicate the script ran
-            save_to_json([], "CentralIndia")
+            save_to_json([], "northIndia")
         
     except Exception as e:
         print(f"\n❌ Critical error in GetNorthIndiaAnnouncements: {e}")
         
         # Save whatever we have
         if results:
-            save_to_json(results, "CentralIndia")
+            save_to_json(results, "northIndia")
     
     finally:
         # Final cleanup
@@ -97,4 +99,4 @@ async def EastIndiaAnnouncements():
 if __name__ == "__main__":
     print("Starting North India Announcement Scraper...")
     print(f"Environment: {'GitHub Actions' if os.getenv('GITHUB_ACTIONS') else 'Local'}")
-    asyncio.run(EastIndiaAnnouncements())
+    asyncio.run(GetUnionTerritoriesAndCentralAnnouncements())
