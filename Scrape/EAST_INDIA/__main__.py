@@ -72,13 +72,13 @@ async def EastIndiaAnnouncements():
         
         # Save results
         if results:
-            save_to_json(results, "CentralIndia")
+            save_to_json(results, "EastIndia")
         else:
             print("\n⚠️  WARNING: No announcements were collected!")
             print("   Check logs above for errors.")
             
             # Still create an empty file to indicate the script ran
-            save_to_json([], "CentralIndia")
+            save_to_json([], "EastIndia")
         
     except Exception as e:
         print(f"\n❌ Critical error in GetNorthIndiaAnnouncements: {e}")

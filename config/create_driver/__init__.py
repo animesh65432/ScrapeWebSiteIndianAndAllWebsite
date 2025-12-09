@@ -4,6 +4,7 @@ import asyncio
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
+from selenium_stealth import stealth
 
 async def create_driver(retries=3, delay=3):
     """Create Chrome driver with retry logic - runs in executor to avoid blocking"""
@@ -17,6 +18,17 @@ async def create_driver(retries=3, delay=3):
             driver = webdriver.Chrome(options=chrome_options)
             driver.set_page_load_timeout(40)
             driver.implicitly_wait(20)
+
+            stealth(
+                driver,
+                languages=["en-US", "en"],
+                vendor="Google Inc.",
+                platform="Linux x86_64",
+                webgl_vendor="Intel Inc.",
+                renderer="Intel Iris OpenGL",
+                fix_hairline=True,
+            )
+
             return driver
         except Exception as e:
             print(f"[create_driver_sync] Error: {e}")

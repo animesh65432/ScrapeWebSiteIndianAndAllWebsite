@@ -1,8 +1,8 @@
-name: Scraper Morning (North India)
+name: Scraper Morning ( NorthEastIndia )
 
 on:
   schedule:
-    - cron: "30 4 * * *"
+    - cron: "30 8 * * *"
   workflow_dispatch:
 
 permissions:
@@ -32,20 +32,20 @@ jobs:
           pip install -r requirements.txt
 
       - name: Scrape North India
-        run: python3 -m Scrape.NORTH_INDIA
+        run: python3 -m Scrape.NORTHEAST_INDIA
         continue-on-error: true
 
-      - name: Ensure northIndia folder and JSON file exist
+      - name: Ensure northEastIndia folder and JSON file exist
         run: |
           # Create folder if missing
-          if [ ! -d "data/northIndia" ]; then
-            echo "📁 Folder data/northIndia does not exist. Creating it..."
-            mkdir -p data/northIndia
+          if [ ! -d "data/northEastIndia" ]; then
+            echo "📁 Folder data/northEastIndia does not exist. Creating it..."
+            mkdir -p data/northEastIndia
           fi
 
           # Create empty JSON only if no JSON exists
-          if [ -z "$(ls -1 data/northIndia/*.json 2>/dev/null)" ]; then
-            echo "[]" > data/northIndia/empty_$(date +'%Y%m%d_%H%M').json
+          if [ -z "$(ls -1 data/northEastIndia/*.json 2>/dev/null)" ]; then
+            echo "[]" > data/northEastIndia/empty_$(date +'%Y%m%d_%H%M').json
             echo "🆕 Created empty JSON file because folder had no JSON files."
           fi
 
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: north-india-data
-          path: data/northIndia/*.json
+          path: data/northEastIndia/*.json
           retention-days: 7
 
       - name: Commit results
@@ -63,5 +63,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/northIndia/ || true
-          git diff --staged --quiet || git commit -m "📊 Update North India data - $(date +'%Y-%m-%d %H:%M')"
+          git diff --staged --quiet || git commit -m "📊 Update North East India data - $(date +'%Y-%m-%d %H:%M')"
           git push || true

@@ -31,7 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Scrape North India
+      - name: Scrape Central India
         run: python3 -m Scrape.CENTRAL_INDIA
         continue-on-error: true
 
@@ -39,7 +39,7 @@ jobs:
         run: |
           # Create folder if missing
           if [ ! -d "data/CentralIndia" ]; then
-            echo "📁 Folder data/northIndia does not exist. Creating it..."
+            echo "📁 Folder data/CentralIndia does not exist. Creating it..."
             mkdir -p data/CentralIndia
           fi
 
@@ -63,5 +63,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/northIndia/ || true
-          git diff --staged --quiet || git commit -m "📊 Update North India data - $(date +'%Y-%m-%d %H:%M')"
+          git diff --staged --quiet || git commit -m "📊 Update CentralIndia data - $(date +'%Y-%m-%d %H:%M')"
           git push || true

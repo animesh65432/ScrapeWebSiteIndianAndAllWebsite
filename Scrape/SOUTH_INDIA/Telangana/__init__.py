@@ -1,11 +1,11 @@
 from .utils import scrape_website
-from config import config
+from config import SOUTH_INDIA
 
 async def GetAllTelanganaAnnoucements():
     try :
         print("Scraping Telangana Announcements...")
         
-        return await scrape_website(config["Telangana"])
+        return await scrape_website(SOUTH_INDIA["Telangana"])
     except Exception as e :
         print("GetAllTelanganaAnnoucements",e)
         return []
