@@ -80,20 +80,20 @@ async def GetNorthEastIndiaAnnouncements():
         
         # Save results
         if results:
-            save_to_json(results, "northIndia")
+            save_to_json(results, "orthEastIndia")
         else:
             print("\n⚠️  WARNING: No announcements were collected!")
             print("   Check logs above for errors.")
             
             # Still create an empty file to indicate the script ran
-            save_to_json([], "northIndia")
+            save_to_json([], "northEastIndia")
         
     except Exception as e:
         print(f"\n❌ Critical error in GetNorthIndiaAnnouncements: {e}")
         
         # Save whatever we have
         if results:
-            save_to_json(results, "northIndia")
+            save_to_json(results, "northEastIndia")
     
     finally:
         # Final cleanup

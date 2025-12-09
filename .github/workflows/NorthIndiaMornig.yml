@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 50
 
     env:
-      NORTH_SCARPER_API_TOEKN: ${{ secrets.NORTH_SCARPER_API_TOEKN}}
+      NORTH_SCARPER_AND_NORTHEAST_INDIA_API_TOEKN: ${{ secrets.NORTH_SCARPER_AND_NORTHEAST_INDIA_API_TOEKN}}
 
     steps:
       - name: Checkout code

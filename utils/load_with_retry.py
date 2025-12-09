@@ -23,7 +23,6 @@ async def load_with_retry(
     Retries the entire process on failure.
     """
 
-
     if driver is None:
         print("❌ Driver is None")
         return False
@@ -36,25 +35,25 @@ async def load_with_retry(
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
 
-    if url and isScraperAPIUsed:
-        parsed_url = urllib.parse.quote(url,safe='')
+    if isScraperAPIUsed:
+        parsed_url = urllib.parse.quote(url,safe="")
+    else:
+        parsed_url = url
 
-        if part == "north_India":
-            print("Using North India Scraper API Token")
-            url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_API_TOEKN']}&url={parsed_url}"
-        elif part == "central_India":
-            print("Using Central India Scraper API Token")
-            url = f"http://api.scrape.do/?token={config['CENTRAL_SCARPER_API_TOEKN']}&url={parsed_url}"
-    
-    print("calling load_with_retry for URL:", url)
+    if (part == "north_India" and isScraperAPIUsed) or (part == "northEast_India" and isScraperAPIUsed ==True):
+        print("Using North India Scraper API Token")
+        url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_AND_NORTHEAST_INDIA_API_TOEKN']}&url={parsed_url}"
+    elif (part == "central_India" and isScraperAPIUsed) or (part == "east_India" and isScraperAPIUsed):
+        print("Using Central India Scraper API Token")
+        url = f"http://api.scrape.do/?token={config['CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN']}&render=true&url={parsed_url}"
+    elif (part == "south_india" and isScraperAPIUsed):
+        print("Using South India Scraper API Token",config['SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN'])
+        url = f"http://api.scrape.do/?token={config['SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN']}&render=true&url={parsed_url}"
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
         delay = max(delay, 5)  # Longer delay between retries
         retries = max(retries, 4)  # More retries in CI
-    
-
-
 
     loop = asyncio.get_event_loop()
 
