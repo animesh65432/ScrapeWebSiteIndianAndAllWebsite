@@ -1,33 +1,16 @@
-from config.create_driver import create_driver
 from bs4 import BeautifulSoup
 from datetime import datetime
 from utils.hindi_months import hindi_months
 from ..utils import scrape_content
-import asyncio
-from utils.load_with_retry import load_with_retry
-from config.safe_quit import safe_quit
+from  utils.fetch_with_httpx import fetch_with_httpx
 
 async def scrape_website(url: str):
-    driver = None
     try:
         print(f"Loading Madhya Pradesh page: {url}")
 
-        driver = await create_driver()
-        
-        if not await load_with_retry(driver, url,html_element="table.table.table-striped.table-bordered", part="central_India",retries=3, delay=3):
-            print("❌ Page failed to load after 3 retries")
-            await safe_quit(driver=driver)
-            driver = None
-            return []
-
-        loop = asyncio.get_event_loop()
-
-        html = await loop.run_in_executor(None, lambda: driver.page_source)
+        html = await fetch_with_httpx(url,part="central_India")        
         
         soup = BeautifulSoup(html, 'html.parser')
-
-        await safe_quit(driver=driver)
-        driver = None
 
 
         table = soup.find('table', {"class" :"table table-striped table-bordered"})
@@ -61,7 +44,5 @@ async def scrape_website(url: str):
         return announcements
     except Exception as e:
         print(f"scrape_madhya_pradesh error: {e}")
-        await safe_quit(driver=driver)
-        driver = None
         return []
 

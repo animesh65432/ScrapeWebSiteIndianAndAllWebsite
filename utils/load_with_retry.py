@@ -40,7 +40,7 @@ async def load_with_retry(
     else:
         parsed_url = url
 
-    if (part == "north_India" and isScraperAPIUsed) or (part == "northEast_India" and isScraperAPIUsed ==True):
+    if (part == "north_India" and isScraperAPIUsed) or (part == "northeast_india" and isScraperAPIUsed ==True):
         print("Using North India Scraper API Token")
         url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_AND_NORTHEAST_INDIA_API_TOEKN']}&url={parsed_url}"
     elif (part == "central_India" and isScraperAPIUsed) or (part == "east_India" and isScraperAPIUsed):
