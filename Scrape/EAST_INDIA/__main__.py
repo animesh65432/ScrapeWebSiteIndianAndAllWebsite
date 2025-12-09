@@ -85,7 +85,7 @@ async def EastIndiaAnnouncements():
         
         # Save whatever we have
         if results:
-            save_to_json(results, "CentralIndia")
+            save_to_json(results, "EastIndia")
     
     finally:
         # Final cleanup
