@@ -74,20 +74,20 @@ async def GetUnionTerritoriesAndCentralAnnouncements():
         
         # Save results
         if results:
-            save_to_json(results, "northIndia")
+            save_to_json(results, "UnionTerritoriesAndCentral")
         else:
             print("\n⚠️  WARNING: No announcements were collected!")
             print("   Check logs above for errors.")
             
             # Still create an empty file to indicate the script ran
-            save_to_json([], "northIndia")
+            save_to_json([], "UnionTerritoriesAndCentral")
         
     except Exception as e:
         print(f"\n❌ Critical error in GetNorthIndiaAnnouncements: {e}")
         
         # Save whatever we have
         if results:
-            save_to_json(results, "northIndia")
+            save_to_json(results, "UnionTerritoriesAndCentral")
     
     finally:
         # Final cleanup
@@ -97,6 +97,6 @@ async def GetUnionTerritoriesAndCentralAnnouncements():
 
 
 if __name__ == "__main__":
-    print("Starting North India Announcement Scraper...")
+    print("Starting UNION_TERRITORIES_AND_CENTRAL Announcement Scraper...")
     print(f"Environment: {'GitHub Actions' if os.getenv('GITHUB_ACTIONS') else 'Local'}")
     asyncio.run(GetUnionTerritoriesAndCentralAnnouncements())
