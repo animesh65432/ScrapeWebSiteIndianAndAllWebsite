@@ -35,12 +35,10 @@ async def load_with_retry(
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
 
-    final_url = f"{config['reverse_proxy']}?url={url}" 
-
     if isdymainc:
         final_url = url
     else :
-        final_url = f"{config['reverse_proxy']}?url={url}"
+        final_url = f"{config['REVERSE_PROXY']}?url={url}"
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
@@ -53,7 +51,7 @@ async def load_with_retry(
         try:
             print(f"[Retry {attempt}/{retries}] Loading {final_url}...")
             
-            if attempt > 1:
+            if attempt > 1 and not isdymainc:
                 print("♻️  Retrying...")
                 final_url = f"http://api.scrape.do/?token={config['SCARPER_API_TOKEN']}&url={urllib.parse.quote(url,safe='')}"
             # Run driver.get() in executor (non-blocking for event loop)
