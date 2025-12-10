@@ -23,6 +23,10 @@ async def load_with_retry(
     Retries the entire process on failure.
     """
 
+    if config['REVERSE_PROXY'] is None and len(config['REVERSE_PROXY'].strip()) == 0:
+        print("❌ REVERSE_PROXY is not set in config")
+        return False
+
     if driver is None:
         print("❌ Driver is None")
         return False
