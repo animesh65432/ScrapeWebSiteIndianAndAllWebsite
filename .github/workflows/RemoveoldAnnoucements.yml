@@ -51,8 +51,32 @@ jobs:
           if [[ -n $(git status --porcelain) ]]; then
             git add data/
             git commit -m "🗑️ Automated cleanup: Remove JSON files from data directory"
-            git push origin main
-            echo "✅ Changes committed and pushed"
+            
+            # Pull with rebase to handle any remote changes, then push
+            max_retries=3
+            retry_count=0
+            
+            while [ $retry_count -lt $max_retries ]; do
+              echo "Attempt $((retry_count + 1)) of $max_retries to push changes..."
+              
+              # Pull latest changes with rebase
+              git pull --rebase origin main
+              
+              # Try to push
+              if git push origin main; then
+                echo "✅ Changes committed and pushed successfully"
+                break
+              else
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -lt $max_retries ]; then
+                  echo "⚠️ Push failed, retrying in 5 seconds..."
+                  sleep 5
+                else
+                  echo "❌ Failed to push after $max_retries attempts"
+                  exit 1
+                fi
+              fi
+            done
           else
             echo "✅ No changes to commit"
           fi
