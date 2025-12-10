@@ -87,4 +87,11 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Cleanup workflow completed successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📊 Remaining JSON files: $(find data/ -name "*.json" -type f 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+
+          # Only show file count if data directory exists
+          if [ -d "data/" ]; then
+            json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
+            echo "📊 Remaining JSON files: $json_count" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "📂 No data directory found" >> $GITHUB_STEP_SUMMARY
+          fi
