@@ -1,0 +1,61 @@
+name: Clean Data JSON Files
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "30 18 * * *"
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for proper git operations
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Display data directory before cleanup
+        run: |
+          echo "📁 Data directory structure before cleanup:"
+          ls -la data/ || echo "No data directory found"
+          find data/ -name "*.json" -type f | wc -l || echo "0"
+
+      - name: Run cleanup script
+        run: |
+          python clean_data.py
+
+      - name: Display data directory after cleanup
+        run: |
+          echo "📁 Data directory structure after cleanup:"
+          ls -la data/ || echo "No data directory found"
+          find data/ -name "*.json" -type f | wc -l || echo "0"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Check if there are changes
+          if [[ -n $(git status --porcelain) ]]; then
+            git add data/
+            git commit -m "🗑️ Automated cleanup: Remove JSON files from data directory"
+            git push
+            echo "✅ Changes committed and pushed"
+          else
+            echo "✅ No changes to commit"
+          fi
+
+      - name: Summary
+        run: |
+          echo "## Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Cleanup workflow completed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 Remaining JSON files: $(find data/ -name "*.json" -type f 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
