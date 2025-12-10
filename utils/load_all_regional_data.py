@@ -5,7 +5,7 @@ from pathlib import Path
 def load_all_regional_data(data_dir="data"):
     """Load all JSON files from all regional folders"""
     all_announcements = []
-    json_files = glob.glob(f"{data_dir}/**/*.json", recursive)
+    json_files = glob.glob(f"{data_dir}/**/*.json", recursive=True)
     
     print(f"Found {len(json_files)} JSON files")
     
