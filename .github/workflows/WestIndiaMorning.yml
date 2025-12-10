@@ -14,7 +14,8 @@ jobs:
     timeout-minutes: 50
 
     env:
-      CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN: ${{ secrets.CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN}}
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
+      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
 
     steps:
       - name: Checkout code

@@ -14,7 +14,8 @@ jobs:
     timeout-minutes: 50
 
     env:
-      SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN: ${{ secrets.SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN}}
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
+      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
 
     steps:
       - name: Checkout code
