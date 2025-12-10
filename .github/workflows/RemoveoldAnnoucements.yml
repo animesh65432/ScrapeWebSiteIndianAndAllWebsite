@@ -2,7 +2,6 @@ name: Clean Data JSON Files
 
 on:
   workflow_dispatch:
-
   schedule:
     - cron: "30 18 * * *"
 
@@ -14,7 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history for proper git operations
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,11 +42,11 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Check if there are changes
+          # Commit only if there are changes
           if [[ -n $(git status --porcelain) ]]; then
             git add data/
             git commit -m "🗑️ Automated cleanup: Remove JSON files from data directory"
-            git push
+            git push origin main
             echo "✅ Changes committed and pushed"
           else
             echo "✅ No changes to commit"
