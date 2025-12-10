@@ -18,7 +18,7 @@ async def extract_text_from_pdf_bytes(items: list[GovtItem]):
         if pdf_tasks:
             results = await asyncio.gather(
                 *(task for _, task in pdf_tasks), 
-                return_exceptions=True
+                return_exceptions
             )
             
             for (item, _), text in zip(pdf_tasks, results):

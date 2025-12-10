@@ -12,7 +12,7 @@ async def scrape_website(url:str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element="#page-content-block",part="northeast_india" ,retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element="#page-content-block",part="northeast_india" ,retries=3, delay=3,):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -51,7 +51,7 @@ async def scrape_website(url:str):
             if date_obj.date() != now.date():
                 continue
 
-            title = annoucement.find("a").get_text()
+            title = annoucement.find("a").get_text(strip=True)
             link = "https://dipr.mizoram.gov.in/" + annoucement.find("a")["href"]
 
             if link :

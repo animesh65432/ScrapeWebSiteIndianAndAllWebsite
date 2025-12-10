@@ -13,7 +13,7 @@ async def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url,html_element="#tables" , part="north_India",retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element="#tables" , part="north_India",retries=3, delay=3,):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None

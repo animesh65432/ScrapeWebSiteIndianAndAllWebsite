@@ -8,7 +8,7 @@ def save_to_json(announcements, region_name):
     
     # Create data directory
     data_dir = Path("data") / region_name
-    data_dir.mkdir(parents=True, exist_ok=True)
+    data_dir.mkdir(parents, exist_ok)
     
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")

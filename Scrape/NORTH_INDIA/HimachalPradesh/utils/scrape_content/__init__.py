@@ -12,7 +12,7 @@ async def scrape_content(url):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element="b.NewsTitleHeading",part="north_India",retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element="b.NewsTitleHeading",part="north_India",retries=3, delay=3,):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -65,7 +65,7 @@ def extract_press_info(soup):
     date = ""
     
     if info_p:
-        text = info_p.get_text()
+        text = info_p.get_text(strip=True)
         # Extract number (e.g., "No. 1321/2025")
         number_match = re.search(r'No\.\s*(\d+/\d+)', text)
         if number_match:

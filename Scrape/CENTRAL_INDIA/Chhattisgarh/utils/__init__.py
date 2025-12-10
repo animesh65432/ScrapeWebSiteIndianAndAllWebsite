@@ -30,8 +30,6 @@ async def scrape_website(url: str):
                 # Example: "02 Dec, 2025"
                 date_obj = datetime.strptime(date_text, "%d %b, %Y").date()
 
-                if date_obj != today:
-                    continue
 
                 # Extract title
                 title = card.find_element(By.CSS_SELECTOR, ".notification-heading p").text.strip()
@@ -46,6 +44,12 @@ async def scrape_website(url: str):
                         pdf_link = "https://cgstate.gov.in" + link
                     else:
                         pdf_link = link
+
+                print(title, date_obj, pdf_link)
+
+                if date_obj != today:
+                    continue
+
 
                 results.append({
                     "title": title,

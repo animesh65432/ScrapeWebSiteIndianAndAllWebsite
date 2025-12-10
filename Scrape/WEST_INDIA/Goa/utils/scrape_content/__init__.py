@@ -5,7 +5,7 @@ from .convert_to_markdown import convert_to_markdown
 
 def scrape_content(url):
     try:
-        session = get_agent(url)
+        session = get_agent()
         response = session.get(url, timeout=10)
         response.raise_for_status()
 

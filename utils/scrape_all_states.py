@@ -109,7 +109,7 @@ async def scrape_all_states(batch_size=1, max_concurrent=1):
         print(f"{'─'*70}")
         
         tasks = [run_with_limit(name, func) for name, func in batch]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
+        results = await asyncio.gather(*tasks, return_exceptions)
         
         for result in results:
             # Handle exceptions from gather

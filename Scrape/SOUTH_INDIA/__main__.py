@@ -97,6 +97,6 @@ async def GetSouthIndiaAnnouncements():
 
 
 if __name__ == "__main__":
-    print("Starting North India Announcement Scraper...")
+    print("Starting South India Announcement Scraper...")
     print(f"Environment: {'GitHub Actions' if os.getenv('GITHUB_ACTIONS') else 'Local'}")
     asyncio.run(GetSouthIndiaAnnouncements())

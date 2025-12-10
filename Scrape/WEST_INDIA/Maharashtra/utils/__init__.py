@@ -54,15 +54,13 @@ async def scrape_Website(url: str):
                 # Extract date from title (format: DD.MM.YYYY)
                 date_str = title.split(":")[0].strip() if ":" in title else ""
 
-                if link:
-                    content = await scrape_content(link)
                 
-                if date_str == today and content:
+                if date_str == today and link:
                     today_news.append({
                         "title": title,
                         "link": link,
                         "state": "Maharashtra",
-                        "content": content
+                        "content":  await scrape_content(link)
                     })
                     
             except Exception as e:

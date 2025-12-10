@@ -10,7 +10,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url,html_element="table",part="east_India" ,retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element="table",part="east_India" ,retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
@@ -28,7 +28,9 @@ async def scrape_website(url: str):
 
 
         current_date_announcements = []
-        table = soup.find('table', class_='data-table-1')
+
+
+        table = soup.find('table')
         
         if not table:
             print("No table found on the page")

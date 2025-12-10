@@ -22,15 +22,10 @@ async def scrape_website(url: str):
             print(f"[scrape_website] Failed to create driver for {url}")
             return []
 
-        if not await load_with_retry(driver, url,html_element="table.dataTable", retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element="table", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
-
-     
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "dataTables-example"))
-        )
 
        
         loop = asyncio.get_event_loop()
@@ -44,9 +39,7 @@ async def scrape_website(url: str):
         driver = None
 
         
-        table = soup.find("table", {
-            "class": "table table-striped table-bordered table-hover bt dataTable no-footer dtr-inline"
-        })
+        table = soup.find("table")
 
         if not table:
             print("Table not found")
