@@ -10,7 +10,7 @@ async def scapre_website(url:str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element=".notifications-view",part="northeast_india" ,retries=3, delay=3,isScraperAPIUsed=True):
+        if not await load_with_retry(driver, url,html_element=".notifications-view",part="northeast_india" ,retries=3, delay=3,):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
@@ -36,7 +36,7 @@ async def scapre_website(url:str):
 
 
         for annoucement in annoucements_lists :
-            date_html = annoucement.find("span",{"class" :"views-field views-field-field-date1 field-color"}).find("small").get_text()
+            date_html = annoucement.find("span",{"class" :"views-field views-field-field-date1 field-color"}).find("small").get_text(strip=True)
             date_str = date_html.split(":")[1].strip()
             date_obj = datetime.strptime(date_str, "%d %b %Y")
 
@@ -46,7 +46,7 @@ async def scapre_website(url:str):
             if today != date_only:
                 continue
 
-            title = annoucement.find("span",{"class" :"views-field views-field-title"}).find("span",{"class" : "field-content"}).find("a").get_text()
+            title = annoucement.find("span",{"class" :"views-field views-field-title"}).find("span",{"class" : "field-content"}).find("a").get_text(strip=True)
             pdf_link = annoucement.find("span" , {"class" : "field-content field-color"}).find("a")["href"]
 
 

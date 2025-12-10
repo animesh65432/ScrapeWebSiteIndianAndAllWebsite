@@ -47,14 +47,12 @@ async def scrape_website(url):
             
             today = datetime.today().date()
 
-            if link:
-                content = scrape_content(link)
 
-            if today == date_obj and  link and title and content:
+            if today == date_obj and  link and title :
                 announcements.append({
                     "title": title,
-                    "link": link,
-                    "content": content,
+                    "link":link,
+                    "content": scrape_content(link),
                     "state" :"Goa"
                 })
 

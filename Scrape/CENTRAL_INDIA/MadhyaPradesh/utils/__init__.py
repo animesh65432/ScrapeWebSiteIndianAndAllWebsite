@@ -2,13 +2,29 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from utils.hindi_months import hindi_months
 from ..utils import scrape_content
-from  utils.fetch_with_httpx import fetch_with_httpx
+from  config.create_driver import create_driver
+from utils.load_with_retry import load_with_retry
+from config.safe_quit import safe_quit
+import asyncio
 
 async def scrape_website(url: str):
+    driver = None
     try:
-        print(f"Loading Madhya Pradesh page: {url}")
+        
+        driver = await create_driver()
 
-        html = await fetch_with_httpx(url,part="central_India")        
+        if not await load_with_retry(driver, url,html_element="table", part="central_India",retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return []
+        
+        loop = asyncio.get_event_loop()
+
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        await safe_quit(driver=driver)
+        driver = None       
         
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -30,6 +46,7 @@ async def scrape_website(url: str):
             dt = datetime.strptime(f"{day}-{month}-{year} {time_str}", "%d-%m-%Y %H:%M")
             today = datetime.now()
             link = ann.find_all('td')[1].find('a')['href'].strip()
+            print(f"Found announcement: {title} dated {dt.date()} with link {link}")
 
             if today.date() == dt.date() and title and link:
                 announcement = {
@@ -44,5 +61,7 @@ async def scrape_website(url: str):
         return announcements
     except Exception as e:
         print(f"scrape_madhya_pradesh error: {e}")
+        await safe_quit(driver=driver)
+        driver = None
         return []
 

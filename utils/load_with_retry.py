@@ -12,11 +12,11 @@ async def load_with_retry(
     driver,
     url: str,
     html_element: str,
-    part:str,
+    part:str ="",
     retries: int = 3,
     delay: int = 3,
     timeout: int = 30,
-    isScraperAPIUsed: bool = False,
+    isdymainc: bool = False,
 ) -> bool:
     """
     Load a page and wait until a specific HTML element appears.
@@ -35,20 +35,12 @@ async def load_with_retry(
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
 
-    if isScraperAPIUsed:
-        parsed_url = urllib.parse.quote(url,safe="")
-    else:
-        parsed_url = url
+    final_url = f"{config['reverse_proxy']}?url={url}" 
 
-    if (part == "north_India" and isScraperAPIUsed) or (part == "northeast_india" and isScraperAPIUsed ==True):
-        print("Using North India Scraper API Token")
-        url = f"http://api.scrape.do/?token={config['NORTH_SCARPER_AND_NORTHEAST_INDIA_API_TOEKN']}&url={parsed_url}"
-    elif (part == "central_India" and isScraperAPIUsed) or (part == "east_India" and isScraperAPIUsed):
-        print("Using Central India Scraper API Token")
-        url = f"http://api.scrape.do/?token={config['CENTRAL_INDIA_AND_EAST_INDIA_SCARPER_API_TOEKN']}&render=true&url={parsed_url}"
-    elif (part == "south_india" and isScraperAPIUsed):
-        print("Using South India Scraper API Token",config['SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN'])
-        url = f"http://api.scrape.do/?token={config['SOUTH_INDIA_AND_WEST_INDIA_API_TOKEN']}&render=true&url={parsed_url}"
+    if isdymainc:
+        final_url = url
+    else :
+        final_url = f"{config['reverse_proxy']}?url={url}"
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
@@ -59,10 +51,13 @@ async def load_with_retry(
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {url}...")
+            print(f"[Retry {attempt}/{retries}] Loading {final_url}...")
             
+            if attempt > 1:
+                print("♻️  Retrying...")
+                final_url = f"http://api.scrape.do/?token={config['SCARPER_API_TOKEN']}&url={urllib.parse.quote(url,safe='')}"
             # Run driver.get() in executor (non-blocking for event loop)
-            await loop.run_in_executor(None, lambda: driver.get(url))
+            await loop.run_in_executor(None, lambda: driver.get(final_url))
             
             # Small delay to let page start loading
             await asyncio.sleep(2)
@@ -99,7 +94,7 @@ async def load_with_retry(
             
         except WebDriverException as e:
             error_msg = str(e)
-            print(f"[Retry {attempt}/{retries}] ❌ Failed to load {url}: {error_msg[:200]}")
+            print(f"[Retry {attempt}/{retries}] ❌ Failed to load {final_url}: {error_msg[:200]}")
             
             # Check for DNS errors
             if "ERR_NAME_NOT_RESOLVED" in error_msg:

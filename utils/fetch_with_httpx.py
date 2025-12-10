@@ -1,12 +1,11 @@
 import httpx
 import asyncio
 from config.headers import headers
-from utils.makeurlwithscaperdo import makeurlwithscaperdo
-
+from config import config
 
 async def fetch_with_httpx(url: str, part:str,timeout: int = 30, retries: int = 3) -> str:
 
-    url = makeurlwithscaperdo(url,part=part,isScraperAPIUsed=True)
+    url =f"{config['reverse_proxy']}?url={url}"
 
     for attempt in range(1, retries + 1):
         try:
@@ -14,7 +13,7 @@ async def fetch_with_httpx(url: str, part:str,timeout: int = 30, retries: int = 
             
             async with httpx.AsyncClient(
                 timeout=timeout,
-                follow_redirects=True,
+                follow_redirects,
                 headers=headers,
                 verify=False , # Ignore SSL errors
             ) as client:
