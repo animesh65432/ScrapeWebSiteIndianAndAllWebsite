@@ -40,6 +40,8 @@ async def load_with_retry(
     else :
         final_url = f"{config['REVERSE_PROXY']}?url={url}"
     
+    print(f" Loading URL: {config} for part: {part}")
+    
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
         delay = max(delay, 5)  # Longer delay between retries
