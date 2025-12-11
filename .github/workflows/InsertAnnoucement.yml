@@ -35,5 +35,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Insert Announcements
-        run: python3 -m main.py
+        run: python3 main.py
         continue-on-error: true
