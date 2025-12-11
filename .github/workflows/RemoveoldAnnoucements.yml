@@ -3,7 +3,7 @@ name: Clean Data JSON Files
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 18 * * *"
+    - cron: "0 4 * * *"
 
 # Add permissions for the workflow
 permissions:

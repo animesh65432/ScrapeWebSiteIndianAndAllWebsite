@@ -1,0 +1,68 @@
+name: Scraper Evening (South India)
+
+on:
+  schedule:
+    - cron: "30 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+
+    env:
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN }}
+      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Scrape South India
+        run: python3 -m Scrape.SOUTH_INDIA
+        continue-on-error: true
+
+      - name: Ensure South India folder and JSON file exist
+        run: |
+          # Create folder if missing
+          if [ ! -d "data/SouthIndia" ]; then
+            echo "📁 Folder data/SouthIndia does not exist. Creating it..."
+            mkdir -p data/SouthIndia
+          fi
+
+          # Create empty JSON only if no JSON exists
+          if [ -z "$(ls -1 data/SouthIndia/*.json 2>/dev/null)" ]; then
+            echo "[]" > data/SouthIndia/empty_$(date +'%Y%m%d_%H%M').json
+            echo "🆕 Created empty JSON file because folder had no JSON files."
+          fi
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: South India data
+          path: data/SouthIndia/*.json
+          retention-days: 7
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/SouthIndia/ || true
+          git diff --staged --quiet || git commit -m "📊 Update SouthIndia data - $(date +'%Y-%m-%d %H:%M')"
+          git push || true
