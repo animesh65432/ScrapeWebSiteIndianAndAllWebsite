@@ -1,0 +1,39 @@
+name: Insert Announcements Morning
+
+on:
+  schedule:
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+
+    env:
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
+      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Insert Announcements
+        run: python3 -m main.py
+        continue-on-error: true
