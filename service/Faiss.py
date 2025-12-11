@@ -10,7 +10,7 @@ class FaissService:
         self.texts = None
 
     def text_to_vectors(self, texts: list[str]):
-        return self.encoder.encode(texts, normalize_embeddings)
+        return self.encoder.encode(texts, normalize_embeddings=True)
 
     def build_index(self):
         # Choose text or content automatically
