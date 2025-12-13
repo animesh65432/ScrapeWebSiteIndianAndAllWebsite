@@ -52,6 +52,7 @@ CENTRAL_INDIA = {
     "MadhyaPradesh": "https://mp.gov.in/news-details",
     "Chhattisgarh": "https://cgstate.gov.in/en/all-notification?keyword=&dept=0&nType=0",
 }
+# "https://www.mpinfo.org/"
 
 config = {
     "WestBengal": "https://cm.wb.gov.in/ncmo/Public/News.aspx",
@@ -103,3 +104,10 @@ config = {
     "SCARPER_API_TOKEN" : os.getenv("SCARPER_API_TOKEN")
 }
 
+CLOUD_FLARE_PROXY_URL = {
+    "Assam": "https://assam-scrapeing.duttaanimesh443.workers.dev",
+    "Chhattisgarh": "https://chhattisgarh-scrapeing.duttaanimesh443.workers.dev",
+    "Karnataka": "https://karnataka-scrapeing.duttaanimesh443.workers.dev",
+    "Andhrapradesh": "https://andrhapradesh-scrapeing.duttaanimesh443.workers.dev",
+    "MadhyaPradesh": "https://madhyapradesh-scrapeing.duttaanimesh443.workers.dev"
+}

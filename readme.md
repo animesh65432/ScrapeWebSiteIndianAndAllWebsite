@@ -1,11 +1,6 @@
 I don't have for byprase for these state so it can do in localy if are you in india
 
-Rajasthan
-Assam
-Chhattisgarh
 MadhyaPradesh
-Andhrapradesh
-Karnataka
 
 Rajasthan:
 curl -X POST "https://diprfrontwebapi.rajasthan.gov.in//api/JankalyanHome/GetAchievementListBySearchFilter?isRequiredAttachImages=true" \

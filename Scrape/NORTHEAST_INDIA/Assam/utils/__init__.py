@@ -1,6 +1,5 @@
 from config.create_driver import create_driver
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urljoin
 from utils.load_with_retry import load_with_retry
 from datetime import datetime
 from  config.safe_quit import safe_quit
@@ -12,7 +11,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element=".documents", part="northeast_india",retries=3, delay=3,isdymainc=True):
+        if not await load_with_retry(driver, url,html_element=".documents", part="assam",retries=3, delay=3,isdymainc=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -30,10 +29,6 @@ async def scrape_website(url: str):
 
         announcements = []
 
-        # Correct base URL
-        parsed_url = urlparse(url)
-        base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
-
         for doc in soup.select(".documents"):
             title_element = doc.select_one(".documents_title a")
             if not title_element:
@@ -48,9 +43,10 @@ async def scrape_website(url: str):
             if date_obj != today:
                 continue
 
+            print(f"Found announcement: {title} - {pdf_link}")
             
             if title and pdf_link:
-                full_pdf_url = pdf_link if pdf_link.startswith("http") else urljoin(base_url, pdf_link)
+                full_pdf_url = f"https://assam.gov.in/{pdf_link.lstrip('/')}"
                 announcements.append({
                     "title": title,
                     "pdf_link": full_pdf_url,
