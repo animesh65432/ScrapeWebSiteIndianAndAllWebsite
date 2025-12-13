@@ -17,7 +17,7 @@ async def GetCentralAnnouncements():
     # List of scrapers to run
     scrapers = [
         ("Chhattisgarh", GetChhattisgarhAnnoucement),
-        ("MadhyaPradesh", GetAllMadhyaPradeshAnnoucements),
+        # ("MadhyaPradesh", GetAllMadhyaPradeshAnnoucements),
     ]
     
     failed_scrapers = []

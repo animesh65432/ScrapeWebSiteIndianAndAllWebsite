@@ -19,11 +19,11 @@ async def GetSouthIndiaAnnouncements():
     
     # List of scrapers to run
     scrapers = [
-        ("Andhrapradesh", GetAndhrapradeshAnnoucements),
+        # ("Andhrapradesh", GetAndhrapradeshAnnoucements),
         ("Karnataka", GetKarnatakaGovtAnnoucements),
-        ("Kerala", GetKeralaGovtAnnoucements),
-        ("TamilNadu", GetallTamilNaduAnnoucements),
-        ("Telangana", GetAllTelanganaAnnoucements),
+        # ("Kerala", GetKeralaGovtAnnoucements),
+        # ("TamilNadu", GetallTamilNaduAnnoucements),
+        # ("Telangana", GetAllTelanganaAnnoucements),
     ]
     
     failed_scrapers = []

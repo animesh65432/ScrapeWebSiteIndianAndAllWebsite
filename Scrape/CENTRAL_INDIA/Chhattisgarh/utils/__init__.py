@@ -1,70 +1,85 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from datetime import datetime
-from utils.load_with_retry import load_with_retry
-from config.create_driver import create_driver
-from config.safe_quit import safe_quit
+from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
+from utils.fetch_with_httpx import fetch_with_httpx
 
-async def scrape_website(url: str):
-    driver = None
+async def scrape_website(url: str, days_back: int = 1):
     try:
-        driver = await create_driver()
+        html = await fetch_with_httpx(url)
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3,isdymainc=True):
-            print("❌ Page failed to load after retries")
-            await safe_quit(driver)
+        if not html:
+            print("Failed to fetch page")
             return []
 
-        wait = WebDriverWait(driver, 15)
+        print(f"Page loaded successfully ({len(html)} bytes)")
 
-        # Get all cards
-        cards = driver.find_elements(By.CSS_SELECTOR, ".col-lg-6.col-md-6.col-12")
+        soup = BeautifulSoup(html, 'html.parser')
+
+        print(soup)
+
+        # Fix: Use proper BeautifulSoup syntax
+        cards = soup.select(".col-lg-6.col-md-6.col-12")
+        
+        if not cards:
+            print("⚠️  No notification cards found - check selector")
+            return []
 
         results = []
-        today = datetime.today().date()
+        cutoff_date = (datetime.today() - timedelta(days=days_back)).date()
 
-        for card in cards:
+        for i, card in enumerate(cards, 1):
             try:
                 # Extract date
-                date_text = card.find_element(By.CSS_SELECTOR, ".date p").text.strip()
-                # Example: "02 Dec, 2025"
+                date_elem = card.select_one(".date p")
+                if not date_elem:
+                    print(f"Card {i}: No date found")
+                    continue
+                    
+                date_text = date_elem.get_text(strip=True)
                 date_obj = datetime.strptime(date_text, "%d %b, %Y").date()
 
-
-                # Extract title
-                title = card.find_element(By.CSS_SELECTOR, ".notification-heading p").text.strip()
-
-                # Extract PDF link if exists
-                link_tag = card.find_elements(By.CSS_SELECTOR, ".notification-item")
-                pdf_link = None
-
-                if link_tag:
-                    link = link_tag[0].get_attribute("href")
-                    if link.startswith("/"):
-                        pdf_link = "https://cgstate.gov.in" + link
-                    else:
-                        pdf_link = link
-
-                print(title, date_obj, pdf_link)
-
-                if date_obj != today:
+                # Skip old notifications
+                if date_obj < cutoff_date:
                     continue
 
+                # Extract title
+                title_elem = card.select_one(".notification-heading p")
+                if not title_elem:
+                    print(f"Card {i}: No title found")
+                    continue
+                    
+                title = title_elem.get_text(strip=True)
+
+                print(f"Card {i}: {title} | {date_obj}")
+
+                # Extract PDF link
+                link_elem = card.select_one(".notification-item")
+                pdf_link = None
+
+                if link_elem and link_elem.get('href'):
+                    link = link_elem['href']
+                    pdf_link = f"https://cgstate.gov.in{link}" if link.startswith("/") else link
+
+                print(f"✅ Found: {title[:50]}... | {date_obj} | {pdf_link}")
 
                 results.append({
                     "title": title,
                     "pdf_link": pdf_link,
+                    "date": date_obj.isoformat(),
                     "state": "Chhattisgarh"
                 })
 
+            except ValueError as e:
+                print(f"Card {i}: Date parsing error - {e}")
+                continue
             except Exception as e:
-                print("Card processing error:", e)
+                print(f"Card {i}: Processing error - {e}")
                 continue
 
-        await safe_quit(driver)
+        print(f"\n📊 Total notifications found: {len(results)}")
         return results
 
     except Exception as e:
-        print("Scraping Error:", e)
-        await safe_quit(driver)
+        print(f"❌ Scraping Error: {e}")
+        import traceback
+        traceback.print_exc()
         return []
