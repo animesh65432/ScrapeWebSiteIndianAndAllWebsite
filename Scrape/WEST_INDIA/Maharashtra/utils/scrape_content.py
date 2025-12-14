@@ -1,8 +1,5 @@
 from config.create_driver import create_driver
 from bs4 import BeautifulSoup
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from utils.load_with_retry import load_with_retry
 from config.safe_quit import safe_quit
 import asyncio
@@ -17,7 +14,6 @@ async def scrape_content(url: str):
             await safe_quit(driver=driver)
             driver = None
             return None
-        
         
 
         loop = asyncio.get_event_loop()

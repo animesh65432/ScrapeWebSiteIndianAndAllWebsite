@@ -38,6 +38,7 @@ async def scrape_Website(url: str):
         # Find all individual news cards
         news_cards = news_container.find_all("div", class_="col-lg-3 col-md-3 col-sm-6 col-xs-12")
         
+        
         today = datetime.now().strftime("%d.%m.%Y")
         today_news = []
         
