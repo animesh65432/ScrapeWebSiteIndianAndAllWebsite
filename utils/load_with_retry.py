@@ -36,10 +36,10 @@ async def load_with_retry(
 
     # Build initial URL
     if isdymainc:
-        final_url = url
+        params = {'api_key': config["SCARPER_API_TOKEN"], 'url': url, 'country_code': 'in'}
+        final_url = 'https://api.scraperapi.com?' + urllib.parse.urlencode(params)
     else:
-       params = {'api_key': config["SCRAPER_API_TOKEN"], 'url': url, 'country_code': 'in'}
-       final_url = 'https://api.scraperapi.com?' + urllib.parse.urlencode(params)
+       final_url = url
     
     print(f"🔄 Loading URL for part: {part}")
     
@@ -52,7 +52,7 @@ async def load_with_retry(
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {final_url[:100]}...")
+            print(f"[Retry {attempt}/{retries}] Loading {final_url}...")
             
             await loop.run_in_executor(None, lambda: driver.get(final_url))
             
