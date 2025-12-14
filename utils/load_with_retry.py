@@ -39,7 +39,7 @@ async def load_with_retry(
         params = {'api_key': config["SCARPER_API_TOKEN"], 'url': url, 'country_code': 'in'}
         final_url = 'https://api.scraperapi.com?' + urllib.parse.urlencode(params)
     else:
-       final_url = url
+       final_url = f"{config["REVERSE_PROXY"]}={url}"
     
     print(f"🔄 Loading URL for part: {part}")
     
