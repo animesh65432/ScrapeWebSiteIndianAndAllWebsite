@@ -12,6 +12,11 @@ from utils.load_all_regional_data import load_all_regional_data
 async def main():
     try:
         announcements = load_all_regional_data()
+
+        if not announcements or len(announcements) == 0:
+            print("No announcements found.")
+            return []
+        
         faiss_service = FaissService(announcements)
         unique_announcements = faiss_service.get_unique(threshold=0.90)
         print("unique announcements after faiss",len(unique_announcements))

@@ -14,11 +14,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
     
-        WebDriverWait(driver, 10).until(
-            EC.invisibility_of_element((By.CSS_SELECTOR, "app-mini-loader .mini-loading"))
-        )
-
-        if not await load_with_retry(driver, url, html_element="table",retries=3, delay=3):
+        if not await load_with_retry(driver, url, html_element="table",retries=3, delay=3,isdymainc=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []

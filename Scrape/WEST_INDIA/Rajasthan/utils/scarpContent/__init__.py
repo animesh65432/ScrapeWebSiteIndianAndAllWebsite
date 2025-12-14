@@ -1,6 +1,3 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from config.safe_quit import safe_quit
 from config.create_driver import create_driver
@@ -18,20 +15,13 @@ async def scarpContent(url: str):
             url,
             html_element="div",  # corrected
             retries=3, 
-            delay=3
+            delay=3,
+            isdymainc=True
         ):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return None
 
-        wait = WebDriverWait(driver, 30)
-
-        # Wait for loader to DISAPPEAR
-        loader = (By.CSS_SELECTOR, "app-mini-loader .mini-loading")
-        try:
-            wait.until(EC.invisibility_of_element_located(loader))
-        except:
-            pass  # sometimes loader is already gone
 
         loop = asyncio.get_event_loop()
 

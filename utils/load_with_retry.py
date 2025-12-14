@@ -1,29 +1,25 @@
 import asyncio
 from config import config
 import os
-import urllib.parse
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
+import urllib
 
 
 async def load_with_retry(
     driver,
     url: str,
     html_element: str,
-    part:str ="",
+    part: str = "",
     retries: int = 3,
     delay: int = 3,
     timeout: int = 30,
     isdymainc: bool = False,
 ) -> bool:
-    """
-    Load a page and wait until a specific HTML element appears.
-    Retries the entire process on failure.
-    """
 
-    if config['REVERSE_PROXY'] is None and len(config['REVERSE_PROXY'].strip()) == 0:
+    if config['REVERSE_PROXY'] is None or len(config['REVERSE_PROXY'].strip()) == 0:
         print("❌ REVERSE_PROXY is not set in config")
         return False
 
@@ -38,13 +34,14 @@ async def load_with_retry(
     # Detect CI environment and adjust parameters
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
-
+    # Build initial URL
     if isdymainc:
         final_url = url
-    else :
-        final_url = f"{config['REVERSE_PROXY']}?url={url}"
+    else:
+       params = {'api_key': config["SCRAPER_API_TOKEN"], 'url': url, 'country_code': 'in'}
+       final_url = 'https://api.scraperapi.com?' + urllib.parse.urlencode(params)
     
-    print(f" Loading URL for part: {part}")
+    print(f"🔄 Loading URL for part: {part}")
     
     if is_ci:
         timeout = max(timeout, 60)  # Minimum 60s timeout in CI
@@ -55,12 +52,8 @@ async def load_with_retry(
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {final_url}...")
+            print(f"[Retry {attempt}/{retries}] Loading {final_url[:100]}...")
             
-            if attempt > 1 and not isdymainc:
-                print("♻️  Retrying...")
-                final_url = f"http://api.scrape.do/?token={config['SCARPER_API_TOKEN']}&url={urllib.parse.quote(url,safe='')}"
-            # Run driver.get() in executor (non-blocking for event loop)
             await loop.run_in_executor(None, lambda: driver.get(final_url))
             
             # Small delay to let page start loading
@@ -83,7 +76,7 @@ async def load_with_retry(
             # Try to get page title for debugging
             try:
                 title = driver.title
-                print(f"   Page title: {title}")
+                print(f"   📄 Page title: {title}")
             except:
                 pass
             
@@ -98,7 +91,7 @@ async def load_with_retry(
             
         except WebDriverException as e:
             error_msg = str(e)
-            print(f"[Retry {attempt}/{retries}] ❌ Failed to load {final_url}: {error_msg[:200]}")
+            print(f"[Retry {attempt}/{retries}] ❌ WebDriver error: {error_msg[:200]}")
             
             # Check for DNS errors
             if "ERR_NAME_NOT_RESOLVED" in error_msg:
@@ -113,6 +106,7 @@ async def load_with_retry(
                 return False
 
             wait_time = delay * attempt
+            print(f"⏳ Waiting {wait_time}s before retry...")
             await asyncio.sleep(wait_time)
             
         except Exception as e:
@@ -122,6 +116,8 @@ async def load_with_retry(
                 print("❌ Max retries reached — giving up")
                 return False
             
-            await asyncio.sleep(delay * attempt)
+            wait_time = delay * attempt
+            print(f"⏳ Waiting {wait_time}s before retry...")
+            await asyncio.sleep(wait_time)
 
     return False

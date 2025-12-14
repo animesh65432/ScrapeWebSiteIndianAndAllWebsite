@@ -11,7 +11,7 @@ async def scrape_Website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url,html_element=".news-style-1" ,retries=3, delay=3):
+        if not await load_with_retry(driver, url,html_element=".news-style-1" ,retries=3, delay=3,isdymainc=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             driver = None
@@ -37,9 +37,6 @@ async def scrape_Website(url: str):
         
         # Find all individual news cards
         news_cards = news_container.find_all("div", class_="col-lg-3 col-md-3 col-sm-6 col-xs-12")
-    
-
-        print(f"Found: {len(news_cards)} news items")
         
         today = datetime.now().strftime("%d.%m.%Y")
         today_news = []
@@ -66,7 +63,6 @@ async def scrape_Website(url: str):
             except Exception as e:
                 print(f"Error parsing news card: {e}")
                 continue
-        
         
         return today_news
         

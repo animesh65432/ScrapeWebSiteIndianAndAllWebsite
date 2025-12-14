@@ -10,14 +10,12 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3):
+        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3,isdymainc=True):
             print("❌ Page failed to load after retries")
             await safe_quit(driver)
             return []
-
-        wait = WebDriverWait(driver, 15)
-
-        # Get all cards
+        
+        
         cards = driver.find_elements(By.CSS_SELECTOR, ".col-lg-6.col-md-6.col-12")
 
         results = []

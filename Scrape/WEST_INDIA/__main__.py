@@ -17,8 +17,8 @@ async def GetUnionTerritoriesAndCentralAnnouncements():
     
     # List of scrapers to run
     scrapers = [
-        ("Goa", GetGoaAnnoucements),
-        ("Gujarat", GetGujaratAnnoucements),
+        # ("Goa", GetGoaAnnoucements),
+        # ("Gujarat", GetGujaratAnnoucements),
         ("Maharashtra", GetAllMaharashtraAnnoucements),
         ("Rajasthan", GetRajasthanAnnoucements)
     ]
