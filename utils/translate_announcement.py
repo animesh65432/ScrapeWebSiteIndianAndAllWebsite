@@ -1,48 +1,134 @@
-from  app_types.TranslateAnnouncement import TranslateAnnouncement
-from prompts.translate_announcement import get_translation_prompt
-from service.Gemini import model
+from app_types.TranslateAnnouncement import TranslateAnnouncement
+from prompts.translate_announcement import get_Announcement_title_prompt,get_Annocement_content_prompt,get_Annocement_description_prompt,get_Annocement_state_prompt
 from typing import TypedDict
-import json
 from datetime import date
 from service.openai import client
+from utils.format_announcement_date import format_announcement_date
+import asyncio
 
 class Announcement(TypedDict):
-    title:str
-    content:str
-    source_link:str
-    date:date
-    state:str
-    originalAnnouncementId:str
+    title: str
+    content: str
+    source_link: str
+    date: date
+    state: str
+    originalAnnouncementId: str
 
-async def translate_announcement(announcement: Announcement, target_language: str) -> TranslateAnnouncement:
-    print("calling translate_announcement")
+
+
+async def translate_announcement(
+    announcement: Announcement, 
+    target_language: str,
+    max_retries: int = 3,
+    debug: bool = False
+) -> TranslateAnnouncement | str:
+    
     try:
-        prompt = get_translation_prompt(announcement, target_language)
+        
+        translated_prompt = get_Announcement_title_prompt(announcement, target_language)
+        translated_description_prompt = get_Annocement_description_prompt(announcement, target_language)
+        translate_state_prompt = get_Annocement_state_prompt(announcement, target_language)
+        translated_content_prompt = get_Annocement_content_prompt(announcement, target_language)
+        translated_title_completion = await client.chat.completions.create(
+                model="google/gemini-2.0-flash-exp:free",
+                messages=[
+                    {
+                        "role": "system", 
+                        "content": (
+                            "You are a professional translator for government announcements. "
+                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
+                        )
+                    },
+                    {"role": "user", "content": translated_prompt}
+                ]
+            )
+        
+        translated_title = translated_title_completion.choices[0].message.content.strip()
 
-        completion = await client.chat.completions.create(
-            model="openai/gpt-oss-20b:free",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant that translates government announcements into simple language."},
-                {"role": "user", "content": prompt}
-            ],
-        )
+        await asyncio.sleep(4)
 
-        raw = completion.choices[0].message.content.strip()
+        translated_content_completion = await client.chat.completions.create(
+                model="openai/gpt-oss-120b:free",
+                messages=[
+                    {
+                        "role": "system", 
+                        "content": (
+                            "You are a professional translator for government announcements. "
+                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
+                        )
+                    },
+                    {"role": "user", "content": translated_content_prompt}
+                ]
+            )
+        
+        translated_content = translated_content_completion.choices[0].message.content.strip()
 
-        try:
-            data = json.loads(raw)
-        except json.JSONDecodeError:
-            raw_fixed = raw[raw.find("{"): raw.rfind("}") + 1]
-            data = json.loads(raw_fixed)
+        await asyncio.sleep(4)
 
+        translated_state_completion = await client.chat.completions.create(
+                model="openai/gpt-oss-120b:free",
+                messages=[
+                    {
+                        "role": "system", 
+                        "content": (
+                            "You are a professional translator for government announcements. "
+                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
+                        )
+                    },
+                    {"role": "user", "content": translate_state_prompt}
+                ]
+            )
+        
+        translated_state = translated_state_completion.choices[0].message.content.strip()
+
+        await asyncio.sleep(4)
+        
+        translated_description_completion = await client.chat.completions.create(
+                model="openai/gpt-oss-120b:free",
+                messages=[
+                    {
+                        "role": "system", 
+                        "content": (
+                            "You are a professional translator for government announcements. "
+                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
+                        )
+                    },
+                    {"role": "user", "content": translated_description_prompt}
+                ]
+            )
+        
+        translated_description = translated_description_completion.choices[0].message.content.strip()
+
+
+        formatted_date = format_announcement_date(announcement.get("date"))
+    
         translated = {
-            **data,
+            "title": translated_title,
+            "content":translated_content,
+            "description": translated_description,
+            "state": translated_state,
             "originalAnnouncementId": announcement["originalAnnouncementId"],
-            "date": announcement["date"],
+            "date": formatted_date,
             "language": target_language,
+            "source_link": announcement["source_link"],
         }
-        return translated
+            
+        print(f"✅ Successfully translated to {target_language}")
+        
+        return {
+            "success": True,
+            "data": translated
+        }
 
     except Exception as e:
-        print(f"❌ Error in translate_announcement: {e}")
-        return ""
+        
+        error_msg = str(e)
+
+        print(f"❌ failed for {target_language}: {error_msg} id:{announcement['originalAnnouncementId']}")
+        
+        return {
+            "success": False,
+            "language": target_language,
+            "originalAnnouncementId": announcement["originalAnnouncementId"],
+            "error": str(e)
+        }

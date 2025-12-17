@@ -2,9 +2,8 @@ from app_types.TranslateAnnouncement import TranslateAnnouncement
 from .translate_announcement import translate_announcement
 from typing import TypedDict
 from datetime import date
-from data import languages
+from utils.languages import LanGuaGes as languages
 import asyncio
-from collections import deque
 
 class Announcement(TypedDict):
     title:str
@@ -14,34 +13,42 @@ class Announcement(TypedDict):
     state:str
     originalAnnouncementId:str
 
-async def translate_announcements(announcements: list[Announcement]) -> list[TranslateAnnouncement]:
-    pending_queue = deque()
-    all_translations = []
-    
-    for announcement in announcements:
-        for lang in languages:
-            pending_queue.append((announcement, lang))
-    
-    BATCH_SIZE = 3
-    batch_count = 0
-    
-    while pending_queue:
-        batch = []
-        
-        # Collect 3 items
-        for _ in range(min(BATCH_SIZE, len(pending_queue))):
-            batch.append(pending_queue.popleft())
-        
-        # Process sequentially within batch
-        for announcement, lang in batch:
-            result = await translate_announcement(announcement, lang)
-            if result:
-                all_translations.append(result)
-        
-        batch_count += 1
-        print(f"✅ Completed batch {batch_count}. Remaining: {len(pending_queue)}")
-        
-        if pending_queue:
-            await asyncio.sleep(0.5)
-    
-    return all_translations
+async def translate_announcements(
+    announcements: list[Announcement]
+) -> list[TranslateAnnouncement]:
+    MAX_CONCURRENT = 1
+    semaphore = asyncio.Semaphore(MAX_CONCURRENT)
+
+    async def translate_with_semaphore(announcement: Announcement, lang: str):
+        async with semaphore:
+            print(f"🔄 Translating to {lang}: {announcement['title'][:30]}...")
+            return await translate_announcement(announcement, lang)
+
+    tasks = [
+        translate_with_semaphore(announcement, lang)
+        for announcement in announcements
+        for lang in languages
+    ]
+
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    successful_translations = []
+    failed_translations = []
+
+    for r in results:
+        if isinstance(r, Exception):
+            failed_translations.append({
+                "success": False,
+                "error": str(r)
+            })
+        elif r["success"] is True:
+            successful_translations.append(r["data"])
+        else:
+            failed_translations.append(r)
+
+    print(
+        f"✅ Success: {len(successful_translations)} | "
+        f"❌ Failed: {len(failed_translations)}"
+    )
+
+    return successful_translations

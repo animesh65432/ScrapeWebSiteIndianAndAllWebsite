@@ -16,13 +16,13 @@ async def scrape_website(url: str, days_back: int = 1):
     """
     driver = None
     try:
-        driver = await create_driver()
+        driver = await create_driver(use_scraperapi=True)
         if not driver:
             print(f"[scrape_website] Failed to create driver for {url}")
             return []
         
         # Load page with retry
-        if not await load_with_retry(driver, url, html_element="div", part="south_india", retries=3, delay=3,isdymainc=True):
+        if not await load_with_retry(driver, url, html_element="div", part="south_india", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []

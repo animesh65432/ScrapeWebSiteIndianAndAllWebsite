@@ -7,7 +7,7 @@ import asyncio
 async def scarpContent(url: str):
     driver = None
     try:
-        driver = await create_driver()
+        driver = await create_driver(use_scraperapi=True)
 
         # Wait for main content to appear
         if not await load_with_retry(
@@ -16,7 +16,6 @@ async def scarpContent(url: str):
             html_element="div",  # corrected
             retries=3, 
             delay=3,
-            isdymainc=True
         ):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)

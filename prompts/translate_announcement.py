@@ -1,107 +1,162 @@
-from  typing import TypedDict
+from typing import TypedDict
 
 class Announcement(TypedDict):
-    title:str
-    content:str
-    source_link:str
-    date:str
-    state:str
-    originalAnnouncementId:str
+    title: str
+    content: str
+    source_link: str
+    date: str
+    state: str
+    originalAnnouncementId: str
 
-def get_translation_prompt(original: Announcement, target_language: str) -> str:
-    """
-    Generates an optimized prompt for AI translation of government announcements.
-    
-    Args:
-        original: The original announcement
-        target_language: Target language (e.g., 'Hindi', 'Bengali', 'Tamil', 'English')
-    
-    Returns:
-        A detailed prompt string for AI translation
-    """
-    
-    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone, including children.
+def get_Announcement_title_prompt(original: Announcement, target_language: str) -> str:
+    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
 
-Your mission: Translate this announcement into **simple, clear {target_language}** that a 5-year-old can easily understand.
+Translate this announcement title into simple, clear {target_language}.
 
 ---
 
-## **Translation Guidelines**
+## TRANSLATION GUIDELINES
 
-### **What to Translate:**
-1. **Title**: Use the simplest possible words. Avoid bureaucratic language.
-2. **Content**: Translate into easy, conversational {target_language}. Break complex sentences into short, simple ones.
-3. **State Name**: Translate "{original['state']}" to {target_language} if applicable.
-
-### **What to Keep:**
-- ALL headings (##, ###) - translate but maintain structure
-- ALL subheadings - translate but keep organization  
-- ALL sections exactly as they appear
-- ALL lists and bullet points - translate items but keep the list format
-- ALL numbered items - translate but preserve numbering
-- **Bold text** - translate but keep bold formatting
-- Links - keep URLs intact, translate link text only
-
-### **What to Remove:**
-- ❌ Emojis (😊, 🎉, ✅, etc.)
-- ❌ Icons and symbols (→, ★, ●, etc.)  
-- ❌ Image references or descriptions
-- ❌ Decorative elements that don't add meaning
-
-### **Formatting Rules:**
-- Use clean Markdown: headings (#, ##), **bold**, lists (-, 1., 2.), and links
-- Keep the EXACT same structure as the original - same number of sections and lists
-- If original has 5 bullet points, translation must have 5 bullet points
-- If original has 3 headings, translation must have 3 headings
-- Make paragraphs short (2-3 sentences max)
-
-### **Language Style:**
-- Use simple everyday words a child would know
-- Avoid: legal terms, complex administrative jargon, formal government language
-- Prefer: common words, active voice, direct statements
+### Language Style:
+- Use simple everyday words that common people understand
+- Avoid legal/administrative jargon - use plain language equivalents
 - Be culturally appropriate for {target_language} speakers in India
-- Keep numbers, dates, and amounts exactly as they appear
-
-### **Description Task:**
-Write a simple 2-3 sentence summary in {target_language} that:
-- Explains the main point of the announcement
-- Uses very basic vocabulary
-- Answers "What is this about?" in child-friendly language
+- Make it sound natural, as if a local person is explaining it to their neighbor
 
 ---
 
-## **Original Announcement Details**
+## ORIGINAL ANNOUNCEMENT
 
-**Title:**  
-{original['title']}
-
-**Content:**  
-{original['content']}
-
-**State:** {original['state']}  
-**Date:** {original['date']}  
-**Source Link:** {original['source_link']}
+**Title:** {original['title']}
 
 ---
 
-## **Required Output Format**
+## OUTPUT REQUIREMENTS
 
-Respond ONLY with valid JSON. No extra text before or after.
+**CRITICAL: Output ONLY the translated title. No extra text, no explanations, no formatting.**
 
-```json
-{{
-  "title": "translated title in simple {target_language}",
-  "content": "full translated content maintaining ALL original structure, headings, lists, and formatting in clean markdown in {target_language}",
-  "description": "simple 2-3 sentence summary explaining what this announcement is about in {target_language}",
-  "state": "translated state name in {target_language}"
-}}
-```
-
-**IMPORTANT:** 
-- Keep ALL the original structure intact
-- Only translate text, never remove sections or lists
-- Output must be valid JSON only
-"""
+Respond with just the translated title in {target_language}."""
     
     return prompt
 
+def get_Annocement_description_prompt(original: Announcement, target_language: str) -> str:
+    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
+
+Write a brief description of this announcement in simple, clear {target_language}.
+
+---
+
+## DESCRIPTION GUIDELINES
+
+### Language Style:
+- Write in {target_language} ONLY (do not mix languages)
+- Keep it 2-3 sentences maximum
+- Explain the main point: What is this announcement about? Who does it affect? What action (if any) should people take?
+- Use simple, everyday language that anyone can understand
+- Be culturally appropriate for {target_language} speakers in India
+- Make it sound natural, as if a local person is explaining it to their neighbor
+
+---
+
+## ORIGINAL ANNOUNCEMENT
+
+**Title:** {original['title']}
+**Content:** {original['content']}
+
+---
+
+## OUTPUT REQUIREMENTS
+
+**CRITICAL: Output ONLY the description text. No extra text, no explanations, no formatting.**
+
+Respond with just the 2-3 sentence description in {target_language}."""
+
+    return prompt
+
+
+def get_Annocement_state_prompt(original: Announcement, target_language: str) -> str:
+    prompt = f"""You are an expert translator.
+
+Translate this Indian state name into {target_language}.
+
+---
+
+## TRANSLATION GUIDELINES
+
+- Use the official name commonly used in {target_language}
+- Keep it simple and recognizable
+- Use standard transliteration if needed
+
+---
+
+## ORIGINAL STATE
+
+**State:** {original['state']}
+
+---
+
+## OUTPUT REQUIREMENTS
+
+**CRITICAL: Output ONLY the translated state name. No extra text, no explanations, no formatting.**
+
+Respond with just the state name in {target_language}."""
+
+    return prompt
+
+
+def get_Annocement_content_prompt(original: Announcement, target_language: str) -> str:
+    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
+
+Translate this announcement content into simple, clear {target_language}.
+
+---
+
+## TRANSLATION GUIDELINES
+
+### Content Structure:
+- If the original content has headings, subheadings, lists - keep them
+- If the original content lacks structure, organize it into clear sections with markdown headings (##, ###)
+- Break long paragraphs into shorter, readable sections
+- Use bullet points (-) or numbered lists (1., 2., 3.) for steps, benefits, or multiple items
+- Add appropriate headings like "## मुख्य बातें" (Key Points), "## पात्रता" (Eligibility), "## कैसे आवेदन करें" (How to Apply), etc. based on content
+
+### What to Keep:
+- ALL existing headings, subheadings, lists, and structure
+- Markdown formatting (##, **, -, etc.)
+- Numbers, dates, and amounts exactly as they appear
+- Links (translate link text, keep URLs)
+
+### What to Remove:
+- Emojis and decorative icons
+- Image references
+- Decorative elements without meaning
+
+### Language Style:
+- Use simple everyday words that common people understand
+- Avoid legal/administrative jargon - use plain language equivalents
+- Use active voice and direct statements
+- Be culturally appropriate for {target_language} speakers in India
+- Make it sound natural, as if a local person is explaining it to their neighbor
+- Write EVERYTHING in {target_language} script only - do not mix English words or other scripts
+
+### Formatting Enhancement:
+- Use **bold** for important terms, amounts, or dates
+- Use line breaks (blank lines) between sections for readability
+- If there are steps or procedures, present them as numbered lists
+- If there are benefits or features, present them as bullet points
+
+---
+
+## ORIGINAL ANNOUNCEMENT
+
+**Content:** {original['content']}
+
+---
+
+## OUTPUT REQUIREMENTS
+
+**CRITICAL: Output ONLY the translated content with proper markdown structure. No extra text, no explanations, no preamble.**
+
+Respond with just the well-structured, translated content in {target_language} with clear markdown formatting."""
+
+    return prompt

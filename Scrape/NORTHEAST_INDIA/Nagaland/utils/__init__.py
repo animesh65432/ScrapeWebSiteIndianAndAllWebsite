@@ -9,9 +9,9 @@ import asyncio
 async def scarp_website(url: str):
     driver = None
     try:
-        driver = await create_driver()
+        driver = await create_driver(use_scraperapi=True)
         
-        if not await load_with_retry(driver, url,html_element="table",part="northeast_india", retries=3, delay=3,isdymainc=True):
+        if not await load_with_retry(driver, url,html_element="table",part="northeast_india", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []

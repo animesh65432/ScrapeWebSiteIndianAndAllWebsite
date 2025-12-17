@@ -1,7 +1,7 @@
-# from config import config
-# from groq import AsyncGroq as Groq
-# from openai import OpenAI
+from config import config
+from openai import AsyncOpenAI as OpenAI
 
-# client = OpenAI(
-#     api_key=config["OPENAI_API_KEY"]
-# )
+client = OpenAI(
+    base_url="https://api.agentrouter.org/v1",
+    api_key="sk-iEE6u1Uzzdt6tD6y0p7e7yA7r6UVZLJpTYY8Jt23tZluuChn"
+)

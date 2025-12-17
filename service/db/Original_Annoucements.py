@@ -1,6 +1,8 @@
 from pymongo import AsyncMongoClient
 from .ConnectDb import get_client
 from app_types.OriginalAnnouncement import OriginalAnnouncement
+from bson import ObjectId
+
 
 class OriginalAnnouncementsDbService:
     _client: AsyncMongoClient = None
@@ -32,5 +34,11 @@ class OriginalAnnouncementsDbService:
         async for document in cursor:
             announcements.append(document)
         return announcements
+    
+    @classmethod
+    async def find_announcement_by_id(cls, announcement_id):
+        collection = await cls.get_collection()
+        announcement = await collection.find_one({"_id": ObjectId(announcement_id)})
+        return announcement
     
 

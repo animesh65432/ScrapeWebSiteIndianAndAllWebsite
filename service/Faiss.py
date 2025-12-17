@@ -1,60 +1,54 @@
 import faiss
 from sentence_transformers import SentenceTransformer
+from app_types.annoucement import GovtItem
 
 class FaissService:
-    def __init__(self, Announcements: list[dict]):
-        self.Announcements = Announcements
+    def __init__(self, announcements: list[GovtItem]):
+        self.announcements = announcements
         self.encoder = SentenceTransformer("paraphrase-mpnet-base-v2")
-        self.index = None  
-        self.vectors = None
-        self.texts = None
 
-    def text_to_vectors(self, texts: list[str]):
-        return self.encoder.encode(texts, normalize_embeddings=True)
+    def _dedup_text(self, item: GovtItem) -> str | None:
+        if item.get("title"):
+            return item["title"].strip()
 
-    def build_index(self):
-        # Choose text or content automatically
-        self.texts = []
-        for item in self.Announcements:
-            if "text" in item and item["text"]:
-                self.texts.append(item["text"].strip())
-            elif "content" in item and item["content"]:
-                self.texts.append(item["content"].strip())
-            else:
-                self.texts.append("")  # fallback to empty string
+        content = item.get("content", "").strip()
+        if content:
+            # Use only first 300 chars to avoid boilerplate
+            return content[:300]
 
-        # Encode embeddings
-        self.vectors = self.text_to_vectors(self.texts)
+        return None
 
-        d = self.vectors.shape[1]
-        self.index = faiss.IndexFlatIP(d)
-        self.index.add(self.vectors)
+    def get_unique(self, threshold: float = 0.95):
+        texts = []
+        items = []
 
-    def search_duplicates(self, threshold: float = 0.90):
+        for item in self.announcements:
+            text = self._dedup_text(item)
+            if text:
+                texts.append(text)
+                items.append(item)
 
-        if self.index is None:
-            self.build_index()
+        if len(texts) <= 1:
+            return items
 
-        distances, ann = self.index.search(self.vectors, k=2)
+        vectors = self.encoder.encode(texts, normalize_embeddings=True)
+        d = vectors.shape[1]
+
+        index = faiss.IndexFlatIP(d)
+        index.add(vectors)
+
+        distances, indices = index.search(vectors, k=2)
 
         to_remove = set()
-        for i in range(len(self.vectors)):
-            if distances[i][1] > threshold:
-                dup_index = ann[i][1]
-                to_remove.add(max(i, dup_index))
+        for i in range(len(indices)):
+            sim = distances[i][1]
+            j = indices[i][1]
 
-        return to_remove
+            if sim >= threshold and j > i:
+                to_remove.add(j)
 
-    def get_unique(self, threshold: float = 0.90):
-
-        if self.index is None:
-            self.build_index()
-
-        duplicates = self.search_duplicates(threshold)
-
-        unique_items = [
-            self.Announcements[i]
-            for i in range(len(self.Announcements))
-            if i not in duplicates
+        return [
+            items[i]
+            for i in range(len(items))
+            if i not in to_remove
         ]
-        return unique_items

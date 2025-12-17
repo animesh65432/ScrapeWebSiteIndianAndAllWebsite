@@ -5,8 +5,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
-import urllib
-
 
 async def load_with_retry(
     driver,
@@ -15,8 +13,7 @@ async def load_with_retry(
     part: str = "",
     retries: int = 3,
     delay: int = 3,
-    timeout: int = 30,
-    isdymainc: bool = False,
+    timeout: int = 30
 ) -> bool:
 
     if config['REVERSE_PROXY'] is None or len(config['REVERSE_PROXY'].strip()) == 0:
@@ -33,13 +30,6 @@ async def load_with_retry(
 
     # Detect CI environment and adjust parameters
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
-
-    # Build initial URL
-    if isdymainc:
-        params = {'api_key': config["SCARPER_API_TOKEN"], 'url': url, 'country_code': 'in'}
-        final_url = 'https://api.scraperapi.com?' + urllib.parse.urlencode(params)
-    else:
-       final_url = f"{config['REVERSE_PROXY']}{url}"
     
     print(f"🔄 Loading URL for part: {part}")
     
@@ -52,9 +42,9 @@ async def load_with_retry(
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {final_url}...")
+            print(f"[Retry {attempt}/{retries}] Loading {url}...")
             
-            await loop.run_in_executor(None, lambda: driver.get(final_url))
+            await loop.run_in_executor(None, lambda: driver.get(url))
             
             # Small delay to let page start loading
             await asyncio.sleep(2)

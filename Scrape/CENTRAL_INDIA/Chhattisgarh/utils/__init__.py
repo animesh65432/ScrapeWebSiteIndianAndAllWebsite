@@ -8,9 +8,9 @@ from config.safe_quit import safe_quit
 async def scrape_website(url: str):
     driver = None
     try:
-        driver = await create_driver()
+        driver = await create_driver(use_scraperapi=True)
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3,isdymainc=True):
+        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3):
             print("❌ Page failed to load after retries")
             await safe_quit(driver)
             return []

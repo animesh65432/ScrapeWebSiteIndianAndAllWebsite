@@ -1,4 +1,5 @@
 from selenium import webdriver
+from config import config
 from config.chromeOptions import Get_Chrome_Options
 import asyncio
 from selenium import webdriver
@@ -6,12 +7,12 @@ from selenium.common.exceptions import WebDriverException
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 from selenium_stealth import stealth
 
-async def create_driver(retries=3, delay=3):
+async def create_driver(retries=3, delay=3,use_scraperapi: bool = False):
     """Create Chrome driver with retry logic - runs in executor to avoid blocking"""
     
     def _create_driver_sync():
         """Synchronous driver creation (runs in thread pool)"""
-        chrome_options = Get_Chrome_Options()
+        chrome_options = Get_Chrome_Options(use_scraperapi,config["SCARPER_API_TOKEN"])
         chrome_options.page_load_strategy = "normal"
         
         try:
