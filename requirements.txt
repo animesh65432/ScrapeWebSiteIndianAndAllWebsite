@@ -100,6 +100,7 @@ scipy==1.16.3
 selenium==4.38.0
 selenium-stealth==1.0.6
 sentence-transformers==5.1.2
+serpapi==0.1.5
 setuptools==80.9.0
 simplejson==3.20.2
 six==1.17.0

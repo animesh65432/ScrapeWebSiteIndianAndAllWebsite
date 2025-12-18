@@ -9,7 +9,7 @@ from utils.load_all_regional_data import load_all_regional_data
 # from utils.format_announcements import format_announcements
 # from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 # from utils.translate_annoucements import translate_announcements
-
+# from utils.call_ollama import call_ollama
 
 async def main():
     try:
@@ -29,14 +29,11 @@ async def main():
         print("announcements with pdf text extracted",announcements_with_pdf_text)
         await insert_annoucements_db(announcements_with_pdf_text)
 
-        # res = await OriginalAnnouncementsDbService().find_announcement_by_id("693c4e6c28a7e06de3b844f7")
-        # fromated_res = format_announcements([res])
+        # res = await OriginalAnnouncementsDbService().find_announcements()
+        # fromated_res = format_announcements(res[:10])  # Format only the first 10 for testing
         # translate_res = await translate_announcements(fromated_res)
-
         # await insert_translate_announcements(translations=translate_res)
-
         print("✅ All tasks completed successfully!")
-
         return []
 
     except Exception as e:

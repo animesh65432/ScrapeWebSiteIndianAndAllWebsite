@@ -1,5 +1,6 @@
 from .utils import scrape_website
 from config import NORTHEAST_INDIA
+
 async def GetAssamAnnoucements():
     try :
         print("Scraping Assam Announcements...")

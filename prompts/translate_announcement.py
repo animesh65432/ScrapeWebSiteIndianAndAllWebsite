@@ -9,154 +9,102 @@ class Announcement(TypedDict):
     originalAnnouncementId: str
 
 def get_Announcement_title_prompt(original: Announcement, target_language: str) -> str:
-    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
+    return f"""
+You are a professional government translator.
 
-Translate this announcement title into simple, clear {target_language}.
+Translate the announcement title into {target_language}.
 
----
+STRICT RULES:
+- Translate ONLY the given title
+- Do NOT explain or interpret
+- Do NOT add or remove meaning
+- Keep proper nouns unchanged
+- Preserve tense exactly as in the original
+- If unsure, translate literally
 
-## TRANSLATION GUIDELINES
+ORIGINAL TITLE:
+{original['title']}
+ORIGINAL CONTENT:
+{original['content']}
 
-### Language Style:
-- Use simple everyday words that common people understand
-- Avoid legal/administrative jargon - use plain language equivalents
-- Be culturally appropriate for {target_language} speakers in India
-- Make it sound natural, as if a local person is explaining it to their neighbor
-
----
-
-## ORIGINAL ANNOUNCEMENT
-
-**Title:** {original['title']}
-
----
-
-## OUTPUT REQUIREMENTS
-
-**CRITICAL: Output ONLY the translated title. No extra text, no explanations, no formatting.**
-
-Respond with just the translated title in {target_language}."""
-    
-    return prompt
-
-def get_Annocement_description_prompt(original: Announcement, target_language: str) -> str:
-    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
-
-Write a brief description of this announcement in simple, clear {target_language}.
-
----
-
-## DESCRIPTION GUIDELINES
-
-### Language Style:
-- Write in {target_language} ONLY (do not mix languages)
-- Keep it 2-3 sentences maximum
-- Explain the main point: What is this announcement about? Who does it affect? What action (if any) should people take?
-- Use simple, everyday language that anyone can understand
-- Be culturally appropriate for {target_language} speakers in India
-- Make it sound natural, as if a local person is explaining it to their neighbor
-
----
-
-## ORIGINAL ANNOUNCEMENT
-
-**Title:** {original['title']}
-**Content:** {original['content']}
-
----
-
-## OUTPUT REQUIREMENTS
-
-**CRITICAL: Output ONLY the description text. No extra text, no explanations, no formatting.**
-
-Respond with just the 2-3 sentence description in {target_language}."""
-
-    return prompt
+OUTPUT:
+Only the translated title in {target_language}.
+"""
 
 
-def get_Annocement_state_prompt(original: Announcement, target_language: str) -> str:
-    prompt = f"""You are an expert translator.
+def get_Announcement_description_prompt(original: Announcement, target_language: str) -> str:
+    return f"""
+Write a neutral factual description of this government announcement in {target_language}.
 
-Translate this Indian state name into {target_language}.
+STRICT RULES:
+- ONE sentence only
+- Describe ONLY what is stated in the original content
+- Use the same tense as the original
+- Do NOT infer purpose or outcome
+- Do NOT add context
+- Do NOT explain significance
+- If unclear, stay general
 
----
+ORIGINAL:
+Title: {original['title']}
+Content: {original['content']}
 
-## TRANSLATION GUIDELINES
-
-- Use the official name commonly used in {target_language}
-- Keep it simple and recognizable
-- Use standard transliteration if needed
-
----
-
-## ORIGINAL STATE
-
-**State:** {original['state']}
-
----
-
-## OUTPUT REQUIREMENTS
-
-**CRITICAL: Output ONLY the translated state name. No extra text, no explanations, no formatting.**
-
-Respond with just the state name in {target_language}."""
-
-    return prompt
+OUTPUT:
+Only the description sentence in {target_language}.
+"""
 
 
-def get_Annocement_content_prompt(original: Announcement, target_language: str) -> str:
-    prompt = f"""You are an expert government announcement translator specializing in making official communications accessible to everyone.
+def get_Announcement_state_prompt(original: Announcement, target_language: str) -> str:
+    return f"""
+Translate the following Indian state name into {target_language}.
 
-Translate this announcement content into simple, clear {target_language}.
+STRICT RULES:
+- Translate or transliterate ONLY the state name
+- Do NOT add words
+- Do NOT explain
 
----
+STATE:
+{original['state']}
 
-## TRANSLATION GUIDELINES
+OUTPUT:
+Only the translated state name.
+"""
 
-### Content Structure:
-- If the original content has headings, subheadings, lists - keep them
-- If the original content lacks structure, organize it into clear sections with markdown headings (##, ###)
-- Break long paragraphs into shorter, readable sections
-- Use bullet points (-) or numbered lists (1., 2., 3.) for steps, benefits, or multiple items
-- Add appropriate headings like "## मुख्य बातें" (Key Points), "## पात्रता" (Eligibility), "## कैसे आवेदन करें" (How to Apply), etc. based on content
+def get_Announcement_content_prompt(original: Announcement, target_language: str) -> str:
+    return f"""
+Translate the following government announcement into {target_language}.
 
-### What to Keep:
-- ALL existing headings, subheadings, lists, and structure
-- Markdown formatting (##, **, -, etc.)
-- Numbers, dates, and amounts exactly as they appear
-- Links (translate link text, keep URLs)
+STRICT NON-NEGOTIABLE RULES:
+- Translate sentence by sentence
+- Do NOT add new information
+- Do NOT remove information
+- Do NOT change meaning
+- Do NOT interpret intent
+- Do NOT leave untranslated words (except proper nouns)
+- Keep tense exactly as in the original
+- Keep names, places, dates, and numbers unchanged
+- If a sentence is unclear, translate literally without guessing
 
-### What to Remove:
-- Emojis and decorative icons
-- Image references
-- Decorative elements without meaning
+MARKDOWN & FORMATTING RULES:
+- Use Markdown headings (##) for main titles
+- Preserve all original structure and order
+- Use line breaks for readability
+- Use bullet points only if they exist or make sense
+- Do NOT create new sections or summaries
+- Bold important items (dates, times, locations)
+- No decorative emojis or icons
 
-### Language Style:
-- Use simple everyday words that common people understand
-- Avoid legal/administrative jargon - use plain language equivalents
-- Use active voice and direct statements
-- Be culturally appropriate for {target_language} speakers in India
-- Make it sound natural, as if a local person is explaining it to their neighbor
-- Write EVERYTHING in {target_language} script only - do not mix English words or other scripts
+CONTEXT:
+This announcement is a **past event status report** about election duty.
 
-### Formatting Enhancement:
-- Use **bold** for important terms, amounts, or dates
-- Use line breaks (blank lines) between sections for readability
-- If there are steps or procedures, present them as numbered lists
-- If there are benefits or features, present them as bullet points
+ORIGINAL ANNOUNCEMENT:
+Title: {original['title']}
+Content:
+{original['content']}
 
----
-
-## ORIGINAL ANNOUNCEMENT
-
-**Content:** {original['content']}
-
----
-
-## OUTPUT REQUIREMENTS
-
-**CRITICAL: Output ONLY the translated content with proper markdown structure. No extra text, no explanations, no preamble.**
-
-Respond with just the well-structured, translated content in {target_language} with clear markdown formatting."""
-
-    return prompt
+OUTPUT:
+- Provide ONLY the fully translated content in {target_language}, with proper Markdown
+- Start directly with the ## heading
+- Do NOT include preambles, notes, or explanations
+- Translate all local words into {target_language} clearly
+"""

@@ -80,7 +80,7 @@ async def GetNorthEastIndiaAnnouncements():
         
         # Save results
         if results:
-            save_to_json(results, "orthEastIndia")
+            save_to_json(results, "northEastIndia")
         else:
             print("\n⚠️  WARNING: No announcements were collected!")
             print("   Check logs above for errors.")

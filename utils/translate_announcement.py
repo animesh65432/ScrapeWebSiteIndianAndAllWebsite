@@ -1,10 +1,11 @@
 from app_types.TranslateAnnouncement import TranslateAnnouncement
-from prompts.translate_announcement import get_Announcement_title_prompt,get_Annocement_content_prompt,get_Annocement_description_prompt,get_Annocement_state_prompt
+from prompts.translate_announcement import get_Announcement_title_prompt,get_Announcement_content_prompt,get_Announcement_description_prompt,get_Announcement_state_prompt
 from typing import TypedDict
 from datetime import date
-from service.openai import client
+import httpx
 from utils.format_announcement_date import format_announcement_date
-import asyncio
+from utils.call_ollama import call_ollama
+
 
 class Announcement(TypedDict):
     title: str
@@ -25,79 +26,45 @@ async def translate_announcement(
     
     try:
         
-        translated_prompt = get_Announcement_title_prompt(announcement, target_language)
-        translated_description_prompt = get_Annocement_description_prompt(announcement, target_language)
-        translate_state_prompt = get_Annocement_state_prompt(announcement, target_language)
-        translated_content_prompt = get_Annocement_content_prompt(announcement, target_language)
-        translated_title_completion = await client.chat.completions.create(
-                model="google/gemini-2.0-flash-exp:free",
-                messages=[
-                    {
-                        "role": "system", 
-                        "content": (
-                            "You are a professional translator for government announcements. "
-                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
-                        )
-                    },
-                    {"role": "user", "content": translated_prompt}
-                ]
+        translated_title_prompt = get_Announcement_title_prompt(announcement, target_language)
+        translated_description_prompt = get_Announcement_description_prompt(announcement, target_language)
+        translate_state_prompt = get_Announcement_state_prompt(announcement, target_language)
+        translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
+
+        timeout = httpx.Timeout(
+            connect=10.0,
+            read=None,   
+            write=10.0,
+            pool=10.0
+        )
+
+        async with httpx.AsyncClient(timeout=timeout) as ollama_client:
+            translated_title = await call_ollama(
+                prompt=translated_title_prompt,
+                target_language=target_language,
+                client=ollama_client
+                )
+    
+            
+            translated_content = await call_ollama(
+                prompt=translated_content_prompt,
+                target_language=target_language,
+                client=ollama_client
             )
-        
-        translated_title = translated_title_completion.choices[0].message.content.strip()
-
-        await asyncio.sleep(4)
-
-        translated_content_completion = await client.chat.completions.create(
-                model="openai/gpt-oss-120b:free",
-                messages=[
-                    {
-                        "role": "system", 
-                        "content": (
-                            "You are a professional translator for government announcements. "
-                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
-                        )
-                    },
-                    {"role": "user", "content": translated_content_prompt}
-                ]
+            
+            
+            translated_state = await call_ollama(
+                prompt=translate_state_prompt,
+                target_language=target_language,
+                client=ollama_client
             )
-        
-        translated_content = translated_content_completion.choices[0].message.content.strip()
-
-        await asyncio.sleep(4)
-
-        translated_state_completion = await client.chat.completions.create(
-                model="openai/gpt-oss-120b:free",
-                messages=[
-                    {
-                        "role": "system", 
-                        "content": (
-                            "You are a professional translator for government announcements. "
-                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
-                        )
-                    },
-                    {"role": "user", "content": translate_state_prompt}
-                ]
+            
+            
+            translated_description = await call_ollama(
+                prompt=translated_description_prompt,
+                target_language=target_language,
+                client=ollama_client
             )
-        
-        translated_state = translated_state_completion.choices[0].message.content.strip()
-
-        await asyncio.sleep(4)
-        
-        translated_description_completion = await client.chat.completions.create(
-                model="openai/gpt-oss-120b:free",
-                messages=[
-                    {
-                        "role": "system", 
-                        "content": (
-                            "You are a professional translator for government announcements. "
-                            f"Translate ONLY to {target_language} script. Do not mix scripts. "
-                        )
-                    },
-                    {"role": "user", "content": translated_description_prompt}
-                ]
-            )
-        
-        translated_description = translated_description_completion.choices[0].message.content.strip()
 
 
         formatted_date = format_announcement_date(announcement.get("date"))
