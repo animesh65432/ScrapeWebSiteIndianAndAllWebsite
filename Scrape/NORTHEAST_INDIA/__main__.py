@@ -24,12 +24,12 @@ async def GetNorthEastIndiaAnnouncements():
     scrapers = [
         ("ArunachalPradesh", GetArunachalPradeshAnnoucements),
         ("Assam", GetAssamAnnoucements),
-        ("Manipur", GetAllManipurAnnoucements),
         ("Meghalaya", GetmeghalayaAnnoucements),
         ("Mizoram", GetMizoramAnnoucements),
         ("Nagaland", GetNagalandAnnoucements),
         ("Sikkim", GetSikkimAnnouncements),
         ("Tripura", GetAllTripuraAnnoucements),
+        ("Manipur",GetAllManipurAnnoucements)
     ]
     
     failed_scrapers = []

@@ -1,9 +1,15 @@
-name: Scraper Evening ( NorthEastIndia )
+name: Scraper NorthEast India
 
 on:
   schedule:
+    - cron: "30 8 * * *"
     - cron: "30 14 * * *"
   workflow_dispatch:
+    inputs:
+      run_type:
+        description: "Run type (morning/evening/manual)"
+        required: false
+        default: "manual"
 
 permissions:
   contents: write
@@ -14,8 +20,9 @@ jobs:
     timeout-minutes: 50
 
     env:
-      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN }}
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
       REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
+      RUN_TYPE: ${{ github.event.inputs.run_type || 'scheduled' }}
 
     steps:
       - name: Checkout code
@@ -33,36 +40,87 @@ jobs:
           pip install -r requirements.txt
 
       - name: Scrape NorthEast India
-        run: python3 -m Scrape.NORTHEAST_INDIA
+        id: scrape
+        run: |
+          echo "Starting scrape..."
+          python3 -m Scrape.NORTHEAST_INDIA
+          SCRAPE_EXIT=$?
+          echo "scrape_status=$SCRAPE_EXIT" >> $GITHUB_OUTPUT
+          exit 0
         continue-on-error: true
 
-      - name: Ensure northEastIndia folder and JSON file exist
+      - name: Check scrape results
+        id: check_results
         run: |
-          # Create folder if missing
-          if [ ! -d "data/northEastIndia" ]; then
-            echo "📁 Folder data/northEastIndia does not exist. Creating it..."
+          # Check if scraper actually produced data
+          if [ -d "data/northEastIndia" ] && [ -n "$(find data/northEastIndia -name '*.json' -type f 2>/dev/null)" ]; then
+            echo "✅ JSON files found"
+            echo "has_data=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ No JSON files found - scraper may have failed"
+            echo "has_data=false" >> $GITHUB_OUTPUT
+            
+            # Create folder if missing
             mkdir -p data/northEastIndia
-          fi
-
-          # Create empty JSON only if no JSON exists
-          if [ -z "$(ls -1 data/northEastIndia/*.json 2>/dev/null)" ]; then
-            echo "[]" > data/northEastIndia/empty_$(date +'%Y%m%d_%H%M').json
-            echo "🆕 Created empty JSON file because folder had no JSON files."
+            
+            # Create placeholder with error info
+            cat > data/northEastIndia/scrape_failed_$(date +'%Y%m%d_%H%M%S').json << EOF
+          {
+            "status": "failed",
+            "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "message": "Scraper did not produce output - check logs",
+            "run_type": "${{ env.RUN_TYPE }}"
+          }
+          EOF
           fi
 
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: northEastindia-data
+          name: northEastIndia-data-${{ github.run_number }}-${{ github.run_attempt }}
           path: data/northEastIndia/*.json
           retention-days: 7
+          if-no-files-found: warn
 
       - name: Commit results
         if: always()
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
+          # Add all changes
           git add data/northEastIndia/ || true
-          git diff --staged --quiet || git commit -m "📊 Update North East India data - $(date +'%Y-%m-%d %H:%M')"
-          git push || true
+
+          # Check if there are changes to commit
+          if ! git diff --staged --quiet; then
+            COMMIT_MSG="📊 Update North East India data - $(date +'%Y-%m-%d %H:%M UTC')"
+            
+            # Add status indicators
+            if [ "${{ steps.check_results.outputs.has_data }}" == "true" ]; then
+              COMMIT_MSG="$COMMIT_MSG ✅"
+            else
+              COMMIT_MSG="$COMMIT_MSG ⚠️ (No data)"
+            fi
+            
+            git commit -m "$COMMIT_MSG"
+            git push || echo "⚠️ Push failed - may need to pull first"
+          else
+            echo "ℹ️ No changes to commit"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Scrape Summary 📊" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run Type:** ${{ env.RUN_TYPE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "- **Has Data:** ${{ steps.check_results.outputs.has_data }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Scrape Exit Code:** ${{ steps.scrape.outputs.scrape_status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -d "data/northEastIndia" ]; then
+            FILE_COUNT=$(find data/northEastIndia -name '*.json' -type f 2>/dev/null | wc -l)
+            echo "- **JSON Files Created:** $FILE_COUNT" >> $GITHUB_STEP_SUMMARY
+          fi
