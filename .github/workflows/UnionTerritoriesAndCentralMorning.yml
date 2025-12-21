@@ -3,6 +3,7 @@ name: Scraper Morning (Union Territories And Central)
 on:
   schedule:
     - cron: "30 9 * * *"
+    - cron: "0 15 * * *"
   workflow_dispatch:
 
 permissions:

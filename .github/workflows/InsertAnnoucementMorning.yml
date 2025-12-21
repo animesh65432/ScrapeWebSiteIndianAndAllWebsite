@@ -3,6 +3,7 @@ name: Insert Announcements Morning
 on:
   schedule:
     - cron: "30 11 * * *"
+    - cron: "0 17 * * *"
   workflow_dispatch:
 
 permissions:

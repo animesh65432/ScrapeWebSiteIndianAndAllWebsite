@@ -3,6 +3,7 @@ name: Scraper Evening (North India)
 on:
   schedule:
     - cron: "0 12 * * *"
+    - cron: "30 4 * * *"
   workflow_dispatch:
 
 permissions:
