@@ -3,22 +3,37 @@ from utils.split_text import split_text
 from prompts.get_chunk_summary_prompt import get_chunk_summary_prompt
 from prompts.get_final_overview_prompt import get_final_overview_prompt
 
-def generate_overview_big_text(text: str) -> str:
-    chunks = split_text(text)
-    summaries = []
+async def generate_overview_big_text(text: str) -> str:
+    try:
+        chunks = split_text(text)
+        summaries = []
 
-    for chunk in chunks:
-        summary = call_cloudflare(
-            get_chunk_summary_prompt(chunk),
-            max_tokens=128
+        for i, chunk in enumerate(chunks):
+            try:
+                summary = await call_cloudflare(
+                    get_chunk_summary_prompt(chunk),
+                    max_tokens=128
+                )
+                summaries.append(summary)
+            except Exception as e:
+                print(f"Error processing chunk {i}: {e}")
+                continue
+
+        if not summaries:
+            raise ValueError("No chunks were successfully processed")
+
+        combined_summaries = "\n".join(summaries)
+
+        final_overview = await call_cloudflare(
+            get_final_overview_prompt(combined_summaries),
+            max_tokens=512
         )
-        summaries.append(summary)
 
-    combined_summaries = "\n".join(summaries)
+        return final_overview
 
-    final_overview = call_cloudflare(
-        get_final_overview_prompt(combined_summaries),
-        max_tokens=512
-    )
-
-    return final_overview
+    except ValueError as e:
+        print(f"Validation error: {e}")
+        raise
+    except Exception as e:
+        print(f"Unexpected error generating overview: {e}")
+        raise

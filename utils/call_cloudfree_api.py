@@ -20,9 +20,14 @@ async def call_cloudflare(
             "token": config["SECOND_CLOUDFARE_MODEL_API_TOKEN"]
         }
     ]
+
+   
+    for idx, account in enumerate(accounts):
+        if not account['token'] or len(account['token']) < 20:
+            print(f"⚠️  Account {idx + 1} has invalid token format")
     
     async with httpx.AsyncClient() as client:
-        for account_idx, account in enumerate(accounts):
+        for account_idx, account in enumerate(accounts, 1):
             url = f"https://api.cloudflare.com/client/v4/accounts/{account['id']}/ai/run/{model}"
             
             headers = {
@@ -37,55 +42,79 @@ async def call_cloudflare(
                 "max_tokens": max_tokens
             }
             
-            for attempt in range(retries):
+            for attempt in range(1, retries + 1):
                 try:
                     response = await client.post(url, headers=headers, json=payload, timeout=30.0)
                     
-                    # Check if it's a quota error (status 429 or specific error codes)
+                    # Handle 401 Unauthorized
+                    if response.status_code == 401:
+                        print(f"❌ Account {account_idx} authentication failed (401)")
+                        print(f"   Token preview: {account['token'][:10]}...")
+                        print(f"   Check your API token for account {account['id']}")
+                        break  # Don't retry auth failures, move to next account
+                    
+                    # Handle rate limiting
                     if response.status_code == 429:
-                        print(f"Account {account_idx + 1} quota exceeded")
+                        print(f"⏸️  Account {account_idx} rate limited (429)")
                         break  # Try next account
                     
                     response.raise_for_status()
                     result = response.json()
                     
-                    # Check for quota errors in response body
+                    # Check for API errors in response body
                     if not result.get('success', True):
                         errors = result.get('errors', [])
-                        for error in errors:
-                            # Cloudflare quota error codes
-                            if error.get('code') in [10000, 10001]:  # Adjust based on actual error codes
-                                print(f"Account {account_idx + 1} quota exceeded: {error}")
-                                break
+                        error_codes = [e.get('code') for e in errors]
+                        
+                        # Cloudflare quota/rate limit error codes
+                        if any(code in [10000, 10001, 10002] for code in error_codes):
+                            print(f"⏸️  Account {account_idx} quota exceeded: {errors}")
+                            break  # Try next account
                         else:
                             raise ValueError(f"API error: {errors}")
-                        break  # Try next account
                     
+                    # Validate response
                     if not result.get('result') or not result['result'].get('response'):
                         raise ValueError("Empty response from API")
                     
+                    print(f"✅ Account {account_idx} succeeded")
                     return result['result']['response'].strip()
                     
                 except httpx.HTTPStatusError as e:
-                    if e.response.status_code == 429:
-                        print(f"Account {account_idx + 1} rate limited")
-                        break  # Try next account
-                    print(f"Account {account_idx + 1}, Attempt {attempt + 1} failed: {str(e)}")
+                    status = e.response.status_code
                     
-                    if attempt < retries - 1:
-                        await asyncio.sleep(delay * (attempt + 1))
+                    if status == 401:
+                        print(f"❌ Account {account_idx} - Invalid API token")
+                        break
+                    elif status == 429:
+                        print(f"⏸️  Account {account_idx} - Rate limited")
+                        break
                     else:
-                        print(f"All retries exhausted for account {account_idx + 1}")
-                        break  # Try next account
+                        print(f"⚠️  Account {account_idx}, Attempt {attempt}/{retries}: HTTP {status}")
+                        
+                        if attempt < retries:
+                            wait_time = delay * attempt
+                            print(f"   Retrying in {wait_time}s...")
+                            await asyncio.sleep(wait_time)
+                        else:
+                            print(f"❌ Account {account_idx} - All retries exhausted")
+                            break
                         
                 except Exception as e:
-                    print(f"Account {account_idx + 1}, Attempt {attempt + 1} failed: {str(e)}")
+                    error_msg = str(e)
+                    print(f"⚠️  Account {account_idx}, Attempt {attempt}/{retries}: {error_msg}")
                     
-                    if attempt < retries - 1:
-                        await asyncio.sleep(delay * (attempt + 1))
+                    if attempt < retries:
+                        wait_time = delay * attempt
+                        print(f"   Retrying in {wait_time}s...")
+                        await asyncio.sleep(wait_time)
                     else:
-                        print(f"All retries exhausted for account {account_idx + 1}")
-                        break  # Try next account
+                        print(f"❌ Account {account_idx} - All retries exhausted")
+                        break
         
-        # If we get here, all accounts failed
-        raise Exception(f"All {len(accounts)} accounts failed after {retries} retries each")
+       
+        raise Exception(
+            f"❌ All {len(accounts)} accounts failed.\n"
+            f"   Check your API tokens at: https://dash.cloudflare.com/profile/api-tokens"
+        )
+

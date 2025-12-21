@@ -20,16 +20,13 @@ async def main():
         
         faiss_service = FaissService(announcements)
         unique_announcements = faiss_service.get_unique(threshold=0.90)
-        print("unique announcements after faiss",unique_announcements)
         classified_announcements = await classify_announcement_or_news(unique_announcements)
-        print("classified announcements",classified_announcements)
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
-        print("announcements with pdf text extracted",announcements_with_pdf_text)
         new_annoucments = await insert_annoucements_db(announcements_with_pdf_text)
         fromated_res = format_announcements(new_annoucments)
         translate_res = await translate_announcements(fromated_res)
         await insert_translate_announcements(translations=translate_res)
-        print("✅ All tasks completed successfully!",translate_res)
+        print("✅ All tasks completed successfully!")
         return []
 
     except Exception as e:

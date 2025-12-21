@@ -2,6 +2,7 @@ from pymongo import AsyncMongoClient
 from .ConnectDb import get_client
 from app_types.OriginalAnnouncement import OriginalAnnouncement
 from bson import ObjectId
+import datetime
 
 
 class OriginalAnnouncementsDbService:
@@ -40,5 +41,27 @@ class OriginalAnnouncementsDbService:
         collection = await cls.get_collection()
         announcement = await collection.find_one({"_id": ObjectId(announcement_id)})
         return announcement
+    
+    @classmethod
+    async def find_today_announcements(cls):
+        collection = await cls.get_collection()
+
+        today_start = datetime.datetime.now(datetime.timezone.utc).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+
+        today_end = today_start + datetime.timedelta(days=1)
+
+        cursor = collection.find({
+            "date": {
+                "$gte": today_start,
+                "$lt": today_end
+            }
+        })
+        
+        announcements = []
+        async for document in cursor:
+            announcements.append(document)
+        return announcements
     
 

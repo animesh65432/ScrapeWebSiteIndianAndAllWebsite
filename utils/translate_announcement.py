@@ -24,10 +24,10 @@ async def translate_announcement(
         translated_title_prompt = get_Announcement_title_prompt(announcement, target_language)
         translate_state_prompt = get_Announcement_state_prompt(announcement, target_language)
 
-
         if is_big_content(announcement["content"]):
             overview = await generate_overview_big_text(announcement["content"])
-            translated_content_prompt = get_Announcement_content_prompt({"content": overview}, target_language)
+            announcement["content"] = overview
+            translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
         else:
             translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
 
@@ -37,7 +37,7 @@ async def translate_announcement(
         
         translated_description_prompt = get_Announcement_description_prompt(translated_content, target_language)
         translated_description = await call_cloudflare(translated_description_prompt, max_tokens=256)
-
+        
         formatted_date = format_announcement_date(announcement.get("date"))
     
         translated = {
