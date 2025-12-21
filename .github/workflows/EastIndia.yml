@@ -1,9 +1,9 @@
-name: Scraper Morning (Central India)
+name: Scraper East India
 
 on:
   schedule:
-    - cron: "30 6 * * *"
-    - cron: "0 13 * * *"
+    - cron: "30 5 * * *"
+    - cron: "30 12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,21 +33,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Scrape Central India
-        run: python3 -m Scrape.CENTRAL_INDIA
+      - name: Scrape East India
+        run: python3 -m Scrape.EAST_INDIA
         continue-on-error: true
 
       - name: Ensure northIndia folder and JSON file exist
         run: |
           # Create folder if missing
-          if [ ! -d "data/CentralIndia" ]; then
-            echo "📁 Folder data/CentralIndia does not exist. Creating it..."
-            mkdir -p data/CentralIndia
+          if [ ! -d "data/EastIndia" ]; then
+            echo "📁 Folder data/EastIndia does not exist. Creating it..."
+            mkdir -p data/EastIndia
           fi
 
           # Create empty JSON only if no JSON exists
-          if [ -z "$(ls -1 data/CentralIndia/*.json 2>/dev/null)" ]; then
-            echo "[]" > data/CentralIndia/empty_$(date +'%Y%m%d_%H%M').json
+          if [ -z "$(ls -1 data/EastIndia/*.json 2>/dev/null)" ]; then
+            echo "[]" > data/EastIndia/empty_$(date +'%Y%m%d_%H%M').json
             echo "🆕 Created empty JSON file because folder had no JSON files."
           fi
 
@@ -55,8 +55,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Central-india-data
-          path: data/CentralIndia/*.json
+          name: EastIndiadata
+          path: data/EastIndia/*.json
           retention-days: 7
 
       - name: Commit results
@@ -64,6 +64,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/CentralIndia/ || true
-          git diff --staged --quiet || git commit -m "📊 Update CentralIndia data - $(date +'%Y-%m-%d %H:%M')"
+          git add data/EastIndia/ || true
+          git diff --staged --quiet || git commit -m "📊 Update East India data - $(date +'%Y-%m-%d %H:%M')"
           git push || true

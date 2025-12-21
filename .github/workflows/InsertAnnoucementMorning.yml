@@ -1,4 +1,4 @@
-name: Insert Announcements Morning
+name: Insert Announcements
 
 on:
   schedule:
@@ -20,6 +20,10 @@ jobs:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      CLOUDFARE_MODEL_ACCOUNT_ID: ${{ secrets.CLOUDFARE_MODEL_ACCOUNT_ID }}
+      CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.CLOUDFARE_MODEL_API_TOKEN }}
+      SECOND_CLOUDFARE_MODEL_ACCOUNT_ID: ${{ secrets.SECOND_CLOUDFARE_MODEL_ACCOUNT_ID }}
+      SECOND_CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.SECOND_CLOUDFARE_MODEL_API_TOKEN }}
 
     steps:
       - name: Checkout code
