@@ -8,103 +8,95 @@ class Announcement(TypedDict):
     state: str
     originalAnnouncementId: str
 
-def get_Announcement_title_prompt(original: Announcement, target_language: str) -> str:
-    return f"""
-You are a professional government translator.
+def get_Announcement_content_prompt(original: Announcement, target_language: str) -> str:
+    return f"""Translate the following announcement to {target_language}.
 
-Translate the announcement title into {target_language}.
-
-STRICT RULES:
-- Translate ONLY the given title
-- Do NOT explain or interpret
-- Do NOT add or remove meaning
-- Keep proper nouns unchanged
-- Preserve tense exactly as in the original
-- If unsure, translate literally
-
-ORIGINAL TITLE:
-{original['title']}
-ORIGINAL CONTENT:
+SOURCE:
 {original['content']}
 
-OUTPUT:
-Only the translated title in {target_language}.
-"""
+INSTRUCTIONS:
 
+1. Follow this exact structure:
 
-def get_Announcement_description_prompt(original: Announcement, target_language: str) -> str:
-    return f"""
-Write a neutral factual description of this government announcement in {target_language}.
+## [Brief title in {target_language}]
+**Ref:** [reference number] | **Date:** [date] | **Loc:** [location, state]
+
+### Summary
+- Write ~30 words summarizing the announcement.
+- Include who, what, when, and where.
+- Avoid repeating any sentence from Details or Key Information.
+
+### Details
+- Write ~30 words adding more context, background, or extra details.
+- Include timing, locations, outcomes, or relevant activities.
+- Avoid repeating any sentence from Summary or Key Information.
+
+**Key Information:**
+- Write 4 bullets, each presenting **unique information** not in Summary or Details.
+- Use '-' for bullets (do NOT use '*' or other symbols).
+- Focus on important points such as personnel, activities, or milestones.
 
 STRICT RULES:
-- ONE sentence only
-- Describe ONLY what is stated in the original content
-- Use the same tense as the original
-- Do NOT infer purpose or outcome
-- Do NOT add context
-- Do NOT explain significance
-- If unclear, stay general
+- NEVER translate or expand acronyms: LADC, MDC
+- NEVER translate place names (e.g., Lawngtlai, Government Lawngtlai College)
+- Keep all proper nouns unchanged
+- Remove filler words like: te chuan, khan, a ni, hian
+- Avoid repeating any sentence or phrase across sections
 
-ORIGINAL:
-Title: {original['title']}
-Content: {original['content']}
+COMPLETION:
+- Keep total under 200 words
+- Finish the entire structure before stopping
+- Output must be 100% {target_language}
+- Do NOT include placeholders like [X] or instructions
 
-OUTPUT:
-Only the description sentence in {target_language}.
+Begin translation:"""
+
+
+
+def get_Announcement_title_prompt(original: Announcement, target_language: str) -> str:
+    return f"""
+Translate this title into clear, natural {target_language}.
+
+RULES:
+- Keep acronyms (LADC, MDC)
+- Keep place names
+- Make the action/event CLEAR (e.g., "Arrival", "Update", "Announcement")
+- Avoid vague phrases like "Order to District"
+- Maximum 80 characters
+- Focus on WHAT HAPPENED, not administrative details
+
+ORIGINAL: {original['title']}
+{'' if original.get('title') else f"CONTENT: {original.get('content', '')}"}
+
+EXAMPLES OF GOOD TITLES:
+- "LADC-MDC Election 2025 - Officials Arrive in Lawngtlai"
+- "LADC-MDC Election 2025 - Safe Arrival Update"
+- "Election Officials Return to Lawngtlai - LADC-MDC 2025"
+
+OUTPUT: Only the improved title.
 """
 
+def get_Announcement_description_prompt(content: str, target_language: str) -> str:
+    return f"""
+Write a one-sentence description of this announcement in {target_language}.
+
+CONTENT:
+{content}
+
+RULES:
+- ONE sentence only
+- Use only {target_language} script
+- Summarize the main event/action
+- Include key details (date, location, purpose)
+
+OUTPUT: Only the description sentence.
+"""
 
 def get_Announcement_state_prompt(original: Announcement, target_language: str) -> str:
     return f"""
-Translate the following Indian state name into {target_language}.
+Translate this Indian state name: {original['state']}
 
-STRICT RULES:
-- Translate or transliterate ONLY the state name
-- Do NOT add words
-- Do NOT explain
+Use the official {target_language} name for this state.
 
-STATE:
-{original['state']}
-
-OUTPUT:
-Only the translated state name.
-"""
-
-def get_Announcement_content_prompt(original: Announcement, target_language: str) -> str:
-    return f"""
-Translate the following government announcement into {target_language}.
-
-STRICT NON-NEGOTIABLE RULES:
-- Translate sentence by sentence
-- Do NOT add new information
-- Do NOT remove information
-- Do NOT change meaning
-- Do NOT interpret intent
-- Do NOT leave untranslated words (except proper nouns)
-- Keep tense exactly as in the original
-- Keep names, places, dates, and numbers unchanged
-- If a sentence is unclear, translate literally without guessing
-
-MARKDOWN & FORMATTING RULES:
-- Use Markdown headings (##) for main titles
-- Preserve all original structure and order
-- Use line breaks for readability
-- Use bullet points only if they exist or make sense
-- Do NOT create new sections or summaries
-- Bold important items (dates, times, locations)
-- No decorative emojis or icons
-
-CONTEXT:
-This announcement is a **past event status report** about election duty.
-
-ORIGINAL ANNOUNCEMENT:
-Title: {original['title']}
-Content:
-{original['content']}
-
-OUTPUT:
-- Provide ONLY the fully translated content in {target_language}, with proper Markdown
-- Start directly with the ## heading
-- Do NOT include preambles, notes, or explanations
-- Translate all local words into {target_language} clearly
+OUTPUT: Only the state name in {target_language}.
 """

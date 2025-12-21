@@ -1,11 +1,11 @@
 from app_types.TranslateAnnouncement import TranslateAnnouncement
-from prompts.translate_announcement import get_Announcement_title_prompt,get_Announcement_content_prompt,get_Announcement_description_prompt,get_Announcement_state_prompt
+from prompts.translate_announcement import get_Announcement_title_prompt, get_Announcement_content_prompt, get_Announcement_description_prompt, get_Announcement_state_prompt
 from typing import TypedDict
 from datetime import date
-import httpx
 from utils.format_announcement_date import format_announcement_date
-from utils.call_ollama import call_ollama
-
+from utils.call_cloudfree_api import call_cloudflare
+from utils.is_big_content import is_big_content
+from utils.generate_overview_big_text import generate_overview_big_text
 
 class Announcement(TypedDict):
     title: str
@@ -15,63 +15,34 @@ class Announcement(TypedDict):
     state: str
     originalAnnouncementId: str
 
-
-
 async def translate_announcement(
     announcement: Announcement, 
     target_language: str,
-    max_retries: int = 3,
-    debug: bool = False
-) -> TranslateAnnouncement | str:
+) -> list[TranslateAnnouncement]:
     
     try:
-        
         translated_title_prompt = get_Announcement_title_prompt(announcement, target_language)
-        translated_description_prompt = get_Announcement_description_prompt(announcement, target_language)
         translate_state_prompt = get_Announcement_state_prompt(announcement, target_language)
-        translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
 
-        timeout = httpx.Timeout(
-            connect=10.0,
-            read=None,   
-            write=10.0,
-            pool=10.0
-        )
 
-        async with httpx.AsyncClient(timeout=timeout) as ollama_client:
-            translated_title = await call_ollama(
-                prompt=translated_title_prompt,
-                target_language=target_language,
-                client=ollama_client
-                )
-    
-            
-            translated_content = await call_ollama(
-                prompt=translated_content_prompt,
-                target_language=target_language,
-                client=ollama_client
-            )
-            
-            
-            translated_state = await call_ollama(
-                prompt=translate_state_prompt,
-                target_language=target_language,
-                client=ollama_client
-            )
-            
-            
-            translated_description = await call_ollama(
-                prompt=translated_description_prompt,
-                target_language=target_language,
-                client=ollama_client
-            )
+        if is_big_content(announcement["content"]):
+            overview = await generate_overview_big_text(announcement["content"])
+            translated_content_prompt = get_Announcement_content_prompt({"content": overview}, target_language)
+        else:
+            translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
 
+        translated_title = await call_cloudflare(translated_title_prompt, max_tokens=128)
+        translated_content = await call_cloudflare(translated_content_prompt)
+        translated_state = await call_cloudflare(translate_state_prompt, max_tokens=32)
+        
+        translated_description_prompt = get_Announcement_description_prompt(translated_content, target_language)
+        translated_description = await call_cloudflare(translated_description_prompt, max_tokens=256)
 
         formatted_date = format_announcement_date(announcement.get("date"))
     
         translated = {
             "title": translated_title,
-            "content":translated_content,
+            "content": translated_content,
             "description": translated_description,
             "state": translated_state,
             "originalAnnouncementId": announcement["originalAnnouncementId"],
@@ -88,14 +59,12 @@ async def translate_announcement(
         }
 
     except Exception as e:
-        
         error_msg = str(e)
-
         print(f"❌ failed for {target_language}: {error_msg} id:{announcement['originalAnnouncementId']}")
         
         return {
             "success": False,
             "language": target_language,
             "originalAnnouncementId": announcement["originalAnnouncementId"],
-            "error": str(e)
+            "error": error_msg
         }

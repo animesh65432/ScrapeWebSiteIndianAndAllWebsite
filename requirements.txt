@@ -6,6 +6,7 @@ beautifulsoup4==4.14.2
 brotli==1.2.0
 bs4==0.0.2
 cachetools==6.2.2
+cerebras_cloud_sdk==1.59.0
 certifi==2025.11.12
 charset-normalizer==3.4.4
 ci-info==0.3.0
