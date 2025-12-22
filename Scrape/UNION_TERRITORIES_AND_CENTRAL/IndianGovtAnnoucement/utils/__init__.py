@@ -65,7 +65,7 @@ async def scrape_website(url:str,base_url:str="https://www.pib.gov.in/Allrel.asp
                     "title": title.strip(),
                     "link": href,
                     "content": content,
-                    "state": "IndianGovtAnnouncement"
+                    "state": "IndianGovt"
                 })
         
         return announcements

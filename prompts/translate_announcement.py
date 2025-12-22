@@ -93,15 +93,34 @@ OUTPUT: Only the description sentence.
 """
 
 def get_Announcement_state_prompt(original: Announcement, target_language: str) -> str:
+    indian_govt_translations = {
+        "English": "IndiaGovt",
+        "Hindi": "भारत सरकार",
+        "Bengali": "ভারত সরকার",
+        "Tamil": "இந்திய அரசு",
+        "Telugu": "భారత ప్రభుత్వం",
+        "Marathi": "भारत सरकार",
+        "Gujarati": "ભારત સરકાર",
+        "Kannada": "ಭಾರತ ಸರ್ಕಾರ",
+        "Malayalam": "ഇന്ത്യ ഗവൺമെന്റ്",
+        "Punjabi": "ਭਾਰਤ ਸਰਕਾਰ"
+    }
+    
+    govt_translation = indian_govt_translations.get(target_language, "IndiaGovt")
+    
     return f"""
 Translate this Indian state name to {target_language}: {original['state']}
 
 Requirements:
 - Use the official {target_language} name for this Indian state
-- If the state name is not from India, return "IndianGovt" translated to {target_language}
+- If the state name is "IndiaGovt" or not a valid Indian state, return: "{govt_translation}"
 - Return ONLY the translated state name, nothing else
+- Do not include any explanation or additional text
 
-Example for Hindi:
+Examples for Hindi:
 Input: "Maharashtra"
 Output: "महाराष्ट्र"
+
+Input: "IndiaGovt"
+Output: "भारत सरकार"
 """
