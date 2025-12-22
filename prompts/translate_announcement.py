@@ -94,9 +94,14 @@ OUTPUT: Only the description sentence.
 
 def get_Announcement_state_prompt(original: Announcement, target_language: str) -> str:
     return f"""
-Translate this Indian state name: {original['state']}
+Translate this Indian state name to {target_language}: {original['state']}
 
-Use the official {target_language} name for this state.
+Requirements:
+- Use the official {target_language} name for this Indian state
+- If the state name is not from India, return "IndianGovt" translated to {target_language}
+- Return ONLY the translated state name, nothing else
 
-OUTPUT: Only the state name in {target_language}.
+Example for Hindi:
+Input: "Maharashtra"
+Output: "महाराष्ट्र"
 """
