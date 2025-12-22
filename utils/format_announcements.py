@@ -32,7 +32,7 @@ def format_announcement(doc: dict) -> Announcement:
         source_link=doc.get("source_link", ""),
         date=formatted_date,  
         state=doc.get("state", ""),
-        originalAnnouncementId=str(doc.get("_id"))
+        announcementId=str(doc.get("_id"))
     )
 
 def format_announcements (docs: list[Announcement]) -> list[Announcement]:
