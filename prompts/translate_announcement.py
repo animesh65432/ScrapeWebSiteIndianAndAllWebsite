@@ -85,7 +85,6 @@ VERIFICATION CHECKLIST BEFORE SUBMITTING:
 □ Used ONLY {target_language} script throughout (check every word!)
 □ Wrote all 4 complete bullet points
 □ Each bullet has 10-20 words
-□ Total is 150-200 words
 □ Metadata matches source structure
 □ No mixed scripts from other languages
 
