@@ -11,8 +11,7 @@ async def generate_overview_big_text(text: str) -> str:
         for i, chunk in enumerate(chunks):
             try:
                 summary = await call_cloudflare(
-                    get_chunk_summary_prompt(chunk),
-                    max_tokens=128
+                    get_chunk_summary_prompt(chunk)
                 )
                 summaries.append(summary)
             except Exception as e:
@@ -25,8 +24,7 @@ async def generate_overview_big_text(text: str) -> str:
         combined_summaries = "\n".join(summaries)
 
         final_overview = await call_cloudflare(
-            get_final_overview_prompt(combined_summaries),
-            max_tokens=512
+            get_final_overview_prompt(combined_summaries)
         )
 
         return final_overview

@@ -13,9 +13,9 @@ class Announcement(TypedDict):
     source_link: str
     date: date
     state: str
-    originalAnnouncementId: str
+    announcementId: str
 
-async def translate_announcement(
+async def translate_announcement_english(
     announcement: Announcement, 
     target_language: str,
 ) -> list[TranslateAnnouncement]:
@@ -31,12 +31,12 @@ async def translate_announcement(
         else:
             translated_content_prompt = get_Announcement_content_prompt(announcement, target_language)
 
-        translated_title = await call_cloudflare(translated_title_prompt, max_tokens=128)
+        translated_title = await call_cloudflare(translated_title_prompt)
         translated_content = await call_cloudflare(translated_content_prompt)
-        translated_state = await call_cloudflare(translate_state_prompt, max_tokens=32)
+        translated_state = await call_cloudflare(translate_state_prompt)
         
         translated_description_prompt = get_Announcement_description_prompt(translated_content, target_language)
-        translated_description = await call_cloudflare(translated_description_prompt, max_tokens=256)
+        translated_description = await call_cloudflare(translated_description_prompt)
         
         formatted_date = format_announcement_date(announcement.get("date"))
     
@@ -45,9 +45,9 @@ async def translate_announcement(
             "content": translated_content,
             "description": translated_description,
             "state": translated_state,
-            "originalAnnouncementId": announcement["originalAnnouncementId"],
+            "announcementId": announcement["announcementId"],
             "date": formatted_date,
-            "language": target_language,
+            "language": "en",
             "source_link": announcement["source_link"],
         }
             

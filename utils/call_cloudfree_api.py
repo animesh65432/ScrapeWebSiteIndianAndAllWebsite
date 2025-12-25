@@ -4,8 +4,7 @@ import asyncio
 
 async def call_cloudflare(
     prompt: str,
-    max_tokens: int = 512,
-    model: str = "@cf/google/gemma-3-12b-it",
+    model: str = "@cf/meta/llama-3.1-70b-instruct",
     retries: int = 3,
     delay: int = 3
 ) -> str:
@@ -38,13 +37,12 @@ async def call_cloudflare(
             payload = {
                 "messages": [
                     {"role": "user", "content": prompt}
-                ],
-                "max_tokens": max_tokens
+                ]
             }
             
             for attempt in range(1, retries + 1):
                 try:
-                    response = await client.post(url, headers=headers, json=payload, timeout=30.0)
+                    response = await client.post(url, headers=headers, json=payload, timeout=120.0)
                     
                     # Handle 401 Unauthorized
                     if response.status_code == 401:

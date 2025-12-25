@@ -12,7 +12,7 @@ def translate_content(content: str, target_language: str, source_link: str = "")
     # SMALL: Translate directly (reduced from 15000 to 8000)
     if content_length < 8000:
         prompt = f"Translate to {target_language}:\n\n{content}"
-        return call_cloudflare(prompt, max_tokens=1500)
+        return call_cloudflare(prompt)
     
     # HUGE: Create summary only
     if content_length > 80000:
@@ -22,7 +22,7 @@ def translate_content(content: str, target_language: str, source_link: str = "")
 {content[:15000]}
 
 Summary:"""
-        summary = call_cloudflare(prompt, max_tokens=800)
+        summary = call_cloudflare(prompt)
         return f"[SUMMARY]\n\n{summary}\n\n[Full document: {source_link}]"
     
     # LARGE: Split into SMALLER chunks (changed from 10000 to 5000)

@@ -6,7 +6,7 @@ async def insert_translate_announcements(translations: list[TranslateAnnouncemen
         for translation in translations:
 
             existing_translation = await TranslateAnnouncementsDbService.check_existing_translation(
-               originalAnnouncementId=translation['originalAnnouncementId'],
+               announcementId=translation['announcementId'],
                language=translation['language'] 
             )
 
@@ -16,7 +16,7 @@ async def insert_translate_announcements(translations: list[TranslateAnnouncemen
 
                 print(f"Inserted translation with id: {translation_id}")
             else:
-                print(f"Translation already exists for originalAnnouncementId: {translation['originalAnnouncementId']} in language: {translation['language']}")
+                print(f"Translation already exists for announcementId: {translation['announcementId']} in language: {translation['language']}")
 
         return "Done with inserting translations"
     except Exception as e:

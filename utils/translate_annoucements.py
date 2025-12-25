@@ -1,54 +1,76 @@
 from app_types.TranslateAnnouncement import TranslateAnnouncement
-from .translate_announcement import translate_announcement
+from .translate_announcement_english import translate_announcement_english
+from utils.translate_announcement_indianlan import translate_announcement_indianLanguages
+from utils.languages import INDIAN_LANGUAGES
 from typing import TypedDict
 from datetime import date
-from utils.languages import LanGuaGes as languages
 import asyncio
 
+
 class Announcement(TypedDict):
-    title:str
-    content:str
-    source_link:str
-    date:date
-    state:str
-    originalAnnouncementId:str
+    title: str
+    content: str
+    source_link: str
+    date: date
+    state: str
+    announcementId: str
+
 
 async def translate_announcements(
     announcements: list[Announcement]
 ) -> list[TranslateAnnouncement]:
-    MAX_CONCURRENT = 1
-    semaphore = asyncio.Semaphore(MAX_CONCURRENT)
 
-    async def translate_with_semaphore(announcement: Announcement, lang: str):
+    semaphore = asyncio.Semaphore(1)  
+
+    async def process_announcement(announcement: Announcement):
         async with semaphore:
-            print(f"🔄 Translating to {lang}: {announcement['title'][:30]}...")
-            return await translate_announcement(announcement, lang)
+            print(f"🔄 Translating to English: {announcement['title']}")
 
-    tasks = [
-        translate_with_semaphore(announcement, lang)
-        for announcement in announcements
-        for lang in languages
-    ]
+            # 1️⃣ English translation
+            english_result = await translate_announcement_english(
+                announcement,
+                "en"
+            )
 
+            if not english_result["success"]:
+                return [english_result]
+
+            english_data = english_result["data"]
+
+            # ✅ INSERT ENGLISH
+            all_results = [english_data]
+
+            print(f"✅ English inserted: {english_data['title']}")
+
+            # 2️⃣ Indian languages
+            for lang in INDIAN_LANGUAGES:
+                print(f"🌐 Translating → {lang}: {english_data['title']}")
+
+                result = await translate_announcement_indianLanguages(
+                    english_data,
+                    lang
+                )
+
+                if result["success"]:
+                    all_results.append(result["data"])
+
+            return all_results
+
+    tasks = [process_announcement(a) for a in announcements]
     results = await asyncio.gather(*tasks, return_exceptions=True)
 
-    successful_translations = []
-    failed_translations = []
+    successful = []
+    failed = []
 
     for r in results:
         if isinstance(r, Exception):
-            failed_translations.append({
-                "success": False,
-                "error": str(r)
-            })
-        elif r["success"] is True:
-            successful_translations.append(r["data"])
+            failed.append({"error": str(r)})
         else:
-            failed_translations.append(r)
+            successful.extend(r)
 
     print(
-        f"✅ Success: {len(successful_translations)} | "
-        f"❌ Failed: {len(failed_translations)}"
+        f"✅ Total saved translations: {len(successful)} | "
+        f"❌ Failed batches: {len(failed)}"
     )
 
-    return successful_translations
+    return successful

@@ -12,7 +12,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
 
     env:
       SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
@@ -24,6 +24,7 @@ jobs:
       CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.CLOUDFARE_MODEL_API_TOKEN }}
       SECOND_CLOUDFARE_MODEL_ACCOUNT_ID: ${{ secrets.SECOND_CLOUDFARE_MODEL_ACCOUNT_ID }}
       SECOND_CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.SECOND_CLOUDFARE_MODEL_API_TOKEN }}
+      AIBHARAT_URL: ${{ secrets.AIBHARAT_URL }}
 
     steps:
       - name: Checkout code

@@ -22,23 +22,23 @@ class TranslateAnnouncementsDbService:
         data = announcement.copy()
 
      
-        if isinstance(data["originalAnnouncementId"], str):
-            data["originalAnnouncementId"] = ObjectId(data["originalAnnouncementId"])
+        if isinstance(data["announcementId"], str):
+            data["announcementId"] = ObjectId(data["announcementId"])
 
         result = await collection.insert_one(data)
         return result.inserted_id
     
 
     @classmethod
-    async def check_existing_translation(cls, originalAnnouncementId: str, language: str) -> bool:
+    async def check_existing_translation(cls,announcementId: str, language: str) -> bool:
         collection = await cls.get_collection()
 
       
-        if isinstance(originalAnnouncementId, str):
-            originalAnnouncementId = ObjectId(originalAnnouncementId)
+        if isinstance(announcementId, str):
+            announcementId = ObjectId(announcementId)
 
         existing = await collection.find_one({
-            "originalAnnouncementId": originalAnnouncementId,
+            "announcementId":  announcementId,
             "language": language
         })
 
