@@ -27,6 +27,9 @@ def get_Announcement_summary_section_prompt(original: Announcement, target_langu
     
     metadata_line = " | ".join(metadata_parts)
     
+    # Pre-compute the content prefix
+    content_prefix = f"{metadata_line}\n\n" if metadata_parts else ""
+    
     return f"""Create a summary section in {target_language}.
 
 SOURCE:
@@ -36,7 +39,7 @@ OUTPUT FORMAT (JSON):
 {{
   "type": "summary",
   "heading": "[{target_language} word for 'Summary']",
-  "content": "{metadata_line + '\\n\\n' if metadata_parts else ''}[2-3 sentences: WHO did WHAT, WHEN, WHERE, WHY]"
+  "content": "{content_prefix}[2-3 sentences: WHO did WHAT, WHEN, WHERE, WHY]"
 }}
 
 REQUIREMENTS:
@@ -47,7 +50,6 @@ REQUIREMENTS:
 {f"- Start with metadata: {metadata_line}" if metadata_parts else ""}
 
 OUTPUT (valid JSON only):"""
-
 
 def get_Announcement_details_section_prompt(original: Announcement, target_language: str) -> str:
     """Generate details section only"""
