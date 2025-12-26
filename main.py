@@ -4,6 +4,7 @@ from utils.classify_announcement_or_news import classify_announcement_or_news
 from utils.scrapthepdfcontent import extract_text_from_pdf_bytes
 from utils.insert_annoucements_db import insert_annoucements_db
 from service.Faiss import FaissService
+from service.db.Original_Annoucements import OriginalAnnouncementsDbService
 from utils.insert_translate_annoucements import insert_translate_announcements
 from utils.load_all_regional_data import load_all_regional_data
 from utils.format_announcements import format_announcements
