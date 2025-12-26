@@ -12,7 +12,7 @@ import asyncio
 async def scrape_website(url: str):
     driver = None
     try:
-        driver = await create_driver(use_scraperapi=True)
+        driver = await create_driver()
     
         if not await load_with_retry(driver, url, html_element="table",retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")

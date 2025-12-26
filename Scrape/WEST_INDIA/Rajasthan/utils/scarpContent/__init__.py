@@ -7,7 +7,7 @@ import asyncio
 async def scarpContent(url: str):
     driver = None
     try:
-        driver = await create_driver(use_scraperapi=True)
+        driver = await create_driver()
 
         # Wait for main content to appear
         if not await load_with_retry(

@@ -16,7 +16,7 @@ async def scrape_website(url: str, days_back: int = 1):
     """
     driver = None
     try:
-        driver = await create_driver(use_scraperapi=True)
+        driver = await create_driver()
         if not driver:
             print(f"[scrape_website] Failed to create driver for {url}")
             return []

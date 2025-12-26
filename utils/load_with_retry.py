@@ -42,9 +42,9 @@ async def load_with_retry(
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {url}...")
+            print(f"[Retry {attempt}/{retries}] Loading {config['REVERSE_PROXY'] + url}...")
             
-            await loop.run_in_executor(None, lambda: driver.get(url))
+            await loop.run_in_executor(None, lambda: driver.get(config['REVERSE_PROXY'] + url))
             
             # Small delay to let page start loading
             await asyncio.sleep(2)
