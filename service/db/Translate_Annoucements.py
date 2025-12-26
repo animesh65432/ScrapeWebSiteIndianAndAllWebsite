@@ -21,7 +21,6 @@ class TranslateAnnouncementsDbService:
        
         data = announcement.copy()
 
-     
         if isinstance(data["announcementId"], str):
             data["announcementId"] = ObjectId(data["announcementId"])
 
