@@ -21,7 +21,7 @@ async def main():
         classified_announcements = await classify_announcement_or_news(unique_announcements)
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
         new_annoucments = await insert_annoucements_db(announcements_with_pdf_text)
-        fromated_res = format_announcements(new_annoucments[:1])
+        fromated_res = format_announcements(new_annoucments)
         translate_res = await translate_announcements(fromated_res)
         await insert_translate_announcements(translations=translate_res)
         
