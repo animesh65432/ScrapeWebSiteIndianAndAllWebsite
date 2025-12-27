@@ -14,7 +14,7 @@ from datetime import date
 from utils.format_announcement_date import format_announcement_date
 from utils.call_cloudfree_api import call_cloudflare
 from utils.is_big_content import is_big_content
-from utils.generate_overview_big_text import generate_overview_big_text
+from utils.generate_overview_big_text import generate_overview_big_text_from_title
 import json
 import re
 
@@ -70,7 +70,7 @@ async def translate_announcement_english(
     for attempt in range(1, max_retries + 1):
         try:
             if is_big_content(announcement["content"]):
-                overview = await generate_overview_big_text(announcement["title"])
+                overview = await generate_overview_big_text_from_title(announcement["title"])
                 announcement_copy = announcement.copy()
                 announcement_copy["content"] = overview
             else:
