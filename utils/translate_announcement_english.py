@@ -70,7 +70,7 @@ async def translate_announcement_english(
     for attempt in range(1, max_retries + 1):
         try:
             if is_big_content(announcement["content"]):
-                overview = await generate_overview_big_text(announcement["content"])
+                overview = await generate_overview_big_text(announcement["title"])
                 announcement_copy = announcement.copy()
                 announcement_copy["content"] = overview
             else:
