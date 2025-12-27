@@ -13,7 +13,8 @@ async def load_with_retry(
     part: str = "",
     retries: int = 3,
     delay: int = 3,
-    timeout: int = 30
+    timeout: int = 30,
+    dont_use_proxy: bool = False
 ) -> bool:
 
     if config['REVERSE_PROXY'] is None or len(config['REVERSE_PROXY'].strip()) == 0:
@@ -38,13 +39,19 @@ async def load_with_retry(
         delay = max(delay, 5)  # Longer delay between retries
         retries = max(retries, 4)  # More retries in CI
 
+    if dont_use_proxy:
+        print("⚠️  Not using reverse proxy as per parameter")
+        target_url = url
+    else:
+        target_url = config['REVERSE_PROXY'] + url
+
     loop = asyncio.get_event_loop()
 
     for attempt in range(1, retries + 1):
         try:
-            print(f"[Retry {attempt}/{retries}] Loading {config['REVERSE_PROXY'] + url}...")
+            print(f"[Retry {attempt}/{retries}] Loading {url}...")
             
-            await loop.run_in_executor(None, lambda: driver.get(config['REVERSE_PROXY'] + url))
+            await loop.run_in_executor(None, lambda: driver.get(target_url))
             
             # Small delay to let page start loading
             await asyncio.sleep(2)

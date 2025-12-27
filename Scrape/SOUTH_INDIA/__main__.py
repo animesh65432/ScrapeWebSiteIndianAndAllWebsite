@@ -3,6 +3,7 @@ from .Karnataka import GetKarnatakaGovtAnnoucements
 from .Kerala import GetKeralaGovtAnnoucements
 from .TamilNadu import GetallTamilNaduAnnoucements
 from .Telangana import GetAllTelanganaAnnoucements
+from .Puducherry import GetPuducherryAnnoucements
 from utils.save_to_json import save_to_json
 from utils.cleanup_chrome_processes import cleanup_chrome_processes
 import asyncio
@@ -24,6 +25,7 @@ async def GetSouthIndiaAnnouncements():
         ("Kerala", GetKeralaGovtAnnoucements),
         ("TamilNadu", GetallTamilNaduAnnoucements),
         ("Telangana", GetAllTelanganaAnnoucements),
+        ("Puducherry",GetPuducherryAnnoucements)
     ]
     
     failed_scrapers = []

@@ -2,29 +2,13 @@ from selenium import webdriver
 import os
 
 
-def Get_Chrome_Options(use_scraperapi:bool,api_key:str):
+def Get_Chrome_Options():
     """Create Chrome options with stability and performance settings"""
     options = webdriver.ChromeOptions()
     
     # Detect GitHub Actions environment
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
 
-    if use_scraperapi:
-        if not api_key:
-            raise ValueError("ScraperAPI key not provided. Set SCRAPERAPI_KEY env var or pass scraperapi_key parameter")
-
-        PROXY = "proxy-server.scraperapi.com:8001"
-        options.add_argument(f'--proxy-server=http://{PROXY}')
-        
-       
-        proxy_user = f"scraperapi.country_code=in"
-        options.add_argument(f'--proxy-auth={proxy_user}:{api_key}')
-        
-        print(f"✅ ScraperAPI proxy configured: {PROXY}")
-
-        if is_ci:
-            print("ℹ️  Running in GitHub Actions with ScraperAPI proxy")
-    
     # Essential stability flags
     options.add_argument('--headless=new')
     options.add_argument('--disable-dev-shm-usage')

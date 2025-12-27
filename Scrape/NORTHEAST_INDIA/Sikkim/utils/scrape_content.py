@@ -9,7 +9,7 @@ async def scrape_content(url):
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url, retries=3, delay=3):
+        if not await load_with_retry(driver, url, retries=3, delay=3,dont_use_proxy=True):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return None
