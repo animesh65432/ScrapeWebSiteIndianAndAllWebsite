@@ -1,12 +1,9 @@
 name: Scraper Central India
+
 on:
   schedule:
     - cron: "30 6 * * *"
-    - cron: "0 13 * * *"
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   start-ec2:
@@ -14,14 +11,14 @@ jobs:
     outputs:
       instance-id: ${{ steps.start.outputs.instance-id }}
     steps:
-      - name: Configure AWS Credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Start EC2 Instance
+      - name: Start EC2
         id: start
         run: |
           aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
@@ -31,34 +28,36 @@ jobs:
           sleep 90
 
   scrape:
-  needs: start-ec2
-  runs-on: self-hosted
-  timeout-minutes: 40
-  steps:
-    - uses: actions/checkout@v4
-    - name: Scrape Central India
-      working-directory: _work/ScrapeWebSiteIndianAndAllWebsite/ScrapeWebSiteIndianAndAllWebsite
-      run: |
-        source venv/bin/activate
-        python3 -m Scrape.CENTRAL_INDIA
-    - name: Upload JSON Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: central-india-${{ github.run_id }}
-        path: _work/ScrapeWebSiteIndianAndAllWebsite/ScrapeWebSiteIndianAndAllWebsite/data/CentralIndia/
+    needs: start-ec2
+    runs-on: self-hosted
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scrape Central India
+        working-directory: _work/ScrapeWebSiteIndianAndAllWebsite/ScrapeWebSiteIndianAndAllWebsite
+        run: |
+          source venv/bin/activate
+          python3 -m Scrape.CENTRAL_INDIA
+
+      - name: Upload JSON Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-india-${{ github.run_id }}
+          path: _work/ScrapeWebSiteIndianAndAllWebsite/ScrapeWebSiteIndianAndAllWebsite/data/CentralIndia/
 
   stop-ec2:
-    needs: [start-ec2, scrape, commit-json]
+    needs: [start-ec2, scrape]
     runs-on: ubuntu-latest
     steps:
-      - name: Configure AWS Credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Stop EC2 Instance
+      - name: Stop EC2
         run: |
-          aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          aws ec2 stop-instances --instance-ids ${{ needs.start-ec2.outputs.instance-id }}
           echo "✅ EC2 stopped!"
