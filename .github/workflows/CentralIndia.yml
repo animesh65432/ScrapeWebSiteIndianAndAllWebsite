@@ -34,22 +34,50 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug Directory Structure
+        run: |
+          echo "=== Current Working Directory ==="
+          pwd
+          echo ""
+          echo "=== Contents of Current Directory ==="
+          ls -la
+          echo ""
+          echo "=== Contents of Parent Directory ==="
+          cd .. && ls -la && cd -
+          echo ""
+          echo "=== Full Path Structure ==="
+          find . -maxdepth 2 -type d
+
       - name: Scrape Central India
         run: |
+          echo "=== Starting Scrape Process ==="
           pwd
-          ls -la
-          cd ScrapeWebSiteIndianAndAllWebsite
+
+          # Check if we need to navigate to subdirectory
+          if [ -d "ScrapeWebSiteIndianAndAllWebsite" ]; then
+            echo "Found ScrapeWebSiteIndianAndAllWebsite subdirectory, navigating into it..."
+            cd ScrapeWebSiteIndianAndAllWebsite
+          else
+            echo "Already in the correct directory (no subdirectory found)"
+          fi
+
+          pwd
+          echo "=== Running Python Scraper ==="
           python3 -m Scrape.CentralIndia
 
       - name: Upload JSON Artifact
         uses: actions/upload-artifact@v4
         with:
           name: central-india-${{ github.run_id }}
-          path: $GITHUB_WORKSPACE/ScrapeWebSiteIndianAndAllWebsite/data/CentralIndia/
+          path: |
+            data/CentralIndia/
+            ScrapeWebSiteIndianAndAllWebsite/data/CentralIndia/
+        if-no-files-found: warn
 
   stop-ec2:
     needs: [start-ec2, scrape]
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
