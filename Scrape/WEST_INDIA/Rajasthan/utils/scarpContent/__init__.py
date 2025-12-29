@@ -16,7 +16,6 @@ async def scarpContent(url: str):
             html_element="div",  # corrected
             retries=3, 
             delay=3,
-            dont_use_proxy=True
         ):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)

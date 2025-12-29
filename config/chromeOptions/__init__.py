@@ -24,6 +24,7 @@ def Get_Chrome_Options():
     options.add_argument('--disable-renderer-backgrounding')
     options.add_argument('--disable-breakpad')
     
+    
     # Prevent crashes
     options.add_argument('--disable-crash-reporter')
     options.add_argument('--disable-hang-monitor')

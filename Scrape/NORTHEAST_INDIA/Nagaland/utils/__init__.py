@@ -11,7 +11,7 @@ async def scarp_website(url: str):
     try:
         driver = await create_driver()
         
-        if not await load_with_retry(driver, url,html_element="table",part="northeast_india", retries=3, delay=3,dont_use_proxy=True):
+        if not await load_with_retry(driver, url,html_element="table",part="northeast_india", retries=3, delay=3):
             print("❌ Page failed to load after 3 retries")
             await safe_quit(driver=driver)
             return []
@@ -44,7 +44,6 @@ async def scarp_website(url: str):
             if len(cols) < 4:
                 continue
 
-            serial = cols[0].text.strip()
             title_tag = cols[1].find("a")
             title = title_tag.text.strip() if title_tag else cols[1].text.strip()
             category = cols[2].text.strip()

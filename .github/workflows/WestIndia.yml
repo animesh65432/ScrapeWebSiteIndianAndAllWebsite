@@ -10,60 +10,68 @@ permissions:
   contents: write
 
 jobs:
-  scrape:
+  start-ec2:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
-
-    env:
-      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
-      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
-
+    outputs:
+      instance-id: ${{ steps.start.outputs.instance-id }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          python-version: "3.11"
-          cache: pip
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
 
-      - name: Install dependencies
+      - name: Start EC2
+        id: start
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          echo "instance-id=${{ secrets.EC2_INSTANCE_ID }}" >> $GITHUB_OUTPUT
+          echo "✅ EC2 started! Waiting 90s..."
+          sleep 90
 
-      - name: Scrape Union Territories And Central India
+  scrape:
+    needs: start-ec2
+    runs-on: self-hosted
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: pip3 install -r requirements_scrape.txt --break-system-packages
+
+      - name: Scrape West India
         run: python3 -m Scrape.WEST_INDIA
-        continue-on-error: true
 
-      - name: Ensure  westIndia file exist
+      - name: Commit and Push Data
         run: |
-          # Create folder if missing
-          if [ ! -d "data/westIndia" ]; then
-            echo "📁 Folder data/westIndia does not exist. Creating it..."
-            mkdir -p data/westIndia
-          fi
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add data/WestIndia/
+          git diff --staged --quiet || git commit -m "Update West India data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
 
-          # Create empty JSON only if no JSON exists
-          if [ -z "$(ls -1 data/westIndia/*.json 2>/dev/null)" ]; then
-            echo "[]" > data/westIndia/empty_$(date +'%Y%m%d_%H%M').json
-            echo "🆕 Created empty JSON file because folder had no JSON files."
-          fi
-
-      - name: Upload results
-        if: always()
+      - name: Upload JSON Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Union Territories And Central-data
-          path: data/westIndia/*.json
-          retention-days: 7
+          name: East-india-${{ github.run_id }}
+          path: data/WestIndia/
+          if-no-files-found: warn
 
-      - name: Commit results
-        if: always()
+  stop-ec2:
+    needs: [start-ec2, scrape]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Stop EC2
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/westIndia/ || true
-          git diff --staged --quiet || git commit -m "📊 westIndia data - $(date +'%Y-%m-%d %H:%M')"
-          git push || true
+          aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          echo "✅ EC2 stopped!"

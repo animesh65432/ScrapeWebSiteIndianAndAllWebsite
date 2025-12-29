@@ -105,5 +105,4 @@ config = {
     "SECOND_CLOUDFARE_MODEL_ACCOUNT_ID" : os.getenv("SECOND_CLOUDFARE_MODEL_ACCOUNT_ID"),
     "SECOND_CLOUDFARE_MODEL_API_TOKEN" : os.getenv("SECOND_CLOUDFARE_MODEL_API_TOKEN"),
     "AIBHARAT_URL" : os.getenv("AIBHARAT_URL"),
-    "REVERSE_PROXY": "https://reverse-proxy.duttaanimesh443.workers.dev/?url=",
 }

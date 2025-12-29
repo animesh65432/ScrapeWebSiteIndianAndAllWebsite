@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from datetime import datetime
 from utils.load_with_retry import load_with_retry
 from config.create_driver import create_driver
@@ -10,7 +9,7 @@ async def scrape_website(url: str):
     try:
         driver = await create_driver()
 
-        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3,dont_use_proxy=True):
+        if not await load_with_retry(driver, url=url, html_element=".col-lg-6.col-md-6.col-12",part="central_India" ,retries=3, delay=3):
             print("❌ Page failed to load after retries")
             await safe_quit(driver)
             return []
