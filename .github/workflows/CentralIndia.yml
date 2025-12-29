@@ -32,7 +32,7 @@ jobs:
 
   scrape:
     needs: start-ec2
-    runs-on: [self-hosted, ec2-mumbai]
+    runs-on: self-hosted
     timeout-minutes: 40
     steps:
       - name: Checkout code
