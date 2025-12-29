@@ -2,8 +2,11 @@ name: Scraper Central India
 
 on:
   schedule:
-    - cron: "30 6 * * *"
+    - cron: "0 14 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   start-ec2:
