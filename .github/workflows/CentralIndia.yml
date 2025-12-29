@@ -34,6 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Dependencies
+        run: pip3 install -r requirements_scrape.txt
+
       - name: Scrape Central India
         run: python3 -m Scrape.CENTRAL_INDIA
 
