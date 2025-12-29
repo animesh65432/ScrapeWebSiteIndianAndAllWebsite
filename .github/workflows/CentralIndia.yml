@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Dependencies
-        run: pip3 install -r requirements_scrape.txt
+        run: pip3 install -r requirements_scrape.txt --break-system-packages
 
       - name: Scrape Central India
         run: python3 -m Scrape.CENTRAL_INDIA
@@ -61,5 +61,5 @@ jobs:
 
       - name: Stop EC2
         run: |
-          aws ec2 stop-instances --instance-ids ${{ needs.start-ec2.outputs.instance-id }}
+          aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
           echo "✅ EC2 stopped!"
