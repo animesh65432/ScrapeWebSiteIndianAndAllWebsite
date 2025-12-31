@@ -29,9 +29,9 @@ async def load_with_retry(
     print(f"🔄 Loading URL for part: {part}")
     
     if is_ci:
-        timeout = max(timeout, 60)  # Minimum 60s timeout in CI
-        delay = max(delay, 5)  # Longer delay between retries
-        retries = max(retries, 4)  # More retries in CI
+        timeout = max(timeout, 60)
+        delay = max(delay, 5)
+        retries = max(retries, 4)
 
     loop = asyncio.get_event_loop()
 
@@ -39,7 +39,8 @@ async def load_with_retry(
         try:
             print(f"[Retry {attempt}/{retries}] Loading {url}...")
             
-            await loop.run_in_executor(None, lambda: url)
+            # FIX: Actually navigate to the URL
+            await loop.run_in_executor(None, lambda: driver.get(url))
             
             # Small delay to let page start loading
             await asyncio.sleep(2)
@@ -58,7 +59,6 @@ async def load_with_retry(
         except TimeoutException as e:
             print(f"[Retry {attempt}/{retries}] ❌ Timeout waiting for element: {html_element}")
             
-            # Try to get page title for debugging
             try:
                 title = driver.title
                 print(f"   📄 Page title: {title}")
@@ -67,10 +67,9 @@ async def load_with_retry(
             
             if attempt == retries:
                 print("❌ Max retries reached — giving up")
-                print(f"❌ Page failed to load after {retries} retries")
                 return False
 
-            wait_time = delay * attempt  # Progressive delay
+            wait_time = delay * attempt
             print(f"⏳ Waiting {wait_time}s before retry...")
             await asyncio.sleep(wait_time)
             
@@ -78,16 +77,14 @@ async def load_with_retry(
             error_msg = str(e)
             print(f"[Retry {attempt}/{retries}] ❌ WebDriver error: {error_msg[:200]}")
             
-            # Check for DNS errors
             if "ERR_NAME_NOT_RESOLVED" in error_msg:
                 print(f"   ⚠️  DNS resolution failed - site may be down or geo-restricted")
                 if is_ci:
                     print(f"   ℹ️  This site is known to be unreliable in GitHub Actions")
-                    return False  # Don't retry DNS errors in CI
+                    return False
             
             if attempt == retries:
                 print("❌ Max retries reached — giving up")
-                print(f"❌ Page failed to load after {retries} retries")
                 return False
 
             wait_time = delay * attempt
