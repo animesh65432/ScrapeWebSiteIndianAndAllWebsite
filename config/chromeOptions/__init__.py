@@ -1,4 +1,5 @@
 from selenium import webdriver
+from config import config
 import os
 
 
@@ -16,7 +17,6 @@ def Get_Chrome_Options():
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-extensions')
     options.add_argument('--disable-software-rasterizer')
-    
     # Performance optimization
     options.add_argument('--disable-background-networking')
     options.add_argument('--disable-background-timer-throttling')

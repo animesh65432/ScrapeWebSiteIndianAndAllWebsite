@@ -1,15 +1,29 @@
-from config.http import get_agent
 from bs4 import BeautifulSoup
+import asyncio
+from config.create_driver import create_driver
+from config.safe_quit import safe_quit
+from utils.load_with_retry import load_with_retry
+from config.chromeOptions import Get_Chrome_Options
 from .convert_to_markdown import convert_to_markdown
 
 
-def scrape_content(url):
+async def scrape_content(url):
     try:
-        session = get_agent()
-        response = session.get(url, timeout=10)
-        response.raise_for_status()
+        driver = await create_driver()
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        if not await load_with_retry(driver, url, html_element=".cm-entry-title", retries=3, delay=3):
+            print("❌ Page failed to load after 3 retries")
+            await safe_quit(driver=driver)
+            return None
+        
+        loop = asyncio.get_event_loop()
+
+        html = await loop.run_in_executor(None, lambda: driver.page_source)
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        await safe_quit(driver=driver)
+
 
         # Extract title
         title = ""
@@ -42,4 +56,7 @@ def scrape_content(url):
 
     except Exception as e:
         print(f"Error fetching content: {e}")
+        
+        await safe_quit(driver=driver)
+
         return None

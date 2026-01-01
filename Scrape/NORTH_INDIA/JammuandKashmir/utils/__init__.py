@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from config.create_driver import create_driver
 from utils.load_with_retry import load_with_retry
-import requests
 from typing import List, Dict
 from datetime import datetime 
 from config.safe_quit import safe_quit
@@ -87,12 +86,6 @@ async def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str
                     notifications.append(notification)
         
         return notifications
-
-    except requests.RequestException as e:
-        print(f"Request error: {e}")
-        await safe_quit(driver=driver)
-        driver = None
-        return []
     except Exception as e:
         print(f"Scraping error: {e}")
         await safe_quit(driver=driver)

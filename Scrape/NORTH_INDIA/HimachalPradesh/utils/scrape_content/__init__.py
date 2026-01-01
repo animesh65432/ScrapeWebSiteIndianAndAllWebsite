@@ -1,4 +1,3 @@
-from config.http import get_agent
 from bs4 import BeautifulSoup
 import re
 from config.create_driver import create_driver

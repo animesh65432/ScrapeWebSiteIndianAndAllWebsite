@@ -1,7 +1,5 @@
 from config.create_driver import create_driver
 from utils.load_with_retry import load_with_retry
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from datetime import datetime ,timedelta
