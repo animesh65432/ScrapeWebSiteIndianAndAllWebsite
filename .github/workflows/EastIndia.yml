@@ -81,10 +81,6 @@ jobs:
             echo "✅ Data pushed successfully!"
           fi
 
-          # Delete files after push to save storage
-          rm -f data/EastIndia/*.json
-          echo "✅ Local data cleaned up"
-
       - name: Upload JSON Artifact
         if: always()
         uses: actions/upload-artifact@v4

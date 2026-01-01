@@ -53,22 +53,22 @@ jobs:
         run: python3 -m Scrape.NORTHEAST_INDIA
 
       - name: Commit and Push Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
-          # Add all files inside the folder
-          git add data/NorthEastIndia/*
+          # Add only JSON files in the folder
+          find data/NorthEastIndia/ -type f -name '*.json' -exec git add {} +
 
-          # Commit if there are changes
-          git diff --staged --quiet || git commit -m "Update NorthEast India data - $(date +'%Y-%m-%d %H:%M:%S')"
-
-          # Push via SSH
-          git remote set-url origin git@github.com:animesh65432/YourRepoName.git
-          git push origin main
-
-          # Delete the folder after push to save space
-          rm -rf data/NorthEastIndia/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update NorthEast India data - $(date +'%Y-%m-%d %H:%M:%S')"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main
+            echo "✅ Data pushed successfully!"
+          fi
 
       - name: Upload JSON Artifact (optional)
         uses: actions/upload-artifact@v4

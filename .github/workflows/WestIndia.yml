@@ -52,20 +52,25 @@ jobs:
       - name: Scrape West India
         run: python3 -m Scrape.WEST_INDIA
 
-      - name: Commit and Push Data
+     - name: Commit and Push Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
-          # Add only files, not the folder itself
-          git add data/WestIndia/*
+          # Add only JSON files in the folder
+          find data/WestIndia/ -type f -name '*.json' -exec git add {} +
 
           # Commit if there are changes
-          git diff --staged --quiet || git commit -m "Update West India data - $(date +'%Y-%m-%d %H:%M:%S')"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "West India data - $(date +'%Y-%m-%d %H:%M:%S')"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main
+            echo "✅ Data pushed successfully!"
+          fi
 
-          # Push via SSH
-          git remote set-url origin git@github.com:animesh65432/YourRepoName.git
-          git push origin main
 
       - name: Upload JSON Artifact (optional)
         uses: actions/upload-artifact@v4
@@ -73,6 +78,25 @@ jobs:
           name: west-india-${{ github.run_id }}
           path: data/WestIndia/
           if-no-files-found: warn
+      
+
+      - name: Cleanup GitHub Runner Cache
+        if: always()
+        run: |
+          echo "🧹 Cleaning GitHub Actions workspace..."
+          rm -rf /home/*/actions-runner/_work/* || true
+
+          echo "🧹 Cleaning pip cache..."
+          rm -rf ~/.cache/pip || true
+
+          echo "🧹 Cleaning temp files..."
+          sudo rm -rf /tmp/* || true
+
+          echo "🧹 Cleaning logs..."
+          sudo journalctl --vacuum-time=1d || true
+
+          echo "✅ Runner cleanup completed"
+
 
   stop-ec2:
     needs: [start-ec2, scrape]
