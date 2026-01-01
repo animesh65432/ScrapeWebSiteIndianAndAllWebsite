@@ -1,5 +1,4 @@
 from selenium import webdriver
-from config import config
 import os
 
 

@@ -25,23 +25,33 @@ jobs:
       - name: Start EC2
         id: start
         run: |
-          aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-          aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' --output text)
+
+          if [ "$STATE" = "stopped" ]; then
+            aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            echo "✅ EC2 started! Waiting 90s for runner to connect..."
+            sleep 90
+          elif [ "$STATE" = "running" ]; then
+            echo "✅ EC2 already running! Waiting 30s..."
+            sleep 30
+          else
+            echo "❌ Instance in unexpected state: $STATE"
+            exit 1
+          fi
+
           echo "instance-id=${{ secrets.EC2_INSTANCE_ID }}" >> $GITHUB_OUTPUT
-          echo "✅ EC2 started! Waiting 90s..."
-          sleep 90
 
   scrape:
     needs: start-ec2
     runs-on: self-hosted
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup SSH for Git Push
-        uses: webfactory/ssh-agent@v0.8.1
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: pip3 install -r requirements_scrape.txt --break-system-packages
@@ -53,29 +63,36 @@ jobs:
         run: python3 -m Scrape.EAST_INDIA
 
       - name: Commit and Push Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
-          # Add only files in the folder
+          # Add only JSON files in the folder
           find data/EastIndia/ -type f -name '*.json' -exec git add {} +
 
           # Commit if there are changes
-          git diff --staged --quiet || git commit -m "Update East India data - $(date +'%Y-%m-%d %H:%M:%S')"
-
-          # Push via SSH
-          git remote set-url origin git@github.com:animesh65432/YourRepoName.git
-          git push origin main
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update East India data - $(date +'%Y-%m-%d %H:%M:%S')"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main
+            echo "✅ Data pushed successfully!"
+          fi
 
           # Delete files after push to save storage
           rm -f data/EastIndia/*.json
+          echo "✅ Local data cleaned up"
 
-      - name: Upload JSON Artifact (optional)
+      - name: Upload JSON Artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: East-india-${{ github.run_id }}
+          name: east-india-${{ github.run_id }}
           path: data/EastIndia/
           if-no-files-found: warn
+          retention-days: 7
 
   stop-ec2:
     needs: [start-ec2, scrape]
@@ -91,5 +108,12 @@ jobs:
 
       - name: Stop EC2
         run: |
-          aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-          echo "✅ EC2 stopped!"
+          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' --output text)
+
+          if [ "$STATE" = "running" ]; then
+            aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            echo "✅ EC2 stopped!"
+          else
+            echo "ℹ️  EC2 already in state: $STATE"
+          fi
