@@ -2,8 +2,8 @@ name: Scraper East India
 
 on:
   schedule:
-    - cron: "30 5 * * *"
-    - cron: "30 12 * * *"
+    - cron: "0 7 * * *" # 12:30 PM IST (noon)
+    - cron: "0 15 * * *" # 8:30 PM IST
   workflow_dispatch:
 
 permissions:
@@ -38,8 +38,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup SSH for Git Push
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Install Dependencies
         run: pip3 install -r requirements_scrape.txt --break-system-packages
+
+      - name: Ensure data folder exists
+        run: mkdir -p data/EastIndia/
 
       - name: Scrape East India
         run: python3 -m Scrape.EAST_INDIA
@@ -48,11 +56,21 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git add data/EastIndia/
-          git diff --staged --quiet || git commit -m "Update East India data - $(date +'%Y-%m-%d %H:%M:%S')"
-          git push
 
-      - name: Upload JSON Artifact
+          # Add only files in the folder
+          find data/EastIndia/ -type f -name '*.json' -exec git add {} +
+
+          # Commit if there are changes
+          git diff --staged --quiet || git commit -m "Update East India data - $(date +'%Y-%m-%d %H:%M:%S')"
+
+          # Push via SSH
+          git remote set-url origin git@github.com:animesh65432/YourRepoName.git
+          git push origin main
+
+          # Delete files after push to save storage
+          rm -f data/EastIndia/*.json
+
+      - name: Upload JSON Artifact (optional)
         uses: actions/upload-artifact@v4
         with:
           name: East-india-${{ github.run_id }}

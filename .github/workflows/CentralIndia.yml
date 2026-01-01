@@ -2,8 +2,8 @@ name: Scraper Central India
 
 on:
   schedule:
-    - cron: "30 6 * * * "
-    - cron: "0 14 * * *"
+    - cron: "30 7 * * *" # 1:00 PM IST (1 hour after noon)
+    - cron: "30 15 * * *" # 9:00 PM IST
   workflow_dispatch:
 
 permissions:
@@ -38,8 +38,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup SSH for Git Push
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Install Dependencies
         run: pip3 install -r requirements_scrape.txt --break-system-packages
+
+      - name: Ensure data folder exists
+        run: mkdir -p data/CentralIndia/
 
       - name: Scrape Central India
         run: python3 -m Scrape.CENTRAL_INDIA
@@ -48,11 +56,21 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git add data/CentralIndia/
-          git diff --staged --quiet || git commit -m "Update Central India data - $(date +'%Y-%m-%d %H:%M:%S')"
-          git push
 
-      - name: Upload JSON Artifact
+          # Add new/updated data
+          git add data/CentralIndia/
+
+          # Commit if there are changes
+          git diff --staged --quiet || git commit -m "Update Central India data - $(date +'%Y-%m-%d %H:%M:%S')"
+
+          # Push via SSH
+          git remote set-url origin git@github.com:animesh65432/YourRepoName.git
+          git push origin main
+
+          # Delete the folder after push to save space
+          rm -rf data/CentralIndia/
+
+      - name: Upload JSON Artifact (optional)
         uses: actions/upload-artifact@v4
         with:
           name: central-india-${{ github.run_id }}
