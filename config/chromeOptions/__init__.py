@@ -1,20 +1,10 @@
 from selenium import webdriver
 import os
-import shutil
-
 
 def Get_Chrome_Options():
     """Create Chrome options with stability and performance settings"""
     options = webdriver.ChromeOptions()
 
-    chrome_path = shutil.which("google-chrome")
-    print(f"[DEBUG] google-chrome path: {chrome_path}")
-
-    if not chrome_path:
-        raise RuntimeError("google-chrome binary not found")
-
-    options.binary_location = chrome_path
-    print(f"[DEBUG] Using Chrome binary: {options.binary_location}")
     
     # Detect GitHub Actions environment
     is_ci = os.getenv('GITHUB_ACTIONS') == 'true'
@@ -74,5 +64,7 @@ def Get_Chrome_Options():
     # Exclude automation flags
     options.add_experimental_option('excludeSwitches', ['enable-automation'])
     options.add_experimental_option('useAutomationExtension', False)
+
+    options.binary_location = "/usr/bin/chromium-browser"
     
     return options
