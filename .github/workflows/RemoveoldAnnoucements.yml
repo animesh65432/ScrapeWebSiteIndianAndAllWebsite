@@ -3,22 +3,53 @@ name: Clean Data JSON Files
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 4 * * *"
+    - cron: "30 18 * * *" # 12:00 AM IST (midnight)
 
-# Add permissions for the workflow
 permissions:
   contents: write
 
 jobs:
-  cleanup:
+  start-ec2:
     runs-on: ubuntu-latest
+    outputs:
+      instance-id: ${{ steps.start.outputs.instance-id }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
 
+      - name: Start EC2
+        id: start
+        run: |
+          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' --output text)
+
+          if [ "$STATE" = "stopped" ]; then
+            aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            echo "✅ EC2 started! Waiting 90s for runner to connect..."
+            sleep 90
+          elif [ "$STATE" = "running" ]; then
+            echo "✅ EC2 already running! Waiting 30s..."
+            sleep 30
+          else
+            echo "❌ Instance in unexpected state: $STATE"
+            exit 1
+          fi
+
+          echo "instance-id=${{ secrets.EC2_INSTANCE_ID }}" >> $GITHUB_OUTPUT
+
+  cleanup-github:
+    needs: start-ec2
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Use the default GITHUB_TOKEN with write permissions
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
@@ -50,7 +81,7 @@ jobs:
           # Commit only if there are changes
           if [[ -n $(git status --porcelain) ]]; then
             git add data/
-            git commit -m "🗑️ Automated cleanup: Remove JSON files from data directory"
+            git commit -m "🗑️ Automated cleanup: Remove old JSON files from data directory"
             
             # Pull with rebase to handle any remote changes, then push
             max_retries=3
@@ -83,15 +114,124 @@ jobs:
 
       - name: Summary
         run: |
-          echo "## Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
+          echo "## GitHub Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Cleanup workflow completed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "✅ GitHub repository cleanup completed!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # Only show file count if data directory exists
           if [ -d "data/" ]; then
             json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
-            echo "📊 Remaining JSON files: $json_count" >> $GITHUB_STEP_SUMMARY
+            echo "📊 Remaining JSON files in GitHub: $json_count" >> $GITHUB_STEP_SUMMARY
           else
             echo "📂 No data directory found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  cleanup-ec2:
+    needs: start-ec2
+    runs-on: self-hosted
+    steps:
+      - name: Display EC2 disk usage before cleanup
+        run: |
+          echo "💾 EC2 Disk usage BEFORE cleanup:"
+          df -h / || true
+          echo ""
+          echo "📁 Data folders:"
+          du -sh data/*/ 2>/dev/null || echo "No data folders found"
+
+      - name: Clean EC2 data folders
+        run: |
+          echo "🗑️ Removing all data folders on EC2..."
+
+          # Remove all region data folders
+          rm -rf data/EastIndia/ || true
+          rm -rf data/WestIndia/ || true
+          rm -rf data/NorthIndia/ || true
+          rm -rf data/SouthIndia/ || true
+          rm -rf data/CentralIndia/ || true
+          rm -rf data/NorthEastIndia/ || true
+          rm -rf data/UnionTerritoriesAndCentral/ || true
+
+          # Alternative: remove entire data directory
+          # rm -rf data/ || true
+
+          echo "✅ Data folders removed!"
+
+      - name: Clean GitHub Actions workspace
+        run: |
+          echo "🧹 Cleaning GitHub Actions workspace..."
+          rm -rf /home/*/actions-runner/_work/_temp/* || true
+          rm -rf /home/*/actions-runner/_work/_actions/* || true
+          echo "✅ Workspace cleaned!"
+
+      - name: Clean pip cache
+        run: |
+          echo "🧹 Cleaning pip cache..."
+          rm -rf ~/.cache/pip/* || true
+          pip3 cache purge 2>/dev/null || true
+          echo "✅ Pip cache cleaned!"
+
+      - name: Clean Python cache
+        run: |
+          echo "🧹 Cleaning Python cache..."
+          find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name "*.pyc" -delete 2>/dev/null || true
+          find . -type f -name "*.pyo" -delete 2>/dev/null || true
+          echo "✅ Python cache cleaned!"
+
+      - name: Clean temp files
+        run: |
+          echo "🧹 Cleaning temp files..."
+          sudo rm -rf /tmp/* || true
+          echo "✅ Temp files cleaned!"
+
+      - name: Clean old logs
+        run: |
+          echo "🧹 Cleaning old system logs (keeping last 1 day)..."
+          sudo journalctl --vacuum-time=1d || true
+          echo "✅ Logs cleaned!"
+
+      - name: Display EC2 disk usage after cleanup
+        run: |
+          echo ""
+          echo "💾 EC2 Disk usage AFTER cleanup:"
+          df -h / || true
+          echo ""
+          echo "📊 Space freed up!"
+
+      - name: EC2 Cleanup Summary
+        run: |
+          echo "## EC2 Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ EC2 cleanup completed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Cleaned Items:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🗑️ All regional data folders" >> $GITHUB_STEP_SUMMARY
+          echo "- 📦 GitHub Actions workspace cache" >> $GITHUB_STEP_SUMMARY
+          echo "- 🐍 Python and pip cache" >> $GITHUB_STEP_SUMMARY
+          echo "- 🗄️ Temporary files" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Old system logs" >> $GITHUB_STEP_SUMMARY
+
+  stop-ec2:
+    needs: [start-ec2, cleanup-github, cleanup-ec2]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Stop EC2
+        run: |
+          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' --output text)
+
+          if [ "$STATE" = "running" ]; then
+            aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+            echo "✅ EC2 stopped!"
+          else
+            echo "ℹ️  EC2 already in state: $STATE"
           fi
