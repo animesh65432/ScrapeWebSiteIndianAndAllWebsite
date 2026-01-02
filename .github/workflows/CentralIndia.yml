@@ -37,11 +37,8 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup SSH for Git Push
-        uses: webfactory/ssh-agent@v0.8.1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Dependencies
         run: pip3 install -r requirements_scrape.txt --break-system-packages
@@ -70,6 +67,15 @@ jobs:
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main
             echo "✅ Data pushed successfully!"
           fi
+
+      - name: Upload JSON Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-india-${{ github.run_id }}
+          path: data/CentralIndia/
+          if-no-files-found: warn
+          retention-days: 1
 
       - name: Upload JSON Artifact (optional)
         uses: actions/upload-artifact@v4
