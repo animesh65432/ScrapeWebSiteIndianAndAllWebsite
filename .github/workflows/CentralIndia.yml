@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: scraper-union-territories-central
+  cancel-in-progress: false
+
 jobs:
   start-ec2:
     runs-on: ubuntu-latest
@@ -25,31 +29,18 @@ jobs:
       - name: Start EC2
         id: start
         run: |
-          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
-            --query 'Reservations[0].Instances[0].State.Name' --output text)
-
-          if [ "$STATE" = "stopped" ]; then
-            aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-            aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-            echo "✅ EC2 started! Waiting 90s for runner to connect..."
-            sleep 90
-          elif [ "$STATE" = "running" ]; then
-            echo "✅ EC2 already running! Waiting 30s..."
-            sleep 30
-          else
-            echo "❌ Instance in unexpected state: $STATE"
-            exit 1
-          fi
-
+          aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
           echo "instance-id=${{ secrets.EC2_INSTANCE_ID }}" >> $GITHUB_OUTPUT
+          echo "✅ EC2 started! Waiting 90s..."
+          sleep 90
 
   scrape:
     needs: start-ec2
     runs-on: self-hosted
     timeout-minutes: 40
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -69,6 +60,8 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
+          git pull origin main --rebase
+
           # Add only JSON files in the folder
           find data/CentralIndia/ -type f -name '*.json' -exec git add {} +
 
@@ -77,67 +70,25 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Central India data - $(date +'%Y-%m-%d %H:%M:%S')"
-            
-            # Pull and push with retry logic
-            max_retries=3
-            retry_count=0
-            
-            while [ $retry_count -lt $max_retries ]; do
-              echo "Attempt $((retry_count + 1)) of $max_retries to push changes..."
-              
-              git pull --rebase origin main
-              
-              if git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main; then
-                echo "✅ Data pushed successfully!"
-                break
-              else
-                retry_count=$((retry_count + 1))
-                if [ $retry_count -lt $max_retries ]; then
-                  echo "⚠️ Push failed, retrying in 5 seconds..."
-                  sleep 5
-                else
-                  echo "❌ Failed to push after $max_retries attempts"
-                  exit 1
-                fi
-              fi
-            done
+            git push origin main
+            echo "✅ Data pushed successfully!"
           fi
 
-      - name: Cleanup EC2 Storage
+      - name: Upload JSON Artifact
         if: always()
-        run: |
-          echo "🧹 Starting EC2 cleanup..."
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-india-${{ github.run_id }}
+          path: data/CentralIndia/
+          if-no-files-found: warn
+          retention-days: 1
 
-          # Remove local data folder after pushing
-          echo "Removing data/CentralIndia/ folder..."
-          rm -rf data/CentralIndia/ || true
-
-          # Clean GitHub Actions workspace on EC2
-          echo "Cleaning GitHub Actions workspace..."
-          rm -rf /home/*/actions-runner/_work/_temp/* || true
-
-          # Clean pip cache
-          echo "Cleaning pip cache..."
-          rm -rf ~/.cache/pip/* || true
-
-          # Clean Python cache
-          echo "Cleaning Python cache..."
-          find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
-          find . -type f -name "*.pyc" -delete 2>/dev/null || true
-
-          # Clean temp files
-          echo "Cleaning temp files..."
-          sudo rm -rf /tmp/* || true
-
-          # Clean old logs (keep last 1 day)
-          echo "Cleaning old logs..."
-          sudo journalctl --vacuum-time=1d || true
-
-          # Show disk usage after cleanup
-          echo "📊 Disk usage after cleanup:"
-          df -h / || true
-
-          echo "✅ EC2 cleanup completed!"
+      - name: Upload JSON Artifact (optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: central-india-${{ github.run_id }}
+          path: data/CentralIndia/
+          if-no-files-found: warn
 
   stop-ec2:
     needs: [start-ec2, scrape]
@@ -153,12 +104,5 @@ jobs:
 
       - name: Stop EC2
         run: |
-          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
-            --query 'Reservations[0].Instances[0].State.Name' --output text)
-
-          if [ "$STATE" = "running" ]; then
-            aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-            echo "✅ EC2 stopped!"
-          else
-            echo "ℹ️  EC2 already in state: $STATE"
-          fi
+          aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
+          echo "✅ EC2 stopped!"
