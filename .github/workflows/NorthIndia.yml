@@ -62,10 +62,17 @@ jobs:
         run: pip3 install -r requirements_scrape.txt --break-system-packages
 
       - name: Ensure data folder exists
-        run: mkdir -p data/NorthIndia/
+        run: mkdir -p data/northIndia/
 
       - name: Scrape North India
         run: python3 -m Scrape.NORTH_INDIA
+
+      - name: Check scraped files
+        run: |
+          echo "📁 Checking data/northIndia/ directory..."
+          ls -lah data/northIndia/ || echo "Directory is empty or doesn't exist"
+          echo "📊 JSON file count:"
+          find data/northIndia/ -type f -name '*.json' | wc -l
 
       - name: Commit and Push Data
         env:
@@ -75,15 +82,15 @@ jobs:
           git config --global user.email "actions@github.com"
 
           # Check if there are any changes to commit
-          if [ -n "$(find data/NorthIndia/ -type f -name '*.json')" ]; then
+          if [ -n "$(find data/northIndia/ -type f -name '*.json')" ]; then
             # Stash any untracked/unstaged files that might interfere
-            git add data/NorthIndia/*.json 2>/dev/null || true
+            git add data/northIndia/*.json 2>/dev/null || true
             
             # Pull latest changes with merge strategy
             git pull origin main --no-rebase || true
             
             # Add JSON files again after pull
-            find data/NorthIndia/ -type f -name '*.json' -exec git add {} +
+            find data/northIndia/ -type f -name '*.json' -exec git add {} +
             
             # Commit if there are staged changes
             if ! git diff --staged --quiet; then
@@ -102,7 +109,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: north-india-${{ github.run_id }}
-          path: data/NorthIndia/
+          path: data/northIndia/
           if-no-files-found: warn
           retention-days: 7
 

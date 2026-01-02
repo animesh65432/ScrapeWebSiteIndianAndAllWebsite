@@ -110,7 +110,8 @@ jobs:
         if: always()
         run: |
           echo "🧹 Cleaning GitHub Actions workspace..."
-          rm -rf /home/*/actions-runner/_work/* || true
+          rm -rf "$GITHUB_WORKSPACE"/*
+
 
           echo "🧹 Cleaning pip cache..."
           rm -rf ~/.cache/pip || true
