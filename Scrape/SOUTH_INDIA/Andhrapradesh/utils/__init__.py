@@ -271,7 +271,7 @@ def extract_announcements(soup):
                 announcement = {
                     'title': cells[0].text.strip() if len(cells) > 0 else '',
                     'date': cells[1].text.strip() if len(cells) > 1 else '',
-                    'link': link,
+                    'pdf_link': link,
                     'state': 'AndhraPradesh',
                     'description': cells[2].text.strip() if len(cells) > 2 else ''
                 }
