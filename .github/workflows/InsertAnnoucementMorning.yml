@@ -2,8 +2,9 @@ name: Insert Announcements
 
 on:
   schedule:
-    - cron: "30 8 * * *" # 2.00 PM IST
-    - cron: "0 17 * * *"
+    - cron: "30 8 * * *"
+    - cron: "0 16 * * *"
+
   workflow_dispatch:
 
 permissions:
