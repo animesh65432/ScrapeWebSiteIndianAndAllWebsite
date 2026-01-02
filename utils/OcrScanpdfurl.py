@@ -4,83 +4,65 @@ import asyncio
 from  utils.pdf_url_to_markdown import pdf_url_to_markdown
 
 async def scan_pdf_url(url: str) -> str | None:
+    pdf_bytes = None
     try:
         print(f"🔍 Attempting to process: {url}")
-        
-        # Step 1: Try markdown conversion first
         mdtext = await pdf_url_to_markdown(url)
         if mdtext:
-            print(f"✅ Markdown extraction successful for {url}")
+            print(f"✅ Markdown successful: {url}")
             return mdtext
         
-        print(f"⚠️ Markdown extraction failed, trying OCR for {url}")
+        print(f"⚠️ Markdown failed, trying OCR: {url}")
         
-        # Step 2: Download PDF
-        async with httpx.AsyncClient(verify=False, timeout=120) as client:
-            print(f"📥 Downloading PDF from {url}")
+        # Fixed: Use client inside context with granular timeouts
+        timeout = httpx.Timeout(connect=60.0, read=120.0, write=30.0)  # Longer connect for slow servers
+        async with httpx.AsyncClient(verify=False, timeout=timeout, limits=httpx.Limits(max_keepalive_connections=5)) as client:
+            print(f"📥 Downloading: {url}")
             response = await client.get(url)
+            response.raise_for_status()  # Raises on 4xx/5xx
             pdf_bytes = response.content
             print(f"📦 Downloaded {len(pdf_bytes)} bytes")
-
+        
         if not pdf_bytes:
-            print(f"❌ Failed to download PDF from {url}")
+            print(f"❌ No PDF data: {url}")
             return None
-
-        # Step 3: Encode PDF to base64
+        
+        # Base64 encode
         encoded_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
-        print(f"🔐 Encoded PDF to base64 ({len(encoded_pdf)} chars)")
-
-        # Step 4: Send to Gemini API
-        print(f"🤖 Sending to Gemini API...")
-        async with httpx.AsyncClient(timeout=300) as client:
-            response = await client.post(
+        print(f"🔐 Encoded: {len(encoded_pdf)} chars")
+        
+        # Gemini with same timeout config
+        async with httpx.AsyncClient(timeout=timeout) as client:
+            print(f"🤖 Sending to Gemini...")
+            resp = await client.post(
                 f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={config['GEMINI_API_KEY']}",
                 json={
-                    "contents": [
-                        {
-                            "parts": [
-                                {
-                                    "inlineData": {
-                                        "mimeType": "application/pdf",
-                                        "data": encoded_pdf
-                                    }
-                                },
-                                {"text": "Extract all text from this scanned PDF clearly."}
-                            ]
-                        }
-                    ]
+                    "contents": [{"parts": [{"inlineData": {"mimeType": "application/pdf", "data": encoded_pdf}},
+                                 {"text": "Extract all text from this scanned PDF clearly."}]}]
                 }
             )
-
-        data = response.json()
-        print(f"📨 Gemini response status: {response.status_code}")
-
-        # Step 5: Safely extract text
+            resp.raise_for_status()
+            data = resp.json()
+        
+        # Extract text (unchanged)
         candidates = data.get("candidates", [])
-        if not candidates:
-            print(f"⚠️ No candidates in Gemini response for {url}")
-            print(f"Response data: {data}")
+        if not candidates or not candidates[0].get("content", {}).get("parts"):
+            print(f"⚠️ No Gemini content: {url}")
             return None
-
-        content = candidates[0].get("content", {})
-        parts = content.get("parts", [])
-        if not parts:
-            print(f"⚠️ No parts in Gemini response for {url}")
-            return None
-
-        extracted_text = parts[0].get("text", "").strip()
+        extracted_text = candidates[0]["content"]["parts"][0].get("text", "").strip()
         
-        if extracted_text:
-            print(f"✅ Extracted {len(extracted_text)} characters from {url}")
-        else:
-            print(f"⚠️ Empty text extracted from {url}")
+        print(f"✅ Extracted {len(extracted_text)} chars: {url}")
+        await asyncio.sleep(5)  # Rate limit
+        return extracted_text
         
-        await asyncio.sleep(5)
-        
-        return extracted_text if extracted_text else None
-        
+    except httpx.ConnectTimeout:
+        print(f"⏰ Connect timeout (slow server/network): {url}")
+        return None
+    except httpx.TimeoutException as e:
+        print(f"⏰ Timeout: {str(e)} - {url}")
+        return None
     except Exception as e:
-        print(f"❌ Exception in scan_pdf_url for {url}: {str(e)}")
+        print(f"❌ Error: {str(e)} - {url}")
         import traceback
         traceback.print_exc()
         return None
