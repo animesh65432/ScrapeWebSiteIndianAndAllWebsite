@@ -61,17 +61,29 @@ jobs:
         run: |
           echo "📁 Data directory structure before cleanup:"
           ls -la data/ || echo "No data directory found"
-          find data/ -name "*.json" -type f | wc -l || echo "0"
+          echo ""
+          echo "📊 JSON file count:"
+          find data/ -name "*.json" -type f 2>/dev/null | wc -l || echo "0"
+          echo ""
+          echo "📂 Data folder sizes:"
+          du -sh data/*/ 2>/dev/null || echo "No data folders"
 
       - name: Run cleanup script
         run: |
+          echo "🗑️ Running cleanup script..."
           python3 -m utils.remove_old_annoucements
+          echo "✅ Cleanup script completed!"
 
       - name: Display data directory after cleanup
         run: |
           echo "📁 Data directory structure after cleanup:"
           ls -la data/ || echo "No data directory found"
-          find data/ -name "*.json" -type f | wc -l || echo "0"
+          echo ""
+          echo "📊 JSON file count:"
+          find data/ -name "*.json" -type f 2>/dev/null | wc -l || echo "0"
+          echo ""
+          echo "📂 Data folder sizes:"
+          du -sh data/*/ 2>/dev/null || echo "No data folders"
 
       - name: Commit and push changes
         run: |
@@ -81,7 +93,7 @@ jobs:
           # Commit only if there are changes
           if [[ -n $(git status --porcelain) ]]; then
             git add data/
-            git commit -m "🗑️ Automated cleanup: Remove old JSON files from data directory"
+            git commit -m "🗑️ Automated cleanup: Remove old JSON files - $(date +'%Y-%m-%d %H:%M:%S')"
             
             # Pull with rebase to handle any remote changes, then push
             max_retries=3
@@ -112,7 +124,7 @@ jobs:
             echo "✅ No changes to commit"
           fi
 
-      - name: Summary
+      - name: GitHub Cleanup Summary
         run: |
           echo "## GitHub Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -122,7 +134,12 @@ jobs:
           # Only show file count if data directory exists
           if [ -d "data/" ]; then
             json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
-            echo "📊 Remaining JSON files in GitHub: $json_count" >> $GITHUB_STEP_SUMMARY
+            echo "📊 Remaining JSON files in GitHub: **$json_count**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Data Folders:" >> $GITHUB_STEP_SUMMARY
+            du -sh data/*/ 2>/dev/null | while read size folder; do
+              echo "- $folder: $size" >> $GITHUB_STEP_SUMMARY
+            done || echo "No data folders found" >> $GITHUB_STEP_SUMMARY
           else
             echo "📂 No data directory found" >> $GITHUB_STEP_SUMMARY
           fi
@@ -136,32 +153,52 @@ jobs:
           echo "💾 EC2 Disk usage BEFORE cleanup:"
           df -h / || true
           echo ""
-          echo "📁 Data folders:"
+          echo "📁 Data folders sizes:"
           du -sh data/*/ 2>/dev/null || echo "No data folders found"
+          echo ""
+          echo "📊 Total data directory size:"
+          du -sh data/ 2>/dev/null || echo "No data directory"
 
       - name: Clean EC2 data folders
         run: |
-          echo "🗑️ Removing all data folders on EC2..."
+          echo "🗑️ Removing all regional data folders on EC2..."
 
           # Remove all region data folders
           rm -rf data/EastIndia/ || true
+          echo "  - Removed EastIndia/"
+
           rm -rf data/WestIndia/ || true
+          echo "  - Removed WestIndia/"
+
           rm -rf data/NorthIndia/ || true
+          echo "  - Removed NorthIndia/"
+
           rm -rf data/SouthIndia/ || true
+          echo "  - Removed SouthIndia/"
+
           rm -rf data/CentralIndia/ || true
+          echo "  - Removed CentralIndia/"
+
           rm -rf data/NorthEastIndia/ || true
+          echo "  - Removed NorthEastIndia/"
+
           rm -rf data/UnionTerritoriesAndCentral/ || true
+          echo "  - Removed UnionTerritoriesAndCentral/"
 
-          # Alternative: remove entire data directory
-          # rm -rf data/ || true
-
-          echo "✅ Data folders removed!"
+          echo "✅ All regional data folders removed!"
 
       - name: Clean GitHub Actions workspace
         run: |
           echo "🧹 Cleaning GitHub Actions workspace..."
+
+          # Clean temp files
           rm -rf /home/*/actions-runner/_work/_temp/* || true
-          rm -rf /home/*/actions-runner/_work/_actions/* || true
+          echo "  - Cleared _temp/"
+
+          # Clean actions cache (but not the entire _actions folder to preserve downloaded actions)
+          find /home/*/actions-runner/_work/_actions -type f -name "*.log" -delete 2>/dev/null || true
+          echo "  - Cleared action logs"
+
           echo "✅ Workspace cleaned!"
 
       - name: Clean pip cache
@@ -189,7 +226,7 @@ jobs:
         run: |
           echo "🧹 Cleaning old system logs (keeping last 1 day)..."
           sudo journalctl --vacuum-time=1d || true
-          echo "✅ Logs cleaned!"
+          echo "✅ System logs cleaned!"
 
       - name: Display EC2 disk usage after cleanup
         run: |
@@ -197,7 +234,10 @@ jobs:
           echo "💾 EC2 Disk usage AFTER cleanup:"
           df -h / || true
           echo ""
-          echo "📊 Space freed up!"
+          echo "📊 Data directory size:"
+          du -sh data/ 2>/dev/null || echo "No data directory"
+          echo ""
+          echo "✅ Cleanup completed - disk space freed!"
 
       - name: EC2 Cleanup Summary
         run: |
@@ -206,11 +246,17 @@ jobs:
           echo "✅ EC2 cleanup completed successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Cleaned Items:" >> $GITHUB_STEP_SUMMARY
-          echo "- 🗑️ All regional data folders" >> $GITHUB_STEP_SUMMARY
+          echo "- 🗑️ All regional data folders (EastIndia, WestIndia, NorthIndia, SouthIndia, CentralIndia, NorthEastIndia, UnionTerritoriesAndCentral)" >> $GITHUB_STEP_SUMMARY
           echo "- 📦 GitHub Actions workspace cache" >> $GITHUB_STEP_SUMMARY
           echo "- 🐍 Python and pip cache" >> $GITHUB_STEP_SUMMARY
           echo "- 🗄️ Temporary files" >> $GITHUB_STEP_SUMMARY
-          echo "- 📋 Old system logs" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Old system logs (older than 1 day)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🐳 Docker cache (if available)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Disk Usage:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          df -h / | tail -n 1 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
   stop-ec2:
     needs: [start-ec2, cleanup-github, cleanup-ec2]
@@ -231,7 +277,7 @@ jobs:
 
           if [ "$STATE" = "running" ]; then
             aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-            echo "✅ EC2 stopped!"
+            echo "✅ EC2 stopped successfully!"
           else
-            echo "ℹ️  EC2 already in state: $STATE"
+            echo "ℹ️  EC2 already in state: $STATE (no action needed)"
           fi

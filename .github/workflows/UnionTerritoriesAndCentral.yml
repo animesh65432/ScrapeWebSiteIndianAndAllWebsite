@@ -77,18 +77,67 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "UnionTerritoriesAndCentral data - $(date +'%Y-%m-%d %H:%M:%S')"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main
-            echo "✅ Data pushed successfully!"
+            
+            # Pull and push with retry logic
+            max_retries=3
+            retry_count=0
+            
+            while [ $retry_count -lt $max_retries ]; do
+              echo "Attempt $((retry_count + 1)) of $max_retries to push changes..."
+              
+              git pull --rebase origin main
+              
+              if git push https://x-access-token:${GITHUB_TOKEN}@github.com/animesh65432/ScrapeWebSiteIndianAndAllWebsite.git main; then
+                echo "✅ Data pushed successfully!"
+                break
+              else
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -lt $max_retries ]; then
+                  echo "⚠️ Push failed, retrying in 5 seconds..."
+                  sleep 5
+                else
+                  echo "❌ Failed to push after $max_retries attempts"
+                  exit 1
+                fi
+              fi
+            done
           fi
 
-      - name: Upload JSON Artifact
+      - name: Cleanup EC2 Storage
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: union-territories-central-${{ github.run_id }}
-          path: data/UnionTerritoriesAndCentral/
-          if-no-files-found: warn
-          retention-days: 7
+        run: |
+          echo "🧹 Starting EC2 cleanup..."
+
+          # Remove local data folder after pushing
+          echo "Removing data/UnionTerritoriesAndCentral/ folder..."
+          rm -rf data/UnionTerritoriesAndCentral/ || true
+
+          # Clean GitHub Actions workspace on EC2
+          echo "Cleaning GitHub Actions workspace..."
+          rm -rf /home/*/actions-runner/_work/_temp/* || true
+
+          # Clean pip cache
+          echo "Cleaning pip cache..."
+          rm -rf ~/.cache/pip/* || true
+
+          # Clean Python cache
+          echo "Cleaning Python cache..."
+          find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find . -type f -name "*.pyc" -delete 2>/dev/null || true
+
+          # Clean temp files
+          echo "Cleaning temp files..."
+          sudo rm -rf /tmp/* || true
+
+          # Clean old logs (keep last 1 day)
+          echo "Cleaning old logs..."
+          sudo journalctl --vacuum-time=1d || true
+
+          # Show disk usage after cleanup
+          echo "📊 Disk usage after cleanup:"
+          df -h / || true
+
+          echo "✅ EC2 cleanup completed!"
 
   stop-ec2:
     needs: [start-ec2, scrape]
