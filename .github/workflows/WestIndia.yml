@@ -13,7 +13,6 @@ concurrency:
   group: scraper-union-territories-central
   cancel-in-progress: false
 
-
 jobs:
   start-ec2:
     runs-on: ubuntu-latest
@@ -137,4 +136,3 @@ jobs:
           else
             echo "ℹ️  EC2 already in state: $STATE"
           fi
-s
