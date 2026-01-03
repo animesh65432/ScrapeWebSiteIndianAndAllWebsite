@@ -1,0 +1,559 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566876\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566865\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566893\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-25",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-24",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-23",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "7",
+    "date": "RT-22",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-21",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566853\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "9",
+    "date": "RT-20",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "10",
+    "date": "RT-19",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566851\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "11",
+    "date": "RT-18",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566850\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "12",
+    "date": "RT-17",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566849\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "13",
+    "date": "RT-16",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "14",
+    "date": "RT-15",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566847\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "15",
+    "date": "RT-14",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "16",
+    "date": "RT-13",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "17",
+    "date": "RT-12",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "18",
+    "date": "RT-11",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "19",
+    "date": "RT-10",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "20",
+    "date": "RT-9",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566841\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "21",
+    "date": "RT-8",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "22",
+    "date": "RT-7",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566835\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "23",
+    "date": "RT-6",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "24",
+    "date": "MS-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566875\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "25",
+    "date": "RT-10",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566895\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "26",
+    "date": "RT-9",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566891\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "27",
+    "date": "RT-8",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566869\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "28",
+    "date": "RT-7",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566859\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "29",
+    "date": "RT-6",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566834\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "30",
+    "date": "RT-5",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566833\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "31",
+    "date": "RT-4",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566831\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "32",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566826\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "33",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566818\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "34",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566828\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "35",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566840\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "36",
+    "date": "MS-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566819\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "37",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566863\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "38",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566886\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "39",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566862\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "40",
+    "date": "MS-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566837\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "41",
+    "date": "MS-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566832\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "42",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566885\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "43",
+    "date": "MS-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566821\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "44",
+    "date": "RT-5",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566883\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "45",
+    "date": "RT-4",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566871\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "46",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566870\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "47",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566868\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "48",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566861\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "49",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566892\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "50",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566879\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "51",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566867\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "52",
+    "date": "RT-16",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566890\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "53",
+    "date": "RT-15",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566889\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "54",
+    "date": "RT-14",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566877\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "55",
+    "date": "RT-13",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566878\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "56",
+    "date": "RT-12",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566824\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "57",
+    "date": "RT-11",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566822\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "58",
+    "date": "RT-10",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566820\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "59",
+    "date": "RT-9",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566816\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "60",
+    "date": "MS-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566858\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "61",
+    "date": "MS-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566856\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "62",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566880\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "63",
+    "date": "RT-4",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566897\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "64",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566887\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "65",
+    "date": "RT-5",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566838\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "66",
+    "date": "RT-4",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566823\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "67",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566888\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "68",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566825\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "69",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566874\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "70",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566857\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "71",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566896\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "72",
+    "date": "RT-2",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566873\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "73",
+    "date": "RT-1",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566872\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "74",
+    "date": "RT-5",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566884\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "75",
+    "date": "RT-4",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566882\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "76",
+    "date": "RT-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"566817\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "02/01/2026"
+  },
+  {
+    "title": "സംസ്ഥാന ക്ഷീര കർഷക സംഗമം ‘പടവ് 2026’: ജനുവരി 18 മുതൽ കൊല്ലത്ത്",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTYyMDEwMzA0MC4xNg==",
+    "state": "Kerala",
+    "content": null
+  },
+  {
+    "title": "Hon’ble CM Sri A. Revanth Reddy participated in Meeting on Irrigation Department at Jyotirao Phule Praja Bhavan, Hyderabad.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/honble-cm-sri-a-revanth-reddy-participated-in-meeting-on-irrigation-department-at-jyotirao-phule-praja-bhavan-hyderabad/",
+    "state": "Telangana",
+    "content": "కృష్ణా, గోదావరి నదీ జలాలపై తెలంగాణ రాష్ట్ర హక్కులను కాపాడటంలో ఎక్కడా రాజీ పడేది లేదని ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు స్పష్టం చేశారు. నీటి హక్కులను కాపాడుకోవడంలో గతంలో జరిగిన తప్పిదాలను సరిదిద్దుకుంటూ ప్రభుత్వం వ్యూహాత్మకంగా ముందుకు వెళుతోందని చెప్పారు.\nకృష్ణా, గోదావరి నదీ జలాలు, పెండింగ్ ప్రాజెక్టులపై జ్యోతీరావు పూలె ప్రజాభవన్‌లో నీటి పారుదల శాఖ మంత్రి ఉత్తమ్ కుమార్ రెడ్డి గారు పవర్ పాయింట్ ప్రజెంటేషన్ ఇచ్చారు. ఈ కార్యక్రమంలో ముఖ్యమంత్రి గారితో పాటు శాసనమండలి చైర్మన్ గుత్తా సుఖేందర్ రెడ్డి గారు, డిప్యూటీ సీఎం భట్టి విక్రమార్క గారు, మంత్రులు, సలహాదారులు, ఎంపీలు, ఎమ్మెల్సీలు, ఎమ్మెల్యేలతో పాటు నీటి పారుదల శాఖ అధికారులు పాల్గొన్నారు.\nఈ సందర్భంగా ముఖ్యమంత్రి గారు స్పందిస్తూ, కృష్ణా, గోదావరి బేసిన్లలో గతంలో జరిగిన తప్పిదాలను సరిదిద్దడానికి ప్రభుత్వం నిబద్ధత, క్రమశిక్షణతో కార్యక్రమాలను చేపడుతుందని తెలిపారు. నదీ జలాల విషయంలో సమగ్ర సమాచారాన్ని శాసనసభ ముందు ఉంచనున్నట్టు చెప్పారు. నదీ జలాల్లో జరిగిన అన్యాయాన్ని సరిదిద్దాలన్న ఆలోచనతో తప్ప రాజకీయ లబ్ది పొందాలన్న ఆలోచన లేదన్నారు.\nకృష్ణా జలాల్లో ఉమ్మడి ఆంధ్రప్రదేశ్ రాష్ట్రానికి 811 టీఎంసీలను కేటాయించారని, రాష్ట్రం విడిపోయిన తర్వాత ఏపీకి 512 టీఎంసీలు, తెలంగాణకు 299 టీఎంసీ చాలని అప్పటి ప్రభుత్వం అంగీకరించిందని ముఖ్యమంత్రి గారు గుర్తుచేశారు. అంతర్జాతీయ జల వివాదాల ఒప్పందాల ప్రకారం నది పరీవాహన ప్రాంతం మేరకు తెలంగాణకు 71 శాతం, ఆంధ్రప్రదేశ్‌కు 29 శాతం మేరకు నీటి వాటా దక్కాల్సి ఉండగా, గత ప్రభుత్వం హయాంలో అందుకు భిన్నంగా ఏపీకి 66 శాతం, తెలంగాణకు 34 శాతం జలాలకు అంగీకరించారని చెప్పారు.\nపాలమూరు రంగారెడ్డి ప్రాజెక్టుకు నీటిని తీసుకునే పాయింటును జూరాల నుంచి శ్రీశైలం బ్యాక్ వాటర్‌కు మార్చడం వల్ల తెలంగాణకు తీవ్ర అన్యాయం జరిగిందన్నారు. ప్రస్తుతం ఆంధ్రప్రదేశ్ 13 టీఎంసీ తరలిస్తుంటే, తెలంగాణ 2.5 టీఎంసీ మాత్రమే తీసుకోగలుగుతుంది. ప్రాజెక్టును మార్చడం వల్ల లిఫ్టులు, పంపులు పెరిగాయే తప్ప ప్రయోజనం లేదన్నారు. శ్రీశైలం బ్యాక్ వాటర్ నుంచి కనీసం 2.5 టీఎంసీ నీటిని తరలించే మౌలిక సదుపాయాలు కూడా తెలంగాణకు లేవన్నారు.\nశాసనసభలో సమగ్ర సమాచారం అందిస్తామని, పాలమూరు – రంగారెడ్డి ఎత్తిపోతల పథకం ఏడేండ్ల వరకు అసలు డీపీఆర్ సమర్పించకుండానే 27 వేల కోట్ల రూపాయలు ఖర్చు చేశారని చెప్పారు. డీపీఆర్ రూపొందించకపోవడంతో దానికి పర్యావరణ అనుమతులు కూడా రాలేదని, పర్యావరణ అనుమతులు లేకుండా ప్రాజెక్టు నిర్మిస్తున్నారని న్యాయస్థానాల్లో కేసులు వేశారని అన్నారు.\nదాంతో అప్పటి ప్రభుత్వం పాలమూరు – రంగారెడ్డి ప్రాజెక్టు సాగునీటి ప్రాజెక్టు కాదని, 7.15 టీఎంసీల సామర్థ్యంతో తాగునీటి కోసం ప్రాజెక్టు నిర్మిస్తున్నామని సుప్రీంకోర్టులో అఫిడవిట్ సమర్పించారని గుర్తుచేశారు. తెలంగాణ నీటి హక్కులను దక్కించుకోవడానికి గతంలోనే అనేక వేదికల్లో రాష్ట్ర వాదన బలంగా వినిపించాల్సి ఉండగా, గత పాలకులు ఆ పని చేయలేదని చెప్పారు.\nకృష్ణా, గోదావరి జలాల విషయంలో కొన్ని అపోహలు సృష్టించే ప్రయత్నాలు జరుగుతున్నాయని, అందుకే శాసనసభ ముందు సమగ్ర వివరాలను అందించబోతున్నట్టు చెప్పారు. రాష్ట్రానికి కీలకమైన ఈ అంశాలపై చర్చ సందర్భంగా సభ్యులందరూ పాల్గొనాలని ముఖ్యమంత్రి గారు కోరారు.\nHon’ble Chief Minister Shri A. Revanth Reddy asserted that there would be no compromise whatsoever in safeguarding Telangana state’s rights over the Krishna and Godavari river waters. He stated that the government is moving forward strategically, correcting the mistakes committed in the past with regard to water rights.\nIrrigation Minister Shri Uttam Kumar Reddy delivered a PowerPoint presentation on the Krishna and Godavari river waters and pending projects at Jyotirao Phule Praja Bhavan. The programme was attended by the Chief Minister, Legislative Council Chairman Shri Gutha Sukhender Reddy, Deputy Chief Minister Shri Bhatti Vikramarka, ministers, advisors, MPs, MLCs, MLAs, and senior officials of the Irrigation Department.\nSpeaking on the occasion, the Chief Minister said the government is implementing programmes with commitment and discipline to rectify past mistakes in the Krishna and Godavari basins. He informed that comprehensive details on river waters would be placed before the Legislative Assembly, clarifying that the objective is to correct injustices and not to seek political gain.\nThe Chief Minister recalled that 811 TMC of Krishna waters were allocated to the undivided Andhra Pradesh. After state bifurcation, the then government agreed to 512 TMC for Andhra Pradesh and 299 TMC for Telangana. As per international river water dispute norms, Telangana should receive 71 percent of the water based on river basin area, while Andhra Pradesh should receive 29 percent. However, the previous government agreed to an inequitable sharing of 66 percent for Andhra Pradesh and only 34 percent for Telangana, he said.\nHe stated that shifting the water intake point for the Palamuru–Rangareddy project from Jurala to the Srisailam backwaters caused serious injustice to Telangana. At present, Andhra Pradesh is diverting 13 TMC, while Telangana is able to draw only 2.5 TMC. He said the redesign merely increased the number of lifts and pumps without delivering real benefits, and added that Telangana lacks even the basic infrastructure to draw 2.5 TMC from the Srisailam backwaters.\nThe Chief Minister said detailed information would be presented in the Legislative Assembly, noting that ₹27,000 crore was spent on the Palamuru–Rangareddy Lift Irrigation Scheme over seven years without submitting a Detailed Project Report (DPR). As a result, environmental clearances were not obtained, leading to court cases alleging construction without statutory permissions.\nHe recalled that the previous government filed an affidavit in the Supreme Court, stating that the Palamuru–Rangareddy project was not an irrigation project, but a drinking water project with a capacity of 7.15 TMC. He remarked that the state should have forcefully presented its case on multiple platforms to protect Telangana’s water rights, but the earlier rulers failed to do so.\nThe Chief Minister further stated that misconceptions are being deliberately created regarding Krishna and Godavari river waters, and therefore, the government would place comprehensive facts before the Legislative Assembly. He urged all members to actively participate in the discussion on these critical issues affecting the state."
+  },
+  {
+    "title": "Hon’ble CM Sri A. Revanth Reddy paid a courtesy call on the Hon’ble Governor, Sri Jishnu Dev Varma, at Lok Bhavan in Hyderabad and extended New Year greetings.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/honble-cm-sri-a-revanth-reddy-paid-a-courtesy-call-on-the-honble-governor-sri-jishnu-dev-varma-at-lok-bhavan-in-hyderabad-and-extended-new-year-greetings/",
+    "state": "Telangana",
+    "content": "నూతన సంవత్సరం సందర్భంగా డాక్టర్ బీఆర్ అంబేద్కర్ తెలంగాణ రాష్ట్ర సచివాలయంలో ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారిని పలువురు మంత్రులు, సలహాదారులు, పలు విభాగాల ఉన్నతాధికారులు, ప్రజా ప్రతినిధులు, కార్పొరేషన్ల చైర్మన్లు మర్యాదపూర్వకంగా కలసి శుభాకాంక్షలు తెలియజేశారు. తెలంగాణ పోలీస్ జైళ్ల విభాగానికి సంబంధించిన డైరీ, క్యాలెండర్‌ను ముఖ్యమంత్రి గారు ఆవిష్కరించారు.\nOn the occasion of the New Year, several ministers, advisors, senior officials from various departments, public representatives, and chairpersons of corporations called on Hon’ble Chief Minister Sri A. Revanth Reddy at the Dr. B.R. Ambedkar Telangana State Secretariat and conveyed their New Year greetings. The Chief Minister also formally unveiled the diary and calendar of the Telangana Police Prisons Department."
+  }
+]
