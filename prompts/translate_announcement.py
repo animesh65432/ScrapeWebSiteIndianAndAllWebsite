@@ -109,31 +109,66 @@ OUTPUT (valid JSON only):"""
 
 
 def get_Announcement_title_prompt(original: Announcement, target_language: str) -> str:
-    return f"""Translate this title to {target_language}.
+    return f"""You must translate this title to {target_language} language using SIMPLE, EASY words that a 5-year-old can understand.
+
+IMPORTANT: Your output MUST be in {target_language} language, NOT in English (unless target language is English).
 
 ORIGINAL: {original['title']}
 
 CONTEXT: {original.get('content', '')[:200]}
 
+TARGET LANGUAGE: {target_language}
+
 RULES:
-1. Use ONLY {target_language} script (no mixing with other languages)
+1. Write in {target_language} script ONLY (if target is Hindi, write in Devanagari; if Telugu, write in Telugu script; if Tamil, write in Tamil script, etc.)
 2. Length: 40-100 characters
-3. Format: [Who] + [Action Verb] + [What/Where]
-4. Transliterate names/places to {target_language} script
-5. Keep acronyms unchanged (UN, WHO, LADC, MDC)
+3. Use SIMPLE, COMMON words in {target_language} - avoid complex/technical terms
+4. Format: [Who] + [Simple Action] + [What/Where]
+5. Replace difficult words with easier alternatives in {target_language}
+6. Keep acronyms unchanged (UN, WHO, LADC, MDC, PMMSY)
 
-QUALITY CHECK:
-- Is it clear what happened?
-- Is it in pure {target_language} script?
-- Is the action verb prominent?
-- Is it 40-100 characters?
+SIMPLIFICATION EXAMPLES:
+❌ Complex: "inaugurated", "felicitated", "disseminated"
+✅ Simple: "started", "honored", "shared"
 
-GOOD EXAMPLES:
-English: "VP Radhakrishnan Attends World Meditation Day in Telangana"
-Telugu: "ఉపరాష్ట్రపతి తెలంగాణలో ప్రపంచ ధ్యాన దినోత్సవంలో పాల్గొన్నారు"
-Hindi: "उपराष्ट्रपति ने तेलंगाना में विश्व ध्यान दिवस में भाग लिया"
+❌ Complex: "constructed deep sea fishing vessels"
+✅ Simple: "made big boats for fishing"
 
-OUTPUT (title only, pure {target_language} script):"""
+❌ Complex: "Standard Operation Procedure"
+✅ Simple: "rules for how to work"
+
+GOOD EXAMPLES FOR DIFFERENT LANGUAGES:
+English Original: "Government Issues Standard Operation Procedure for Construction of Deep Sea Fishing Vessels"
+
+If target is English:
+✅ "Government Makes Rules for Building Big Fishing Boats"
+
+
+CRITICAL INSTRUCTIONS - READ CAREFULLY:
+- Your output MUST be written in {target_language} script
+- DO NOT write in English if the target language is NOT English
+- DO NOT write "Here is the translated title:" or "Here is:"
+- DO NOT write "Let me know if this meets the requirements!"
+- DO NOT write any introductory or closing phrases
+- DO NOT add any explanations before or after
+- Return ONLY the translated title text in {target_language}
+- Start your response directly with the title in {target_language}
+- just return the translated title text
+
+WRONG OUTPUT EXAMPLES (DO NOT DO THIS):
+❌ "Here is the translated title: [title]"
+❌ "[title] Let me know if this meets the requirements!"
+❌ "The translated title is: [title]"
+❌ "Sure! Here's the translation: [title]"
+❌ Writing in English when target is Hindi/Telugu/Tamil/etc.
+
+
+CORRECT OUTPUT EXAMPLE :
+✅ "Lakshadweep Administration Issues Corrigendum"
+
+Remember: You are translating to {target_language}, so your entire response must be in {target_language} script!
+
+OUTPUT:"""
 
 
 def get_Announcement_description_prompt(content: str, target_language: str) -> str:
@@ -149,11 +184,20 @@ REQUIREMENTS:
 4. Transliterate names/places to {target_language} script
 5. Keep acronyms unchanged
 6. End with proper punctuation: । (Indic) or . (others)
+7. Do NOT add any introductory or closing phrases
+8. just return the summary sentence text
+
+WRONG OUTPUT EXAMPLES (DO NOT DO THIS):
+❌ "Here is the translated title: [title]"
+❌ "[title] Let me know if this meets the requirements!"
+❌ "The translated title is: [title]"
+❌ "Sure! Here's the translation: [title]"
+❌ Writing in English when target is Hindi/Telugu/Tamil/etc.
 
 STRUCTURE: [Who] + [did what] + [when] + [where] + [why/purpose]
 
-EXAMPLE (Telugu):
-"ఉపరాష్ట్రపతి సి.పి. రాధాకృష్ణన్ డిసెంబర్ 21, 2025న తెలంగాణలోని కాన్హా శాంతి వనంలో మొదటి ప్రపంచ ధ్యాన దినోత్సవాన్ని ప్రారంభించారు, ఇది ప్రపంచవ్యాప్తంగా ధ్యానాన్ని ప్రోత్సహించే UN గుర్తింపు పొందిన దినం."
+EXAMPLE :
+"The Directorate of Social Welfare & Tribal Affairs, Lakshadweep Administration, has extended the last date for receipt of applications for the Best Performance Award for Persons with Disabilities 2025-26 to 05.01.2026. The extension was announced on 29.12.2025, revising the original deadline of 05.12.2025."
 
 VERIFY:
 □ Only ONE sentence
