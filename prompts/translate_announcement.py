@@ -120,7 +120,7 @@ CONTEXT: {original.get('content', '')[:200]}
 TARGET LANGUAGE: {target_language}
 
 RULES:
-1. Write in {target_language} script ONLY (if target is Hindi, write in Devanagari; if Telugu, write in Telugu script; if Tamil, write in Tamil script, etc.)
+1. Write in {target_language} script ONLY - no mixing of scripts
 2. Length: 40-100 characters
 3. Use SIMPLE, COMMON words in {target_language} - avoid complex/technical terms
 4. Format: [Who] + [Simple Action] + [What/Where]
