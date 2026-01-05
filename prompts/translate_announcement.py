@@ -291,6 +291,7 @@ RULES:
 - Use official {target_language} name
 - Pure {target_language} script only
 - If not a valid state, return: {govt_translations.get(target_language, 'IndiaGovt')}
+- don't return any extra text just return the translated state name
 
 OUTPUT (state name only):"""
 
@@ -497,6 +498,7 @@ MATCHING RULES:
 6. For state-level generic announcements without specific department, use "[State Name] Government"
 7. For central-level generic announcements, use "Central Government"
 8. Use "Other" only if absolutely no match found
+9.don't add any extra text just return the department name
 
 EXAMPLES:
 "Information & Public Relations Mizoram" → DIPR
@@ -582,5 +584,6 @@ IMPORTANT:
 - Do NOT create new category names
 - Do NOT use variations or abbreviations
 - Match to the CLOSEST option
+- don't add any extra text just return the category name
 
 OUTPUT (category name only, must match list exactly):"""
