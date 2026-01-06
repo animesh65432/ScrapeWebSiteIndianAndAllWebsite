@@ -10,7 +10,6 @@ class InsertAnnouncement(TypedDict):
     pdf_link :Optional[str]
     state : str
     
-
 async def insert_annoucements_db(items: list[InsertAnnouncement]):
     try:
         new_items = []
@@ -21,21 +20,27 @@ async def insert_annoucements_db(items: list[InsertAnnouncement]):
 
             if not existing_announcement:
 
+              
+                link = item.get('link')
+                source_link = link.strip() if link else item.get("pdf_link")
+
                 annoucement = OriginalAnnouncement(
                     title=item['title'],
                     content=item['content'],
                     state=item['state'],
                     date=datetime.now(),
-                    source_link= item.get('link').strip() if item.get('link') else item.get("pdf_link")
+                    source_link=source_link  # Use the safely extracted link
                 )
 
                 announcement_id = await OriginalAnnouncementsDbService.insert_announcement(annoucement)
 
-                new_items.append({**annoucement,"originalAnnouncementId": str(announcement_id)})
+                new_items.append({**annoucement, "originalAnnouncementId": str(announcement_id)})
 
                 print(f"Inserted announcement with id: {announcement_id}")
 
         return new_items
     except Exception as e:
         print(f"Error inserting announcement: {e}")
-        return None
+        import traceback
+        traceback.print_exc()  
+        return None 
