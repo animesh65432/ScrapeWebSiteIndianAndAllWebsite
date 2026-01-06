@@ -4,51 +4,58 @@ from typing import Union
 def get_prompt(item: Union[GovtItem, dict, str]) -> str:
     if not isinstance(item, dict):
         print(f"WARNING: get_prompt received {type(item).__name__}, returning default")
-        return "news"
+        return "skip"
     
     title = str(item.get("title") or "").strip()
     content = str(item.get("content") or "").strip()
     
     if not title and not content:
-        return "news"
+        return "skip"
     
     content_text = content if content else "(content missing, classify based on title)"
     title_text = title if title else "(title missing, classify based on content)"
     
-    prompt = f"""
-You are an expert classifier for INDIAN GOVERNMENT DOCUMENTS.
+    prompt = f"""You are an expert classifier for INDIAN GOVERNMENT DOCUMENTS.
 
-GOAL:
-Classify the following item into ONLY ONE category:
-- "announcement" → issued directly by a government authority
-- "news" → media reporting, summaries, journalism, or anything not officially issued.
+TASK: Classify into ONE category: "important" OR "skip"
 
-CLASSIFY AS "announcement" IF:
-- It is issued by:
-  • Central Government     • State Government
-  • Ministry               • Department
-  • Commission             • Authority
-  • Board                  • District/Collector/DM/DC office
-  • Governor/CM/PM offices
-- OR contains keywords suggesting official origin in the TITLE or CONTENT:
-  "Government of", "Govt. of", "Department of", "Ministry of",
-  "Office of", "Collector", "District Magistrate",
-  "Notification", "Order", "Public Notice", "Press Release",
-  "Circular", "Tender", "Recruitment", "Vacancy",
-  "RTI", "G.O.", "Scheme", "Advisory", "Amendment".
+Classify as "important" ONLY IF ALL conditions are met:
 
-CLASSIFY AS "news" IF:
-- It is journalism, reporting, media coverage, analysis, blog,
-  or NOT directly issued by any government authority.
+1. SOURCE CHECK - Must be official government document from:
+   ✓ Central/State Government, Ministry, Department
+   ✓ Commission, Authority, Board
+   ✓ District offices (Collector, DM, DC)
+   ✓ Governor/CM/PM offices
+   ✓ Has official markers: "Government of", "Notification", "Order", "Circular", "G.O."
 
-RESPONSE RULE:
-Reply with ONLY ONE WORD:
-"announcement" OR "news".
+2. PUBLIC IMPACT CHECK - Must benefit citizens directly:
+   ✓ Jobs/Recruitment/Vacancies/Bharti
+   ✓ Scholarships/Fellowships/Financial Aid
+   ✓ Subsidies/Welfare Schemes/Yojana
+   ✓ Deadline Extensions (forms/applications/exams)
+   ✓ Exam Results/Admit Cards/Admissions
+   ✓ New Policies affecting public (tax, fees, rights)
+   ✓ Disaster Alerts/Safety Warnings
+   ✓ Public Service Launches
+   ✓ Pension/PF/Salary updates
+   ✓ Ration Card/Aadhaar/Certificate services
+
+Classify as "skip" if:
+   ✗ News media reporting/journalism
+   ✗ Routine transfers/postings/appointments
+   ✗ Minor tenders (< 5 crore)
+   ✗ Internal office memos/circulars
+   ✗ Meeting schedules/minutes
+   ✗ Routine audit reports
+   ✗ Speeches/statements without action items
+   ✗ Acknowledgements/condolences
+
+CRITICAL: Only return "important" if it's an OFFICIAL document that DIRECTLY HELPS citizens.
+
+RESPOND WITH ONLY ONE WORD: "important" OR "skip"
 
 ------------------------------
-ITEM CONTENT
 TITLE: {title_text}
-
 CONTENT: {content_text}
 ------------------------------
 """

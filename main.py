@@ -30,7 +30,6 @@ async def main():
         print(f"Classified {len(classified_announcements)} announcements.")
         
         announcements_with_pdf_text = await extract_text_from_pdf_bytes(classified_announcements)
-        
         # Handle None or empty list from PDF extraction
         if not announcements_with_pdf_text:
             print("No announcements with valid content after PDF extraction.")
