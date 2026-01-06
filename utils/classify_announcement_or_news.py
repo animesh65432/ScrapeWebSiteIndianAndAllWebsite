@@ -12,7 +12,7 @@ async def classify_announcement_or_news(items: List[GovtItem]) -> List[GovtItem]
         results = await asyncio.gather(*tasks, return_exceptions=True) 
 
         for item, item_type in zip(items, results):
-            if item_type == "announcement":
+            if item_type == "important":
                 classified_items.append(item)
             else:
                 news_items.append(item)  
