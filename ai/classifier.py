@@ -19,7 +19,7 @@ async def classify_ai(item: GovtItem) -> str:
                 await rate_limiter.wait_for_tokens(estimated_tokens)
 
                 response = await Groqclient.chat.completions.create(
-                    model="openai/gpt-oss-20b",
+                    model="llama-3.3-70b-versatile",
                     messages=[
                         {"role": "system", "content": "Reply with only: important or skip"},
                         {"role": "user", "content": prompt}
