@@ -2,6 +2,10 @@ from app_types.govt_item import GovtItem
 from typing import Union
 
 def get_prompt(item: Union[GovtItem, dict, str]) -> str:
+    """
+    Optimized classifier for Indian government announcements.
+    Focuses on actionable citizen-facing content.
+    """
     if not isinstance(item, dict):
         print(f"WARNING: get_prompt received {type(item).__name__}, returning default")
         return "skip"
@@ -15,48 +19,41 @@ def get_prompt(item: Union[GovtItem, dict, str]) -> str:
     content_text = content if content else "(content missing, classify based on title)"
     title_text = title if title else "(title missing, classify based on content)"
     
-    prompt = f"""You are an expert classifier for INDIAN GOVERNMENT DOCUMENTS.
+    prompt = f"""Classify this Indian government document.
 
-TASK: Classify into ONE category: "important" OR "skip"
+OUTPUT ONLY: "important" or "skip"
 
-Classify as "important" ONLY IF ALL conditions are met:
+Mark as "important" if it announces:
+• Jobs/Recruitment/Vacancies/भर्ती
+• Scholarships/Fellowships
+• Welfare schemes/Yojana
+• Exam dates/Results/Admit cards
+• Application deadlines/Extensions
+• Subsidies/Financial aid
+• New policies affecting citizens
+• Tenders/Contracts
+• Public hearing notices
+• License/Certificate procedures
+• Tariff/Fee changes
+• Safety alerts
 
-1. SOURCE CHECK - Must be official government document from:
-   ✓ Central/State Government, Ministry, Department
-   ✓ Commission, Authority, Board
-   ✓ District offices (Collector, DM, DC)
-   ✓ Governor/CM/PM offices
-   ✓ Has official markers: "Government of", "Notification", "Order", "Circular", "G.O."
+Mark as "skip" if it's:
+• News reporting (even about government)
+• Speeches/Statements
+• Meeting announcements
+• Transfers/Appointments
+• Event inaugurations
+• Condolences/Greetings
+• Progress reports
 
-2. PUBLIC IMPACT CHECK - Must benefit citizens directly:
-   ✓ Jobs/Recruitment/Vacancies/Bharti
-   ✓ Scholarships/Fellowships/Financial Aid
-   ✓ Subsidies/Welfare Schemes/Yojana
-   ✓ Deadline Extensions (forms/applications/exams)
-   ✓ Exam Results/Admit Cards/Admissions
-   ✓ New Policies affecting public (tax, fees, rights)
-   ✓ Disaster Alerts/Safety Warnings
-   ✓ Public Service Launches
-   ✓ Pension/PF/Salary updates
-   ✓ Ration Card/Aadhaar/Certificate services
+If document contains actionable information (dates, eligibility, how to apply), mark as "important".
+When unsure, mark as "important" (better to include than miss).
 
-Classify as "skip" if:
-   ✗ News media reporting/journalism
-   ✗ Routine transfers/postings/appointments
-   ✗ Minor tenders (< 5 crore)
-   ✗ Internal office memos/circulars
-   ✗ Meeting schedules/minutes
-   ✗ Routine audit reports
-   ✗ Speeches/statements without action items
-   ✗ Acknowledgements/condolences
+Document can be in any Indian language.
 
-CRITICAL: Only return "important" if it's an OFFICIAL document that DIRECTLY HELPS citizens.
-
-RESPOND WITH ONLY ONE WORD: "important" OR "skip"
-
-------------------------------
 TITLE: {title_text}
 CONTENT: {content_text}
-------------------------------
-"""
+
+ANSWER:"""
+    
     return prompt
