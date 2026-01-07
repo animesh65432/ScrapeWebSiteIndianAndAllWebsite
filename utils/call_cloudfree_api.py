@@ -4,7 +4,7 @@ import asyncio
 
 async def call_cloudflare(
     prompt: str,
-    model: str = "@cf/meta/llama-3.1-70b-instruct",
+    model: str = "@cf/google/gemma-3-12b-it",
     retries: int = 3,
     delay: int = 3
 ) -> str:
