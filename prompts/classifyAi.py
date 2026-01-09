@@ -1,55 +1,47 @@
-from app_types.govt_item import GovtItem
-from typing import Union
+from typing import Union, Dict
 
-def get_prompt(item: Union[GovtItem, dict, str]) -> str:
+def get_prompt(item: Union[Dict, dict]) -> str:
+   
     if not isinstance(item, dict):
-        print(f"WARNING: get_prompt received {type(item).__name__}, returning default")
         return "news"
     
+    # Extract fields
     title = str(item.get("title") or "").strip()
     content = str(item.get("content") or "").strip()
+    link = str(item.get("link") or "").strip()
+    department = str(item.get("department") or "").strip()
     
+    # Handle empty
     if not title and not content:
         return "news"
     
-    content_text = content if content else "(content missing, classify based on title)"
-    title_text = title if title else "(title missing, classify based on content)"
+    # Truncate content aggressively (save tokens)
+    if content:
+        content = content[:150]  # Reduced from 200 to save tokens
     
-    prompt = f"""
-You are an expert classifier for INDIAN GOVERNMENT DOCUMENTS.
+    # Build compact info
+    parts = []
+    if title:
+        parts.append(f"T: {title}")
+    if content:
+        parts.append(f"C: {content}")
+    if department:
+        parts.append(f"D: {department}")
+    
+    # URL hint
+    if link:
+        if ".gov.in" in link or ".nic.in" in link:
+            parts.append("URL: gov.in")
+        elif any(x in link for x in ["news", "ndtv", "times", "hindu"]):
+            parts.append("URL: news")
+    
+    text = "\n".join(parts)
+    
+    # Compact prompt
+    return f"""{text}
 
-GOAL:
-Classify the following item into ONLY ONE category:
-- "announcement" → issued directly by a government authority
-- "news" → media reporting, summaries, journalism, or anything not officially issued.
+ACTIONABLE announcement?
+YES: jobs, exams, schemes, deadlines, tenders, permits
+NO: news, festivals, policy, admin, reports
 
-CLASSIFY AS "announcement" IF:
-- It is issued by:
-  • Central Government     • State Government
-  • Ministry               • Department
-  • Commission             • Authority
-  • Board                  • District/Collector/DM/DC office
-  • Governor/CM/PM offices
-- OR contains keywords suggesting official origin in the TITLE or CONTENT:
-  "Government of", "Govt. of", "Department of", "Ministry of",
-  "Office of", "Collector", "District Magistrate",
-  "Notification", "Order", "Public Notice", "Press Release",
-  "Circular", "Tender", "Recruitment", "Vacancy",
-  "RTI", "G.O.", "Scheme", "Advisory", "Amendment".
-
-CLASSIFY AS "news" IF:
-- It is journalism, reporting, media coverage, analysis, blog,
-  or NOT directly issued by any government authority.
-
-RESPONSE RULE:
-Reply with ONLY ONE WORD:
-"announcement" OR "news".
-
-------------------------------
-ITEM CONTENT
-TITLE: {title_text}
-
-CONTENT: {content_text}
-------------------------------
-"""
-    return prompt
+announcement or news?"""
