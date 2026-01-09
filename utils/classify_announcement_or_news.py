@@ -5,7 +5,7 @@ import asyncio
 
 async def classify_announcement_or_news(
     items: List[GovtItem],
-    max_concurrent: int = 30  
+    max_concurrent: int = 5  
 ) -> List[GovtItem]:
     
     if not items:

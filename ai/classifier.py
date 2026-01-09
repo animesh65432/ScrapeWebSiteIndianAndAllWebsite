@@ -5,31 +5,24 @@ import asyncio
 
 async def classify_ai(
     item: GovtItem,
-    max_retries: int = 3,
+    max_retries: int = 10,
     retry_delay: float = 2.0
 ) -> str:
-    
-    # Validate input
+
     if not isinstance(item, dict):
-        print(f"   ⚠️  WARNING: classify_ai received {type(item).__name__}")
         return "news"
-    
-    # Get prompt
+
     prompt = get_prompt(item)
-    
-    # Retry loop
+
     for attempt in range(max_retries):
         try:
-            # Add small delay to respect rate limits
             if attempt > 0:
-                delay = retry_delay * (2 ** (attempt - 1))  # Exponential backoff
-                print(f"   🔄 Retry {attempt + 1}/{max_retries} after {delay}s: {item.get('title', '')[:30]}")
+                delay = retry_delay * (2 ** (attempt - 1))
+                print(f"🔄 Retry {attempt + 1}/{max_retries} after {delay}s: {item.get('title','')[:30]}")
                 await asyncio.sleep(delay)
-            
-            # Make API call with asyncio.to_thread for sync client
-            response = await asyncio.to_thread(
-                Groqclient.chat.completions.create,
-                model="gemma2-9b-it",
+
+            response = await Groqclient.chat.completions.create(
+                model="openai/gpt-oss-120b",
                 messages=[
                     {
                         "role": "system",
@@ -40,49 +33,36 @@ async def classify_ai(
                         "content": prompt
                     }
                 ],
-                max_tokens=5,
                 temperature=0,
-                timeout=10  # 10 second timeout
+                timeout=10
             )
-            
+
+            print(response)
+
             result = response.choices[0].message.content.strip().lower()
-            
-            # Validate result
+
             if "announcement" in result:
-                result = "announcement"
-            elif "news" in result:
-                result = "news"
-            elif result not in ["news", "announcement"]:
-                print(f"   ⚠️  Unexpected response '{result}', defaulting to 'announcement'")
-                result = "announcement"
-            
-            # Success - return result
-            return result
-            
+                return "announcement"
+            if "news" in result:
+                return "news"
+
+            print(f"⚠️ Unexpected response '{result}', defaulting to 'announcement'")
+            return "announcement"
+
         except asyncio.TimeoutError:
-            print(f"   ⏱️  Timeout on attempt {attempt + 1}: {item.get('title', '')[:30]}")
+            print(f"⏱️ Timeout on attempt {attempt + 1}")
             if attempt == max_retries - 1:
-                print(f"   ❌ Max retries reached, classifying as 'news'")
                 return "news"
-                
+
         except Exception as e:
-            error_msg = str(e).lower()
-            
-            # Handle rate limit errors
-            if "rate_limit" in error_msg or "429" in error_msg:
-                print(f"   🚦 Rate limit hit on attempt {attempt + 1}")
-                if attempt < max_retries - 1:
-                    await asyncio.sleep(retry_delay * 2)  # Wait longer for rate limits
-                    continue
-                else:
-                    return "news"
-            
-            # Handle other errors
-            print(f"   ❌ Error on attempt {attempt + 1}: {e}")
+            msg = str(e).lower()
+            if "rate" in msg or "429" in msg:
+                await asyncio.sleep(retry_delay * 2)
+                continue
+
+            print(f"❌ Error on attempt {attempt + 1}: {e}")
             if attempt == max_retries - 1:
-                print(f"   ❌ Max retries reached, classifying as 'news'")
                 return "news"
-    
-    # Fallback (should never reach here)
+
     return "news"
-    
+
