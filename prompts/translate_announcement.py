@@ -129,9 +129,9 @@ QUALITY CHECK:
 - Is it 40-100 characters?
 
 GOOD EXAMPLES:
-English: "VP Radhakrishnan Attends World Meditation Day in Telangana"
-Telugu: "ఉపరాష్ట్రపతి తెలంగాణలో ప్రపంచ ధ్యాన దినోత్సవంలో పాల్గొన్నారు"
-Hindi: "उपराष्ट्रपति ने तेलंगाना में विश्व ध्यान दिवस में भाग लिया"
+English: VP Radhakrishnan Attends World Meditation Day in Telangana
+Telugu: ఉపరాష్ట్రపతి తెలంగాణలో ప్రపంచ ధ్యాన దినోత్సవంలో పాల్గొన్నారు
+Hindi: उपराष्ट्रपति ने तेलंगाना में विश्व ध्यान दिवस में भाग लिया
 
 OUTPUT (title only, pure {target_language} script):"""
 
@@ -247,6 +247,7 @@ RULES:
 - Use official {target_language} name
 - Pure {target_language} script only
 - If not a valid state, return: {govt_translations.get(target_language, 'IndiaGovt')}
+- don't add extra things just the state name
 
 OUTPUT (state name only):"""
 

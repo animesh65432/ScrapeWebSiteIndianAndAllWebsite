@@ -78,7 +78,7 @@ async def translate_announcement_english(
             
             # Get prompts
             translated_title_prompt = get_Announcement_title_prompt(announcement_copy, target_language)
-            translate_state_prompt = get_Announcement_state_prompt(announcement_copy, target_language)
+    
             
             summary_section_prompt = get_Announcement_summary_section_prompt(announcement_copy, target_language)
             details_section_prompt = get_Announcement_details_section_prompt(announcement_copy, target_language)
@@ -89,7 +89,6 @@ async def translate_announcement_english(
             
             # Call API for all translations
             translated_title = await call_cloudflare(translated_title_prompt)
-            translated_state = await call_cloudflare(translate_state_prompt)
             
             # Get sections as JSON - with validation
             summary_section_raw = await call_cloudflare(summary_section_prompt)
@@ -150,7 +149,7 @@ async def translate_announcement_english(
                 "title": translated_title.strip(),
                 "description": translated_description.strip(),
                 "sections": sections,
-                "state": translated_state.strip(),
+                "state": announcement["state"],
                 "category": category.strip(),
                 "department": department.strip(),
                 "date": formatted_date,
