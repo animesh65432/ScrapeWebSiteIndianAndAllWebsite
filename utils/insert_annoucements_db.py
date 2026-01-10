@@ -34,6 +34,8 @@ async def insert_annoucements_db(items: list[InsertAnnouncement]):
                 new_items.append({**annoucement,"originalAnnouncementId": str(announcement_id)})
 
                 print(f"Inserted announcement with id: {announcement_id}")
+            else:
+                print(f"Announcement with title '{item['title']}' already exists. Skipping insertion.")
 
         return new_items
     except Exception as e:

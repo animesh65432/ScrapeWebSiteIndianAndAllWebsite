@@ -9,10 +9,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: scraper-union-territories-central
-  cancel-in-progress: false
-
 jobs:
   start-ec2:
     runs-on: ubuntu-latest
