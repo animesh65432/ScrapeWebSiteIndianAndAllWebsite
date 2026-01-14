@@ -46,7 +46,7 @@ async def scarpe_website(url):
                 announcements.append({
                     "title" : title,
                     "pdf_link"  : f"https://information.up.gov.in{link}",
-                    "state" : "UttarPradesh"
+                    "state" : "Uttar Pradesh"
                 })
 
         return announcements
