@@ -79,7 +79,7 @@ async def scraping_website(url: str, base_url: str = None) -> List[Dict[str, str
                 notification = {
                     "title": subject,
                     "pdf_link": pdf_link,
-                    "state": "JammuandKashmir"
+                    "state": "JammuAndKashmir"
                 }
 
                 if date_obj == today:

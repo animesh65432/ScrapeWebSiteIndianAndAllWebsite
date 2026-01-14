@@ -61,7 +61,8 @@ async def scrape_website(url: str):
                 notices.append({
                     "date": date_str,
                     "title": subject,
-                    "pdf_link": view_url
+                    "pdf_link": view_url,
+                    "state" : "Karnataka"
                 })
 
         return notices

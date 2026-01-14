@@ -4,8 +4,7 @@ from prompts.translate_announcement import (
     get_Announcement_summary_section_prompt,
     get_Announcement_details_section_prompt,
     get_Announcement_keypoints_section_prompt,
-    get_Announcement_description_prompt, 
-    get_Announcement_state_prompt,
+    get_Announcement_description_prompt,
     get_Announcement_category_prompt,
     get_Announcement_department_prompt
 )

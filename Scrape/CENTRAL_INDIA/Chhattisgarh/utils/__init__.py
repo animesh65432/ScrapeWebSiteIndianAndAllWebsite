@@ -42,8 +42,6 @@ async def scrape_website(url: str):
                     else:
                         pdf_link = link
 
-                print(title, date_obj, pdf_link)
-
                 if date_obj != today:
                     continue
 
