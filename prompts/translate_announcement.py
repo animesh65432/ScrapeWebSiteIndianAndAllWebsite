@@ -473,6 +473,7 @@ IMPORTANT:
 - Do NOT combine or modify names
 - Match to the CLOSEST and MOST SPECIFIC option
 - Prefer specific department over generic state/central government
+- Just return the department name, no extra text
 
 OUTPUT (department name only, must match list exactly):"""
 
