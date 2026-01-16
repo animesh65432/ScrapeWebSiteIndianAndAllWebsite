@@ -33,7 +33,7 @@ async def extract_text_from_pdf_bytes(items: list[GovtItem]):
                 result_items.append(item)
                 print(f"✅ Successfully extracted text from {item.get('pdf_link')}")
             
-            return result_items
+        return result_items
 
     except Exception as e:
         print(f"extract_text_from_pdf_bytes error: {str(e)}")
