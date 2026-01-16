@@ -3,10 +3,18 @@ name: Clean Data JSON Files
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 18 * * *" # 12:00 AM IST (midnight)
+    - cron: "30 18 * * *"
 
 permissions:
   contents: write
+
+env:
+  AWS_REGION: ap-south-1
+  EC2_STARTUP_WAIT: 90
+  EC2_RUNNING_WAIT: 30
+  GIT_BRANCH: main
+  MAX_PUSH_RETRIES: 3
+  PUSH_RETRY_DELAY: 5
 
 jobs:
   start-ec2:
@@ -19,22 +27,24 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: Start EC2
+      - name: Start EC2 instance
         id: start
         run: |
-          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
-            --query 'Reservations[0].Instances[0].State.Name' --output text)
+          STATE=$(aws ec2 describe-instances \
+            --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' \
+            --output text)
 
           if [ "$STATE" = "stopped" ]; then
             aws ec2 start-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
             aws ec2 wait instance-running --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
-            echo "✅ EC2 started! Waiting 90s for runner to connect..."
-            sleep 90
+            echo "✅ EC2 started! Waiting ${EC2_STARTUP_WAIT}s for runner to connect..."
+            sleep ${{ env.EC2_STARTUP_WAIT }}
           elif [ "$STATE" = "running" ]; then
-            echo "✅ EC2 already running! Waiting 30s..."
-            sleep 30
+            echo "✅ EC2 already running! Waiting ${EC2_RUNNING_WAIT}s..."
+            sleep ${{ env.EC2_RUNNING_WAIT }}
           else
             echo "❌ Instance in unexpected state: $STATE"
             exit 1
@@ -60,50 +70,58 @@ jobs:
       - name: Display data directory before cleanup
         run: |
           echo "📁 Data directory structure before cleanup:"
-          ls -la data/ || echo "No data directory found"
-          find data/ -name "*.json" -type f | wc -l || echo "0"
+          ls -la data/ 2>/dev/null || echo "No data directory found"
+
+          if [ -d "data/" ]; then
+            json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
+            echo "📊 JSON files found: $json_count"
+          fi
 
       - name: Run cleanup script
         run: |
-          python3 -m utils.remove_old_annoucements
+          if [ -f "utils/remove_old_annoucements.py" ]; then
+            python3 -m utils.remove_old_annoucements
+          else
+            echo "⚠️ Cleanup script not found at utils/remove_old_annoucements.py"
+            exit 1
+          fi
 
       - name: Display data directory after cleanup
         run: |
           echo "📁 Data directory structure after cleanup:"
-          ls -la data/ || echo "No data directory found"
-          find data/ -name "*.json" -type f | wc -l || echo "0"
+          ls -la data/ 2>/dev/null || echo "No data directory found"
+
+          if [ -d "data/" ]; then
+            json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
+            echo "📊 JSON files remaining: $json_count"
+          fi
 
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Commit only if there are changes
           if [[ -n $(git status --porcelain) ]]; then
             git add data/
             git commit -m "🗑️ Automated cleanup: Remove old JSON files from data directory"
             
-            # Pull with rebase to handle any remote changes, then push
-            max_retries=3
+            # Retry push with rebase to handle concurrent changes
             retry_count=0
-            
-            while [ $retry_count -lt $max_retries ]; do
-              echo "Attempt $((retry_count + 1)) of $max_retries to push changes..."
+            while [ $retry_count -lt ${{ env.MAX_PUSH_RETRIES }} ]; do
+              echo "Attempt $((retry_count + 1)) of ${{ env.MAX_PUSH_RETRIES }} to push changes..."
               
-              # Pull latest changes with rebase
-              git pull --rebase origin main
+              git pull --rebase origin ${{ env.GIT_BRANCH }}
               
-              # Try to push
-              if git push origin main; then
+              if git push origin ${{ env.GIT_BRANCH }}; then
                 echo "✅ Changes committed and pushed successfully"
                 break
               else
                 retry_count=$((retry_count + 1))
-                if [ $retry_count -lt $max_retries ]; then
-                  echo "⚠️ Push failed, retrying in 5 seconds..."
-                  sleep 5
+                if [ $retry_count -lt ${{ env.MAX_PUSH_RETRIES }} ]; then
+                  echo "⚠️ Push failed, retrying in ${{ env.PUSH_RETRY_DELAY }}s..."
+                  sleep ${{ env.PUSH_RETRY_DELAY }}
                 else
-                  echo "❌ Failed to push after $max_retries attempts"
+                  echo "❌ Failed to push after ${{ env.MAX_PUSH_RETRIES }} attempts"
                   exit 1
                 fi
               fi
@@ -112,17 +130,16 @@ jobs:
             echo "✅ No changes to commit"
           fi
 
-      - name: Summary
+      - name: Generate summary
         run: |
           echo "## GitHub Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ GitHub repository cleanup completed!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Only show file count if data directory exists
           if [ -d "data/" ]; then
             json_count=$(find data/ -name "*.json" -type f 2>/dev/null | wc -l)
-            echo "📊 Remaining JSON files in GitHub: $json_count" >> $GITHUB_STEP_SUMMARY
+            echo "📊 Remaining JSON files: $json_count" >> $GITHUB_STEP_SUMMARY
           else
             echo "📂 No data directory found" >> $GITHUB_STEP_SUMMARY
           fi
@@ -134,42 +151,27 @@ jobs:
       - name: Display EC2 disk usage before cleanup
         run: |
           echo "💾 EC2 Disk usage BEFORE cleanup:"
-          df -h / || true
+          df -h / 2>/dev/null || true
           echo ""
           echo "📁 Data folders:"
           du -sh data/*/ 2>/dev/null || echo "No data folders found"
 
       - name: Clean EC2 data folders
         run: |
-          echo "🗑️ Removing all data folders on EC2..."
+          echo "🗑️ Removing all regional data folders on EC2..."
 
-          # Remove all region data folders
-          rm -rf data/EastIndia/ || true
-          rm -rf data/WestIndia/ || true
-          rm -rf data/NorthIndia/ || true
-          rm -rf data/SouthIndia/ || true
-          rm -rf data/CentralIndia/ || true
-          rm -rf data/NorthEastIndia/ || true
-          rm -rf data/UnionTerritoriesAndCentral/ || true
-
-          # Alternative: remove entire data directory
-          # rm -rf data/ || true
+          # Remove all region-specific data folders
+          for region in EastIndia WestIndia NorthIndia SouthIndia CentralIndia NorthEastIndia UnionTerritoriesAndCentral; do
+            rm -rf "data/$region/" 2>/dev/null || true
+          done
 
           echo "✅ Data folders removed!"
 
-      - name: Clean GitHub Actions workspace
+      - name: Clean Selenium cache
         run: |
-          echo "🧹 Cleaning GitHub Actions workspace..."
-          rm -rf /home/*/actions-runner/_work/_temp/* || true
-          rm -rf /home/*/actions-runner/_work/_actions/* || true
-          echo "✅ Workspace cleaned!"
-
-      - name: Clean pip cache
-        run: |
-          echo "🧹 Cleaning pip cache..."
-          rm -rf ~/.cache/pip/* || true
-          pip3 cache purge 2>/dev/null || true
-          echo "✅ Pip cache cleaned!"
+          echo "🧹 Cleaning Selenium cache..."
+          rm -rf ~/.cache/selenium 2>/dev/null || true
+          echo "✅ Selenium cache cleaned!"
 
       - name: Clean Python cache
         run: |
@@ -179,27 +181,41 @@ jobs:
           find . -type f -name "*.pyo" -delete 2>/dev/null || true
           echo "✅ Python cache cleaned!"
 
+      - name: Clean GitHub Actions workspace
+        run: |
+          echo "🧹 Cleaning GitHub Actions workspace..."
+          rm -rf /home/*/actions-runner/_work/_temp/* 2>/dev/null || true
+          rm -rf /home/*/actions-runner/_work/_actions/* 2>/dev/null || true
+          echo "✅ Workspace cleaned!"
+
+      - name: Clean pip cache
+        run: |
+          echo "🧹 Cleaning pip cache..."
+          rm -rf ~/.cache/pip/* 2>/dev/null || true
+          pip3 cache purge 2>/dev/null || true
+          echo "✅ Pip cache cleaned!"
+
       - name: Clean temp files
         run: |
           echo "🧹 Cleaning temp files..."
-          sudo rm -rf /tmp/* || true
+          sudo rm -rf /tmp/* 2>/dev/null || true
           echo "✅ Temp files cleaned!"
 
       - name: Clean old logs
         run: |
           echo "🧹 Cleaning old system logs (keeping last 1 day)..."
-          sudo journalctl --vacuum-time=1d || true
+          sudo journalctl --vacuum-time=1d 2>/dev/null || true
           echo "✅ Logs cleaned!"
 
       - name: Display EC2 disk usage after cleanup
         run: |
           echo ""
           echo "💾 EC2 Disk usage AFTER cleanup:"
-          df -h / || true
+          df -h / 2>/dev/null || true
           echo ""
-          echo "📊 Space freed up!"
+          echo "📊 Cleanup complete!"
 
-      - name: EC2 Cleanup Summary
+      - name: Generate EC2 cleanup summary
         run: |
           echo "## EC2 Cleanup Summary 🧹" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -207,6 +223,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Cleaned Items:" >> $GITHUB_STEP_SUMMARY
           echo "- 🗑️ All regional data folders" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 Selenium cache" >> $GITHUB_STEP_SUMMARY
           echo "- 📦 GitHub Actions workspace cache" >> $GITHUB_STEP_SUMMARY
           echo "- 🐍 Python and pip cache" >> $GITHUB_STEP_SUMMARY
           echo "- 🗄️ Temporary files" >> $GITHUB_STEP_SUMMARY
@@ -222,12 +239,14 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+          aws-region: ${{ env.AWS_REGION }}
 
-      - name: Stop EC2
+      - name: Stop EC2 instance
         run: |
-          STATE=$(aws ec2 describe-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
-            --query 'Reservations[0].Instances[0].State.Name' --output text)
+          STATE=$(aws ec2 describe-instances \
+            --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
+            --query 'Reservations[0].Instances[0].State.Name' \
+            --output text)
 
           if [ "$STATE" = "running" ]; then
             aws ec2 stop-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
