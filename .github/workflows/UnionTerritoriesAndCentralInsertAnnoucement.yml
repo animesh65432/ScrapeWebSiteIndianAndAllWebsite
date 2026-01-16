@@ -1,0 +1,47 @@
+name: UnionTerritories And Central Insert Announcements
+
+on:
+  schedule:
+    - cron: "30 8 * * *"
+    - cron: "0 17 * * *"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    env:
+      SCARPER_API_TOKEN: ${{ secrets.SCARPER_API_TOKEN}}
+      REVERSE_PROXY: ${{ secrets.REVERSE_PROXY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      CLOUDFARE_MODEL_ACCOUNT_ID: ${{ secrets.CLOUDFARE_MODEL_ACCOUNT_ID }}
+      CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.CLOUDFARE_MODEL_API_TOKEN }}
+      SECOND_CLOUDFARE_MODEL_ACCOUNT_ID: ${{ secrets.SECOND_CLOUDFARE_MODEL_ACCOUNT_ID }}
+      SECOND_CLOUDFARE_MODEL_API_TOKEN: ${{ secrets.SECOND_CLOUDFARE_MODEL_API_TOKEN }}
+      AIBHARAT_URL: ${{ secrets.AIBHARAT_URL }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Insert Announcements
+        run: python3 -m InsertAnnoucments.UNION_TERRITORIES_AND_CENTRAL
+        continue-on-error: true
