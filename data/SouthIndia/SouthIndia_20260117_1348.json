@@ -1,0 +1,78 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-102",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567578\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-101",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567577\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-100",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-99",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567575\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-98",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567574\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-97",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567573\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "7",
+    "date": "RT-96",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-95",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567571\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "9",
+    "date": "MS-6",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567579\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "16/01/2026"
+  },
+  {
+    "title": "ന്യൂനപക്ഷ വിഭാഗക്കാർക്ക് സ്വയംതൊഴിൽ പദ്ധതി",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTYzMzIzNjE3MS4xNg==",
+    "state": "Kerala",
+    "content": null
+  }
+]
