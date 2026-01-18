@@ -1,47 +1,54 @@
 from typing import Union, Dict
 
 def get_prompt(item: Union[Dict, dict]) -> str:
-   
     if not isinstance(item, dict):
         return "news"
     
-    # Extract fields
     title = str(item.get("title") or "").strip()
     content = str(item.get("content") or "").strip()
-    link = str(item.get("link") or "").strip()
     department = str(item.get("department") or "").strip()
     
-    # Handle empty
     if not title and not content:
         return "news"
     
-    # Truncate content aggressively (save tokens)
+    # Use more content for better classification
     if content:
-        content = content[:150]  # Reduced from 200 to save tokens
+        content = content[:200]
     
-    # Build compact info
+    # Build input
     parts = []
     if title:
-        parts.append(f"T: {title}")
+        parts.append(f"Title: {title}")
     if content:
-        parts.append(f"C: {content}")
+        parts.append(f"Content: {content}")
     if department:
-        parts.append(f"D: {department}")
-    
-    # URL hint
-    if link:
-        if ".gov.in" in link or ".nic.in" in link:
-            parts.append("URL: gov.in")
-        elif any(x in link for x in ["news", "ndtv", "times", "hindu"]):
-            parts.append("URL: news")
+        parts.append(f"Source: {department}")
     
     text = "\n".join(parts)
     
-    # Compact prompt
     return f"""{text}
 
-ACTIONABLE announcement?
-YES: jobs, exams, schemes, deadlines, tenders, permits
-NO: news, festivals, policy, admin, reports
+Question: Is this an Announcement or News?
 
-announcement or news?"""
+Announcement = Citizens can take action NOW:
+- Someone can apply for a job, exam, scholarship, or scheme
+- There is a registration deadline or submission date
+- People can bid on tenders or contracts
+- Eligible citizens can enroll or participate in something
+- There are specific steps to take (apply, register, submit documents)
+
+News = No citizen action required:
+- Government officials met, spoke, or visited somewhere
+- A project was inaugurated or foundation stone was laid
+- Policy was discussed or a report was released
+- A cultural day, festival, or observance is being marked
+- Training was completed or awards were given
+- General information about programs (without how to apply)
+
+Test: Ask "Can I personally do something specific because of this information RIGHT NOW?"
+- YES with deadline/steps = announcement
+- NO or just general info = news
+
+Answer ONLY with one word: announcement or news
+
+Answer:"""
