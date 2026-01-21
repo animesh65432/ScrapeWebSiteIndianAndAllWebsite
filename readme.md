@@ -1,6 +1,6 @@
 # Government Announcement Scraper & Multilingual Translator
 
-A Python-based pipeline to **scrape government announcements**, **normalize content**, and **translate it into multiple Indian languages** using **Ollama (local LLM)** and optional **SerpAPI**. Designed for reliability, async performance, and zero/low-cost infrastructure.
+A Python-based pipeline to **scrape government announcements**, **normalize content**, and **translate it into multiple Indian languages** using **ai4bharat** and optional **Aws(Ec2)**. Designed for reliability, async performance, and zero/low-cost infrastructure.
 
 ---
 
@@ -21,22 +21,27 @@ A Python-based pipeline to **scrape government announcements**, **normalize cont
 - **Python 3.10+**
 - **httpx (async)** – network requests
 - **BeautifulSoup4** – HTML parsing
-- **Ollama** – For Translations
 - **MongoDB / MongoDB Atlas / MongoDB Compass**
 - **Groq** – For Classification
-- **SerpAPI** – dynamic content scraping
 - **FaissService** – vector similarity checks
+- **Aws Ec2 / Local Machine** – hosting
+- **seleunium** - for dynamic website scraping
+- **ai4bharat** - for multilingual translation
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-.
-├── main.py
-├── services/
-├── Scrapers
+
+├── services/ (all service related code)
+├── Scrapers (Mostly state wise scraper code)
 ├── requirements.txt
+├── InsertAnnoucments (All states to insert annoucments to mongodb)
+├── prompts (All prompt related code)
+├── utils (all utility code)
+├── config
+├── .github/workflows
 └── README.md
 ```
 
@@ -57,62 +62,40 @@ cd <project-folder>
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Start Ollama
-
 ```bash
-ollama serve
-ollama pull gemma3:1b
+python3  Scrape.WEST_INDIA (Based on your Which state want to scarpe choice).py
 ```
-
-> You can change the model in `call_ollama.py`
-
----
-
-## ⚙️ Configuration
-
-### Ollama
-
-```python
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "gemma3:1b"
-```
-
-## ▶️ Running the Pipeline
-
-```bash
-python3 main.py
-```
-
-Example output:
-
-```text
-🔄 Translating to English...
-✅ Successfully translated
-🔄 Translating to Hindi...
-✅ Successfully translated
-✅ All tasks completed successfully!
-```
-
----
 
 ## 🧠 Duplicate / Similarity Detection
 
-Uses MongoDB `$text` search or cosine similarity to avoid re-processing already translated announcements.
+Uses paraphrase-mpnet-base-v2 from Sentence Transformers to compute embeddings and Faiss for similarity search to avoid duplicate announcements.
 
 ---
 
 ## 🌍 Supported Languages
 
 -English
--Hindi
+-Assamese
 -Bengali
+-Bodo
+-Dogri
+-Gujarati
+-Hindi
+-Kannada
+-Kashmiri
+-Maithili
+-Malayalam
+-Manipuri (Meitei)
+-Marathi
+-Nepali
+-Odia
+-Punjabi
+-Sanskrit
+-Santali
+-Sindhi
 -Tamil
 -Telugu
--Marathi
--Gujarati
--Kannada
--Malayalam
--Punjabi
+-Urdu
 
 - (Easily extendable)
 
@@ -120,34 +103,7 @@ Uses MongoDB `$text` search or cosine similarity to avoid re-processing already 
 
 ## 🆓 Free & Low-Cost Friendly
 
-- ✅ Runs fully **offline** with Ollama
 - ✅ No paid APIs required
-- ⚠️ SerpAPI free tier is optional and rate-limited
-
----
-
-## 🛠️ Common Issues
-
-### Ollama timeout
-
-Increase timeout in `call_ollama.py`:
-
-```python
-timeout=120
-```
-
-### SerpAPI 404 / IP issue
-
-Ensure privacy settings allow free-tier access or switch to HTML scraping.
-
----
-
-## 📌 Roadmap
-
-- [ ] Docker support
-- [ ] Scheduler / cron integration
-- [ ] Admin dashboard
-- [ ] Vector DB (FAISS) similarity
 
 ---
 
@@ -166,8 +122,3 @@ MIT License
 ## 👤 Author
 
 **Animesh Dutta**
-Full Stack Developer | LLM & Automation
-
----
-
-> If you want this README customized exactly to your repo files, paste the code or repo link and I’ll refine it.
