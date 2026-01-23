@@ -1,0 +1,668 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-42",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567892\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-41",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567855\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-40",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567846\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-39",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567844\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-13",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567880\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-5",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567881\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "7",
+    "date": "RT-139",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567927\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-138",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567926\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "9",
+    "date": "RT-137",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567925\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "10",
+    "date": "RT-136",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "11",
+    "date": "RT-135",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567921\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "12",
+    "date": "RT-134",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567919\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "13",
+    "date": "RT-133",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567903\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "14",
+    "date": "RT-132",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567888\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "15",
+    "date": "RT-131",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "16",
+    "date": "RT-130",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567869\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "17",
+    "date": "RT-129",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567859\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "18",
+    "date": "RT-121",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567917\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "19",
+    "date": "RT-120",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567915\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "20",
+    "date": "RT-119",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567910\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "21",
+    "date": "RT-118",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567906\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "22",
+    "date": "RT-117",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567885\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "23",
+    "date": "RT-116",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567883\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "24",
+    "date": "MS-14",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567907\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "25",
+    "date": "MS-13",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567904\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "26",
+    "date": "RT-59",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567900\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "27",
+    "date": "RT-58",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567890\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "28",
+    "date": "RT-57",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567872\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "29",
+    "date": "RT-56",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567870\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "30",
+    "date": "RT-55",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567867\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "31",
+    "date": "RT-54",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567862\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "32",
+    "date": "RT-53",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567849\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "33",
+    "date": "MS-10",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567868\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "34",
+    "date": "RT-76",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567934\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "35",
+    "date": "RT-75",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567924\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "36",
+    "date": "RT-74",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567923\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "37",
+    "date": "RT-73",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567920\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "38",
+    "date": "RT-72",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567863\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "39",
+    "date": "RT-71",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567858\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "40",
+    "date": "RT-70",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567843\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "41",
+    "date": "MS-21",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567911\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "42",
+    "date": "MS-20",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567886\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "43",
+    "date": "RT-19",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567857\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "44",
+    "date": "RT-28",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567930\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "45",
+    "date": "RT-27",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567929\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "46",
+    "date": "RT-26",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567928\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "47",
+    "date": "RT-25",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567912\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "48",
+    "date": "RT-24",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567905\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "49",
+    "date": "RT-23",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567902\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "50",
+    "date": "RT-22",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567851\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "51",
+    "date": "RT-48",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567909\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "52",
+    "date": "RT-47",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567893\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "53",
+    "date": "RT-46",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567866\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "54",
+    "date": "RT-45",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567865\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "55",
+    "date": "MS-7",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567908\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "56",
+    "date": "MS-6",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567845\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "57",
+    "date": "RT-32",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567918\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "58",
+    "date": "RT-31",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567916\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "59",
+    "date": "RT-30",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567913\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "60",
+    "date": "RT-29",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567895\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "61",
+    "date": "RT-28",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567878\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "62",
+    "date": "RT-27",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567864\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "63",
+    "date": "RT-13",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567889\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "64",
+    "date": "RT-12",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567860\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "65",
+    "date": "RT-11",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567853\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "66",
+    "date": "RT-104",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567901\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "67",
+    "date": "RT-103",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567897\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "68",
+    "date": "RT-102",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567896\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "69",
+    "date": "RT-101",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567891\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "70",
+    "date": "RT-100",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567875\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "71",
+    "date": "RT-99",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567861\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "72",
+    "date": "RT-98",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567848\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "73",
+    "date": "MS-47",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567933\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "74",
+    "date": "MS-46",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567932\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "75",
+    "date": "MS-45",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567931\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "76",
+    "date": "MS-44",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567856\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "77",
+    "date": "RT-7",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567879\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "78",
+    "date": "RT-6",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567877\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "79",
+    "date": "RT-21",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567852\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "80",
+    "date": "RT-31",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567876\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "81",
+    "date": "RT-30",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567871\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "82",
+    "date": "RT-29",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567847\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "83",
+    "date": "RT-34",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567914\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "84",
+    "date": "RT-33",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"567854\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/01/2026"
+  },
+  {
+    "title": "From Tamil Development Department - Honble Ministers will pay floral tributes at the Language Martyrs Memorial at Gandhi Mandapam, Chennai on the occasion of Tamil Language Martyrs Day on 25th January 2026",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_183.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "From Finance Department - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_e_182.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "From Finance Department - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_t_182.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Statement of the Secretary to Government, Water Resources Department, on the release of water from Thirumoorthy Dam under the Parambikulam–Aliyar Project benefiting Coimbatore and Tiruppur districts",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_181.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Tamil Nadu Government announced relaxation of rules to facilitate Jallikattu competitions",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_179.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Entrepreneurship Development and Innovation Institute  (EDII TN) – Three-Day “E-Commerce” Training Programme - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_e_178.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Entrepreneurship Development and Innovation Institute (EDII TN) – Three-Day “E-Commerce” Training Programme - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230126_t_178.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "తెలంగాణ ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు స్విట్జర్లాండ్‌లోని వాడ్ (Vaud) రాష్ట్ర ముఖ్యమంత్రి క్రిస్టెల్ లూసియర్ బ్రోడార్‌ గారితో సమావేశమయ్యారు.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/%e0%b0%aa%e0%b1%8d%e0%b0%b0%e0%b0%aa%e0%b0%82%e0%b0%9a-%e0%b0%86%e0%b0%b0%e0%b1%8d%e0%b0%a5%e0%b0%bf%e0%b0%95-%e0%b0%b5%e0%b1%87%e0%b0%a6%e0%b0%bf%e0%b0%95-wef-2026-%e0%b0%b8%e0%b0%82%e0%b0%a6/",
+    "state": "Telangana",
+    "content": "ప్రపంచ ఆర్థిక వేదిక (WEF) 2026 సందర్భంగా దావోస్‌లో తెలంగాణ ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు స్విట్జర్లాండ్‌లోని వాడ్ (Vaud) రాష్ట్ర ముఖ్యమంత్రి క్రిస్టెల్ లూసియర్ బ్రోడార్‌ గారితో సమావేశమయ్యారు. భారత్–స్విట్జర్లాండ్ స్వేచ్ఛా వాణిజ్య ఒప్పందం నేపథ్యంలో రెండు రాష్ట్రాల మధ్య సహకార పెంపుపై చర్చించారు.\nఈ సందర్భంగా ముఖ్యమంత్రి గారు తెలంగాణ రైజింగ్–2047 విజన్‌ను స్విస్ ప్రతినిధులకు వివరించారు. హైదరాబాద్‌లో ప్రపంచంలోనే తొలిసారి ‘స్విస్ మాల్’ ఏర్పాటు చేయాలనే ఆలోచనను ముఖ్యమంత్రి ప్రతిపాదించగా, స్విస్ బృందం సానుకూలంగా స్పందించింది.\nఇద్దరు ముఖ్యమంత్రులు ఫుట్‌బాల్ క్రీడాకారులే కావడంతో, క్రీడల రంగంలో భాగస్వామ్యంపై కూడా విస్తృతంగా చర్చించారు. క్రీడా శిక్షణ, మౌలిక వసతుల అభివృద్ధిలో కలిసి పనిచేయవచ్చని అభిప్రాయపడ్డారు.\nసంస్కృతి, విద్య, నైపుణ్యాభివృద్ధి, శిక్షణ రంగాల్లో, హాస్పిటాలిటీ మేనేజ్‌మెంట్, క్రీడల విభాగాల్లో పరస్పర సహకారానికి అవకాశాలపై ఇద్దరు ముఖ్యమంత్రులు అభిప్రాయాలు పంచుకున్నారు. రిటైల్, లైఫ్ సైన్సెస్ రంగాల్లో అవకాశాలపై చర్చించారు. మహిళా సాధికారతకు సంబంధించి స్వయం సహాయక సంఘాల కార్యక్రమాలపై స్విస్ బృందం ఆసక్తి కనబరిచింది.\nపరస్పర సహకార అంశాలు పరిశీలించేందుకు త్వరలోనే స్విట్జర్లాండ్ బృందం హైదరాబాద్‌లో పర్యటిస్తుందని వాడ్ రాష్ట్ర పరిశ్రమలు, ఆర్థిక శాఖ మంత్రి ఇసబెల్ మోరెట్ గారు తెలిపారు.\nA visionary collaboration is set to take shape as Telangana charts a new chapter in global retail and cultural exchange. During the World Economic Forum 2026 in Davos, Hon’ble Chief Minister Shri A. Revanth Reddy engaged in a constructive discussion with Christelle Luisier Brodard, Chief Minister of the Council of Vaud, Switzerland, exploring avenues of partnership under the broader framework of the India–Switzerland free trade agreement.\nThe leaders discussed cooperation across multiple domains, including culture, education, skill development, and training—particularly in hospitality management and sports. They also deliberated on sharing best practices in the retail and life sciences sectors to strengthen collaboration between the two regions.\nIn the course of the discussions, Chief Minister Revanth Reddy, while promoting the Telangana Rising 2047 vision and highlighting investment and development opportunities in the state, proposed the creation of a world-first “Swiss Mall” in Hyderabad. The Swiss delegation responded positively, welcoming the innovative concept.\nBoth Chief Ministers, being avid football players, also explored potential collaboration in sports initiatives, reflecting a shared commitment to promoting youth engagement and athletic excellence.\nFurther, the Swiss delegation expressed keen interest in supporting Telangana’s vision for women empowerment through self-help groups. Isabelle Moret, Industries & Economy Minister of Vaud, confirmed that a Swiss team will soon visit Hyderabad to assess and explore detailed opportunities for collaboration."
+  },
+  {
+    "title": "దావోస్‌ ప్రపంచ ఆర్థిక వేదిక (WEF) వార్షిక సదస్సులో ముఖ్యమంత్రి శ్రీ ఎ. రేవంత్ రెడ్డి గారు టాటా గ్రూప్ చైర్మన్ శ్రీ నటరాజన్ చంద్రశేఖరన్‌ గారితో సమావేశమయ్యారు.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/%e0%b0%a6%e0%b0%be%e0%b0%b5%e0%b1%8b%e0%b0%b8%e0%b1%8d-%e0%b0%aa%e0%b1%8d%e0%b0%b0%e0%b0%aa%e0%b0%82%e0%b0%9a-%e0%b0%86%e0%b0%b0%e0%b1%8d%e0%b0%a5%e0%b0%bf%e0%b0%95-%e0%b0%b5%e0%b1%87/",
+    "state": "Telangana",
+    "content": "దావోస్‌ ప్రపంచ ఆర్థిక వేదిక (WEF) వార్షిక సదస్సులో ముఖ్యమంత్రి శ్రీ ఎ. రేవంత్ రెడ్డి గారు టాటా గ్రూప్ చైర్మన్ శ్రీ నటరాజన్ చంద్రశేఖరన్‌ గారితో సమావేశమయ్యారు. తెలంగాణ రైజింగ్ 2047 విజన్, అభివృద్ధిలో భాగస్వామ్యం, పలు రంగాల్లో టాటా గ్రూప్ సేవల విస్తరణ వంటి అంశాలపై కీలక చర్చలు జరిపారు.\nతెలంగాణ రైజింగ్ విజన్–2047 అంశాలతో పాటు రాష్ట్రంలోని పారిశ్రామిక అనుకూల వాతావరణం, ప్రభుత్వ దీర్ఘకాలిక అభివృద్ధి ప్రణాళికలను ముఖ్యమంత్రి గారు టాటా గ్రూప్ చైర్మన్ గారికి వివరించారు.\nకేవలం పెట్టుబడుల కోసమే కాకుండా, పటిష్టమైన విధానాలు, ఫ్యూచర్ విజన్‌ను ప్రపంచానికి పరిచయం చేస్తూ తెలంగాణ ముందుకు సాగుతున్న తీరును చంద్రశేఖరన్ గారు ప్రశంసించారు. భవిష్యత్ అవసరాలకు అనుగుణంగా రాష్ట్ర ప్రభుత్వం తీసుకుంటున్న ప్రణాళికాబద్ధమైన నిర్ణయాలను అభినందించారు.\nహైదరాబాద్‌లోని ప్రధాన స్టేడియాలను ప్రపంచ స్థాయి ప్రమాణాలతో తీర్చిదిద్దే ఆలోచనలను ముఖ్యమంత్రి గారు పంచుకోగా, దీనికి సానుకూలంగా స్పందించిన చంద్రశేఖరన్ గారు, స్టేడియాల అభివృద్ధిలో ప్రభుత్వంతో కలిసి పనిచేసేందుకు సిద్ధంగా ఉన్నట్లు తెలిపారు. దేశంలో ఉన్న క్రీడాప్రతిభకు తగిన మౌలిక సదుపాయాలు కల్పించాల్సిన అవసరం ఉందని వారు అభిప్రాయపడ్డారు. 2036 ఒలింపిక్స్‌లో భారత్ పతకాలు సాధించడమే లక్ష్యంగా యంగ్ ఇండియా స్పోర్ట్స్ యూనివర్సిటీ ఏర్పాటు, క్రీడా మౌలిక వసతుల అభివృద్ధిని చేపట్టామని ముఖ్యమంత్రి గారు పేర్కొన్నారు.\nటాటా టెక్నాలజీస్ సహకారంతో తెలంగాణలోని 65 ప్రభుత్వ ఐటీఐలను అడ్వాన్స్డ్ టెక్నాలజీ సెంటర్లుగా మార్చుతున్నామని, ప్రభుత్వ పాలిటెక్నిక్ కాలేజీలను స్కిల్ సెంటర్లుగా అభివృద్ధి చేసే ప్రణాళికలతో పాటు, ఆనంద్ మహీంద్రా గారి సారథ్యంలో యంగ్ ఇండియా స్కిల్ యూనివర్సిటీ ఏర్పాటు గురించి ముఖ్యమంత్రి గారు వివరించారు.\nరాష్ట్ర ప్రభుత్వం ప్రతిష్టాత్మకంగా చేపడుతున్న మూసీ నది పునరుజ్జీవన ప్రాజెక్టుపై టాటా గ్రూప్ ఛైర్మన్ నటరాజన్ చంద్రశేఖరన్ గారు ప్రత్యేక ఆసక్తి కనబరిచారు. రాజస్థాన్, మహారాష్ట్రలలో నీటి వనరుల పునరుద్ధరణలో టాటా గ్రూప్‌నకు ఉన్న అనుభవాన్ని గుర్తు చేస్తూ, మూసీ రివర్ ఫ్రంట్ అభివృద్ధిలో భాగస్వామిగా ఉండేందుకు సుముఖత వ్యక్తం చేశారు. మూసీ పరివాహక ప్రాంతంలో ఆర్థిక కార్యకలాపాలు పెరిగేలా ప్రణాళికలు సిద్ధం చేస్తున్నట్లు ముఖ్యమంత్రి గారు తెలిపారు.\nప్రఖ్యాత ఆధ్యాత్మిక క్షేత్రాలైన మేడారం, వేములవాడ, భద్రాచలం వంటి చోట్ల హోటళ్ల ఏర్పాటుకు టాటా గ్రూప్ ఆసక్తి చూపింది. శ్రీశైలం రహదారి వెంబడి అంతర్జాతీయ స్థాయి రిసార్ట్ ఏర్పాటుపై సానుకూలంగా స్పందించింది. వీటితో పాటు ఏఐ డేటా సెంటర్లు, సెమీకండక్టర్, ఈవీ తయారీ రంగాల్లో కొత్త పరిశ్రమల స్థాపనపైనా చర్చించారు.\nఈ సమావేశంలో మంత్రులు దుద్దిళ్ల శ్రీధర్ బాబు గారు, పొంగులేటి శ్రీనివాస రెడ్డి గారు, ఉన్నతాధికారులు పాల్గొన్నారు.\nA distinguished engagement unfolded at the TCS Pavilion during Day 2 of the World Economic Forum 2026, as the Hon’ble Chief Minister Shri A. Revanth Reddy–led ‘Telangana Rising’ delegation hosted a breakfast meeting with Tata Group Chairman Shri Natarajan Chandrasekharan.\nThe discussions showcased Telangana’s Vision 2047, policies, and strategic initiatives to position the state as a global hub for talent, innovation, and industrial growth.\nThe delegation presented the meticulously planned Telangana Rising 2047 roadmap, highlighting long-term collaborations in game-changing projects. Chandrasekharan commended Telangana for focusing on promoting its vision and ecosystem rather than just seeking investments.\nThe Chief Minister noted the state’s partnership with Tata Technologies to transform 65 ITIs into Advanced Technology Centers (ATCs), plans to upgrade government polytechnic colleges, and the Young India Skills University (YISU), chaired by Shri Anand Mahindra. The meeting also discussed the Young India Sports University and Telangana’s vision to upgrade public sports infrastructure for the 2036 Olympics. The CM proposed modernizing Hyderabad’s major stadiums with TATA support, which Chandrasekharan welcomed.\nChandrasekharan lauded Telangana’s progress in talent, innovation, and infrastructure. Minister Shri Duddilla Sridhar Babu highlighted the Telangana Rising Global Summit 2025, which attracted Rs 5.75 lakh crore in investments, and reiterated that WEF 2026 is focused on presenting Vision 2047 and the state’s regional economic framework.\nThe discussions included naming the greenfield expressway connecting Bharat Future City to ORR and RRR as Ratan Tata Road, erecting a statue of Ratan Tata, exploring hospitality projects including hotels in temple towns and a world-class resort along the Srisailam highway, and developing the Gandhi Sarovar as part of the Musi Riverfront transformation.\nPlans for EV, semiconductor, and AI data centers were also shared, alongside transforming the Musi Riverfront into an economic corridor. The TATA Group expressed strong interest in Musi rejuvenation, leveraging its experience from similar projects in Rajasthan and Maharashtra.\nMinister Shri Ponguleti Srinivasa Reddy, along with senior officials, also participated, underscoring the collaborative spirit between Telangana and TATA for the state’s transformative growth."
+  },
+  {
+    "title": "దావోస్ వేదికగా తెలంగాణ ప్రభుత్వం ప్రతిష్టాత్మక ‘నెక్స్ట్-జెన్ లైఫ్ సైన్సెస్ పాలసీ 2026–30’ (Next-Gen Life Sciences Policy 2026–30)ని ఆవిష్కరించింది.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/%e0%b0%a6%e0%b0%be%e0%b0%b5%e0%b1%8b%e0%b0%b8%e0%b1%8d-%e0%b0%b5%e0%b1%87%e0%b0%a6%e0%b0%bf%e0%b0%95%e0%b0%97%e0%b0%be-%e0%b0%a4%e0%b1%86%e0%b0%b2%e0%b0%82%e0%b0%97%e0%b0%be%e0%b0%a3-%e0%b0%aa/",
+    "state": "Telangana",
+    "content": "దావోస్ వేదికగా తెలంగాణ ప్రభుత్వం ప్రతిష్టాత్మక ‘నెక్స్ట్-జెన్ లైఫ్ సైన్సెస్ పాలసీ 2026–30’ (Next-Gen Life Sciences Policy 2026–30)ని ఆవిష్కరించింది. ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు, మంత్రులు శ్రీ దుద్దిల్ల శ్రీధర్ బాబు గారు, శ్రీ పొంగులేటి శ్రీనివాస రెడ్డి గారితో కలిసి ఈ పాలసీని ప్రపంచానికి పరిచయం చేశారు.\nఫార్మా, వ్యాక్సిన్, బయోటెక్నాలజీ రంగాల్లో ప్రస్తుతం ఉన్న బలమైన స్థానాన్ని మరింత మెరుగుపరుచుకుంటూ, 2030 కల్లా ప్రపంచ స్థాయిలోని టాప్-3 లైఫ్ సైన్సెస్ కేంద్రాలలో ఒకటిగా తెలంగాణను తీర్చిదిద్దడం ఈ పాలసీ లక్ష్యం.\nరాష్ట్రంలో ప్రస్తుతం 2,000కు పైగా లైఫ్ సైన్సెస్ కంపెనీలు, 250కి పైగా USFDA ఆమోదిత తయారీ కేంద్రాలు ఉన్నాయి. ప్రపంచ వ్యాక్సిన్ ఉత్పత్తిలో దాదాపు మూడో వంతు వాటా తెలంగాణదే. ఈ నేపథ్యంలో, ‘నెక్స్ట్-జెన్ లైఫ్ సైన్సెస్ పాలసీ 2026–30’ కేవలం ఉత్పత్తుల పరిమాణాలను పెంచుకోవడమే కాకుండా, విలువల ప్రమాణాలు పెంపొందేలా, మరిన్ని ఆవిష్కరణలకు కేంద్రంగా తెలంగాణ నిలిచేలా అంశాలను పాలసీలో పొందుపర్చారు.\nఫార్మాస్యూటికల్స్, వ్యాక్సిన్ల తయారీ, అత్యాధునిక పరిశోధనలు, అధునాతన బయో-మాన్యుఫ్యాక్చరింగ్, బయోలాజిక్స్, బయోసిమిలర్లు, ప్రెసిషన్ మెడిసిన్, పర్సనలైజ్డ్ థెరపీలు, డిజిటల్ హెల్త్, డయాగ్నస్టిక్స్, మెడికల్ ఎలక్ట్రానిక్స్, క్లినికల్ రీసెర్చ్, గ్లోబల్ వాల్యూ & ఇన్నోవేషన్ సెంటర్లు తదితర అంశాలను ఈ పాలసీలో వ్యూహాత్మక రంగాలుగా పేర్కొన్నారు.\nలైఫ్ సైన్సెస్ రంగంలో రాబోయే నాలుగేండ్లలో 25 బిలియన్ డాలర్ల పెట్టుబడులను ఆకర్షించి, 5 లక్షల కొత్త ఉద్యోగాలను సృష్టించేలా పాలసీ అంశాలను రూపొందించారు. అలాగే, జీనోమ్ వ్యాలీ విస్తరణ, మెడికల్ డివైసెస్ పార్క్, గ్రీన్ ఫార్మా సిటీ స్థాపన, 10 ఫార్మా విలేజ్‌ల అభివృద్ధి, బయో-ఇన్నోవేషన్, బయో-మాన్యుఫ్యాక్చరింగ్ క్లస్టర్లు, సెంటర్స్ ఆఫ్ ఎక్సలెన్స్‌ల ద్వారా అత్యాధునిక మౌలిక సదుపాయాల కల్పనపై దృష్టి సారిస్తారు. అదే సమయంలో, పర్యావరణహిత, జీరో-లిక్విడ్ డిశ్చార్జ్ (ZLD) పారిశ్రామిక పద్ధతుల అమలును పాలసీలో ప్రధానంగా పేర్కొన్నారు.\nపరిశ్రమ అవసరాలకు అనుగుణమైన నైపుణ్యాల అభివృద్ధి కార్యక్రమాలకు ప్రాధాన్యత ఇస్తూ, టాస్క్, యంగ్ ఇండియా స్కిల్స్ యూనివర్సిటీ వంటి సంస్థల సహకారంతో నూతనంగా ‘తెలంగాణ స్కూల్ ఆఫ్ లైఫ్ సైన్సెస్’ ఏర్పాటు కానుంది. నిబంధనల సరళీకరణ, TG-iPASS ద్వారా నిర్ణీత కాలపరిమితిలో అనుమతులు, స్టార్టప్‌లు, MSMEలు, అంతర్జాతీయ పెట్టుబడిదారులకు ప్రత్యేక మద్దతు అందించడం ద్వారా ‘ఈజ్ ఆఫ్ డూయింగ్ బిజినెస్’ ఇంకా సులభతరమవుతుంది.\n‘నెక్స్ట్-జెన్ లైఫ్ సైన్సెస్ పాలసీ 2026–30’ అమలు బాధ్యతను పరిశ్రమలు & వాణిజ్య శాఖ, ఐటీ, ఎలక్ట్రానిక్స్ & కమ్యూనికేషన్స్ శాఖలు పర్యవేక్షిస్తాయి. తెలంగాణ లైఫ్ సైన్సెస్ ఫౌండేషన్ (TLSF) నోడల్ ఏజెన్సీగా వ్యవహరిస్తుంది.\nA defining moment for Telangana on the global stage, the State unveiled its Next-Gen Life Sciences Policy 2026 – 30 at the World Economic Forum Annual Meeting 2026 in Davos. Hon’ble Chief Minister Shri A. Revanth Reddy, joined by Ministers Shri Duddilla Sridhar Babu and Shri Ponguleti Srinivasa Reddy, presented a forward-looking framework designed to position Telangana among the world’s top three life sciences clusters by 2030, building on its existing strengths in pharmaceuticals, vaccines, and biotechnology.\nBuilding on Telangana’s established strengths – home to over 2,000 life sciences companies, 250+ USFDA-approved manufacturing sites, and accounting for nearly one-third of global vaccine production – the Next-Gen Life Sciences Policy 2026 – 30 focuses on transitioning from volume-led growth to value-driven, innovation-centric development.\nStrategic focus areas under the policy include pharmaceutical and vaccine manufacturing, frontier R&D and advanced biomanufacturing, biologics and biosimilars, precision medicine and personalized therapies, digital health, diagnostics and medical electronics, clinical research, and Global Value & Innovation Centers (GVCs/GICs).\nThe policy sets ambitious targets of attracting USD 25 billion in investments and generating 5 lakh new jobs during the policy period. It emphasizes the creation of state-of-the-art infrastructure through the expansion of Genome Valley, Medical Devices Park, establishment of Green Pharma City, development of 10 Pharma Villages, bio-innovation and bio-manufacturing clusters, and Centers of Excellence, while ensuring sustainability through green and zero-liquid-discharge industrial practices.\nA strong thrust is placed on talent development, with industry-aligned skilling programs, continuous learning initiatives, and the establishment of a Telangana School of Life Sciences, supported by institutions such as TASK and Young India Skills University. The policy also focuses on ease of doing business through regulatory streamlining, time-bound approvals via TG-iPASS, and dedicated support for startups, MSMEs, and global investors.\nGovernance and implementation will be led by the Industries & Commerce Department, Government of Telangana, in coordination with the IT, Electronics & Communications Department, and executed through the Telangana Life Sciences Foundation (TLSF) as the nodal agency, supported by industry, academia, and global partners.\nCovering the period 2026 – 30, the policy reaffirms Telangana’s commitment to strengthening its position as a global life sciences and healthcare innovation hub – driving economic growth, job creation, and global health impact from the State."
+  },
+  {
+    "title": "Slovakia’s NUkler submits Expression of Interest to develop Rs 6,000 crore SMR based clean energy project in Telangana",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/slovakias-nukler-submits-expression-of-interest-to-develop-rs-6000-crore-smr-based-clean-energy-project-in-telangana/",
+    "state": "Telangana",
+    "content": "క్లీన్ ఎనర్జీ రంగంలో తెలంగాణ మరో ముందడుగు వేసింది. సుమారు 6 వేల కోట్ల రూపాయల పెట్టుబడితో స్మాల్ మాడ్యులర్ రియాక్టర్ (ఎస్‌ఎంఆర్) ఆధారిత విద్యుత్ ప్రాజెక్ట్ అభివృద్ధికి స్లోవాకియాకు చెందిన న్యూక్లర్ ప్రొడక్ట్స్ సంస్థ ముందుకు వచ్చింది. ఈ మేరకు రాష్ట్ర ప్రభుత్వానికి ఆ సంస్థ ఎక్స్‌ప్రెషన్ ఆఫ్ ఇంట్రెస్ట్ (ఈఓఐ) సమర్పించింది.\nదావోస్‌లో జరుగుతున్న ప్రపంచ ఆర్థిక వేదిక–2026 సమావేశాల సందర్భంగా, ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారితో న్యూక్లర్ ప్రొడక్ట్స్ సంస్థ ప్రతినిధులు భేటీ అయ్యారు.\nఈ సమావేశంలో ఐటీ, పరిశ్రమల శాఖ మంత్రి దుద్దిళ్ల శ్రీధర్ బాబు గారు, రెవెన్యూ శాఖ మంత్రి పొంగులేటి శ్రీనివాస్ రెడ్డి గారు, ఐక్యూ క్యాపిటల్ గ్రూప్ ఛైర్మన్ డాక్టర్ జాన్ బాబిక్ గారు, గ్రూప్ సీఈఓ, డైరెక్టర్ అనిల్ కుమార్ బావిసెట్టి గారు, గ్రీన్ హౌస్ ఎన్విరో సీఈఓ, డైరెక్టర్ మొలుగు శ్రీపాల్ రెడ్డి గారు, స్లోవాక్ రిపబ్లిక్ కాన్సుల్ మాటుస్ జెమెస్ గారు పాల్గొన్నారు.\nఈ సందర్భంగా ముఖ్యమంత్రి గారు మాట్లాడుతూ.. తెలంగాణ ప్రభుత్వం క్లీన్ అండ్ గ్రీన్ ఎనర్జీ ప్రాజెక్టులను ప్రోత్సహించేందుకు సిద్ధంగా ఉందన్నారు. 2047 నాటికి నెట్–జీరో లక్ష్యాన్ని సాధించడంలో సుస్థిర అభివృద్ధే తెలంగాణకు ప్రధానమని స్పష్టం చేశారు.\nస్లోవాకియాకు చెందిన ఐక్యూ క్యాపిటల్, భారత్‌కు చెందిన గ్రీన్ హౌస్ ఎన్విరో సంయుక్త భాగస్వామ్యంలో న్యూక్లర్ ప్రొడక్ట్స్ సంస్థ ఏర్పడింది.\n600 మిలియన్ యూరోలు (సుమారు రూ.6,000 కోట్ల) పెట్టుబడితో గరిష్ఠంగా 300 మెగావాట్ల సామర్థ్యంతో తెలంగాణలో కొత్త విద్యుత్ ప్రాజెక్ట్‌ను ఏర్పాటు చేసే అవకాశాలను న్యూక్లర్ ప్రొడక్ట్స్ సంస్థ పరిశీలిస్తోంది.\nA breakthrough in Telangana’s clean energy ambitions took shape at the World Economic Forum 2026 in Davos, as NUkler Products — a joint venture promoted by Slovakia-based IQ Capital and India-based Green House Enviro — formally expressed interest in partnering with Telangana to develop a next-generation clean energy project anchored in sustainability and advanced technology.\nThe joint venture submitted an Expression of Interest (EOI) to explore the development of a Small Modular Reactor (SMR)-based clean energy project in Telangana, with a proposed installed capacity of up to 300 MW and an estimated investment of EUR 600 million (approximately ₹6,000 crore).\nThe EOI was shared during a meeting with the Hon’ble Chief Minister Shri A. Revanth Reddy-led ‘Telangana Rising’ delegation. The company was represented by Dr. Jan Babic, Group Chairman, IQ Capital; Anil Kumar Bavissetty, Group CEO and Director, IQ Capital; and Molugu Sripal Reddy, CEO and Director, Green House Enviro. Matus Gemes, Honorary Consul of the Slovak Republic to the Principality of Liechtenstein, was also present, underscoring the strong international dimension of the engagement.\nWelcoming the proposal, the Chief Minister stated that Telangana is keen to encourage sustainable, clean, and advanced energy infrastructure projects aligned with the State’s long-term development vision. He emphasized that sustainability is a core pillar of Telangana’s policy framework, particularly in the pursuit of the Net Zero target by 2047.\nMinisters Shri Duddilla Sridhar Babu and Shri Ponguleti Srinivasa Reddy were also part of the delegation and participated in the discussions, reiterating the Government of Telangana’s commitment to facilitating future-ready and advanced clean energy projects in the State."
+  },
+  {
+    "title": "L’Oréal to inaugurate the world’s first beauty-tech hub in Hyderabad in November 2026",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/loreal-to-inaugurate-the-worlds-first-beauty-tech-hub-in-hyderabad-in-november-2026/",
+    "state": "Telangana",
+    "content": "ప్రపంచంలోనే తొలి బ్యూటీ–టెక్ గ్లోబల్ కెపాబిలిటీ సెంటర్ (GCC)ను హైదరాబాద్‌లో ఏర్పాటు చేస్తున్నట్లు లోరియల్ (L’Oreal) సంస్థ ప్రకటించింది. ఈ అత్యాధునిక కేంద్రాన్ని ఈ ఏడాది నవంబర్‌లోనే ప్రారంభించనుంది.\nదావోస్‌లో వరల్డ్ ఎకనమిక్ ఫోరమ్ – 2026లో ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు లోరియల్ సీఈవో శ్రీ నికోలస్ హియెరోనిమస్ గారితో భేటీ అయ్యారు.\nఈ సందర్భంగా జరిగిన చర్చల్లో హైదరాబాద్‌లో భారీ పెట్టుబడులతో బ్యూటీ–టెక్ జీసీసీ ఏర్పాటు చేసే నిర్ణయాన్ని వెల్లడించారు. ఈ జీసీసీ ఏర్పాటుతో లోరియల్‌కు గ్లోబల్ ఇన్నోవేషన్, టెక్నాలజీ, డేటా, సప్లై చైన్ కార్యకలాపాలకు హైదరాబాద్ కీలక కేంద్రంగా నిలవనుంది.\nడిజిటల్ ట్రాన్స్‌ఫర్మేషన్, ఏఐ, అనలిటిక్స్ రంగాల్లో రూపొందించే సాంకేతిక పరిష్కారాలను ప్రపంచవ్యాప్తంగా ఉన్న లోరియల్ యూనిట్లకు అందిస్తామని నికోలస్ గారు తెలిపారు. తద్వారా గ్లోబల్ ఎంటర్‌ప్రైజ్ కార్యకలాపాలకు హైదరాబాద్ ప్రాముఖ్యత మరింత పెరుగనుంది.\nనవంబర్‌లో జరగబోయే జీసీసీ ప్రారంభోత్సవానికి ముఖ్యమంత్రి గారిని, మంత్రి దుద్దిళ్ల శ్రీధర్ బాబు గారిని లోరియల్ సంస్థ ఆహ్వానించింది.\nఈ సందర్భంగా మంత్రి శ్రీధర్ బాబు గారు మాట్లాడుతూ, లోరియల్ జీసీసీని హైదరాబాద్‌కు తీసుకురావాలన్న ఆలోచనపై ముఖ్యమంత్రి గారు ప్రత్యేక ఆసక్తి చూపారని, ప్రభుత్వం పూర్తి సహకారం అందిస్తుందని చెప్పారు.\nహైదరాబాద్ పెట్టుబడులకు అనువైన ప్రదేశమని, మెడ్‌టెక్‌, హెల్త్‌టెక్‌ మాత్రమే కాకుండా బ్యూటీ–టెక్‌ వంటి కొత్త విభాగాల్లోనూ తెలంగాణ ముందుంటోందని మంత్రి గారు అన్నారు. ఇప్పటికే మారియట్, వాంగార్డ్, నెట్‌ఫ్లిక్స్, మెక్‌డొనాల్డ్స్, హైనికెన్, జాగర్, కోస్ట్కో వంటి గ్లోబల్ కంపెనీలు హైదరాబాద్‌లో జీసీసీలను ఏర్పాటు చేశాయని గుర్తుచేశారు.\nతెలంగాణ ఏఐ ఇన్నోవేషన్ హబ్ (TAIH) గురించి రాష్ట్ర ప్రతినిధి బృందం ఈ సందర్భంగా వివరించింది. జీసీసీతో పాటు మాన్యుఫాక్చరింగ్ యూనిట్ ఏర్పాటుకు తెలంగాణలో ఉన్న అవకాశాలను పరిశీలించాలని లోరియల్ సంస్థను ఆహ్వానించారు. రాష్ట్రంలో ఉన్న మౌలిక వసతులు, పరిశ్రమల ఎకోసిస్టమ్‌ను దృష్టిలో ఉంచుకుని భవిష్యత్తులో తయారీ రంగంలోనూ పెట్టుబడులు పెట్టేందుకు సిద్ధంగా ఉన్నట్లు నికోలస్ హియెరోనిమస్ గారు సానుకూలంగా స్పందించారు.\nThe Hon’ble Chief Minister Shri A. Revanth Reddy – led ‘Telangana Rising’ delegation has secured a major Global Capability Centre (GCC) investment in the beauty-tech sector. Global cosmetics giant LOreal Groupe will set up its world’s first beauty-tech GCC in Hyderabad, to be inaugurated in November 2026.\nThe decision was announced after the delegation met Shri Nicolas Hieronimus, CEO of L’Oréal, who expressed delight in establishing a large-scale GCC with significant investment in Telangana.\nThe Hyderabad GCC will function as L’Oréal’s global hub for innovation, technology, AI, data, analytics, and supply chain, supporting digital transformation worldwide, with solutions developed here deployed across L’Oréal facilities globally.\nL’Oréal has invited CM Shri Revanth Reddy and Minister Shri Duddilla for the inauguration. Minister highlighted the CM’s strong push to bring the investment and reaffirmed the government’s full support, pitching Hyderabad as a leading GCC destination – now expanding beyond med-tech and health-tech into new categories like beauty-tech.\nHe noted that global majors such as Vanguard, Netflix, McDonald’s, Heineken, Costco, and Marriott have also chosen Hyderabad for their GCCs.\nThe delegation also briefed L’Oréal on the Telangana AI Innovation Hub (TAIH), which drew keen interest. Special Chief Secretary Sanjay Kumar invited L’Oréal to explore future manufacturing investmentsin Telangana, to which the CEO responded positively."
+  },
+  {
+    "title": "Blaize signs MoU with Telangana for electronics, semi-conductor, and AI initiatives.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/01/blaize-signs-mou-with-telangana-for-electronics-semi-conductor-and-ai-initiatives/",
+    "state": "Telangana",
+    "content": "ఎలక్ట్రానిక్స్, సెమీకండక్టర్, ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ రంగాల్లో చేపడుతున్న కార్యక్రమాలను వేగవంతం చేసే దిశగా తెలంగాణ ప్రభుత్వం దావోస్‌లో కాలిఫోర్నియాకు చెందిన బ్లైజ్ (Blaize) సంస్థతో అవగాహన ఒప్పందం (ఎంవోయూ) కుదుర్చుకుంది. డేటా సెంటర్ ఆర్టిఫిషియల్ కంప్యూటింగ్‌కు తక్కువ శక్తి వినియోగించే ఏఐ హార్డ్‌వేర్‌, ఫుల్-స్టాక్ సాఫ్ట్‌వేర్‌ను బ్లైజ్ సంస్థ అభివృద్ధి చేస్తోంది.\nవరల్డ్ ఎకనమిక్ ఫోరం సదస్సులో బ్లైజ్ కో-ఫౌండర్, సీఈఓ శ్రీ దినాకర్ మునగాలా గారు ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారితో ప్రత్యేకంగా సమావేశమయ్యారు. ఈ సందర్భంగా జరిగిన చర్చల అనంతరం ఒప్పందం కుదుర్చుకున్నారు.\nఇప్పటికే బ్లైజ్ సంస్థ హైదరాబాద్‌లో రీసెర్చ్ అండ్ డెవలప్మెంట్, ఇంజినీరింగ్ సెంటర్‌ను నిర్వహిస్తోంది. తమ ఆర్ అండ్ డీ సెంటర్‌ను విస్తరించాలని భావిస్తోంది. హెల్త్‌కేర్ డయాగ్నోస్టిక్స్, మాన్యుఫ్యాక్చరింగ్ ఆటోమేషన్, ఎనర్జీ ఎఫిషియెన్సీ వంటి రంగాల్లో ఏఐ ద్వారా పరిష్కారాలను పైలట్ ప్రాజెక్టులుగా అమలు చేసే అవకాశాలపై కూడా చర్చ జరిగింది.\nఈ సందర్భంగా ముఖ్యమంత్రి గారు మాట్లాడుతూ, తెలంగాణను ఏఐ డేటా సెంటర్ హబ్‌గా తీర్చిదిద్దడం.. వచ్చే రెండు దశాబ్దాల్లో 3 ట్రిలియన్ డాలర్ల ఆర్థిక వృద్ధి లక్ష్యానికి అత్యంత కీలకమని అన్నారు.\nఆర్టిఫిషియల్ ఇంటెలిజెన్స్, డేటా సెంటర్లు, క్వాంటం కంప్యూటింగ్, హార్డ్‌వేర్, ఆటోమేషన్ రంగాల్లో తెలంగాణ వేగంగా ముందుకు సాగుతోందని అన్నారు. దేశంలోనే టెక్నాలజీ హబ్‌గా తెలంగాణ వృద్ధి సాధిస్తోందని పేర్కొన్నారు. బ్లైజ్ సంస్థ హైదరాబాద్ ఆర్ అండ్ డీ యూనిట్ విస్తరణకు ప్రభుత్వం తగిన మద్దతు అందిస్తుందని ముఖ్యమంత్రి గారు హామీ ఇచ్చారు.\nమంత్రి దుద్దిళ్ల శ్రీధర్ బాబు గారు మాట్లాడుతూ, రాష్ట్రంలో తెలంగాణ ఏఐ ఇన్నోవేషన్ హబ్ ప్రారంభిస్తున్నట్లు చెప్పారు. ఏఐ రంగంలో పెట్టుబడులు, పరిశోధనలు, ఆవిష్కరణలకు ఇది వ్యూహాత్మక కేంద్రంగా పని చేస్తుందని వివరించారు. హైదరాబాద్‌ను ప్రపంచ స్థాయి ఏఐ గమ్యస్థానంగా తీర్చిదిద్దాలనేది తమ ప్రభుత్వ లక్ష్యమని పేర్కొన్నారు.\nA significant stride in Telangana’s push to emerge as a global hub for next-generation technologies was marked at the World Economic Forum 2026 in Davos, as the Hon’ble Chief Minister Shri A. Revanth Reddy-led Telangana Rising delegation entered into a Memorandum of Understanding (MoU) with Blaize, a California-based company specialising in energy-efficient AI hardware and full-stack software for data-centre AI computing.\nThe MoU was finalised during a meeting with Shri Dinakar Munagala, Co-Founder and Chief Executive Officer of Blaize, and focuses on accelerating Telangana’s initiatives in electronics, semiconductors, and artificial intelligence (AI).\nBlaize, which works with partners across Asia on hybrid AI infrastructure for smart cities and industrial solutions, operates a dedicated R&D and engineering centre in Hyderabad. During the discussions, both sides deliberated on the state’s support for scaling up Blaize’s Hyderabad R&D centre and strengthening advanced AI engineering capabilities.\nExpressing delight over the collaboration, the Chief Minister said that Telangana’s ambition to become a leading AI data-centre hub is central to the state’s vision of achieving a $3 trillion economy over the next two decades. “Telangana is rapidly emerging as a progressive, technology-driven state, with high-impact initiatives across artificial intelligence, data centres, quantum computing, advanced hardware, and automation,” he said.\nMinister for IT and Industries Shri Duddilla Sridhar Babu stated that the government is launching the Telangana AI Innovation Hub (TAIH), envisioned as the state’s strategic nerve centre for AI-led growth. The hub aims to drive investments, research, and innovation, positioning Hyderabad as a premier global destination for artificial intelligence. The Minister welcomed Blaize’s intent to expand its R&D operations in Hyderabad and assured the company of full support in developing advanced AI talent.\nThe meeting also explored potential industry use-cases, including pilot deployments of AI solutions in healthcare diagnostics, manufacturing automation, and energy efficiency, aligning with Telangana’s broader goal of leveraging emerging technologies for inclusive and sustainable growth."
+  }
+]
