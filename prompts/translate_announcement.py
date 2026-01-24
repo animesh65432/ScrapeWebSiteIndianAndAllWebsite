@@ -121,6 +121,7 @@ RULES:
 3. Format: [Who] + [Action Verb] + [What/Where]
 4. Transliterate names/places to {target_language} script
 5. Keep acronyms unchanged (UN, WHO, LADC, MDC)
+6. Output ONLY the title - no preambles, explanations, or "Here is..." phrases
 
 QUALITY CHECK:
 - Is it clear what happened?
@@ -149,6 +150,7 @@ REQUIREMENTS:
 4. Transliterate names/places to {target_language} script
 5. Keep acronyms unchanged
 6. End with proper punctuation: । (Indic) or . (others)
+7. Output ONLY the sentence - no preambles, explanations, or "Here is..." phrases
 
 STRUCTURE: [Who] + [did what] + [when] + [where] + [why/purpose]
 
@@ -247,7 +249,7 @@ RULES:
 - Use official {target_language} name
 - Pure {target_language} script only
 - If not a valid state, return: {govt_translations.get(target_language, 'IndiaGovt')}
-- don't add extra things just the state name
+- Output ONLY the state name - no preambles, explanations, or "Here is..." phrases
 
 OUTPUT (state name only):"""
 
@@ -473,7 +475,7 @@ IMPORTANT:
 - Do NOT combine or modify names
 - Match to the CLOSEST and MOST SPECIFIC option
 - Prefer specific department over generic state/central government
-- Just return the department name, no extra text
+- Output ONLY the department name - no preambles, explanations, or "Here is..." phrases
 
 OUTPUT (department name only, must match list exactly):"""
 
@@ -540,5 +542,6 @@ IMPORTANT:
 - Do NOT create new category names
 - Do NOT use variations or abbreviations
 - Match to the CLOSEST option
+- Output ONLY the category name - no preambles, explanations, or "Here is..." phrases
 
 OUTPUT (category name only, must match list exactly):"""
