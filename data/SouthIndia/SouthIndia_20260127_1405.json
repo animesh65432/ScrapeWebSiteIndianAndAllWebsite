@@ -1,0 +1,58 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-146",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"568059\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "26/01/2026"
+  },
+  {
+    "title": "അമ്പെയ്ത് മത്സരം: അപേക്ഷ ക്ഷണിച്ചു",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTY0NDc5MzMyNi40NA==",
+    "state": "Kerala",
+    "content": null
+  },
+  {
+    "title": "സ്‌കോളർഷിപ്പ്, ലാപ്‌ടോപ്പ് വിതരണം",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTY0NDI2ODAwMS4y",
+    "state": "Kerala",
+    "content": null
+  },
+  {
+    "title": "Tamil Nadu Government launched a scheme through the Fisheries and Fishermen Welfare Department to distribute Turtle Excluder Devices worth ₹6.40 crore free of cost to fishermen to protect sea turtles in coastal districts",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_209.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Tamil Nadu Invites Domestic and Global Investors at First-Ever Global Tourism Summit 2026  - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_e_208.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Tamil Nadu Invites Domestic and Global Investors at First-Ever Global Tourism Summit 2026  - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_t_208.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Honble Deputy Chief Minister delivered the welcome address at the two-day World Women’s Summit 2026, organized under the Tamil Nadu Women Employment and Safety Scheme (TNWESafe) of the Special Programme Implementation Department, Government of Tamil Nadu, at the Chennai Trade Centre, Nandambakkam, Chennai.",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_207.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Speech delivered by the Honble Chief Minister at the inauguration of the “Global Women Summit – 2026” held at the Chennai Trade Centre, Nandambakkam",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_203.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Condolence and relief message of the Honble Chief Minister to the families of three children who drowned at Mapillaiyurani coastal area in Thoothukudi District",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr270126_202.pdf",
+    "state": "TamilNadu"
+  }
+]
