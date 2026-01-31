@@ -476,6 +476,8 @@ IMPORTANT:
 - Match to the CLOSEST and MOST SPECIFIC option
 - Prefer specific department over generic state/central government
 - Output ONLY the department name - no preambles, explanations, or "Here is..." phrases
+- Return "Others" only if absolutely no match found
+- Outpust must be in English
 
 OUTPUT (department name only, must match list exactly):"""
 
@@ -543,5 +545,6 @@ IMPORTANT:
 - Do NOT use variations or abbreviations
 - Match to the CLOSEST option
 - Output ONLY the category name - no preambles, explanations, or "Here is..." phrases
+- Outputs must be in English
 
 OUTPUT (category name only, must match list exactly):"""
