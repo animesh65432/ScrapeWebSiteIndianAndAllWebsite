@@ -1,0 +1,66 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-196",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-195",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-194",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-191",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"568487\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-154",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"568491\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-14",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"568486\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "01/02/2026"
+  },
+  {
+    "title": "World Wetlands Day was observed on 02.02.2026 under the Tamil Nadu Wetlands Mission - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr020226_e_263.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "World Wetlands Day was observed on 02.02.2026 under the Tamil Nadu Wetlands Mission - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr020226_t_263.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Speech delivered by the Honble Chief Minister at the inauguration of the Tamil Nadu Global Tourism Summit – 2026, held at Mamallapuram in Chengalpattu District",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr020226_260.pdf",
+    "state": "TamilNadu"
+  }
+]
