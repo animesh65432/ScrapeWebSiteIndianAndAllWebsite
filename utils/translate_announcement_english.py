@@ -6,7 +6,8 @@ from prompts.translate_announcement import (
     get_Announcement_keypoints_section_prompt,
     get_Announcement_description_prompt,
     get_Announcement_category_prompt,
-    get_Announcement_department_prompt
+    get_Announcement_department_prompt,
+    get_Announcement_state_prompt
 )
 from typing import TypedDict
 from datetime import date
@@ -96,6 +97,12 @@ async def translate_announcement_english(
             
             category = await call_cloudflare(category_prompt)
             department = await call_cloudflare(department_prompt)
+
+            if announcement["state"] == "IndianGovt":
+                state = "Indian Government"
+            else:
+                state_prompt = get_Announcement_state_prompt(announcement)
+                state = await call_cloudflare(state_prompt)
             
             
             # Validate none are empty before parsing
@@ -148,7 +155,7 @@ async def translate_announcement_english(
                 "title": translated_title.strip(),
                 "description": translated_description.strip(),
                 "sections": sections,
-                "state": announcement["state"],
+                "state": state.strip(),
                 "category": category.strip(),
                 "department": department.strip(),
                 "date": formatted_date,

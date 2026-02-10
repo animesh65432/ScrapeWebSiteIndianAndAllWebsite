@@ -166,92 +166,28 @@ VERIFY:
 OUTPUT (one sentence only):"""
 
 
-def get_Announcement_state_prompt(original: Announcement, target_language: str) -> str:
-    state_translations = {
-        "Telangana": {
-            "Hindi": "तेलंगाना",
-            "Bengali": "তেলেঙ্গানা", 
-            "Telugu": "తెలంగాణ",
-            "Tamil": "தெலங்கானா",
-            "Marathi": "तेलंगणा",
-            "Kannada": "ತೆಲಂಗಾಣ",
-            "Malayalam": "തെലങ്കാന",
-            "Punjabi": "ਤੇਲੰਗਾਨਾ",
-            "Gujarati": "તેલંગાણા",
-            "Odia": "ତେଲେଙ୍ଗାନା"
-        },
-        "Maharashtra": {
-            "Hindi": "महाराष्ट्र",
-            "Bengali": "মহারাষ্ট্র",
-            "Telugu": "మహారాష్ట్ర",
-            "Tamil": "மகாராஷ்டிரா",
-            "Marathi": "महाराष्ट्र",
-            "Kannada": "ಮಹಾರಾಷ್ಟ್ರ",
-            "Malayalam": "മഹാരാഷ്ട്ര",
-            "Punjabi": "ਮਹਾਰਾਸ਼ਟਰ",
-            "Gujarati": "મહારાષ્ટ્ર",
-            "Odia": "ମହାରାଷ୍ଟ୍ର"
-        },
-        "West Bengal": {
-            "Hindi": "पश्चिम बंगाल",
-            "Bengali": "পশ্চিমবঙ্গ",
-            "Telugu": "పశ్చిమ బెంగాల్",
-            "Tamil": "மேற்கு வங்காளம்",
-            "Marathi": "पश्चिम बंगाल",
-            "Kannada": "ಪಶ್ಚಿಮ ಬಂಗಾಳ",
-            "Malayalam": "പശ്ചിമ ബംഗാൾ",
-            "Punjabi": "ਪੱਛਮੀ ਬੰਗਾਲ",
-            "Gujarati": "પશ્ચિમ બંગાળ",
-            "Odia": "ପଶ୍ଚିମ ବଙ୍ଗ"
-        },
-        "Tamil Nadu": {
-            "Hindi": "तमिलनाडु",
-            "Bengali": "তামিলনাড়ু",
-            "Telugu": "తమిళనాడు",
-            "Tamil": "தமிழ்நாடு",
-            "Marathi": "तमिळनाडू",
-            "Kannada": "ತಮಿಳುನಾಡು",
-            "Malayalam": "തമിഴ്‌നാട്",
-            "Punjabi": "ਤਮਿਲਨਾਡੂ",
-            "Gujarati": "તમિલનાડુ",
-            "Odia": "ତାମିଲନାଡୁ"
-        }
-    }
-    
-    govt_translations = {
-        "Hindi": "भारत सरकार",
-        "Bengali": "ভারত সরকার",
-        "Telugu": "భారత ప్రభుత్వం",
-        "Tamil": "இந்திய அரசு",
-        "Marathi": "भारत सरकार",
-        "Kannada": "ಭಾರತ ಸರ್ಕಾರ",
-        "Malayalam": "ഇന്ത്യാ സർക്കാർ",
-        "Punjabi": "ਭਾਰਤ ਸਰਕਾਰ",
-        "Gujarati": "ભારત સરકાર",
-        "Odia": "ଭାରତ ସରକାର",
-        "English": "IndiaGovt"
-    }
-    
-    input_state = original['state']
-    
-    # Check if we have a direct translation
-    if input_state in state_translations and target_language in state_translations[input_state]:
-        return state_translations[input_state][target_language]
-    
-    # Check if it's a government/central announcement
-    if input_state in govt_translations.values() or input_state == "IndiaGovt" or "Government" in input_state:
-        return govt_translations.get(target_language, "IndiaGovt")
-    
-    # Otherwise, provide translation prompt
-    return f"""Translate this Indian state name to {target_language}: {input_state}
+def get_Announcement_state_prompt(original: Announcement) -> str:
+    return f""" 
+Identify the state or region associated with this announcement.
+
+TITLE: {original['title']}
+CONTENT: {original['content'][:200]}
 
 RULES:
-- Use official {target_language} name
-- Pure {target_language} script only
-- If not a valid state, return: {govt_translations.get(target_language, 'IndiaGovt')}
-- Output ONLY the state name - no preambles, explanations, or "Here is..." phrases
+1. If a specific state is mentioned, return that state name
+2. If it's a central government announcement, return "IndianGovt"
+3. If no specific state is mentioned, return "IndianGovt"
+4. If multiple states are mentioned, return the most prominently featured one
+5. Return ONLY one of these exact values (case-sensitive):
+   [Chhattisgarh,MadhyaPradesh,Bihar,Jharkhand,Odisha,
+   WestBengal,Chandigarh,Delhi,Haryana,HimachalPradesh,JammuAndKashmir,
+   Punjab,Uttarakhand,Uttar Pradesh,ArunachalPradesh,Assam,Manipur,Meghalaya,
+   Mizoram,Nagaland,Sikkim,Tripura,AndhraPradesh,Karnataka,Kerala,Puducherry,
+   TamilNadu,Telangana,AndamanNicobarIslands,DadraandNagarHaveliDamanDiu,
+   IndianGovt,Ladakh,Lakshadweep,Goa,Gujarat,Maharashtra,Rajasthan]
 
-OUTPUT (state name only):"""
+OUTPUT: Return ONLY the state name from the list above - no explanations, preambles, or additional text.
+""".strip()
 
 
 def get_Announcement_department_prompt(original: Announcement) -> str:
