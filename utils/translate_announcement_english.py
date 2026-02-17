@@ -99,11 +99,10 @@ async def translate_announcement_english(
             department = await call_cloudflare(department_prompt)
 
             if announcement["state"] == "IndianGovt":
-                state = "Indian Government"
-            else:
                 state_prompt = get_Announcement_state_prompt(announcement)
                 state = await call_cloudflare(state_prompt)
-            
+            else:
+                state = announcement["state"]  # Keep original state for non-IndianGovt announcements
             
             # Validate none are empty before parsing
             if not summary_section_raw.strip():
