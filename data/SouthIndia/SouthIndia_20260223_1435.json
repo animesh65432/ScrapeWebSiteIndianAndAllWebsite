@@ -1,0 +1,31 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-464",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570078\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "22/02/2026"
+  },
+  {
+    "title": "High-Level Committee on Union–State Relations meets in New Delhi to deliberate on Part II of the report and notes that Part I has been tabled in the Tamil Nadu Legislative Assembly in Tamil and English with Hindi and other Indian language versions under preparation",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230226_e_464.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Honble Chief Minister delivered an address at the inauguration ceremony of Arulmigu Kapaleeswarar Arts and Science College at Kolathur, Chennai",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230226_463.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Text of the D.O. Letter of Honble Chief Minister to Honble Union Minister for External Affairs urging immediate diplomatic steps to secure the release of Tamil Nadu fishermen and their fishing boats detained by the Sri Lankan Navy and to prevent the continued arrest of Tamil Nadu fishermen",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr230226_461.pdf",
+    "state": "TamilNadu"
+  }
+]
