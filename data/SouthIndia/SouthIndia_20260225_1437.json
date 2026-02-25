@@ -1,0 +1,528 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-136",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570224\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-135",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570222\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-134",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570199\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-133",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570196\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-132",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570187\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-131",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570186\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "7",
+    "date": "MS-12",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570216\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-20",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570205\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "9",
+    "date": "RT-19",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570201\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "10",
+    "date": "RT-18",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570185\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "11",
+    "date": "RT-403",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570213\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "12",
+    "date": "RT-402",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570211\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "13",
+    "date": "RT-401",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570209\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "14",
+    "date": "RT-400",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570208\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "15",
+    "date": "RT-399",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570206\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "16",
+    "date": "RT-398",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570202\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "17",
+    "date": "RT-397",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570200\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "18",
+    "date": "RT-396",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "19",
+    "date": "RT-395",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570170\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "20",
+    "date": "RT-394",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570169\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "21",
+    "date": "RT-393",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570168\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "22",
+    "date": "RT-472",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570218\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "23",
+    "date": "RT-471",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570195\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "24",
+    "date": "RT-470",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570159\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "25",
+    "date": "RT-185",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570225\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "26",
+    "date": "RT-184",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570173\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "27",
+    "date": "RT-183",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570157\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "28",
+    "date": "RT-189",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570188\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "29",
+    "date": "RT-188",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570161\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "30",
+    "date": "RT-36",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570193\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "31",
+    "date": "MS-30",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570192\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "32",
+    "date": "MS-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570162\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "33",
+    "date": "RT-46",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570220\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "34",
+    "date": "RT-45",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570221\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "35",
+    "date": "RT-44",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570214\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "36",
+    "date": "RT-73",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570191\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "37",
+    "date": "RT-72",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570190\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "38",
+    "date": "RT-71",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570181\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "39",
+    "date": "RT-206",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570226\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "40",
+    "date": "RT-205",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570212\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "41",
+    "date": "RT-204",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570175\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "42",
+    "date": "RT-203",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570174\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "43",
+    "date": "RT-202",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570171\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "44",
+    "date": "RT-201",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570166\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "45",
+    "date": "RT-200",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570165\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "46",
+    "date": "RT-199",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570164\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "47",
+    "date": "MS-39",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570172\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "48",
+    "date": "RT-115",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570189\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "49",
+    "date": "RT-114",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570180\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "50",
+    "date": "RT-113",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570179\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "51",
+    "date": "RT-112",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570177\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "52",
+    "date": "RT-34",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570178\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "53",
+    "date": "RT-304",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570223\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "54",
+    "date": "RT-303",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570219\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "55",
+    "date": "RT-302",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570217\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "56",
+    "date": "RT-301",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570210\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "57",
+    "date": "RT-300",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570204\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "58",
+    "date": "RT-299",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570198\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "59",
+    "date": "RT-298",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570184\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "60",
+    "date": "RT-297",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570183\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "61",
+    "date": "RT-296",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570182\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "62",
+    "date": "MS-133",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570194\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "63",
+    "date": "RT-109",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570229\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "64",
+    "date": "RT-108",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570227\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "65",
+    "date": "RT-107",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570207\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "66",
+    "date": "MS-20",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570228\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "67",
+    "date": "RT-20",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570203\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "68",
+    "date": "RT-96",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570197\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "69",
+    "date": "RT-95",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570167\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "70",
+    "date": "RT-94",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570163\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "71",
+    "date": "RT-93",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570160\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "72",
+    "date": "RT-92",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570158\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "24/02/2026"
+  },
+  {
+    "title": "Condolence message of the Honble Chief Minister on the demise of veteran leader Thozhar Thiru Nallakannu",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr250226_486.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Honble Chief Minister of Tamil Nadu will lay the foundation stone on 26 February 2026 for three TIDEL Neo Parks, to be established at an estimated cost of ₹117.65 crore in Tirunelveli, Virudhunagar, and Erode districts, which are expected to generate new employment opportunities for around 1,800 IT professionals",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr250226_485.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Speech delivered by the Honble Chief Minister at the Government function held at Nagercoil in Kanniyakumari District",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr250226_484.pdf",
+    "state": "TamilNadu"
+  }
+]
