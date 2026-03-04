@@ -1,0 +1,66 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-441",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "03/03/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-500",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570659\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "03/03/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-250",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"570657\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "03/03/2026"
+  },
+  {
+    "title": "സ്വയം തൊഴിൽ വായ്പയ്ക്ക് അപേക്ഷിക്കാം",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTY2NTI4MTAxMC44",
+    "state": "Kerala",
+    "content": null
+  },
+  {
+    "title": "Condolence and financial assistance of the Honble Chief Minister to the families of four people who died after their car plunged into a well in Alampooondi village, Senji Taluk, Villupuram district",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_576.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "From the Managing Director, Tamil Nadu Water Supply and Drainage Board - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_e_574.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "From the Managing Director, Tamil Nadu Water Supply and Drainage Board - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_t_574.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "The Tamil Nadu Fact Check Unit’s Sensitization Programme against the Spread of Fake News and Hate Speech has reached more than 1.25 lakh beneficiaries till date - Tamil Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_t_572.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "The Tamil Nadu Fact Check Unit’s Sensitization Programme against the Spread of Fake News and Hate Speech has reached more than 1.25 lakh beneficiaries till date - English Version",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_e_572.pdf",
+    "state": "TamilNadu"
+  },
+  {
+    "title": "Social media post of Honble Chief Minister on the birth anniversary of Ayya Vaikundar",
+    "pdf_link": "https://cms.tn.gov.in/cms_migrated/document/press_release/pr040326_563.pdf",
+    "state": "TamilNadu"
+  }
+]
