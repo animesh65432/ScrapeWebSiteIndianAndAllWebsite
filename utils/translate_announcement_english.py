@@ -15,6 +15,7 @@ from utils.format_announcement_date import format_announcement_date
 from utils.call_cloudfree_api import call_cloudflare
 from utils.is_big_content import is_big_content
 from utils.generate_overview_big_text import generate_overview_big_text_from_title
+from utils.GetImages import find_best_image
 import json
 import re
 
@@ -148,6 +149,8 @@ async def translate_announcement_english(
             
             # Format date
             formatted_date = format_announcement_date(announcement.get("date"))
+
+            image_url = find_best_image(announcement["title"])
             
             # Build final object
             translated = {
@@ -161,6 +164,7 @@ async def translate_announcement_english(
                 "language": target_language,
                 "source_link": announcement["source_link"],
                 "announcementId": announcement["announcementId"],
+                "image": image_url
             }
             
             print(f"✅ Successfully translated to {target_language}")

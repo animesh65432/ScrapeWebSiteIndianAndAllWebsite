@@ -1,4 +1,4 @@
-from app_types.TranslateAnnouncement import TranslateAnnouncement, Section
+from app_types.TranslateAnnouncement import TranslateAnnouncement
 from utils.useai4bharat import translate_using_ai4bharat
 
 async def translate_announcement_indianLanguages(

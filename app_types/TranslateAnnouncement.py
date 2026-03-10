@@ -29,4 +29,5 @@ class TranslateAnnouncement(TypedDict):
     language: str
     source_link: str
     announcementId: str
+    image: str
     
