@@ -150,7 +150,7 @@ async def translate_announcement_english(
             # Format date
             formatted_date = format_announcement_date(announcement.get("date"))
 
-            image_url = find_best_image(announcement["title"])
+            image_url = await find_best_image(announcement["title"])
             
             # Build final object
             translated = {
