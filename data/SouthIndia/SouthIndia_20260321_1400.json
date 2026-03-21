@@ -1,0 +1,315 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-6",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571822\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-72",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571841\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-20",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571812\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-19",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571811\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-535",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571851\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-534",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571850\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "7",
+    "date": "RT-533",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571849\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-532",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571847\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "9",
+    "date": "RT-531",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571846\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "10",
+    "date": "RT-530",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "11",
+    "date": "RT-627",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571855\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "12",
+    "date": "RT-626",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571854\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "13",
+    "date": "RT-625",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571842\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "14",
+    "date": "RT-624",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571836\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "15",
+    "date": "RT-623",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571835\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "16",
+    "date": "RT-622",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571834\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "17",
+    "date": "RT-621",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571832\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "18",
+    "date": "RT-620",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571831\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "19",
+    "date": "RT-619",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571830\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "20",
+    "date": "RT-618",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571829\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "21",
+    "date": "RT-617",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571828\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "22",
+    "date": "RT-616",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571827\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "23",
+    "date": "RT-615",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571826\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "24",
+    "date": "RT-614",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571825\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "25",
+    "date": "MS-32",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571833\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "26",
+    "date": "RT-307",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571838\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "27",
+    "date": "RT-306",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571837\", \"T\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "28",
+    "date": "RT-305",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571824\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "29",
+    "date": "RT-57",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571848\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "30",
+    "date": "RT-56",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571844\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "31",
+    "date": "RT-55",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571840\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "32",
+    "date": "RT-344",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571856\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "33",
+    "date": "RT-343",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571839\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "34",
+    "date": "RT-342",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571820\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "35",
+    "date": "RT-341",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571818\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "36",
+    "date": "MS-63",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571817\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "37",
+    "date": "RT-198",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571853\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "38",
+    "date": "RT-197",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571821\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "39",
+    "date": "RT-448",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571852\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "40",
+    "date": "RT-447",
+    "pdf_link": "",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "41",
+    "date": "RT-150",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571819\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "42",
+    "date": "RT-149",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"571816\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "20/03/2026"
+  },
+  {
+    "title": "Hon’ble CM Sri A. Revanth Reddy participated in the Telangana Gaddar Film Awards-2025 ceremony at HITEX, Hyderabad | TGFA |",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/03/honble-cm-sri-a-revanth-reddy-participated-in-the-telangana-gaddar-film-awards-2025-ceremony-at-hitex-hyderabad-tgfa/",
+    "state": "Telangana",
+    "content": "తెలంగాణ కేంద్రంగా చలనచిత్ర పరిశ్రమల అభివృద్ధి చెందడానికి, సినిమాలకు సంబంధించి అవసరమైన అన్ని రకాల అనుమతుల కోసం సింగిల్ విండో విధానం అమలు చేస్తామని ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు ప్రకటించారు. ఐటీ, ఫార్మా పరిశ్రమలకు కేంద్రంగా ఉన్నట్టుగానే హైదరాబాద్‌ను గ్లోబల్ సినీ హబ్ గా తీర్చిదిద్దేందుకు ప్రభుత్వం ప్రయత్నిస్తోందని చెప్పారు.\nహైదరాబాద్ హైటెక్స్ ఎగ్జిబిషన్ సెంటర్ లో నిర్వహించిన తెలంగాణ గద్దర్ ఫిలిం అవార్డుల (TGFA) బహూకరణ కార్యక్రమానికి ముఖ్యమంత్రి గారు ముఖ్య అతిథిగా పాల్గొన్నారు.\nఉప ముఖ్యమంత్రి మల్లు భట్టి విక్రమార్క గారు, మంత్రి జూపల్లి కృష్ణారావు గారు, పలువురు ఎంపీలు, సలహాదారులు, ఎమ్మెల్సీలు, ఎమ్మెల్యేలు, తెలంగాణ ఫిల్మ్ డెవల్మెంట్ చైర్మన్ దిల్ రాజు గారు, చిత్ర పరిశ్రమకు చెందిన దిగ్గజాలు చిరంజీవి గారు, కమల్ హాసన్ గారు, నాగార్జున గారు, మాధురి దీక్షిత్ గారు, జయసుధ గారు, ఖుష్బూ గారు, జెనీలియా గారితో పాటు దర్శకులు, నిర్మాతలు, నటీనటులు హాజరయ్యారు.\nఈ సందర్భంగా ముఖ్యమంత్రి గారు మాట్లాడుతూ.. “ఐటీ, ఫార్మా తరహాలోనే సినిమా రంగాన్ని ఒక పరిశ్రమగా గుర్తించి పోత్సహించాలన్న ఆలోచన చేసిన కారణంగానే రాష్ట్రంలో గత పదేళ్లుగా ఆగిపోయిన నంది అవార్డుల స్థానంలో గద్దర్ గారి పేరుతో అవార్డులను పునరుద్ధరించాం. ఆగిపోయిన 10 ఏళ్ల అవార్డులనూ బహూకరించాం.\nరెండో విడతగా నిర్వహించుకుంటున్న ఈ కార్యక్రమంలో అవార్డు గ్రహీతలందరికీ తెలంగాణ ప్రభుత్వం తరఫున ప్రత్యేక అభినందనలు. గద్దర్ సినిమా అవార్డులను ప్రధానం చేయడం తెలంగాణ ప్రభుత్వం ఒక బాధ్యతగా భావించింది.\nఒకప్పుడు చెన్నై నుంచి హైదరాబాద్‌కు సినిమా పరిశ్రమ తరలిరావడానికి ఎన్టీఆర్, అక్కినేని నాగేశ్వర రావు, రామానాయుడు, కృష్ణ గారు తీవ్రమైన కృషి చేశారు. చార్మినార్‌కు నాలుగు మినార్లు ఎలాగో తెలుగు సినిమా పరిశ్రమ తరలి రావడానికి ఈ నలుగురు విశేషంగా కృషి చేశారు.\nసినీ కార్మికుల కోసం నటుడు ప్రభాకర్ రెడ్డి గారు తన సొంత స్థలాన్ని ఇళ్లు కట్టుకోవడానికి దానమిచ్చారు. పరిశ్రమలో ఏ సమస్య వచ్చినా, సంక్షోభం వచ్చినా పరిష్కరించడానికి దర్శకుడు దాసరి నారాయణ రావు గారు చేసిన కృషి గుర్తుచేసుకోవలసిన అవసరం ఉంది. రామోజీరావు గారు రామోజీ ఫిల్మ్ సిటీ స్థాపించడంతో హైదరాబాద్‌లో సినిమా పరిశ్రమ శాశ్వతంగా వేళ్లూనుకోవడానికి కారణమైంది.\nహిందీ, తమిళ్, కన్నడ, మలయాళం, తెలుగు అని కాకుండా పాన్ ఇండియా – భారతీయ సినిమా ఒక గ్లోబల్‌ హబ్‌గా పరిశ్రమ మొత్తం ఒకే గొడుగు కిందకు వచ్చి గొప్ప సినిమాలు అందించాల్సిన అవసరం ఉంది. హాలీవుడ్ సినిమాలను సైతం హైదరాబాద్ నగరానికి ఆహ్వానించి ఇక్కడి నుంచే నిర్మించేలా ఉన్నతంగా తీర్చిదిద్దుకుందాం.\nఓటీటీ ప్లాట్ ఫామ్ లో దిగ్గజ సంస్థ నెట్ ఫ్లిక్స్ Netflix ఐలైన్ హైదరాబాద్ తన కేంద్రాన్ని ప్రారంభించింది. నెట్‌ఫ్లిక్స్ రాకతో హైదరాబాద్‌కు హాలీవుడ్ వచ్చినట్టే. అంతర్జాతీయ స్థాయిలో ఇక్కడ సినిమాల నిర్మాణం కోసం సింగిల్ విండో విధానం అమలు చేస్తాం. అందుకు త్వరలోనే ఒక ప్లాట్‌ఫామ్‌ క్రియేట్ చేస్తాం.\nలక్షల కోట్ల మందిని తన గళంతో ప్రజలను ప్రభావితం చేసిన ప్రజాయుద్ధ నౌక గద్దర్ ఒక చైతన్యం, స్ఫూర్తి, అందుకని గద్దర్ గారి పేరుతో ఈ అవార్డులను పునరుద్ధరించాం. సామాజిక సమస్యలను పరిష్కరించుకోవడానికి సినిమాలు అత్యంత ప్రభావవంతమైన ఆయుధం.\nసమాజాన్ని చైతన్య పరిచేందుకు సినిమా ఒక సాధనంగా ఉపయోగపడాలి. సామాజిక బాధ్యతను గుర్తెరిగి, సామాజిక సమస్యల పరిష్కారానికి సినిమాల ద్వారా సందేశం అందించాలి.\nహైదరాబాద్, తెలంగాణ అత్యంత భద్రత కలిగిన రాష్ట్రం. టాలెంట్‌కు అవకాశాలున్నాయి. హైదరాబాద్ అన్ని అవకాశాలను కల్పిస్తుంది. హాలీవుడ్ చిత్రాలను ఇక్కడ నిర్మించండి. మీ పెట్టుబడులకు భద్రత ఉంటుంది. అందుకు తెలంగాణ ప్రభుత్వం హామీనిస్తుంది…” అని చెప్పారు.\nప్రత్యేక విభాగంలో కొణిదెల చిరంజీవి (ఎన్టీఆర్ జాతీయ పురస్కారం), సింగీతం శ్రీనివాస రావు (బీఎన్ రెడ్డి ఫిల్మ్ అవార్డు), చలసాని అశ్వినీదత్ (నాగిరెడ్డి – చక్రపాణి అవార్డు), సుద్దాల అశోక్ తేజ (డాక్టర్ సి. నారాయణరెడ్డి అవార్డు), జయసుధ (అక్కినేని నాగేశ్వరరావు అవార్డు), ఆర్ నారాయణ మూర్తి (కాంతారావు అవార్డు), అక్కినేని రమేష్ ప్రసాద్ (రఘుపతి వెంకయ్య అవార్డు), కమల్ హాసన్ (పైడి జైరాజ్ అవార్డు), ఉత్తమ నటుడు నాగ చైతన్య (తండేల్), ఉత్తమ నటిగా రష్మిక (ది గర్ల్ ఫ్రెండ్)లతో పాటు వివిధ కేటగిరీల్లో విజేతలకు జ్ఞాపికలు, ప్రశంసాపత్రం, నగదు బహుమతిని అందించారు.\nHon’ble Chief Minister Sri A. Revanth Reddy announced that a single-window system will be introduced to streamline all film-related permissions, aiming to accelerate the growth of the film industry with Telangana as its hub. He stated that the government is committed to transforming Hyderabad into a global cinema hub, on par with its stature in the IT and pharmaceutical sectors.\nThe Chief Minister attended as the Chief Guest at the Telangana Gaddar Film Awards (TGFA) ceremony held at the HITEX Exhibition Centre in Hyderabad.\nDeputy Chief Minister Mallu Bhatti Vikramarka, Minister Jupally Krishna Rao, MPs, advisors, MLCs, and MLAs were present, along with Telangana Film Development Corporation Chairman Dil Raju and leading film personalities including Chiranjeevi, Kamal Haasan, Nagarjuna, Madhuri Dixit, Jayasudha, Khushbu, and Genelia.\nAddressing the gathering, the Chief Minister said the awards were revived under the name of Gaddar to recognise cinema as a key industry, similar to IT and Pharma, replacing the long-pending Nandi Awards. Awards were presented for the entire ten-year period during which they had remained stalled.\nHe congratulated all award recipients and stated that the Telangana government considers the presentation of the Gaddar Film Awards a significant responsibility.\nRecalling the contributions of NTR, Akkineni Nageswara Rao, Rama Naidu, and Krishna in shifting the Telugu film industry from Chennai to Hyderabad, he likened their role to the four pillars of Charminar in establishing the industry in the city.\nHe also highlighted the contributions of Prabhakar Reddy, Dasari Narayana Rao, and Ramoji Rao in strengthening the film ecosystem in Hyderabad.\nEmphasising unity across languages, he called for the industry to come together under the banner of Indian or Pan-India cinema and strive to position it as a global hub.\nInviting international productions, including Hollywood, to Hyderabad, he assured full support and security for investments, adding that the government will soon introduce a dedicated platform for international-scale film production through a single-window clearance system.\nHe noted that global OTT platform Netflix has established its presence in Hyderabad, further reinforcing the city’s growing global relevance in the media and entertainment sector.\nHighlighting Gaddar’s legacy, he described him as a symbol of social consciousness and said cinema should serve as a powerful medium for societal awareness and progress.\nIn the special categories, awards, mementos, certificates, and cash prizes were presented to distinguished personalities including Chiranjeevi (NTR National Award), Singeetam Srinivasa Rao (BN Reddy Film Award), Ashwini Dutt (Nagi Reddy–Chakrapani Award), Suddala Ashok Teja (Dr. C. Narayana Reddy Award), Jayasudha (Akkineni Nageswara Rao Award), R. Narayana Murthy (Kanta Rao Award), Akkineni Ramesh Prasad (Raghupathi Venkaiah Award), and Kamal Haasan (Paidi Jairaj Award).\nAwards were also presented to Best Actor Naga Chaitanya (Thandel) and Best Actress Rashmika (The Girlfriend), along with winners across various other categories."
+  },
+  {
+    "title": "Hon’ble CM Sri A. Revanth Reddy participated in Sri Paraabhava Nama Ugadi Vedukalu at Ravindra Bharati, Hyderabad.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/03/honble-cm-sri-a-revanth-reddy-participated-in-sri-paraabhava-nama-ugadi-vedukalu-at-ravindra-bharati-hyderabad/",
+    "state": "Telangana",
+    "content": "తెలంగాణలో సాదా బైనామా భూములకు సంబంధించి తొందరలోనే పరిష్కారం చూపించబోతున్నామని ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారు ఉగాది పండుగ శుభదినం సందర్భంగా ప్రకటించారు. వ్యవసాయాన్ని లాభసాటిగా చేసి రైతును రాజుగా నిలబెట్టాలన్న సంకల్పంతో ముందుకు వెళుతున్నామని చెప్పారు.\nతెలంగాణ ప్రభుత్వం భాషా సాంస్కృతి శాఖ, దేవాదాయ ధర్మాదాయ శాఖ ఆధ్వర్యంలో రవీంద్రభారతిలో నిర్వహించిన శ్రీ పరాభవ నామ ఉగాది వేడుకల్లో ముఖ్యమంత్రి గారు, ఉప ముఖ్యమంత్రి శ్రీ మల్లు భట్టి విక్రమార్క గారితో కలిసి పాల్గొన్నారు.\nశ్రీ పరాభవ నామ ఉగాది పంచాంగాన్ని ముఖ్యమంత్రి గారు ఆవిష్కరించారు. ప్రకృతి వైపరీత్యాలు రాకుండా ప్రజలు సుఖశాంతులతో వర్థిల్లాలని ఈ సందర్భంగా భగవంతుడిని ప్రార్థించారు. ఈ నెల 22న రైతు భరోసా అందించబోతున్నామని తెలియజేస్తూ రైతులకు శుభాకాంక్షలు తెలియజేశారు.\nరైతు సంక్షేమం, అభివృద్ధికి కట్టుబడి ప్రభుత్వం పనిచేస్తుందని ముఖ్యమంత్రి పునరుద్ఘాటిస్తూ.. “ధరణి రూపంలో భూతమై రైతులను బాధ పెడుతున్న సందర్భంగా రైతులకు అండగా దాన్ని తరిమేసి భూ భారతితో రైతాంగ సమస్యలను పరిష్కరిస్తున్నాం. సాదా బైనామాకు సంబంధించి తొందరలోనే పరిష్కారం చూపించబోతున్నాం.\nసంక్షోభంలో కొట్టుమిట్టాడుతున్న రైతాంగాన్ని గట్టెక్కించడానికి పండించిన పంటలకు గిట్టుబాటు ధర కల్పించడంతో పాటు బోనస్ కూడా ఇచ్చి ఆదుకుంటున్నాం. కేంద్ర ప్రభుత్వం ప్రకటించిన లెక్కల మేరకు దేశంలో అతితక్కువ రుణభారం కలిగిన రైతులున్న రాష్ట్రాల్లో తెలంగాణ మొదటి స్థానంలో ఉండటం గర్వకారణం\nపరిశ్రమలు ఎన్ని వచ్చినా, ఐటీ రంగాలు ఎంతగా రాణించినప్పటికీ రాష్ట్రంలో ఇప్పటికీ ప్రధాన జీవనాధారం వ్యవసాయమే. రైతులు బాగున్నప్పుడే రాష్ట్రం బాగుంటుంది. రాష్ట్రంలో 25.35 లక్షల రైతు కుటుంబాలకు రూ. 20,616 కోట్ల మేరకు రుణమాఫీ చేసి రైతులను ఆత్మగౌరవంతో బతకడానికి ప్రభుత్వం ఎంతో కృషి చేసింది.\nప్రతి ఎకరాకు రూ. 12 వేల చొప్పున రైతు భరోసా అందిస్తున్నాం. ఇప్పటికే ప్రభుత్వం 18 వేల కోట్ల రూపాయలు రైతు భరోసా కింద అందించింది.\nపండించిన పంటలపై రైతుల్లో విశ్వాసం కల్పించడమే రాష్ట్ర ప్రభుత్వ ప్రధాన ఉద్దేశం. వ్యవసాయ రంగానికి ఉచిత కరెంట్, పంటలకు గిట్టుబాటు ధర కల్పించడం, రుణమాఫీ చేయడం, రైతుభరోసా అందించడంతో పాటు రైతు బీమా అమలు చేయడం వంటివన్నీ రైతు సంక్షేమం, అభివృద్ధి కోసం తీసుకున్న నిర్ణయాలు.\nప్రభుత్వం రైతుల కోసం ప్రయత్నాలు, నిర్మిస్తున్న సాగునీటి ప్రాజెక్టులు, సంక్షేమం కోసం అమలు చేస్తున్న పథకాలన్నీ దేశంలో తెలంగాణ ప్రతిష్టను పెంపొదిస్తాయి. మన పొలాల్లో సమృద్ధిగా పంటలు పండినప్పుడే రాష్ట్రం సుఖశాంతులతో విలసిల్లుతుంది..” అని అన్నారు.\nఈ కార్యక్రమంలో మంత్రులు జూపల్లి కృష్ణారావు గారు, కొండా సురేఖ గారు, పొంగులేటి శ్రీనివాస రెడ్డి గారు, రాజ్యసభ సభ్యుడు వేం నరేందర్ రెడ్డి గారు, ఎమ్మెల్సీ మహేష్ కుమార్ గౌడ్ గారు, పలువురు ఎమ్మెల్సీలు, ఎమ్మెల్యేలు, ఇతర ప్రజాప్రతినిధులు పాల్గొన్నారు.\nఈ వేడుక సందర్భంగా ప్రముఖ జ్యోతిష్యులు డాక్టర్ బాచంపల్లి సంతోష్ కుమార్ శాస్త్రి గారు పంచాంగ శ్రవణం చేశారు. కార్యక్రమంలో రాష్ట్రంలోని వివిధ ఆలయాలకు చెందిన అర్చకులను ముఖ్యమంత్రి గారు సత్కరించారు.\nA permanent solution for Sada Bainama land issues in Telangana will be provided shortly, announced Hon’ble Chief Minister Sri A. Revanth Reddy on the auspicious occasion of Ugadi. He emphasized the government’s unwavering resolve to transform agriculture into a profitable venture and ensure the prosperity of the farming community, which remains the backbone of the state’s economy.\nThe Chief Minister, accompanied by Deputy Chief Minister Sri Mallu Bhatti Vikramarka, participated in the Shri Parabhava Nama Ugadi celebrations organized by the Department of Language and Culture and the Endowments Department at Ravindra Bharathi.\nDuring the event, the Chief Minister released the Shri Parabhava Nama Ugadi Panchangam and offered prayers for the prosperity of the people and protection against natural calamities. He also extended Ugadi greetings to farmers, announcing that the Raitu Bharosa assistance would be credited on the 22nd of this month.\nReiterating the government’s commitment to farmer welfare, the Chief Minister stated, “While the previous Dharani system burdened the farmers, our government is addressing land issues through Bhoo Bharati. We are moving toward a swift and effective resolution for Sada Bainama lands to provide long-awaited relief to the peasantry.”\nTo support farmers struggling with financial crises, the government is ensuring remunerative prices along with a bonus for crops. The Chief Minister noted with pride that, according to Central Government data, Telangana ranks first among states with the lowest farmer debt burden.\nHe highlighted that despite industrial growth and IT sector success, agriculture remains the primary livelihood in the state. “The state prospers only when the farmer prospers,” he remarked, noting that the government has already waived ₹20,616 crore in loans for 25.35 lakh farmer families to help them live with dignity.\nThe government is providing Raitu Bharosa at the rate of ₹12,000 per acre. To date, approximately ₹18,000 crore has already been disbursed under this scheme to support agricultural operations and ensure financial stability for rural households.\nThe primary objective of the state government is to instill confidence among farmers regarding their produce. Key decisions such as free electricity for agriculture, remunerative prices, loan waivers, Raitu Bharosa, and the implementation of Raitu Bima are all strategic steps toward holistic development.\nThe Chief Minister expressed that the irrigation projects, welfare schemes, and dedicated efforts for farmers will continue to enhance Telangana’s prestige nationwide. “When our fields flourish with abundant crops, the state will truly thrive with peace and prosperity,” he added.\nThe program was attended by Ministers Sri Jupally Krishna Rao, Smt. Konda Surekha, Sri Ponguleti Srinivasa Reddy, Rajya Sabha MP Sri Vem Narender Reddy, MLC Sri Mahesh Kumar Goud, and several other legislators and public representatives.\nDuring the celebrations, renowned astrologer Dr. Bachampalli Santosh Kumar Sastry performed the Panchanga Sravanam. On this occasion, the Chief Minister also honored priests from various prominent temples across the state for their spiritual service."
+  }
+]
