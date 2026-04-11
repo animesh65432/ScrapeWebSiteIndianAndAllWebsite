@@ -1,0 +1,491 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-265",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573142\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-264",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573139\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-263",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573137\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-262",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573138\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "5",
+    "date": "MS-17",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573141\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-94",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573132\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "7",
+    "date": "MS-3",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573149\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "8",
+    "date": "RT-35",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573091\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "9",
+    "date": "RT-31",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573088\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "10",
+    "date": "RT-30",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573086\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "11",
+    "date": "RT-29",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573084\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "12",
+    "date": "RT-37",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573106\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "13",
+    "date": "RT-1437",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573136\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "14",
+    "date": "RT-1436",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573080\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "15",
+    "date": "RT-743",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573147\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "16",
+    "date": "RT-742",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573143\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "17",
+    "date": "RT-741",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573121\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "18",
+    "date": "RT-740",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573120\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "19",
+    "date": "RT-739",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573118\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "20",
+    "date": "RT-738",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573117\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "21",
+    "date": "RT-737",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573116\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "22",
+    "date": "RT-736",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573114\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "23",
+    "date": "RT-735",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573113\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "24",
+    "date": "RT-734",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573108\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "25",
+    "date": "RT-733",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573104\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "26",
+    "date": "RT-732",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573093\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "27",
+    "date": "RT-319",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573140\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "28",
+    "date": "RT-318",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573105\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "29",
+    "date": "RT-317",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573103\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "30",
+    "date": "RT-316",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573102\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "31",
+    "date": "RT-315",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573100\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "32",
+    "date": "RT-314",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573099\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "33",
+    "date": "RT-313",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573098\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "34",
+    "date": "RT-312",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573097\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "35",
+    "date": "RT-311",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573096\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "36",
+    "date": "RT-310",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573092\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "37",
+    "date": "MS-43",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573123\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "38",
+    "date": "RT-453",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573144\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "39",
+    "date": "RT-452",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573134\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "40",
+    "date": "RT-451",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573124\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "41",
+    "date": "RT-450",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573079\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "42",
+    "date": "RT-69",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573131\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "43",
+    "date": "MS-66",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573146\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "44",
+    "date": "MS-65",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573135\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "45",
+    "date": "RT-31",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573089\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "46",
+    "date": "RT-75",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573101\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "47",
+    "date": "RT-114",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573128\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "48",
+    "date": "RT-113",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573125\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "49",
+    "date": "MS-29",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573151\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "50",
+    "date": "MS-28",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573150\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "51",
+    "date": "MS-12",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573095\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "52",
+    "date": "MS-11",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573094\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "53",
+    "date": "RT-405",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573090\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "54",
+    "date": "MS-79",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573083\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "55",
+    "date": "RT-280",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573111\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "56",
+    "date": "MS-61",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573085\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "57",
+    "date": "RT-533",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573133\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "58",
+    "date": "RT-532",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573127\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "59",
+    "date": "RT-531",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573126\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "60",
+    "date": "RT-530",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573087\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "61",
+    "date": "RT-529",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573081\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "62",
+    "date": "MS-227",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573129\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "63",
+    "date": "MS-226",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573110\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "64",
+    "date": "MS-225",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573109\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "65",
+    "date": "MS-224",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573107\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "66",
+    "date": "RT-186",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573148\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "67",
+    "date": "RT-185",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573145\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "68",
+    "date": "RT-184",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573082\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "10/04/2026"
+  },
+  {
+    "title": "కాళేశ్వరం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్టుకు సంబంధించి మంత్రి ఉత్తమ్ కుమార్ రెడ్డి గారు, ఇతర ఉన్నతాధికారులతో ముఖ్యమంత్రి గారు సమీక్ష నిర్వహించారు.",
+    "link": "https://www.telangana.gov.in/news/press-releases/2026/04/%e0%b0%95%e0%b0%be%e0%b0%b3%e0%b1%87%e0%b0%b6%e0%b1%8d%e0%b0%b5%e0%b0%b0%e0%b0%82-%e0%b0%b2%e0%b0%bf%e0%b0%ab%e0%b1%8d%e0%b0%9f%e0%b1%8d-%e0%b0%87%e0%b0%b0%e0%b0%bf%e0%b0%97%e0%b1%87%e0%b0%b7%e0%b0%a8/",
+    "state": "Telangana",
+    "content": "కాళేశ్వ‌రం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్టులోని మూడు బ్యారేజీల‌కు మ‌ర‌మ్మ‌త్తులు చేసి వాటిని వినియోగంలోకి తీసుకురావాల‌ని ముఖ్య‌మంత్రి శ్రీ రేవంత్ రెడ్డి గారు అధికారుల‌ను ఆదేశించారు. నేష‌న‌ల్ డ్యామ్ సేప్టీ అథారిటీ (NDSA) సూచ‌న‌ల మేర‌కు వీలైనంత త్వ‌ర‌గా ఈ ప‌నుల‌ను వేగవంతం చేయాల‌ని చెప్పారు.\nకాళేశ్వరం లిఫ్ట్ ఇరిగేషన్ ప్రాజెక్టుకు సంబంధించి మంత్రి ఉత్తమ్ కుమార్ రెడ్డి గారు, ఇతర ఉన్నతాధికారులతో ముఖ్యమంత్రి గారు సమీక్ష నిర్వహించారు. ప్రాజెక్టు మ‌ర‌మ్మ‌త్తుల కోసం ప్ర‌త్యేక కార్యాచ‌ర‌ణ‌ను రూపొందించి నిరంత‌రం ప‌ర్య‌వేక్ష‌ణ చేయాల‌ని ఈ సందర్భంగా అధికారులను ఆదేశించారు.\nమరమ్మత్తులకు సంబంధించిన ఏజెన్సీల‌న్నింటిని అప్ర‌మ‌త్తం చేసి ప‌నుల్లో వేగం పెంచాల‌ని సూచించారు. సెంట్ర‌ల్ వాట‌ర్ అండ్ ప‌వ‌ర్ రీసెర్చ్ స్టేష‌న్ (CWPRS) ఆధ్య‌ర్యంలో జ‌రుగుతున్న‌ ప‌రీక్ష‌లు, న‌మూనాల సేక‌ర‌ణను వ‌ర్షాకాలం ప్రారంభానికి ముందే పూర్తి చేయాల‌ని స్ప‌ష్టం చేశారు.\nనీటిపారుద‌ల శాఖ, సీడ‌బ్ల్యూపీఆర్‌ఎస్, బ్యారేజీల నిర్మాణ సంస్థ‌లు, డిజైన్ కన్సల్టేషన్స్‌తో టీమ్ ఏర్పాటు చేయాలని సూచించారు. ప్రతి పనిలో సెంట్రల్ వాటర్ కమిషన్ (CWC) సభ్యులు ఉండేలా చూడాలన్నారు. మేడిగడ్డలో కుంగిపోయిన పిల్లరే కాకుండా మొత్తం 1.6 కిలోమీటర్ల బ్యారేజిని అధ్య‌య‌నం చేయాల్సిన అవసరం ఉందని సమావేశంలో అధికారులు వివరించారు.\nమేడిగడ్డ దగ్గర 500 బోరు బావులు తవ్వడానికి సంబంధించి ప్రత్యేక కార్యాచరణ ప్రణాళిక సిద్ధం చేయాలని ముఖ్యమంత్రి గారు చెప్పారు. అందుకు కావాల్సిన యంత్రాలను సమకూర్చుకుని వీలైనంత త్వ‌ర‌గా పని పూర్తి చేయాలని ఆదేశించారు.\nమరమ్మతులకు సంబంధించి డిజైన్లు సిద్ధం చేయాలని సూచించారు. డిసెంబరు వరకు చేయాల్సిన పనులపైన పూర్తి షెడ్యూల్ సిద్ధం చేయాలన్నారు.\nపనుల్లో జాప్యం జరగడానికి వీలు లేదని, నిధుల విషయంలో ఇబ్బంది రానివ్వమని స్పష్టం చేశారు. మేడిగడ్డ వద్ద బేస్ క్యాంపు ఏర్పాటు చేయాలని సూచించారు. పనులు ప్రారంభం అయ్యాక తాను స్వయంగా వచ్చి పరిశీలిస్తానని చెప్పారు.\nఈ సమావేశంలో రాష్ట్ర ప్రభుత్వ ప్రధాన కార్యదర్శి రామకృష్ణారావు గారితో పాటు నీటి పారుదల శాఖ ఉన్నతాధికారులు పాల్గొన్నారు.\nRepairs of the three barrages under the Kaleshwaram project and their restoration to operation were reviewed, with Hon’ble Chief Minister Sri A. Revanth Reddy, along with Irrigation Minister Sri Uttam Kumar Reddy, directing officials to carry out the works in accordance with the recommendations of the National Dam Safety Authority (NDSA).\nThe Chief Minister called for a detailed action plan for repairing the damaged barrages, with continuous monitoring and coordination among all concerned agencies. He stressed the need to expedite the works and ensure that testing and sample collection by the Central Water and Power Research Station (CWPRS) are completed before the onset of the monsoon.\nHe proposed constituting a dedicated team comprising officials from the Irrigation Department, CWPRS, construction agencies, and design consultants, with mandatory involvement of the Central Water Commission (CWC) at every stage.\nEngineers informed that the study must cover the entire 1.6-km stretch of the barrage, beyond the subsided pier at Medigadda. Taking note that around 500 borewells are required near Medigadda, the Chief Minister directed preparation of a specific action plan, finalization of repair designs, and a comprehensive timeline to complete all works by December.\nEmphasizing urgency, the Chief Minister made it clear that there should be no delays and no financial constraints in executing the works.\nHe also directed establishment of a base camp at Medigadda and stated that he would personally visit and inspect the site once the works commence. Chief Secretary Ramakrishna Rao, Irrigation Secretary Sridhar, CM Secretary Manik Raj, and senior officials participated in the review meeting."
+  }
+]
