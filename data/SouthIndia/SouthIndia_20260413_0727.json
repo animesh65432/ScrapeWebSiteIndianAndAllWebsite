@@ -1,0 +1,29 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-744",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573155\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "12/04/2026"
+  },
+  {
+    "title": "2",
+    "date": "MS-38",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573154\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "12/04/2026"
+  },
+  {
+    "title": "ചൂടുമായി ബന്ധപ്പെട്ട് പ്രചരിക്കുന്ന വ്യാജ വാര്‍ത്തകള്‍ വിശ്വസിക്കരുത്‌",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTY3ODkzOTQ2Ny4wNA==",
+    "state": "Kerala",
+    "content": null
+  }
+]
