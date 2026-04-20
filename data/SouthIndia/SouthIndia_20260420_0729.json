@@ -1,0 +1,64 @@
+[
+  {
+    "title": "S.No",
+    "date": "G.O N.O",
+    "pdf_link": "https://goir.ap.gov.in/javascript:__doPostBack('ctl00$ContentPlaceHolder1$FileMoveList2','Sort$go_date')",
+    "state": "AndhraPradesh",
+    "description": "Date"
+  },
+  {
+    "title": "1",
+    "date": "RT-8",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573595\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "2",
+    "date": "RT-7",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573594\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "3",
+    "date": "RT-795",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573598\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "4",
+    "date": "RT-794",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573591\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "5",
+    "date": "RT-48",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573596\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "6",
+    "date": "RT-26",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573593\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "7",
+    "date": "MS-23",
+    "pdf_link": "https://goir.ap.gov.in/javascript:downloadFile(\"573592\", \"E\");",
+    "state": "AndhraPradesh",
+    "description": "19/04/2026"
+  },
+  {
+    "title": "ദുർമന്ത്രവാദ വിരുദ്ധ നിയമനിർമ്മാണം: പൊതുജന അഭിപ്രായം ക്ഷണിക്കുന്നു",
+    "link": "https://kerala.gov.in/whatsnewdetailwise/MTY3OTQ2NDc5Mi4yOA==",
+    "state": "Kerala",
+    "content": null
+  }
+]
